@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Игры Полины</title>
+<meta name="theme-color" content="#fff8ed">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎮%3C/text%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:ui-rounded,'Arial Rounded MT Bold',system-ui,sans-serif;background:#fff8ed;color:#574d70}
+body:before{content:'';position:fixed;inset:0;z-index:-1;background:radial-gradient(ellipse at 10% 10%,#ffe5e7,transparent 45%),radial-gradient(ellipse at 100% 90%,#d9f4ee,transparent 50%)}
+main{width:min(960px,92vw);margin:0 auto;padding:44px 0 60px}
+h1{font-size:clamp(30px,7vw,46px);margin:0;letter-spacing:-1px}
+h1 span{color:#e76f69}
+.sub{color:#9a8b9e;margin:8px 0 34px;font-size:17px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:24px}
+.card{display:block;text-decoration:none;color:inherit;background:#fff;border-radius:28px;padding:14px;box-shadow:0 6px 0 #ece3d9,0 14px 30px #b48a5a1a;transition:transform .15s}
+.card:hover{transform:translateY(-4px)}
+.card:active{transform:translateY(2px)}
+.card img{display:block;width:100%;aspect-ratio:1;object-fit:cover;border-radius:20px;background:#f7bd43}
+.card h2{font-size:22px;margin:16px 6px 6px}
+.card p{margin:0 6px 8px;color:#8f8199;font-size:15px;line-height:1.4}
+.tag{display:inline-block;margin:4px 6px 6px;padding:5px 12px;border-radius:20px;background:#d9f2e9;font-size:13px;font-weight:800;color:#4f8f78}
+.soon{display:grid;place-items:center;min-height:200px;border:3px dashed #e8dccf;border-radius:28px;color:#b5a6b3;font-size:18px;font-weight:800;text-align:center;padding:20px}
+footer{margin-top:44px;text-align:center;color:#b5a6b3;font-size:13px}
+</style>
+</head>
+<body>
+<main>
+<h1>Игры Полины <span>♥</span></h1>
+<p class="sub">Простые игры, которые открываются прямо в браузере</p>
+<div class="grid">
+<a class="card" href="/red-car/">
+<img src="red-car.webp" alt="Поле игры «Машинка Полины» с разноцветными машинками">
+<h2>Машинка Полины</h2>
+<p>Помоги красной машинке выехать с парковки: двигай другие машинки.</p>
+<span class="tag">100 уровней</span><span class="tag">от 4 лет</span>
+</a>
+<div class="soon">Скоро здесь появятся новые игры ✨</div>
+</div>
+<footer>games.distantec.app</footer>
+</main>
+</body>
+</html>
