@@ -1,4 +1,4 @@
-# Игры Полины
+# Маленькие игры
 
 Каталог браузерных игр: [games.distantec.app](https://games.distantec.app).
 
