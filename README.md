@@ -10,6 +10,7 @@ https://games.distantec.app/
 | --- | --- | --- | --- | --- |
 | <img src="red-car.webp" alt="Час пик" width="160"> | Час пик | https://games.distantec.app/red-car/ | https://github.com/distantec-assistant/red-car | от 4 лет |
 | <img src="maze.webp" alt="Лабиринты" width="160"> | Лабиринты, 120 уровней | https://games.distantec.app/maze/ | папка `maze/` в этом репозитории | от 3 лет |
+| <img src="bukvograd.webp" alt="Буквоград" width="160"> | Буквоград, русская азбука | https://games.distantec.app/bukvograd/ | папка `bukvograd/` в этом репозитории | от 4 лет |
 
 ## Час пик
 
