@@ -155,7 +155,7 @@ body.playing #footer{display:block}
  <p id="albumCount"></p>
  <div id="albumGrid"></div>
 </section>
-<section id="reward" class="screen"><div id="confetti"></div><div id="rewardSticker"></div><strong>Станция пройдена!</strong><button id="rewardNext" aria-label="Дальше">➜</button></section>
+<section id="reward" class="screen"><div id="confetti"></div><div id="rewardSticker"></div><strong>Ура, получилось!</strong><button id="rewardNext" aria-label="Дальше">➜</button></section>
 <div id="footer"><footer class="foot"><a id="back" href="https://games.distantec.app/" draggable="false">← Все игры</a><span id="help" role="status"></span></footer></div>
 <script>
 /*PICS*/
@@ -261,18 +261,27 @@ async function gMeet(run){const l=LET[ST],w=wordsOf(l.ch)[0];
  return true}
 function trace(run,ch,phrase){return new Promise(resolve=>{
  const s=STROKES[ch];
- $('stage').innerHTML=`<svg id="trace" viewBox="-20 -30 140 190"><g fill="none" stroke-linecap="round" stroke-linejoin="round">${s.map(d=>`<path d="${d}" stroke="#f1e9f6" stroke-width="30"/>`).join('')}${s.map(d=>`<path class="g" d="${d}" stroke="#cdbfe0" stroke-width="2.5" stroke-dasharray="3 6"/>`).join('')}</g><g fill="#eadff2">${DECO[ch]||''}</g><g id="ink"></g><g id="starts"></g><g id="finger"></g></svg><div class="hint">Веди пальчиком по букве</div>`;
+ $('stage').innerHTML=`<svg id="trace" viewBox="-20 -30 140 190"><g fill="none" stroke-linecap="round" stroke-linejoin="round">${s.map(d=>`<path d="${d}" stroke="#f1e9f6" stroke-width="30"/>`).join('')}${s.map(d=>`<path class="g" d="${d}" stroke="#cdbfe0" stroke-width="2.5" stroke-dasharray="3 6"/>`).join('')}</g><g fill="#eadff2">${DECO[ch]||''}</g><g id="ink"></g><g id="full" fill="none" stroke-linecap="round" stroke-linejoin="round"></g><g id="starts"></g><g id="finger"></g></svg><div class="hint">Веди пальчиком по букве</div>`;
  const svg=$('trace'),ink=$('ink');const col=['#e76f69','#f7a541','#5fb8a4','#7b8fe0'][L_BY[ch].i%4];
  const paths=[...svg.querySelectorAll('path.g')];
- const P=paths.map(p=>{const L=p.getTotalLength(),n=Math.max(4,Math.round(L/5));return Array.from({length:n+1},(_,k)=>{const q=p.getPointAtLength(L*k/n);return {x:q.x,y:q.y,hit:false}})});
- window.__trace=P;
- const starts=()=>{const k=P.findIndex(pp=>pp.filter(q=>q.hit).length/pp.length<.7);$('starts').innerHTML=k<0?'':`<circle class="startDot" cx="${P[k][0].x}" cy="${P[k][0].y}" r="11" fill="#7cc9a8" stroke="#fff" stroke-width="4"/>`};starts();
+ // sample each stroke every ~4 units
+ const P=paths.map(p=>{const L=p.getTotalLength(),n=Math.max(6,Math.round(L/4));return Array.from({length:n+1},(_,k)=>{const q=p.getPointAtLength(L*k/n);return {x:q.x,y:q.y,hit:false}})});
+ const R=18,WIN=4,NEED=.9;let cur=0,finished=false;
+ window.__trace=P;window.__traceDone=false;window.__traceStroke=()=>cur;
+ const strokeDone=pp=>pp[0].hit&&pp[pp.length-1].hit&&pp.filter(q=>q.hit).length/pp.length>=NEED;
+ const starts=()=>{$('starts').innerHTML=cur>=P.length?'':`<circle class="startDot" cx="${P[cur][0].x}" cy="${P[cur][0].y}" r="11" fill="#7cc9a8" stroke="#fff" stroke-width="4"/>`};starts();
  setInstr([phrase]);
- let last=null,down=false,finished=false;const R=17;
+ let last=null,down=false;
  const toSvg=e=>{const pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;return pt.matrixTransform(svg.getScreenCTM().inverse())};
- const mark=(a)=>{let any=false;P.forEach(pp=>pp.forEach(q=>{if(!q.hit&&Math.hypot(q.x-a.x,q.y-a.y)<R){q.hit=true;any=true;ink.insertAdjacentHTML('beforeend',`<circle cx="${q.x}" cy="${q.y}" r="10" fill="${col}"/>`)}}));if(any&&Math.random()<.35)sfx('tick');return any};
- const move=e=>{if(!down||finished)return;const a=toSvg(e);if(last){const dd=Math.hypot(a.x-last.x,a.y-last.y),n=Math.ceil(dd/4);for(let k=1;k<=n;k++)mark({x:last.x+(a.x-last.x)*k/n,y:last.y+(a.y-last.y)*k/n})}else mark(a);last=a;$('finger').innerHTML=`<circle cx="${a.x}" cy="${a.y}" r="7" fill="#fff" stroke="${col}" stroke-width="3"/>`;check()};
- const check=()=>{starts();const cov=P.map(pp=>pp.filter(q=>q.hit).length/pp.length);if(cov.every(c=>c>=.72)){finished=true;$('finger').innerHTML='';ink.querySelectorAll('circle').forEach(c=>c.setAttribute('r','11'));svg.style.transform='scale(1.04)';setTimeout(()=>{svg.style.transform=''},250);resolve(alive(run))}};
+ // only the current stroke can be painted, and only by growing from its ends / already-painted points (no jumping)
+ const mark=a=>{if(cur>=P.length)return;const pp=P[cur],n=pp.length;let any=false,grew=true;
+  while(grew){grew=false;for(let i=0;i<n;i++){const q=pp[i];if(q.hit||Math.hypot(q.x-a.x,q.y-a.y)>=R)continue;
+    let ok=i===0||i===n-1;for(let d=1;d<=WIN&&!ok;d++){if((i-d>=0&&pp[i-d].hit)||(i+d<n&&pp[i+d].hit))ok=true}
+    if(ok){q.hit=true;any=grew=true;ink.insertAdjacentHTML('beforeend',`<circle cx="${q.x}" cy="${q.y}" r="9.5" fill="${col}"/>`)}}}
+  if(any&&Math.random()<.3)sfx('tick');
+  if(strokeDone(pp)){pp.forEach(q=>q.hit=true);$('full').insertAdjacentHTML('beforeend',`<path d="${paths[cur].getAttribute('d')}" stroke="${col}" stroke-width="19"/>`);cur++;starts();if(cur<P.length)sfx('good');else complete()}};
+ const move=e=>{if(!down||finished)return;const a=toSvg(e);if(last){const dd=Math.hypot(a.x-last.x,a.y-last.y),n=Math.ceil(dd/3);for(let k=1;k<=n;k++)mark({x:last.x+(a.x-last.x)*k/n,y:last.y+(a.y-last.y)*k/n})}else mark(a);last=a;$('finger').innerHTML=finished?'':`<circle cx="${a.x}" cy="${a.y}" r="7" fill="#fff" stroke="${col}" stroke-width="3"/>`};
+ const complete=()=>{finished=true;window.__traceDone=true;$('finger').innerHTML='';svg.style.transform='scale(1.04)';setTimeout(()=>{svg.style.transform=''},250);resolve(alive(run))};
  svg.onpointerdown=e=>{e.preventDefault();down=true;last=null;try{svg.setPointerCapture(e.pointerId)}catch(_){}move(e)};
  svg.onpointermove=move;svg.onpointerup=svg.onpointercancel=()=>{down=false;last=null;$('finger').innerHTML=''};
  const watch=setInterval(()=>{if(!alive(run)){clearInterval(watch);resolve(false)}if(finished)clearInterval(watch)},300);
@@ -358,6 +367,6 @@ function openAlbum(){show('album');const got=LET.filter((_,i)=>isDone(i)).length
  say('ph_album')}
 addEventListener('resize',()=>{if(screen==='map')openMap()});
 /* test hooks */
-window.BG={get save(){return save},LET,WORDS,ready,gamesOf,buildPool,get state(){return {screen,ST,GI,game:GAMES[GI]}}};
+window.BG={traceTest:(ch)=>{show('station');const run=++gameRun;return trace(run,ch,'ph_trace')},get save(){return save},LET,WORDS,ready,gamesOf,buildPool,get state(){return {screen,ST,GI,game:GAMES[GI]}}};
 </script>
 </body></html>

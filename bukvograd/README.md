@@ -14,11 +14,11 @@ Each completed station earns a sticker for the album. Progress is saved in `loca
 
 ## Files
 - `index.html` is the whole game, with inline CSS, JS and SVG. It is generated from `src/` by `python3 src/build.py`.
-- `audio/*.mp3` holds the voice clips, voiced by Yandex SpeechKit (voice `marina`, emotion `friendly`). The letter Ы is spliced from a real [ɨ], because the voice says an isolated «Ы» as «И».
+- `audio/*.mp3` holds the voice clips, voiced by Yandex SpeechKit API v3 (voice `lera`, role `friendly`). Stress is marked with `+` before the stressed vowel. The voice does not reliably honour `+` on a word-final vowel, and a `+` after a vowel is read aloud as «плюс», so phrases avoid words whose stress is on a final vowel when the default reading is wrong. The letter Ы uses phoneme markup `[[ɨ]]`, because the voice says a plain «Ы» as «И».
 
 ## How to add a station
 1. In `src/data.py`, add words for the letter to `WORDS`: the word, its stress-marked TTS text and its syllables.
 2. Add a picture with the same id to `src/pics.js`.
-3. Run `python3 src/data.py`. Generate the new clips with `tts/gen_ya.py` (Yandex SpeechKit), which lives on the work machine and is not in the repo. Then run `python3 src/build.py`.
+3. Run `python3 src/data.py`. Generate the new clips with `tts/gen_ly.py` (Yandex SpeechKit v3, voice lera), which lives on the work machine and is not in the repo. Then run `python3 src/build.py`.
 
 A station becomes playable automatically once its letter has at least 3 picture words.
