@@ -15,6 +15,7 @@ Each completed station earns a sticker for the album. Progress is saved in `loca
 ## Files
 - `index.html` is the whole game, with inline CSS, JS and SVG. It is generated from `src/` by `python3 src/build.py`.
 - `audio/*.mp3` holds the voice clips, voiced by Yandex SpeechKit API v3 (voice `lera`, role `friendly`). Stress is marked with `+` before the stressed vowel. The voice does not reliably honour `+` on a word-final vowel, and a `+` after a vowel is read aloud as «плюс», so phrases avoid words whose stress is on a final vowel when the default reading is wrong. The letter Ы uses phoneme markup `[[ɨ]]`, because the voice says a plain «Ы» as «И».
+- Some clips were re-voiced with a slightly different text or speed to avoid a metallic, robotic artefact the voice produces on long vowels (for example «Это буква — А!», «А! А! А!»). They are listed in `tts/overrides.json` and pinned in `tts/gen_ly.py` (MANUAL), so regeneration keeps them.
 
 ## How to add a station
 1. In `src/data.py`, add words for the letter to `WORDS`: the word, its stress-marked TTS text and its syllables.
