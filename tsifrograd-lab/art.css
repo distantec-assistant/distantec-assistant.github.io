@@ -1,0 +1,59 @@
+/* Decorative SVGs only. The game UI owns wrapper dimensions and placement. */
+.art-backdrop,
+.art-portrait,
+.art-item,
+.art-train {
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  line-height: 0;
+}
+
+.art-backdrop {
+  overflow: hidden;
+}
+
+.art-item {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.art-backdrop > svg,
+.art-portrait > svg,
+.art-item > svg,
+.art-train > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.art-portrait > svg,
+.art-item > svg,
+.art-train > svg {
+  overflow: visible;
+}
+
+.art-portrait .art-cheek {
+  opacity: .72;
+}
+
+/* Opacity only: never animate a group's positioning transform. */
+.art-train .art-steam {
+  animation: tsifrograd-art-steam 5s ease-in-out infinite;
+}
+
+.art-train .art-steam-far {
+  animation-delay: -2.5s;
+}
+
+@keyframes tsifrograd-art-steam {
+  0%, 100% { opacity: .68; }
+  50% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .art-train .art-steam {
+    animation: none;
+    opacity: 1;
+  }
+}
