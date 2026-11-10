@@ -1,0 +1,176 @@
+{
+  "provider": "Yandex SpeechKit",
+  "apiVersion": "v3",
+  "voice": "julia",
+  "role": "neutral",
+  "clips": {
+    "ph_orders_start": {
+      "text": "Зайчик ждёт яблоки. Число в заказе",
+      "speed": 1.0,
+      "request_sha256": "189224d75715bcdf6564ba996728c1ae389489d100486577fa7123304b33cdd6",
+      "sha256": "1ca52877c2744f8f57855c0a5afff9cf9086de5d7be5e4dc45beaa8c3fbb2cfa",
+      "bytes": 24237,
+      "duration_seconds": 3.024
+    },
+    "ph_orders_help": {
+      "text": "В коробке десять. Рядом одно яблоко. Собери и отправь заказ.",
+      "speed": 1.0,
+      "request_sha256": "5a5bef6b45726d36bb98e82e10f0f5c72b4b9ea7a4e7e2b63ce2a73ab7a484b1",
+      "sha256": "b925a513748f1c3672ef1162617810924e1ba5f0358bc7071e3c56e018de6d44",
+      "bytes": 38637,
+      "duration_seconds": 4.824
+    },
+    "ph_sharing_start": {
+      "text": "Угости друзей п+оровну. Нажми на тарелку, чтобы переложить одно угощение соседу. Потом проверь, всем ли п+оровну.",
+      "speed": 1.0,
+      "request_sha256": "5756647970f92cf5d88c93dd2234e10a5d2e4dc485a4deedb494aa55137563cc",
+      "sha256": "363ad310e5ca642c8a0d1c9eb990f0f1571cc18f3ad1d7be8e7e96b9c9e37535",
+      "bytes": 62829,
+      "duration_seconds": 7.848
+    },
+    "ph_bridge_start": {
+      "text": "Построй мост. Его длина",
+      "speed": 1.0,
+      "request_sha256": "4ca1e8f3f27cb8b5ea93738fb1de79a372ce7cec091e47302e7d69bafdd7cdff",
+      "sha256": "6b8fc7b9897e4218ec078a4ed9bdc7ba58a916a85a828f5ec64a2dca1eb2b930",
+      "bytes": 19245,
+      "duration_seconds": 2.4
+    },
+    "ph_bridge_help": {
+      "text": "Выбирай детали. Нажми на добавленную деталь, чтобы убрать её. Когда мост готов, отправляй поезд.",
+      "speed": 1.0,
+      "request_sha256": "865bddd014c2810f3f08b79ae2ea3e435400c3808296cd45c5cbb0e6befb0205",
+      "sha256": "6e6e7bbd6d32848c435e8ef716bef0b74781a13a154e29aca4266eb8f7de2cfe",
+      "bytes": 55533,
+      "duration_seconds": 6.936
+    },
+    "ph_orders_less": {
+      "text": "Зайчик просил больше. Добавь яблоки и проверь ещё раз.",
+      "speed": 1.0,
+      "request_sha256": "f89e02208376c887f9db8b01a3e8a4cac4399e82ea1936f558d1e5781d23e7c9",
+      "sha256": "e0acc53433042f0cb394be5f96dac77b71882f3bbda9163bd3bc491d74b78185",
+      "bytes": 34029,
+      "duration_seconds": 4.248
+    },
+    "ph_orders_more": {
+      "text": "Получилось больше, чем нужно. Убери лишнее — и попробуй снова.",
+      "speed": 1.0,
+      "request_sha256": "30d4c334c70c4937c1e397ed7192c574eddd16eef8c3600b71b52012fd823fad",
+      "sha256": "3531a7bc82390384b89f52f5971548cbca31978474c3c0c0deab0ddeba17eb16",
+      "bytes": 34413,
+      "duration_seconds": 4.296
+    },
+    "ph_sharing_unequal": {
+      "text": "Пока не п+оровну. Посмотри, на какой тарелке больше, и поделись.",
+      "speed": 1.0,
+      "request_sha256": "bfb0749a04570a9c263bd3393f195d313c26692da33275f9537f5eaa630364ac",
+      "sha256": "31241ef9234946a30a0a98c8b06d2dc36da0641df7f5d4c8f851d6997cd2a222",
+      "bytes": 38253,
+      "duration_seconds": 4.776
+    },
+    "ph_bridge_less": {
+      "text": "Мост пока не доходит до флажка. Добавь деталь.",
+      "speed": 1.0,
+      "request_sha256": "c47000558c0c4482f3a7145912426b6b62a7d63b52c5ce6f2ef2162d3987076a",
+      "sha256": "b79d65a769f58f0a64e7aa6707d78a9f2789c23111e2ac8c7dee8cd5521bdff2",
+      "bytes": 27693,
+      "duration_seconds": 3.456
+    },
+    "ph_bridge_more": {
+      "text": "Мост длиннее, чем нужно. Убери или замени деталь.",
+      "speed": 1.0,
+      "request_sha256": "50be25535457a5c093908ae80d958129878496249679958111df2031f8d100cf",
+      "sha256": "51d5db017d9642b9134d9f5b484b89d9a9bec1b059552ce1d7b82fa91a37b970",
+      "bytes": 29421,
+      "duration_seconds": 3.672
+    },
+    "ph_capacity": {
+      "text": "Места уже достаточно. Можно убрать лишнее и попробовать ещё раз.",
+      "speed": 1.0,
+      "request_sha256": "245ab568720800dab30cddba2162af2d1d732c2dd40f2df4a49541b0ae130042",
+      "sha256": "67111c5839a1a243072e7fdc068f16b9938dd974bf71e812aa4ee91eb067fcc3",
+      "bytes": 36333,
+      "duration_seconds": 4.536
+    },
+    "c_31": {
+      "text": "Тридцать один",
+      "speed": 0.95,
+      "request_sha256": "e29ef1d700abfd95dcc25810c8fd3e5875b4d01fe5fcd7aa28e7892273796150",
+      "sha256": "6d21323a41c45923772920da3f29a5055aabee2e3768e1040f80610f5feb55ea",
+      "bytes": 11373,
+      "duration_seconds": 1.416
+    },
+    "c_32": {
+      "text": "Тридцать два",
+      "speed": 0.95,
+      "request_sha256": "a716d0099f39965b5953dac605dd5e870872a29c1cb5143fa5b272594e1a4d97",
+      "sha256": "19c4e886a1e173f5809052a632f6097e19dd63507ceb259419336540846dd736",
+      "bytes": 10221,
+      "duration_seconds": 1.272
+    },
+    "c_33": {
+      "text": "Тридцать три",
+      "speed": 0.95,
+      "request_sha256": "eb620e6d2f6bddab0571b35e541388300b9372d6a516173d394dd0be13546472",
+      "sha256": "e01173e73223341f383e87cc536781559b3b41ef2dafd06268fc559c6da05d43",
+      "bytes": 10605,
+      "duration_seconds": 1.32
+    },
+    "c_34": {
+      "text": "Тридцать четыре",
+      "speed": 0.95,
+      "request_sha256": "b412ebf479036892ba0e934d778314838c3b7b85d3d9d8afce2e03b7dd9971e7",
+      "sha256": "5485f88d466f31bc737b5a091038c94f6bc94bd8459bd6d9b32506d33013bfe9",
+      "bytes": 11949,
+      "duration_seconds": 1.488
+    },
+    "c_35": {
+      "text": "Тридцать пять",
+      "speed": 0.95,
+      "request_sha256": "166befda926530287114bdbfc29cff1ffa4d0c69b1ecae056eaebc5b8be313a8",
+      "sha256": "6afa492ee549d01c9459de28df9a50c26f645aa4ecd480409f7ebb5921fc200c",
+      "bytes": 10989,
+      "duration_seconds": 1.368
+    },
+    "c_36": {
+      "text": "Тридцать шесть",
+      "speed": 0.95,
+      "request_sha256": "b1c12fc7d3f69aa0f6b441054dcba91827a584830489469e1375319c98b03488",
+      "sha256": "682c0b987cf48a35537c86297bfad873bceb4b1a6a78d9b23d84618d9411df0f",
+      "bytes": 11373,
+      "duration_seconds": 1.416
+    },
+    "c_37": {
+      "text": "Тридцать семь",
+      "speed": 0.95,
+      "request_sha256": "c4d06f0d6dcfb6356905abbbd83592a15786d60c82e093caab9253c77a69104a",
+      "sha256": "a309dda060a687fbfdbf8b343387144c7a30786b8113c07b0f961b1f6c743084",
+      "bytes": 10797,
+      "duration_seconds": 1.344
+    },
+    "c_38": {
+      "text": "Тридцать восемь",
+      "speed": 0.95,
+      "request_sha256": "0c396f1e984fe469f437d2a690562cf532a60b2179fce5d71e94950574810fdd",
+      "sha256": "1da4d7e83b732804c801c55287729087bda67e183d86ff0e8053a6136c72e033",
+      "bytes": 11949,
+      "duration_seconds": 1.488
+    },
+    "c_39": {
+      "text": "Тридцать девять",
+      "speed": 0.95,
+      "request_sha256": "813e1a12ab943926e8c3a15b1473bf208e80da7d3f3920c10b2891002dbc7af3",
+      "sha256": "62bcec015a01e1c88d361e7b9fe3e58bbc4c8d69a00d1f2428efe2a93c5e7d73",
+      "bytes": 11565,
+      "duration_seconds": 1.44
+    },
+    "c_40": {
+      "text": "Сорок",
+      "speed": 0.95,
+      "request_sha256": "4ba9c6cfd37eebece9c0eaf8c09c0c74a1fd3cc1ba1b55d9a531b85a9085dac6",
+      "sha256": "843af6441fffeec9a1523383b35ed7db79655563cb14c47fc0b2ebbdb6b4a991",
+      "bytes": 8685,
+      "duration_seconds": 1.08
+    }
+  }
+}

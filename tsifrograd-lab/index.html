@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="./style.css?v=1">
 </head>
 <body>
-  <div class="app-shell" data-build="adventures-v1">
+  <div class="app-shell" data-build="adventures-v2-julia">
     <header class="site-header">
       <a class="wordmark" href="./" aria-label="Цифроград, выбор приключения">Цифро<span>град</span><small>Новые приключения</small></a>
       <div class="header-right">
@@ -35,7 +35,7 @@
         <div id="game-cards" class="game-cards"></div>
         <div class="parent-notes">
           <a class="classic-link" href="../tsifrograd/">← Привычный Цифроград</a>
-          <details><summary>Для родителей · что это за версия</summary><p>Это отдельная площадка для проверки новых занятий. Прогресс привычного Цифрограда не меняется. Здесь сохраняется только число выполненных заданий и настройка звука — на этом устройстве, без регистрации и отправки данных.</p><p>Новые иллюстрации нарисованы специально для этой версии. Числа озвучены знакомым голосом из Цифрограда; <strong>новые инструкции пока читает русский голос вашего устройства</strong>. Его наличие и звучание зависят от браузера. Если русского голоса нет, останутся записанные числа и видимые подсказки; первое знакомство лучше пройти вместе.</p></details>
+          <details><summary>Для родителей · что это за версия</summary><p>Это отдельная площадка для проверки новых занятий. Прогресс привычного Цифрограда не меняется. Здесь сохраняется только число выполненных заданий и настройка звука — на этом устройстве, без регистрации и отправки данных.</p><p>Новые иллюстрации нарисованы специально для этой версии. <strong>Инструкции, числа и подсказки озвучены голосом Юлия — Yandex SpeechKit v3.</strong> Готовые записи загружаются как обычные аудиофайлы; русский системный голос на устройстве не нужен. Сайт не обращается к API синтеза и не содержит ключей.</p></details>
         </div>
       </section>
       <section id="game" hidden aria-labelledby="game-title" data-phase="playing">
@@ -46,7 +46,7 @@
           <button class="icon-button" type="button" data-action="reset" aria-label="Начать это задание заново"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9a9 9 0 1 1 0 7M4 3v6h6"/></svg></button>
         </div>
         <div class="task-banner"><div id="task-icon" class="task-icon"></div><p id="task-text"></p><span id="task-number" class="task-number"></span></div>
-        <p id="voice-note" class="voice-note" hidden>В этом браузере нет русского голоса для новых фраз. Числа звучат; текст задания можно прочитать вместе.</p>
+        <p id="voice-note" class="voice-note" hidden>Не удалось загрузить часть озвучки. Проверьте интернет и нажмите «Послушать задание» ещё раз.</p>
         <div id="board" class="board"></div>
         <div class="action-area">
           <p id="feedback" class="feedback" role="status" aria-live="polite"></p>
@@ -58,6 +58,6 @@
     <footer><span>Цифроград · игровая мастерская</span><span id="save-note">Без таймера и без потери прогресса</span></footer>
     <noscript><p>Для этих игр нужен JavaScript. Включите его в браузере и обновите страницу.</p></noscript>
   </div>
-  <script type="module" src="./app.mjs?v=1"></script>
+  <script type="module" src="./app.mjs?v=2"></script>
 </body>
 </html>

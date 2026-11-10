@@ -1,6 +1,7 @@
 import { GAME_IDS, createRound, addPiece, removePiece, transfer, total, evaluate } from './model.mjs';
 import { scene, portrait, item, train } from './art.mjs';
 import { KEY, parseProgress, winProgress } from './progress.mjs';
+import { clipUrl, instruction, feedbackClip } from './narration.mjs';
 
 const $ = id => document.getElementById(id);
 const CONFIG = {
@@ -21,13 +22,10 @@ function persist() {
   catch { storageAvailable = false; $('save-note').textContent = 'Сохранение недоступно — результаты останутся до закрытия страницы'; }
 }
 
-// New phrases use the device's Russian voice, not a paid speech API.
-// Familiar recorded numbers/praise remain under the original game's asset path.
+// Julia v3 is synthesized only at build time; the browser plays static files.
+const failedAudio = new Set();
 class Voice {
   constructor() { this.generation = 0; this.context = null; this.cache = new Map(); this.source = null; this.finish = null; }
-  russianVoice() {
-    try { return window.speechSynthesis?.getVoices().find(v => /^ru(?:-|_|$)/i.test(v.lang)) || null; } catch { return null; }
-  }
   unlock() {
     if (!progress.sound) return;
     try {
@@ -40,28 +38,18 @@ class Voice {
     this.generation++;
     if (this.source) { try { this.source.stop(); } catch { /* Already ended. */ } this.source = null; }
     if (this.finish) { const finish = this.finish; this.finish = null; finish(); }
-    try { window.speechSynthesis?.cancel(); } catch { /* Optional platform feature. */ }
-  }
-  async text(text, token) {
-    const selected = this.russianVoice();
-    if (!selected || !progress.sound || token !== this.generation) return;
-    await new Promise(resolve => {
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'ru-RU'; utterance.voice = selected; utterance.rate = 0.92;
-      let ended = false;
-      const finish = () => { if (ended) return; ended = true; clearTimeout(timer); if (this.finish === finish) this.finish = null; resolve(); };
-      const timer = setTimeout(() => { try { window.speechSynthesis.cancel(); } catch {} finish(); }, Math.min(20000, 3500 + text.length * 110));
-      this.finish = finish; utterance.onend = finish; utterance.onerror = finish;
-      try { window.speechSynthesis.speak(utterance); } catch { finish(); }
-    });
   }
   async clip(id, token) {
     if (!progress.sound || token !== this.generation || !this.context) return;
     if (!this.cache.has(id)) {
-      const result = fetch(`../tsifrograd/audio/${id}.mp3`).then(r => {
+      const result = fetch(clipUrl(id)).then(r => {
         if (!r.ok) throw new Error('audio unavailable');
         return r.arrayBuffer();
-      }).then(buffer => this.context.decodeAudioData(buffer)).catch(() => null);
+      }).then(buffer => this.context.decodeAudioData(buffer)).then(buffer => {
+        failedAudio.delete(id); updateSound(); return buffer;
+      }).catch(() => {
+        this.cache.delete(id); failedAudio.add(id); updateSound(); return null;
+      });
       this.cache.set(id, result);
     }
     const buffer = await this.cache.get(id);
@@ -81,10 +69,8 @@ class Voice {
     for (const part of parts) {
       if (token !== this.generation || !progress.sound) return;
       if (typeof part === 'number') {
-        if (part >= 1 && part <= 30) await this.clip(`c_${part}`, token);
-        else await this.text(String(part), token);
+        if (Number.isInteger(part) && part >= 1 && part <= 40) await this.clip(`c_${part}`, token);
       } else if (typeof part === 'object' && part?.clip) await this.clip(part.clip, token);
-      else await this.text(part, token);
     }
   }
 }
@@ -96,9 +82,8 @@ function updateSound() {
   $('sound').innerHTML = iconSound(!progress.sound);
   $('sound').setAttribute('aria-label', progress.sound ? 'Выключить звук' : 'Включить звук');
   $('sound').setAttribute('aria-pressed', String(!progress.sound));
-  $('voice-note').hidden = !progress.sound || !!voice.russianVoice();
+  $('voice-note').hidden = !progress.sound || failedAudio.size === 0;
 }
-try { window.speechSynthesis?.addEventListener('voiceschanged', updateSound); } catch { /* Not present on every browser. */ }
 
 function cardArt(kind) {
   if (kind === 'orders') return `<div class="card-portrait art-portrait">${portrait('rabbit')}</div><div class="card-crate"><span>10</span>${item('apple')}</div><div class="card-apple">${item('apple')}</div>`;
@@ -116,9 +101,7 @@ function showHome() {
 }
 function narrateTask() {
   if (!current) return;
-  if (current.kind === 'orders') voice.say(['Зайчик ждёт яблоки. Число в заказе', current.target, 'В коробке десять. Рядом одно яблоко. Собери и отправь заказ.']);
-  if (current.kind === 'sharing') voice.say(['Угости друзей поровну. Нажми на тарелку, чтобы переложить одно угощение соседу. Потом проверь, всем ли поровну.']);
-  if (current.kind === 'bridge') voice.say(['Построй мост. Его длина', current.target, 'Выбирай детали. Нажми на добавленную деталь, чтобы убрать её. Когда мост готов, отправляй поезд.']);
+  voice.say(instruction(current.kind, current.target));
 }
 function setFeedback(text, type = '') {
   $('feedback').textContent = text; $('feedback').dataset.type = type;
@@ -178,7 +161,8 @@ function edit(action, button) {
   if (action === 'remove') next = removePiece(current, Number(button.dataset.index));
   if (action === 'transfer') next = transfer(current, Number(button.dataset.from));
   if (next === current) {
-    setFeedback('Места уже достаточно. Можно убрать лишнее и попробовать ещё раз.'); return;
+    setFeedback('Места уже достаточно. Можно убрать лишнее и попробовать ещё раз.');
+    voice.say([{ clip: 'ph_capacity' }]); return;
   }
   current = next; renderBoard(); setFeedback('');
   const n = current.kind === 'sharing' ? current.piles[1 - Number(button.dataset.from)] : total(current);
@@ -191,7 +175,7 @@ function checkAnswer() {
     const text = current.kind === 'sharing' ? 'Пока не поровну. Посмотри, на какой тарелке больше, и поделись.'
       : current.kind === 'orders' ? (result.status === 'less' ? 'Зайчик просил больше. Добавь яблоки и проверь ещё раз.' : 'Получилось больше, чем нужно. Убери лишнее — и попробуй снова.')
       : result.status === 'less' ? 'Мост пока не доходит до флажка. Добавь деталь.' : 'Мост длиннее, чем нужно. Убери или замени деталь.';
-    setFeedback(text, 'try'); voice.say([text]); return;
+    setFeedback(text, 'try'); voice.say([{ clip: feedbackClip(current.kind, result.status) }]); return;
   }
   phase = 'won'; progress = winProgress(progress, current.kind); persist(); renderBoard();
   $('check').hidden = true; $('reward').hidden = false;
