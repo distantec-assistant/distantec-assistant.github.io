@@ -1,4 +1,4 @@
-"""Recorded Julia voice regression: actual Chromium audio graph, no paid calls."""
+"""Recorded Svetlana regression: actual Chromium audio graph, no paid calls."""
 import functools
 import http.server
 import json
@@ -8,7 +8,7 @@ import threading
 from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = Path(os.environ.get('VOICE_QA_OUT', '/root/.hermes/cache/scratch/tsifrograd-julia/voice'))
+OUT = Path(os.environ.get('VOICE_QA_OUT', '/root/.hermes/cache/scratch/tsifrograd-svetlana/voice'))
 OUT.mkdir(parents=True, exist_ok=True)
 class H(http.server.SimpleHTTPRequestHandler):
     def log_message(self, format, *args):
@@ -51,20 +51,20 @@ try:
         page.goto(base + '/tsifrograd-lab/', wait_until='networkidle')
         # A real WebAudio decode for every new, published-compatible URL.
         decoded = page.evaluate("""async()=>{
-          const m=await (await fetch('./audio/manifest.json')).json();
+          const m=await (await fetch('./audio-svetlana/manifest.json')).json();
           const c=new AudioContext();const result=[];
           for(const id of Object.keys(m.clips)){
-            const r=await fetch('./audio/'+id+'.mp3');if(!r.ok)throw new Error('missing '+id);
+            const r=await fetch('./audio-svetlana/'+id+'.mp3');if(!r.ok)throw new Error('missing '+id);
             const b=await c.decodeAudioData(await r.arrayBuffer());
             result.push({id,duration:b.duration,channels:b.numberOfChannels});
           }
           await c.close();return result;
         }""")
         assert len(decoded) == 21 and all(d['duration'] > 0.1 for d in decoded)
-        checks.append('all 21 Julia MP3 assets fetched and decoded in Chromium')
+        checks.append('all 21 Svetlana MP3 assets fetched and decoded in Chromium')
         for kind, minimum in [('orders', 3), ('sharing', 1), ('bridge', 3)]:
             starts = page.evaluate('window.__voiceStats.starts')
-            with page.expect_response(lambda r: f'/audio/ph_{kind}_start.mp3' in r.url) as response:
+            with page.expect_response(lambda r: f'/audio-svetlana/ph_{kind}_start.mp3' in r.url) as response:
                 page.locator(f'[data-action=start][data-kind={kind}]').tap()
             assert response.value.status == 200
             page.wait_for_function('(n)=>window.__voiceStats.starts>=n', arg=starts + minimum, timeout=20000)
@@ -77,7 +77,7 @@ try:
         page.locator('[data-action=start][data-kind=orders]').tap()
         for _ in range(3):
             page.locator('[data-action=add][data-value="10"]').tap()
-        with page.expect_response(lambda r: '/audio/c_31.mp3' in r.url) as response:
+        with page.expect_response(lambda r: '/audio-svetlana/c_31.mp3' in r.url) as response:
             page.locator('[data-action=add][data-value="1"]').tap()
         assert response.value.status == 200
         page.locator('#sound').tap()
@@ -99,11 +99,11 @@ try:
                 failed_once[0] = True;route.fulfill(status=503, body='fixture unavailable')
             else:
                 route.continue_()
-        page.route('**/audio/ph_orders_start.mp3', fail_once)
+        page.route('**/audio-svetlana/ph_orders_start.mp3', fail_once)
         page.goto(base + '/tsifrograd-lab/', wait_until='networkidle')
         page.locator('[data-action=start][data-kind=orders]').click()
         page.wait_for_function("!document.getElementById('voice-note').hidden")
-        with page.expect_response(lambda r: '/audio/ph_orders_start.mp3' in r.url and r.status == 200):
+        with page.expect_response(lambda r: '/audio-svetlana/ph_orders_start.mp3' in r.url and r.status == 200):
             page.locator('[data-action=repeat]').click()
         page.wait_for_function("document.getElementById('voice-note').hidden")
         assert page.evaluate('window.__systemSpeechAccess') == 0

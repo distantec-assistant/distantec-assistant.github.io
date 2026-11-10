@@ -18,15 +18,17 @@ test('unknown identifiers cannot become network or arbitrary asset paths', () =>
 });
 test('all new clips have source text, actual bytes and a matching manifest hash', () => {
   const source = JSON.parse(readFileSync(new URL('./tts/clips.json', import.meta.url)));
-  const manifest = JSON.parse(readFileSync(new URL('./audio/manifest.json', import.meta.url)));
-  assert.equal(manifest.voice, 'julia');
-  assert.equal(manifest.apiVersion, 'v3');
+  const manifest = JSON.parse(readFileSync(new URL('./audio-svetlana/manifest.json', import.meta.url)));
+  assert.equal(manifest.voice, 'ru-RU-SvetlanaNeural');
+  assert.equal(manifest.provider, 'edge-tts');
+  assert.equal(manifest.complete, true);
   assert.deepEqual([...NEW_CLIPS].sort(), Object.keys(source.clips).sort());
   for (const id of NEW_CLIPS) {
     const data = readFileSync(new URL(clipUrl(id), import.meta.url));
     assert.ok(data.length > 500);
     assert.equal(createHash('sha256').update(data).digest('hex'), manifest.clips[id].sha256);
-    assert.equal(source.clips[id].text, manifest.clips[id].text);
+    assert.equal(source.clips[id].text, manifest.clips[id].source_text);
+    assert.ok(!manifest.clips[id].text.includes('+') && !manifest.clips[id].text.includes('[['));
   }
 });
 test('each instruction consists entirely of recorded phrases and numbers', () => {
@@ -39,7 +41,7 @@ test('each instruction consists entirely of recorded phrases and numbers', () =>
   }
   assert.throws(() => instruction('bad', 12), RangeError);
 });
-test('all wrong-answer paths have a Julia recording', () => {
+test('all wrong-answer paths have a Svetlana recording', () => {
   for (const [kind, states] of [['orders', ['less', 'more']], ['bridge', ['less', 'more']], ['sharing', ['unequal']]]) {
     for (const state of states) assert.ok(existsSync(new URL(clipUrl(feedbackClip(kind, state)), import.meta.url)));
   }

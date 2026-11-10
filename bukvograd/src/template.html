@@ -217,7 +217,7 @@ function duck(on){if(!SBUS)return;const t=AC.currentTime;SBUS.gain.cancelSchedul
 function unlockAudio(){const c=ac();if(!c)return;try{const b=c.createBuffer(1,1,c.sampleRate),s=c.createBufferSource();s.buffer=b;s.connect(c.destination);s.start(0)}catch(e){}}
 document.addEventListener('pointerdown',unlockAudio,{capture:true});
 document.addEventListener('touchend',unlockAudio,{capture:true,once:true});
-function loadClip(id){if(BUF[id])return BUF[id];BUF[id]=fetch('audio/'+id+'.mp3').then(r=>{if(!r.ok)throw new Error(r.status);return r.arrayBuffer()}).then(a=>new Promise((res,rej)=>{const c=ac();if(!c)return res(null);c.decodeAudioData(a,res,rej)})).catch(e=>{window.__missing.push(id);console.warn('audio',id,e&&e.message);return null});return BUF[id]}
+function loadClip(id){if(BUF[id])return BUF[id];BUF[id]=fetch('audio-svetlana/'+id+'.mp3').then(r=>{if(!r.ok)throw new Error(r.status);return r.arrayBuffer()}).then(a=>new Promise((res,rej)=>{const c=ac();if(!c)return res(null);c.decodeAudioData(a,res,rej)})).catch(e=>{window.__missing.push(id);console.warn('audio',id,e&&e.message);return null});return BUF[id]}
 const preload=ids=>ids.forEach(loadClip);
 function stopVoice(){token++;if(curSrc){const s=curSrc,g=curG;curSrc=null;curG=null;curId=null;if(!s.__stopped){s.__stopped=true;window.__voice.active--}try{const t=AC.currentTime;g.gain.cancelScheduledValues(t);g.gain.setValueAtTime(g.gain.value,t);g.gain.linearRampToValueAtTime(0,t+.03);s.stop(t+.035)}catch(e){try{s.stop()}catch(_){}}}}
 const voicePlaying=id=>!!curSrc&&curId===id;

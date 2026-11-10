@@ -1,0 +1,1023 @@
+{
+  "schema": 1,
+  "provider": "edge-tts",
+  "voice": "ru-RU-SvetlanaNeural",
+  "bank": "tsifrograd-lab",
+  "complete": true,
+  "clips": {
+    "c_31": {
+      "source_text": "Тридцать один",
+      "request_sha256": "a1d6675bfb2341508401bbc6fd27cf285e253e9dcbee1e2dbd0f75d6d3a2e79b",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Тридцать один",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.32,
+      "active_seconds": 0.82,
+      "bytes": 10797,
+      "sha256": "f5fc18c3ec6606799069e1f5831c385b36643f5b308ca29f2ef1a0a17566f783",
+      "word_timings": [
+        {
+          "text": "Тридцать",
+          "start": 0.1,
+          "duration": 0.539458
+        },
+        {
+          "text": "один",
+          "start": 0.639458,
+          "duration": 0.473666
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.273124,
+        "revision": 1
+      }
+    },
+    "c_32": {
+      "source_text": "Тридцать два",
+      "request_sha256": "33aa8254dd8add51b4998800c15b30d5d865c8a6afe34e437233d72601bbf308",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Тридцать два",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.176,
+      "active_seconds": 0.68,
+      "bytes": 9645,
+      "sha256": "97042235851be8f009f479484f9fc784f88f90218e14ec9464c249fe222b7979",
+      "word_timings": [
+        {
+          "text": "Тридцать",
+          "start": 0.1,
+          "duration": 0.5
+        },
+        {
+          "text": "два",
+          "start": 0.6,
+          "duration": 0.381583
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.141583,
+        "revision": 1
+      }
+    },
+    "c_33": {
+      "source_text": "Тридцать три",
+      "request_sha256": "673bb368496fb849e6431fc935349668a94e105ad13b98066b50759159b08b1d",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Тридцать три",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.224,
+      "active_seconds": 0.68,
+      "bytes": 10029,
+      "sha256": "c88f6e323a53a881f5e8d127bca657a9c832f2cc38bcc673964155e02a650a46",
+      "word_timings": [
+        {
+          "text": "Тридцать",
+          "start": 0.1,
+          "duration": 0.565791
+        },
+        {
+          "text": "три",
+          "start": 0.665791,
+          "duration": 0.368416
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.194207,
+        "revision": 1
+      }
+    },
+    "c_34": {
+      "source_text": "Тридцать четыре",
+      "request_sha256": "9e94ffff17fd15c7b08193faa39961e03ad688aa247b9aae2b521f4a9409839b",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Тридцать четыре",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.416,
+      "active_seconds": 0.92,
+      "bytes": 11565,
+      "sha256": "e62cc723d354e0b1fcfd5af278a6dd5bff545ea1e755da8dd086013e86eaab93",
+      "word_timings": [
+        {
+          "text": "Тридцать",
+          "start": 0.1,
+          "duration": 0.5
+        },
+        {
+          "text": "четыре",
+          "start": 0.6,
+          "duration": 0.618416
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.378416,
+        "revision": 1
+      }
+    },
+    "c_35": {
+      "source_text": "Тридцать пять",
+      "request_sha256": "2de65a5385b00e88ed2921ea4df79da60935ba8b53b875a1c161e15448bee8a4",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Тридцать пять",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.368,
+      "active_seconds": 0.82,
+      "bytes": 11181,
+      "sha256": "8c5075ce825b45cf38f9b49126f6ab59e543b413c5d004d70250e6a56bec5d6c",
+      "word_timings": [
+        {
+          "text": "Тридцать",
+          "start": 0.1,
+          "duration": 0.552625
+        },
+        {
+          "text": "пять",
+          "start": 0.652625,
+          "duration": 0.526333
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.338958,
+        "revision": 1
+      }
+    },
+    "c_36": {
+      "source_text": "Тридцать шесть",
+      "request_sha256": "01d152e685331b2b1ae7184cb4880ab219580589a68b2a4998922f43cbda2515",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Тридцать шесть",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.488,
+      "active_seconds": 0.96,
+      "bytes": 12141,
+      "sha256": "da684107163b0c8430fea958f3a6ba2b378ce5bf15fc512cf3afd36e44378d94",
+      "word_timings": [
+        {
+          "text": "Тридцать",
+          "start": 0.1,
+          "duration": 0.486833
+        },
+        {
+          "text": "шесть",
+          "start": 0.586833,
+          "duration": 0.697375
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.444208,
+        "revision": 1
+      }
+    },
+    "c_37": {
+      "source_text": "Тридцать семь",
+      "request_sha256": "1c7836a186908b3c0165dbcda6746304c583f2f39cb1576fb6d2c0e1e97d14d0",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Тридцать семь",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.296,
+      "active_seconds": 0.8,
+      "bytes": 10605,
+      "sha256": "2f13ef6393ccf8b5392d3969607d4760da44971ede996a61e6faf0f0fca510dd",
+      "word_timings": [
+        {
+          "text": "Тридцать",
+          "start": 0.1,
+          "duration": 0.526333
+        },
+        {
+          "text": "семь",
+          "start": 0.626333,
+          "duration": 0.460541
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.246874,
+        "revision": 1
+      }
+    },
+    "c_38": {
+      "source_text": "Тридцать восемь",
+      "request_sha256": "e80d4ee5b7e91d9be309ae921487a851519b22dcd9ee1108589036d37a3f9cb8",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Тридцать восемь",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.368,
+      "active_seconds": 0.86,
+      "bytes": 11181,
+      "sha256": "8791142b9bc628bd92635871adaf1db49d635ce012544aa182acc2d2e3de8a5c",
+      "word_timings": [
+        {
+          "text": "Тридцать",
+          "start": 0.1,
+          "duration": 0.5
+        },
+        {
+          "text": "восемь",
+          "start": 0.6,
+          "duration": 0.578958
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.338958,
+        "revision": 1
+      }
+    },
+    "c_39": {
+      "source_text": "Тридцать девять",
+      "request_sha256": "d3e8ccf1a9d2f6feee29512dde43f4a7004819ca77f1f83665ed2a400bbda8d4",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Тридцать девять",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.368,
+      "active_seconds": 0.86,
+      "bytes": 11181,
+      "sha256": "2870cb6968122a58c859311c426d815f926f3a623a2e6af2dbe33cef3325c49a",
+      "word_timings": [
+        {
+          "text": "Тридцать",
+          "start": 0.1,
+          "duration": 0.460541
+        },
+        {
+          "text": "девять",
+          "start": 0.560541,
+          "duration": 0.618416
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.338957,
+        "revision": 1
+      }
+    },
+    "c_40": {
+      "source_text": "Сорок",
+      "request_sha256": "710f24916942ca1398fa729729bbb95addceeb58493afd66963b0dbe865b3a1d",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Сорок",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.104,
+      "active_seconds": 0.54,
+      "bytes": 9069,
+      "sha256": "2b1ace50a84883f10ce9a8ba0d945cdcc3a62d67aad08f3f2a566eac0290da5d",
+      "word_timings": [
+        {
+          "text": "Сорок",
+          "start": 0.1,
+          "duration": 0.815791
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.075791,
+        "revision": 1
+      }
+    },
+    "ph_bridge_help": {
+      "source_text": "Выбирай детали. Нажми на добавленную деталь, чтобы убрать её. Когда мост готов, отправляй поезд.",
+      "request_sha256": "d84d49439affdab63b2af13677d7c0017fbacd2ca320cb455533d4860b0f0e3c",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Выбирай детали. Нажми на добавленную деталь, чтобы убрать её. Когда мост готов, отправляй поезд.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 8.952,
+      "active_seconds": 6.14,
+      "bytes": 71853,
+      "sha256": "8e0fc67869d55dc10bf628197e38a889ea72e03c991765968349c3f2ad2ac517",
+      "word_timings": [
+        {
+          "text": "Выбирай",
+          "start": 0.1,
+          "duration": 0.6375
+        },
+        {
+          "text": "детали",
+          "start": 0.7375,
+          "duration": 0.675
+        },
+        {
+          "text": "Нажми",
+          "start": 2.3375,
+          "duration": 0.4875
+        },
+        {
+          "text": "на",
+          "start": 2.825,
+          "duration": 0.1
+        },
+        {
+          "text": "добавленную",
+          "start": 2.925,
+          "duration": 0.6375
+        },
+        {
+          "text": "деталь",
+          "start": 3.5625,
+          "duration": 0.375
+        },
+        {
+          "text": "чтобы",
+          "start": 4.225,
+          "duration": 0.3125
+        },
+        {
+          "text": "убрать",
+          "start": 4.5375,
+          "duration": 0.4
+        },
+        {
+          "text": "её",
+          "start": 4.9375,
+          "duration": 0.3
+        },
+        {
+          "text": "Когда",
+          "start": 6.15,
+          "duration": 0.375
+        },
+        {
+          "text": "мост",
+          "start": 6.525,
+          "duration": 0.3
+        },
+        {
+          "text": "готов",
+          "start": 6.825,
+          "duration": 0.5125
+        },
+        {
+          "text": "отправляй",
+          "start": 7.6,
+          "duration": 0.5375
+        },
+        {
+          "text": "поезд",
+          "start": 8.1375,
+          "duration": 0.625
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 8.9225,
+        "revision": 1
+      }
+    },
+    "ph_bridge_less": {
+      "source_text": "Мост пока не доходит до флажка. Добавь деталь.",
+      "request_sha256": "58094e4c1c2d09f53ea7b2747b1d57c59d82dbc0519323e194e5398a7f87dc8e",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Мост пока не доходит до флажка. Добавь деталь.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 4.344,
+      "active_seconds": 2.68,
+      "bytes": 34989,
+      "sha256": "f1d50d9f8ce7b02cb7518b5263882d5a86d799b45487c8c38bec2161bcfcc3f8",
+      "word_timings": [
+        {
+          "text": "Мост",
+          "start": 0.1,
+          "duration": 0.425
+        },
+        {
+          "text": "пока",
+          "start": 0.525,
+          "duration": 0.2875
+        },
+        {
+          "text": "не",
+          "start": 0.8125,
+          "duration": 0.1125
+        },
+        {
+          "text": "доходит",
+          "start": 0.925,
+          "duration": 0.4625
+        },
+        {
+          "text": "до",
+          "start": 1.3875,
+          "duration": 0.0875
+        },
+        {
+          "text": "флажка",
+          "start": 1.475,
+          "duration": 0.6
+        },
+        {
+          "text": "Добавь",
+          "start": 3.0,
+          "duration": 0.575
+        },
+        {
+          "text": "деталь",
+          "start": 3.575,
+          "duration": 0.5625
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 4.2975,
+        "revision": 1
+      }
+    },
+    "ph_bridge_more": {
+      "source_text": "Мост длиннее, чем нужно. Убери или замени деталь.",
+      "request_sha256": "d3bf4ae67eb2c09a5ce15449778420e0868ec42c3f46239636baad61704049a5",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Мост длиннее, чем нужно. Убери или замени деталь.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 5.04,
+      "active_seconds": 3.36,
+      "bytes": 40557,
+      "sha256": "5adfca82cd81abaf6a4a23f7d4de60575adde54272dfd6b8d05c15c9f2c9a85c",
+      "word_timings": [
+        {
+          "text": "Мост",
+          "start": 0.1,
+          "duration": 0.4875
+        },
+        {
+          "text": "длиннее",
+          "start": 0.5875,
+          "duration": 0.625
+        },
+        {
+          "text": "чем",
+          "start": 1.4625,
+          "duration": 0.2375
+        },
+        {
+          "text": "нужно",
+          "start": 1.7,
+          "duration": 0.5125
+        },
+        {
+          "text": "Убери",
+          "start": 3.1,
+          "duration": 0.575
+        },
+        {
+          "text": "или",
+          "start": 3.675,
+          "duration": 0.2625
+        },
+        {
+          "text": "замени",
+          "start": 3.9375,
+          "duration": 0.4
+        },
+        {
+          "text": "деталь",
+          "start": 4.3375,
+          "duration": 0.5
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 4.9975,
+        "revision": 1
+      }
+    },
+    "ph_bridge_start": {
+      "source_text": "Построй мост. Его длина",
+      "request_sha256": "011ff8e82c31b318e5e42f434163e16415f368f27da5da818fc7ef4dae0caccf",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Построй мост. Его длина",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 3.216,
+      "active_seconds": 1.64,
+      "bytes": 25965,
+      "sha256": "19dfa24e05683f0d82ee4034a504ffea1bf902b892b007da56cf1bea1c603e28",
+      "word_timings": [
+        {
+          "text": "Построй",
+          "start": 0.1,
+          "duration": 0.4875
+        },
+        {
+          "text": "мост",
+          "start": 0.5875,
+          "duration": 0.6
+        },
+        {
+          "text": "Его",
+          "start": 2.0375,
+          "duration": 0.475
+        },
+        {
+          "text": "длина",
+          "start": 2.5125,
+          "duration": 0.5125
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 3.185,
+        "revision": 1
+      }
+    },
+    "ph_capacity": {
+      "source_text": "Места уже достаточно. Можно убрать лишнее и попробовать ещё раз.",
+      "request_sha256": "1632fb4f4e6cee235a035f11c49e5641522f94bf743ab12a4232377b2f9afaa6",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Места уже достаточно. Можно убрать лишнее и попробовать ещё раз.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 5.52,
+      "active_seconds": 4.02,
+      "bytes": 44397,
+      "sha256": "e5ed1d63a55ed2427d24128f4983642f0aabad29fdcdf38620e9641709311248",
+      "word_timings": [
+        {
+          "text": "Места",
+          "start": 0.1,
+          "duration": 0.5125
+        },
+        {
+          "text": "уже",
+          "start": 0.6125,
+          "duration": 0.2125
+        },
+        {
+          "text": "достаточно",
+          "start": 0.825,
+          "duration": 0.9
+        },
+        {
+          "text": "Можно",
+          "start": 2.6375,
+          "duration": 0.4375
+        },
+        {
+          "text": "убрать",
+          "start": 3.075,
+          "duration": 0.3375
+        },
+        {
+          "text": "лишнее",
+          "start": 3.4125,
+          "duration": 0.525
+        },
+        {
+          "text": "и",
+          "start": 3.9375,
+          "duration": 0.125
+        },
+        {
+          "text": "попробовать",
+          "start": 4.0625,
+          "duration": 0.625
+        },
+        {
+          "text": "ещё",
+          "start": 4.6875,
+          "duration": 0.225
+        },
+        {
+          "text": "раз.",
+          "start": 4.9125,
+          "duration": 0.4125
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 5.485,
+        "revision": 1
+      }
+    },
+    "ph_orders_help": {
+      "source_text": "В коробке десять. Рядом одно яблоко. Собери и отправь заказ.",
+      "request_sha256": "55ad43aa91359d981b0383f99e03bf1bd87716f71871946190f1fe9c08c24786",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "В коробке десять. Рядом одно яблоко. Собери и отправь заказ.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 6.792,
+      "active_seconds": 4.0,
+      "bytes": 54573,
+      "sha256": "4125c46d7260a6e17eeb3e8d09adcf789090b8e55f15133e8980ea8479ca6b4b",
+      "word_timings": [
+        {
+          "text": "В",
+          "start": 0.1,
+          "duration": 0.1625
+        },
+        {
+          "text": "коробке",
+          "start": 0.2625,
+          "duration": 0.55
+        },
+        {
+          "text": "десять",
+          "start": 0.8125,
+          "duration": 0.65
+        },
+        {
+          "text": "Рядом",
+          "start": 2.3625,
+          "duration": 0.525
+        },
+        {
+          "text": "одно",
+          "start": 2.8875,
+          "duration": 0.2625
+        },
+        {
+          "text": "яблоко",
+          "start": 3.15,
+          "duration": 0.7125
+        },
+        {
+          "text": "Собери",
+          "start": 4.775,
+          "duration": 0.675
+        },
+        {
+          "text": "и",
+          "start": 5.45,
+          "duration": 0.1625
+        },
+        {
+          "text": "отправь",
+          "start": 5.6125,
+          "duration": 0.3625
+        },
+        {
+          "text": "заказ",
+          "start": 5.975,
+          "duration": 0.625
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 6.76,
+        "revision": 1
+      }
+    },
+    "ph_orders_less": {
+      "source_text": "Зайчик просил больше. Добавь яблоки и проверь ещё раз.",
+      "request_sha256": "bdaea25c8dcb7597fc5f24c32877852232284943e2215f166b68a157fb2cf2c1",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Зайчик просил больше. Добавь яблоки и проверь ещё раз.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 5.232,
+      "active_seconds": 3.64,
+      "bytes": 42093,
+      "sha256": "be2e5466494fff40cba28e74bc7f0d569f6647e1d56f6482ff6cc2797cc450dd",
+      "word_timings": [
+        {
+          "text": "Зайчик",
+          "start": 0.1,
+          "duration": 0.6125
+        },
+        {
+          "text": "просил",
+          "start": 0.7125,
+          "duration": 0.45
+        },
+        {
+          "text": "больше",
+          "start": 1.1625,
+          "duration": 0.6125
+        },
+        {
+          "text": "Добавь",
+          "start": 2.6875,
+          "duration": 0.5125
+        },
+        {
+          "text": "яблоки",
+          "start": 3.2,
+          "duration": 0.625
+        },
+        {
+          "text": "и",
+          "start": 3.825,
+          "duration": 0.1375
+        },
+        {
+          "text": "проверь",
+          "start": 3.9625,
+          "duration": 0.3375
+        },
+        {
+          "text": "ещё",
+          "start": 4.3,
+          "duration": 0.3125
+        },
+        {
+          "text": "раз.",
+          "start": 4.6125,
+          "duration": 0.425
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 5.1975,
+        "revision": 1
+      }
+    },
+    "ph_orders_more": {
+      "source_text": "Получилось больше, чем нужно. Убери лишнее — и попробуй снова.",
+      "request_sha256": "4ee1911476c3f89e485b16aecc808a7f6181ca3be37dc08d633972fc8188b92d",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Получилось больше, чем нужно. Убери лишнее — и попробуй снова.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 5.472,
+      "active_seconds": 4.0,
+      "bytes": 44013,
+      "sha256": "dc6a69da5b1c92da0377389f17dadc9d7f9986842b85e92a73754e75dca4681d",
+      "word_timings": [
+        {
+          "text": "Получилось",
+          "start": 0.1,
+          "duration": 0.6125
+        },
+        {
+          "text": "больше",
+          "start": 0.7125,
+          "duration": 0.5
+        },
+        {
+          "text": "чем",
+          "start": 1.45,
+          "duration": 0.2375
+        },
+        {
+          "text": "нужно",
+          "start": 1.6875,
+          "duration": 0.525
+        },
+        {
+          "text": "Убери",
+          "start": 3.0625,
+          "duration": 0.425
+        },
+        {
+          "text": "лишнее",
+          "start": 3.4875,
+          "duration": 0.5625
+        },
+        {
+          "text": "и",
+          "start": 4.2,
+          "duration": 0.125
+        },
+        {
+          "text": "попробуй",
+          "start": 4.325,
+          "duration": 0.425
+        },
+        {
+          "text": "снова",
+          "start": 4.75,
+          "duration": 0.5125
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 5.4225,
+        "revision": 1
+      }
+    },
+    "ph_orders_start": {
+      "source_text": "Зайчик ждёт яблоки. Число в заказе",
+      "request_sha256": "12bca9f1b404016d1b6cac7aca7b4f546f313d2b06d2e1f7409e0ba312fab998",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Зайчик ждёт яблоки. Число в заказе",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 4.08,
+      "active_seconds": 2.44,
+      "bytes": 32877,
+      "sha256": "e36daffa9cf44c9077b7c92a94db215edf169bceaf8b070e21f79c58a21abfd1",
+      "word_timings": [
+        {
+          "text": "Зайчик",
+          "start": 0.1,
+          "duration": 0.575
+        },
+        {
+          "text": "ждёт",
+          "start": 0.675,
+          "duration": 0.325
+        },
+        {
+          "text": "яблоки",
+          "start": 1.0,
+          "duration": 0.725
+        },
+        {
+          "text": "Число",
+          "start": 2.6375,
+          "duration": 0.5125
+        },
+        {
+          "text": "в",
+          "start": 3.15,
+          "duration": 0.0375
+        },
+        {
+          "text": "заказе",
+          "start": 3.1875,
+          "duration": 0.6875
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 4.035,
+        "revision": 1
+      }
+    },
+    "ph_sharing_start": {
+      "source_text": "Угости друзей п+оровну. Нажми на тарелку, чтобы переложить одно угощение соседу. Потом проверь, всем ли п+оровну.",
+      "request_sha256": "8faa99d2ef2ba6cf465cf658d9dbf3402f583854323cbb4779f8acc6feefa0d8",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Угости друзей по́ровну. Нажми на тарелку, чтобы переложить одно угощение соседу. Потом проверь, всем ли по́ровну.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 9.48,
+      "active_seconds": 6.8,
+      "bytes": 76077,
+      "sha256": "d37df898d572cb6ad971247adfe50bca36c2ebd3bcca9ff072a1bb7b3f43691a",
+      "word_timings": [
+        {
+          "text": "Угости",
+          "start": 0.1,
+          "duration": 0.5625
+        },
+        {
+          "text": "друзей",
+          "start": 0.6625,
+          "duration": 0.3875
+        },
+        {
+          "text": "по́ровну",
+          "start": 1.05,
+          "duration": 0.6
+        },
+        {
+          "text": "Нажми",
+          "start": 2.575,
+          "duration": 0.45
+        },
+        {
+          "text": "на",
+          "start": 3.025,
+          "duration": 0.1
+        },
+        {
+          "text": "тарелку",
+          "start": 3.125,
+          "duration": 0.525
+        },
+        {
+          "text": "чтобы",
+          "start": 3.9,
+          "duration": 0.2625
+        },
+        {
+          "text": "переложить",
+          "start": 4.1625,
+          "duration": 0.6625
+        },
+        {
+          "text": "одно",
+          "start": 4.825,
+          "duration": 0.3
+        },
+        {
+          "text": "угощение",
+          "start": 5.125,
+          "duration": 0.6375
+        },
+        {
+          "text": "соседу",
+          "start": 5.7625,
+          "duration": 0.6
+        },
+        {
+          "text": "Потом",
+          "start": 7.2875,
+          "duration": 0.3875
+        },
+        {
+          "text": "проверь",
+          "start": 7.675,
+          "duration": 0.45
+        },
+        {
+          "text": "всем",
+          "start": 8.2375,
+          "duration": 0.375
+        },
+        {
+          "text": "ли",
+          "start": 8.6125,
+          "duration": 0.0875
+        },
+        {
+          "text": "по́ровну",
+          "start": 8.7,
+          "duration": 0.575
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 9.435,
+        "revision": 1
+      }
+    },
+    "ph_sharing_unequal": {
+      "source_text": "Пока не п+оровну. Посмотри, на какой тарелке больше, и поделись.",
+      "request_sha256": "973134cc7bb59218b34ca3eceefdf84e9e42c4d3d1504d3d4f108fc34eec488c",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Пока не по́ровну. Посмотри, на какой тарелке больше, и поделись.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 5.448,
+      "active_seconds": 3.76,
+      "bytes": 43821,
+      "sha256": "dcecb7efcbafe7b43707ca42011bc71d70ce191b2b86fde09c452daf1c6011c6",
+      "word_timings": [
+        {
+          "text": "Пока",
+          "start": 0.1,
+          "duration": 0.3625
+        },
+        {
+          "text": "не",
+          "start": 0.4625,
+          "duration": 0.125
+        },
+        {
+          "text": "по́ровну",
+          "start": 0.5875,
+          "duration": 0.625
+        },
+        {
+          "text": "Посмотри",
+          "start": 2.1375,
+          "duration": 0.6625
+        },
+        {
+          "text": "на",
+          "start": 2.9375,
+          "duration": 0.0875
+        },
+        {
+          "text": "какой",
+          "start": 3.025,
+          "duration": 0.3125
+        },
+        {
+          "text": "тарелке",
+          "start": 3.3375,
+          "duration": 0.425
+        },
+        {
+          "text": "больше",
+          "start": 3.7625,
+          "duration": 0.4625
+        },
+        {
+          "text": "и",
+          "start": 4.45,
+          "duration": 0.1375
+        },
+        {
+          "text": "поделись",
+          "start": 4.5875,
+          "duration": 0.65
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 5.3975,
+        "revision": 1
+      }
+    }
+  }
+}

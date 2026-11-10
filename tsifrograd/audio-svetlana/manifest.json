@@ -1,0 +1,3468 @@
+{
+  "schema": 1,
+  "provider": "edge-tts",
+  "voice": "ru-RU-SvetlanaNeural",
+  "bank": "tsifrograd",
+  "complete": true,
+  "clips": {
+    "ph_album": {
+      "source_text": "Тв+ой альб+ом с накл+ейками.",
+      "request_sha256": "f451dfe8e21918406a6ad4fe5e8a44ef29edee2aee3926d7ff7063a22752c36e",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Твой альбо́м с накле́йками.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 2.304,
+      "active_seconds": 1.84,
+      "bytes": 18669,
+      "sha256": "83286eff517454ab3f7feac329b3036081d431325d3d6e5bda066e25f5a862db",
+      "word_timings": [
+        {
+          "text": "Твой",
+          "start": 0.1,
+          "duration": 0.4
+        },
+        {
+          "text": "альбо́м",
+          "start": 0.5,
+          "duration": 0.6375
+        },
+        {
+          "text": "с",
+          "start": 1.1375,
+          "duration": 0.1
+        },
+        {
+          "text": "накле́йками",
+          "start": 1.2375,
+          "duration": 0.8625
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 2.26,
+        "revision": 1
+      }
+    },
+    "ph_locked": {
+      "source_text": "Сюд+а мы +едем п+озже.",
+      "request_sha256": "7a7c7833748353ef58577bcf18525b43b0eae13c2baa9dd2bfb0718f26e32ae1",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Сюда́ мы е́дем по́зже.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.824,
+      "active_seconds": 1.38,
+      "bytes": 14829,
+      "sha256": "a21c42a482075a44e9c5a8c7cbfc4ed72d71efdb5200a844d4746d1e14e47c68",
+      "word_timings": [
+        {
+          "text": "Сюда́",
+          "start": 0.1,
+          "duration": 0.5
+        },
+        {
+          "text": "мы",
+          "start": 0.6,
+          "duration": 0.1125
+        },
+        {
+          "text": "е́дем",
+          "start": 0.7125,
+          "duration": 0.425
+        },
+        {
+          "text": "по́зже",
+          "start": 1.1375,
+          "duration": 0.4875
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.785,
+        "revision": 1
+      }
+    },
+    "ph_next_station": {
+      "source_text": "+Едем д+альше!",
+      "request_sha256": "e787197d2921979c87e28609e9ac0108e419067343e5d1004ee33bcbcc26efa4",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Е́дем да́льше!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.536,
+      "active_seconds": 1.04,
+      "bytes": 12525,
+      "sha256": "95281e4c748d58be33908b77a2027da9c1049f518a3f6b98326d76205b61954c",
+      "word_timings": [
+        {
+          "text": "Е́дем",
+          "start": 0.1,
+          "duration": 0.625
+        },
+        {
+          "text": "да́льше",
+          "start": 0.725,
+          "duration": 0.6125
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.4975,
+        "revision": 1
+      }
+    },
+    "ph_p1": {
+      "source_text": "Молод+ец!",
+      "request_sha256": "51cd3661d73f1a42c4a2df30bb39275512f6f1a52c5fb7828caf0890dd646b76",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Молоде́ц!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.272,
+      "active_seconds": 0.8,
+      "bytes": 10413,
+      "sha256": "82f923ba89cfdb357afada2a3d251fd610c8012bdd56ef3c20721ba22de90834",
+      "word_timings": [
+        {
+          "text": "Молоде́ц",
+          "start": 0.1,
+          "duration": 0.9625
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.2225,
+        "revision": 1
+      }
+    },
+    "ph_p2": {
+      "source_text": "+Умница!",
+      "request_sha256": "7f5c547d1d474f272c6742e7d7e2bff903ef944917c34ff07cf69c17b732b2df",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "У́мница!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.128,
+      "active_seconds": 0.64,
+      "bytes": 9261,
+      "sha256": "ac3744f8b1133b5a57dd46f4aa1f9d9403deaf9e79f696e85b7d2abc72b5bda2",
+      "word_timings": [
+        {
+          "text": "У́мница",
+          "start": 0.1,
+          "duration": 0.8375
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.0975,
+        "revision": 1
+      }
+    },
+    "ph_p3": {
+      "source_text": "Отл+ично!",
+      "request_sha256": "f41edd6e9082eb7d8e0c695cef7ba2d7941e3d282b5bdc144a3d97ccf7f06c4f",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Отли́чно!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.152,
+      "active_seconds": 0.64,
+      "bytes": 9453,
+      "sha256": "bdc9bb312e18af4d0f03517533f95b916af90a083078cb14c30de3da069d25a0",
+      "word_timings": [
+        {
+          "text": "Отли́чно",
+          "start": 0.1,
+          "duration": 0.85
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.11,
+        "revision": 1
+      }
+    },
+    "ph_p4": {
+      "source_text": "Зд+орово!",
+      "request_sha256": "ec8af74125a2c2e951c133a4a09a54fc7a6a0594cb67e15f41ff78d56b1559fd",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Здо́рово!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.104,
+      "active_seconds": 0.66,
+      "bytes": 9069,
+      "sha256": "0c305818d1baace50065286b8b7aacf9849759a839a3a46827870066de1b47f4",
+      "word_timings": [
+        {
+          "text": "Здо́рово",
+          "start": 0.1,
+          "duration": 0.8125
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.0725,
+        "revision": 1
+      }
+    },
+    "ph_p5": {
+      "source_text": "Пр+авильно!",
+      "request_sha256": "a2c95b2080cadb5c83fc51d66dc6eeb2a26b3b9200af1f32da686bb63a6a2961",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Пра́вильно!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.08,
+      "active_seconds": 0.6,
+      "bytes": 8877,
+      "sha256": "b4d96e377894af20cb857aa2007c24ace26609d28dc1934463eec8cb11a90ae3",
+      "word_timings": [
+        {
+          "text": "Пра́вильно",
+          "start": 0.1,
+          "duration": 0.775
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.035,
+        "revision": 1
+      }
+    },
+    "ph_p6": {
+      "source_text": "Ур+а!",
+      "request_sha256": "f646df050d237a99b1074d45a50dd14394545daf354b78f0886b942601ec2881",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Ура́!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 0.816,
+      "active_seconds": 0.34,
+      "bytes": 6765,
+      "sha256": "f34cc7a6b6d29a069183be926499b06266908f6755aea38d65e1548a69a75b62",
+      "word_timings": [
+        {
+          "text": "Ура́",
+          "start": 0.1,
+          "duration": 0.525
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 0.785,
+        "revision": 1
+      }
+    },
+    "ph_p7": {
+      "source_text": "Так держ+ать!",
+      "request_sha256": "9bc9cbc150f8a3a0573f576cc6f950f16068ef670bbc2e47a4f466b0d11ce265",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Так держа́ть!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.992,
+      "active_seconds": 1.5,
+      "bytes": 16173,
+      "sha256": "6d1f03532ce1a7154671a28048553cd6ba91f2812d1f87013e6249e6d2a38c6f",
+      "word_timings": [
+        {
+          "text": "Так",
+          "start": 0.1,
+          "duration": 0.325
+        },
+        {
+          "text": "держа́ть",
+          "start": 0.425,
+          "duration": 1.3625
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.9475,
+        "revision": 1
+      }
+    },
+    "ph_pick_station": {
+      "source_text": "В+ыбери ст+анцию, и по+ехали!",
+      "request_sha256": "8fcd2b6f73b7409cf50f445a0981249020883b23d97a74c86fc4710ed174017f",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Вы́бери ста́нцию, и пое́хали!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 2.64,
+      "active_seconds": 2.04,
+      "bytes": 21357,
+      "sha256": "e5b195c9edcf0b9888e1ada8a72a3aad43f56856dda825bde7be00a0194c0bc1",
+      "word_timings": [
+        {
+          "text": "Вы́бери",
+          "start": 0.1,
+          "duration": 0.5
+        },
+        {
+          "text": "ста́нцию",
+          "start": 0.6,
+          "duration": 0.6625
+        },
+        {
+          "text": "и",
+          "start": 1.5,
+          "duration": 0.15
+        },
+        {
+          "text": "пое́хали",
+          "start": 1.65,
+          "duration": 0.7875
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 2.5975,
+        "revision": 1
+      }
+    },
+    "ph_station_done": {
+      "source_text": "Ур+а, получ+илось! Вот накл+ейка!",
+      "request_sha256": "59d9d2c7f1c5ec416cb96541c9da38c259758931a7bac0696a3f6cb5958ceacb",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Ура́, получи́лось! Вот накле́йка!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 3.888,
+      "active_seconds": 2.28,
+      "bytes": 31341,
+      "sha256": "8882345271045f9a4719dd32fc9da21a206b13fe910a120c4b26d09164654605",
+      "word_timings": [
+        {
+          "text": "Ура́",
+          "start": 0.1,
+          "duration": 0.4875
+        },
+        {
+          "text": "получи́лось",
+          "start": 0.675,
+          "duration": 0.8625
+        },
+        {
+          "text": "Вот",
+          "start": 2.4,
+          "duration": 0.4375
+        },
+        {
+          "text": "накле́йка",
+          "start": 2.8375,
+          "duration": 0.8625
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 3.86,
+        "revision": 1
+      }
+    },
+    "ph_try_again": {
+      "source_text": "Попр+обуй ещё.",
+      "request_sha256": "0f62a3d826c23c27eb01352f76dd88c46d180523e0d4eb9d9dd51064a0b206d4",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Попро́буй ещё.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.392,
+      "active_seconds": 0.94,
+      "bytes": 11373,
+      "sha256": "36db1cf4fe5180594758466a68595810a4f7089d4a1bb26c7d5bc400df554219",
+      "word_timings": [
+        {
+          "text": "Попро́буй",
+          "start": 0.1,
+          "duration": 0.6
+        },
+        {
+          "text": "ещё",
+          "start": 0.7,
+          "duration": 0.5
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.36,
+        "revision": 1
+      }
+    },
+    "c_1": {
+      "source_text": "Од+ин.",
+      "request_sha256": "0ba004acb6092a4b772b22a22a8ca42bb6f2cceeb36126a4cc28e94c46d90afc",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Оди́н.",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.08,
+      "active_seconds": 0.56,
+      "bytes": 8877,
+      "sha256": "f34ecba49fee84e11c5ae8f44af21bf75ace60f921166299117aef5a6eb65d3b",
+      "word_timings": [
+        {
+          "text": "Оди́н",
+          "start": 0.1,
+          "duration": 0.776333
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.036333,
+        "revision": 1
+      }
+    },
+    "c_10": {
+      "source_text": "Д+есять.",
+      "request_sha256": "95942b55fd4a9d1d3d3a93c1cc061c03fe6d961e6b44836acd30de4bcc684178",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Де́сять.",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.176,
+      "active_seconds": 0.62,
+      "bytes": 9645,
+      "sha256": "ac15cc6544c13e6f3131e7bbf98f93d734924693ded0f9f4b4bc60a332824c43",
+      "word_timings": [
+        {
+          "text": "Де́сять",
+          "start": 0.1,
+          "duration": 0.881583
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.141583,
+        "revision": 1
+      }
+    },
+    "c_11": {
+      "source_text": "Од+иннадцать.",
+      "request_sha256": "eeab5e5a2f5e39f00d31679b902b45171b32f8552719cc44e42652de08e1531a",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Оди́ннадцать.",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.488,
+      "active_seconds": 0.92,
+      "bytes": 12141,
+      "sha256": "606077d67f6dc111a7ddc7cad2d486e6a466ec113bd30f88a7e39b558563210f",
+      "word_timings": [
+        {
+          "text": "Оди́ннадцать",
+          "start": 0.1,
+          "duration": 1.197375
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.457375,
+        "revision": 1
+      }
+    },
+    "c_12": {
+      "source_text": "Двен+адцать.",
+      "request_sha256": "da91b9a2820e3635680577174b0cc0186de2e6af8ffbe35e4586cc3fe35302bc",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Двена́дцать.",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.416,
+      "active_seconds": 0.86,
+      "bytes": 11565,
+      "sha256": "cc322141490d6733024c27d7bbf6bbbe7ad2d84ef940e8c1895586863df20d9d",
+      "word_timings": [
+        {
+          "text": "Двена́дцать",
+          "start": 0.1,
+          "duration": 1.118416
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.378416,
+        "revision": 1
+      }
+    },
+    "c_13": {
+      "source_text": "Трин+адцать.",
+      "request_sha256": "40b029874d4caf796e6f93717883af75bbb8c7b6437b2bddd4be1e59289d559e",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Трина́дцать.",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.296,
+      "active_seconds": 0.78,
+      "bytes": 10605,
+      "sha256": "4ccdedd609b6b78a9886de8b337f57b914047a4baf55355b4d8b452389e14357",
+      "word_timings": [
+        {
+          "text": "Трина́дцать",
+          "start": 0.1,
+          "duration": 0.986833
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.246833,
+        "revision": 1
+      }
+    },
+    "c_14": {
+      "source_text": "Чет+ырнадцать.",
+      "request_sha256": "29c0e1bd5e83fd58c818b79e93fa2f498b13453bb730556e42bf7b3ae5031c76",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Четы́рнадцать.",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.44,
+      "active_seconds": 0.94,
+      "bytes": 11757,
+      "sha256": "064cf444b447f62b398bf4d4d36b2110344c3787d160c570580ada3068511123",
+      "word_timings": [
+        {
+          "text": "Четы́рнадцать",
+          "start": 0.1,
+          "duration": 1.131583
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.391583,
+        "revision": 1
+      }
+    },
+    "c_15": {
+      "source_text": "Пятн+адцать.",
+      "request_sha256": "daedb543ca7db28eddf826087c61f955262b7d96ddbeca7b894de0efede947c7",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Пятна́дцать.",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.32,
+      "active_seconds": 0.74,
+      "bytes": 10797,
+      "sha256": "d254f20f388f77be1c1f6415759deeacacdafc681ff844dca5529a23fb01c87e",
+      "word_timings": [
+        {
+          "text": "Пятна́дцать",
+          "start": 0.1,
+          "duration": 1.013166
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.273166,
+        "revision": 1
+      }
+    },
+    "c_16": {
+      "source_text": "Шестн+адцать.",
+      "request_sha256": "43bc467d38d3ebb966cd6a3ce9340a71df6d116f6e6c71622650efbf09e24e02",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Шестна́дцать.",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.416,
+      "active_seconds": 0.94,
+      "bytes": 11565,
+      "sha256": "b211ba55b1ae0838d377587d677e190f602ffb2d9670a99b876ca9dfc285e0bd",
+      "word_timings": [
+        {
+          "text": "Шестна́дцать",
+          "start": 0.1,
+          "duration": 1.118416
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.378416,
+        "revision": 1
+      }
+    },
+    "c_17": {
+      "source_text": "Семн+адцать.",
+      "request_sha256": "3eeb6c271a2846e83be2a4ce2db58f66c7b24e6ad23bdec91e3de00264b1eec6",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Семна́дцать.",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.464,
+      "active_seconds": 0.88,
+      "bytes": 11949,
+      "sha256": "ec2507841ddb9cc6205bfa1c4a96c85ea3984510a09970156e375d2f0d74942e",
+      "word_timings": [
+        {
+          "text": "Семна́дцать",
+          "start": 0.1,
+          "duration": 1.157875
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.417875,
+        "revision": 1
+      }
+    },
+    "c_18": {
+      "source_text": "Восемн+адцать.",
+      "request_sha256": "ef362eb129e7c5d62606e83cdc86e1a979df3b39f3d8ea2142e94d54d1f7be7f",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Восемна́дцать.",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.56,
+      "active_seconds": 1.0,
+      "bytes": 12717,
+      "sha256": "25d2574d32a1c7dec8c0bfda0127cbce1456d45f19b166d7b131fd451a700b36",
+      "word_timings": [
+        {
+          "text": "Восемна́дцать",
+          "start": 0.1,
+          "duration": 1.263166
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.523166,
+        "revision": 1
+      }
+    },
+    "c_19": {
+      "source_text": "Девятн+адцать.",
+      "request_sha256": "e109a596e4a8dd8fb44211488878b64ccd9cb2a775239ef7c36ccf68edaead0d",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Девятна́дцать.",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.56,
+      "active_seconds": 0.94,
+      "bytes": 12717,
+      "sha256": "2568365917092fcc7e3f25bc8655b18f17601c8df812fb08af648338f9dd0660",
+      "word_timings": [
+        {
+          "text": "Девятна́дцать",
+          "start": 0.1,
+          "duration": 1.25
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.51,
+        "revision": 1
+      }
+    },
+    "c_2": {
+      "source_text": "Два.",
+      "request_sha256": "862353fda1e8d58cddcaa6d8dec75f3733c26a118b1ba6353b0d9014905c6827",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Два.",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 0.864,
+      "active_seconds": 0.38,
+      "bytes": 7149,
+      "sha256": "ead2232ac9da0af6a42ac377e7ed519d5b30afa113a9af80cadca37119b3af02",
+      "word_timings": [
+        {
+          "text": "Два",
+          "start": 0.1,
+          "duration": 0.552625
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 0.812625,
+        "revision": 1
+      }
+    },
+    "c_20": {
+      "source_text": "Дв+адцать.",
+      "request_sha256": "56069b19824cb8633ade9d9dfb7e51301d95a3f560cca694a18c0ccc231fdb0c",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Два́дцать.",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.272,
+      "active_seconds": 0.7,
+      "bytes": 10413,
+      "sha256": "713c7352ae5cc380c4149a6648ed1689202b521e142328d381daa37535baa579",
+      "word_timings": [
+        {
+          "text": "Два́дцать",
+          "start": 0.1,
+          "duration": 0.960541
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.220541,
+        "revision": 1
+      }
+    },
+    "c_21": {
+      "source_text": "Дв+адцать од+ин.",
+      "request_sha256": "1665f1d4e5ca324035996fcf4d33a9c8bb6ecff932bb254c0b0eaf8467195004",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Два́дцать оди́н.",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.752,
+      "active_seconds": 1.18,
+      "bytes": 14253,
+      "sha256": "f1876d0297a5956784919818236676d9b413981d97d00c7f9dc75a6e4fb53da2",
+      "word_timings": [
+        {
+          "text": "Два́дцать",
+          "start": 0.1,
+          "duration": 0.828958
+        },
+        {
+          "text": "оди́н",
+          "start": 0.928958,
+          "duration": 0.618416
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.707374,
+        "revision": 1
+      }
+    },
+    "c_22": {
+      "source_text": "Дв+адцать два.",
+      "request_sha256": "49f31a0d9db032a2b427b3756db1cd4a0bfa44f4e6790cf8654595ec76e5f385",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Два́дцать два.",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.368,
+      "active_seconds": 0.86,
+      "bytes": 11181,
+      "sha256": "b5fd6e8981c3d1ad35542c4be229222c28aae95e1023418670fbd7c80f8726c8",
+      "word_timings": [
+        {
+          "text": "Два́дцать",
+          "start": 0.1,
+          "duration": 0.684208
+        },
+        {
+          "text": "два",
+          "start": 0.784208,
+          "duration": 0.381583
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.325791,
+        "revision": 1
+      }
+    },
+    "c_23": {
+      "source_text": "Дв+адцать три.",
+      "request_sha256": "22e7624328226d60e7c36f9ea727b664d51deda9e2e16eaf21cd2bc9e9f0219e",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Два́дцать три.",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.416,
+      "active_seconds": 0.78,
+      "bytes": 11565,
+      "sha256": "9d19a2cd4c2c58f601045c31215b307cc549c8cc5fd4820a69701e6aabc4cabb",
+      "word_timings": [
+        {
+          "text": "Два́дцать",
+          "start": 0.1,
+          "duration": 0.75
+        },
+        {
+          "text": "три",
+          "start": 0.85,
+          "duration": 0.368416
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.378416,
+        "revision": 1
+      }
+    },
+    "c_24": {
+      "source_text": "Дв+адцать чет+ыре.",
+      "request_sha256": "e7e25ccd68a8276666d34959478560c2842350252c77cd589cef29722889b4c8",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Два́дцать четы́ре.",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.608,
+      "active_seconds": 1.06,
+      "bytes": 13101,
+      "sha256": "94a604bb905be6d1279d466437f30078bedcb912946c91a6840f64d7c271d99a",
+      "word_timings": [
+        {
+          "text": "Два́дцать",
+          "start": 0.1,
+          "duration": 0.723666
+        },
+        {
+          "text": "четы́ре",
+          "start": 0.823666,
+          "duration": 0.592125
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.575791,
+        "revision": 1
+      }
+    },
+    "c_25": {
+      "source_text": "Дв+адцать пять.",
+      "request_sha256": "8528be790283af87ed97f67806fcb70c0db789a9e13b8fc1698a19d80f1a1d1c",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Два́дцать пять.",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.536,
+      "active_seconds": 0.94,
+      "bytes": 12525,
+      "sha256": "5d67507bfd95852e6ff9a67f788d53c7fac4110ebb7e0ffa1c1233ed8e314f6b",
+      "word_timings": [
+        {
+          "text": "Два́дцать",
+          "start": 0.1,
+          "duration": 0.710541
+        },
+        {
+          "text": "пять",
+          "start": 0.810541,
+          "duration": 0.526333
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.496874,
+        "revision": 1
+      }
+    },
+    "c_26": {
+      "source_text": "Дв+адцать шесть.",
+      "request_sha256": "2faec8c4924f7261c000d617914e2256614935ab1bb9bae25f69756145853880",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Два́дцать шесть.",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.632,
+      "active_seconds": 1.08,
+      "bytes": 13293,
+      "sha256": "dce6393b4f337186faed9414be63728ce6636658f73649cbd250cc4de8fe0695",
+      "word_timings": [
+        {
+          "text": "Два́дцать",
+          "start": 0.1,
+          "duration": 0.631583
+        },
+        {
+          "text": "шесть",
+          "start": 0.731583,
+          "duration": 0.697375
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.588958,
+        "revision": 1
+      }
+    },
+    "c_27": {
+      "source_text": "Дв+адцать семь.",
+      "request_sha256": "54294945ab77e013d1eb367cd525615ad178dd81fb78e4bdac9544f314600d70",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Два́дцать семь.",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.44,
+      "active_seconds": 0.94,
+      "bytes": 11757,
+      "sha256": "258cc007cd56c60ac63964e04badf99ce42f4fbdd19e65aa25b80b049a970d8f",
+      "word_timings": [
+        {
+          "text": "Два́дцать",
+          "start": 0.1,
+          "duration": 0.684208
+        },
+        {
+          "text": "семь",
+          "start": 0.784208,
+          "duration": 0.460541
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.404749,
+        "revision": 1
+      }
+    },
+    "c_28": {
+      "source_text": "Дв+адцать в+осемь.",
+      "request_sha256": "0eabc19638f49f6dda66b415161568b6339a432b24eb1a2edb27801b1ec20188",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Два́дцать во́семь.",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.584,
+      "active_seconds": 1.08,
+      "bytes": 12909,
+      "sha256": "486db85a66e6063cd5c35d294ef5a77f494fa4bc797632e86c0f02823121ac62",
+      "word_timings": [
+        {
+          "text": "Два́дцать",
+          "start": 0.1,
+          "duration": 0.684208
+        },
+        {
+          "text": "во́семь",
+          "start": 0.784208,
+          "duration": 0.60525
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.549458,
+        "revision": 1
+      }
+    },
+    "c_29": {
+      "source_text": "Дв+адцать д+евять.",
+      "request_sha256": "c474fca22c5a96e8c5300ecb5b2ea881a06506f63a258cbe22f5875545b98fe8",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Два́дцать де́вять.",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.584,
+      "active_seconds": 1.06,
+      "bytes": 12909,
+      "sha256": "c8904db9c5daf07a67300c4d10cd9e2a189079822c72b8d57fec8df94cb46376",
+      "word_timings": [
+        {
+          "text": "Два́дцать",
+          "start": 0.1,
+          "duration": 0.64475
+        },
+        {
+          "text": "де́вять",
+          "start": 0.74475,
+          "duration": 0.64475
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.5495,
+        "revision": 1
+      }
+    },
+    "c_3": {
+      "source_text": "Три.",
+      "request_sha256": "254b6905c8b3726b7cd852c6bc27f7f79ef19ecb110f8157867cce90cfacacd7",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Три.",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 0.744,
+      "active_seconds": 0.26,
+      "bytes": 6189,
+      "sha256": "2acecc991f6aa1239882cc6e04e682f752732bd87cf7554b8727d42f7f5c1fa9",
+      "word_timings": [
+        {
+          "text": "Три",
+          "start": 0.1,
+          "duration": 0.434208
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 0.694208,
+        "revision": 1
+      }
+    },
+    "c_30": {
+      "source_text": "Тр+идцать.",
+      "request_sha256": "cf298a6a5f3bfefc05fb3ed404756dd379c06ee8d1050ee086e6b745b1a56012",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Три́дцать.",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.152,
+      "active_seconds": 0.6,
+      "bytes": 9453,
+      "sha256": "0c8822758f4b1a30b5074332be0c81244efec38ce4213c3fdb304bc8e2a711fd",
+      "word_timings": [
+        {
+          "text": "Три́дцать",
+          "start": 0.1,
+          "duration": 0.85525
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.11525,
+        "revision": 1
+      }
+    },
+    "c_4": {
+      "source_text": "Чет+ыре.",
+      "request_sha256": "d32e9226ec212a053833db64688de0a7b4a6040671cae28da0581f9a323ea863",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Четы́ре.",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.032,
+      "active_seconds": 0.56,
+      "bytes": 8493,
+      "sha256": "2269b99304db111b7f3a41726d7a5c6affc187e53ddfc38b36fe087bb9e02048",
+      "word_timings": [
+        {
+          "text": "Четы́ре",
+          "start": 0.1,
+          "duration": 0.736833
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 0.996833,
+        "revision": 1
+      }
+    },
+    "c_5": {
+      "source_text": "Пять.",
+      "request_sha256": "f768fb12ff914349f0c21816fdd39d724e01b920cc16bb2e3082fca930a392eb",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Пять.",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 0.888,
+      "active_seconds": 0.36,
+      "bytes": 7341,
+      "sha256": "3a66f46341e6265e359f21266bfdbaec3da40f452ec7376576181ee8b40f0021",
+      "word_timings": [
+        {
+          "text": "Пять",
+          "start": 0.1,
+          "duration": 0.592125
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 0.852125,
+        "revision": 1
+      }
+    },
+    "c_6": {
+      "source_text": "Шесть.",
+      "request_sha256": "b2ccf63e4f8affc5877816e604ad1f073de22d7cf72656d0d1fa3a53cbcc96c6",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Шесть.",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.104,
+      "active_seconds": 0.52,
+      "bytes": 9069,
+      "sha256": "381b255272fe848cd5cdb744b276ff7dd92b3f390c8c90b4a6483264f2cd4adf",
+      "word_timings": [
+        {
+          "text": "Шесть",
+          "start": 0.1,
+          "duration": 0.802625
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.062625,
+        "revision": 1
+      }
+    },
+    "c_7": {
+      "source_text": "Семь.",
+      "request_sha256": "ee634e3f4af8ae6d9c0ced6a7f9d459236d0a794d45d8402860291fc75d59ecd",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Семь.",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 0.888,
+      "active_seconds": 0.42,
+      "bytes": 7341,
+      "sha256": "0705f37b436f89856dd3f34418980a3882102735255510ace9527a8e5fc9cf66",
+      "word_timings": [
+        {
+          "text": "Семь",
+          "start": 0.1,
+          "duration": 0.592125
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 0.852125,
+        "revision": 1
+      }
+    },
+    "c_8": {
+      "source_text": "В+осемь.",
+      "request_sha256": "0e4612ab7d49b62df69152f2776776ca40edc59a112dae669e2de078b135df88",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Во́семь.",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.056,
+      "active_seconds": 0.56,
+      "bytes": 8685,
+      "sha256": "770562f06d3d21c51ff77b8d038ae0e476e9108610cfce6f05fab276645883e9",
+      "word_timings": [
+        {
+          "text": "Во́семь",
+          "start": 0.1,
+          "duration": 0.763166
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.023166,
+        "revision": 1
+      }
+    },
+    "c_9": {
+      "source_text": "Д+евять.",
+      "request_sha256": "beacd6ad5874cf47edbefc6748d5fdfcb75496cc3348fba4e169a920df182d09",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Де́вять.",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.104,
+      "active_seconds": 0.56,
+      "bytes": 9069,
+      "sha256": "71306b09bd6f3b9e241511e0196168b469e3694e0fd2bc9e6064a08c659c0685",
+      "word_timings": [
+        {
+          "text": "Де́вять",
+          "start": 0.1,
+          "duration": 0.815791
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.075791,
+        "revision": 1
+      }
+    },
+    "e_1": {
+      "source_text": "Од+ин!",
+      "request_sha256": "13cff724b8f9565e4043797276f2d879c66d8aae18d2e84c5028529d766b9363",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Оди́н!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.032,
+      "active_seconds": 0.52,
+      "bytes": 8493,
+      "sha256": "a3915a9a0f8da5cf7df4baa11811ae57677fdca1b077ecb67c73ddb43b48b765",
+      "word_timings": [
+        {
+          "text": "Оди́н",
+          "start": 0.1,
+          "duration": 0.7375
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 0.9975,
+        "revision": 1
+      }
+    },
+    "e_10": {
+      "source_text": "Д+есять!",
+      "request_sha256": "f2e70cf959b5107d21d5a7bf21548e395366e7279dc581ef46d18530dd6c49db",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Де́сять!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.152,
+      "active_seconds": 0.64,
+      "bytes": 9453,
+      "sha256": "e49f0c567964f38e135e19e00df845619b4ac0acb81edb5d26cfe9db8532cc17",
+      "word_timings": [
+        {
+          "text": "Де́сять",
+          "start": 0.1,
+          "duration": 0.85
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.11,
+        "revision": 1
+      }
+    },
+    "e_2": {
+      "source_text": "Два!",
+      "request_sha256": "e689910cbe6cd9e1e1a1d2efa53ace6c9df1dfe2637ec70ea5d6a32295f79318",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Два!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 0.84,
+      "active_seconds": 0.4,
+      "bytes": 6957,
+      "sha256": "5fc3e05e6899ecf21d50f8ce509f4b80724368ca80ee167dd9ede5ee247f78f6",
+      "word_timings": [
+        {
+          "text": "Два",
+          "start": 0.1,
+          "duration": 0.5375
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 0.7975,
+        "revision": 1
+      }
+    },
+    "e_3": {
+      "source_text": "Три!",
+      "request_sha256": "a754282d15b873a7dbb93caf671a4a7fc0eeebb1bd11d4b8e799386f647f4c13",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Три!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 0.72,
+      "active_seconds": 0.24,
+      "bytes": 5997,
+      "sha256": "8792de2c1da3dc755a2d4efa32d442b570db476c30c466e90a9942b251441e41",
+      "word_timings": [
+        {
+          "text": "Три",
+          "start": 0.1,
+          "duration": 0.4125
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 0.6725,
+        "revision": 1
+      }
+    },
+    "e_4": {
+      "source_text": "Чет+ыре!",
+      "request_sha256": "4817e6d3bb691bbbceb656bd8ba49234a65f7211474e464e8e98a4925e131dee",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Четы́ре!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 0.984,
+      "active_seconds": 0.5,
+      "bytes": 8109,
+      "sha256": "8ff3be27515e182ba76041580ed663193b854de3b714b95b90af2459e5553bd2",
+      "word_timings": [
+        {
+          "text": "Четы́ре",
+          "start": 0.1,
+          "duration": 0.675
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 0.935,
+        "revision": 1
+      }
+    },
+    "e_5": {
+      "source_text": "Пять!",
+      "request_sha256": "1e680cdf1f22e4a7dd48abacf2ca0da3af611b48ed66a2b15fe878333fa25748",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Пять!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 0.84,
+      "active_seconds": 0.34,
+      "bytes": 6957,
+      "sha256": "c9f2423d1f3fd5b387c5af1b45b42298647d913ae7e29bae4bb2eda907ab20e4",
+      "word_timings": [
+        {
+          "text": "Пять",
+          "start": 0.1,
+          "duration": 0.55
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 0.81,
+        "revision": 1
+      }
+    },
+    "e_6": {
+      "source_text": "Шесть!",
+      "request_sha256": "ee843fa968cfa6bcd0aa4d6ff3734506ecf78081292f416e1f73a85a49ca4a65",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Шесть!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.056,
+      "active_seconds": 0.5,
+      "bytes": 8685,
+      "sha256": "bdf833d7ae2ef34e28c3a141457c2a7bc37f85568d7f3188604b463458854c84",
+      "word_timings": [
+        {
+          "text": "Шесть",
+          "start": 0.1,
+          "duration": 0.7625
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.0225,
+        "revision": 1
+      }
+    },
+    "e_7": {
+      "source_text": "Семь!",
+      "request_sha256": "1341fd6c9ba0644973729d280fbc0aba656ec73d508f065928fa96134cfa76f8",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Семь!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 0.864,
+      "active_seconds": 0.42,
+      "bytes": 7149,
+      "sha256": "0bc132a2431a090ea809f8e9d1b9f57853be93e1be7271a87f149dbf54f0c840",
+      "word_timings": [
+        {
+          "text": "Семь",
+          "start": 0.1,
+          "duration": 0.5625
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 0.8225,
+        "revision": 1
+      }
+    },
+    "e_8": {
+      "source_text": "В+осемь!",
+      "request_sha256": "03b0216871c5fc3030b3350dac89d885800bb9a49a5e98051edef49a79cfb56b",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Во́семь!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.032,
+      "active_seconds": 0.56,
+      "bytes": 8493,
+      "sha256": "60367478bf900285ededae6876bfbef716db1bb57223cda10f8d3f3e9e34a77e",
+      "word_timings": [
+        {
+          "text": "Во́семь",
+          "start": 0.1,
+          "duration": 0.725
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 0.985,
+        "revision": 1
+      }
+    },
+    "e_9": {
+      "source_text": "Д+евять!",
+      "request_sha256": "613a13b996b9c91888df1f576b7a51a278c71221d7163c5f804f5d98664e8518",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Де́вять!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.08,
+      "active_seconds": 0.54,
+      "bytes": 8877,
+      "sha256": "8906936a536dc859ea0bb39a71591d04d6a2f479d0436e92475d88123d165f2c",
+      "word_timings": [
+        {
+          "text": "Де́вять",
+          "start": 0.1,
+          "duration": 0.775
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.035,
+        "revision": 1
+      }
+    },
+    "f_1": {
+      "source_text": "Где ц+ифра од+ин?",
+      "request_sha256": "85e041d4d96db970434ced2dc2b1da1a1a4be8a5b71d28c5fdab96b07c585475",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Где ци́фра оди́н?",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.824,
+      "active_seconds": 1.3,
+      "bytes": 14829,
+      "sha256": "199d01655533ebc0d01b9a8d021b53a9cc09c2528cf52975d686e33bda4b999b",
+      "word_timings": [
+        {
+          "text": "Где",
+          "start": 0.1,
+          "duration": 0.3875
+        },
+        {
+          "text": "ци́фра",
+          "start": 0.4875,
+          "duration": 0.4375
+        },
+        {
+          "text": "оди́н",
+          "start": 0.925,
+          "duration": 0.7
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.785,
+        "revision": 1
+      }
+    },
+    "f_10": {
+      "source_text": "Где ц+ифра д+есять?",
+      "request_sha256": "c93d4a5c85dc1e65f11860cd5cd3a1d4ec88d3c1335b5f0bb84bccf46f6f676a",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Где ци́фра де́сять?",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.704,
+      "active_seconds": 1.2,
+      "bytes": 13869,
+      "sha256": "04af1c2457db17a6f3ebbc00b87aeab5030d9077141b2b76615ff00382db44a0",
+      "word_timings": [
+        {
+          "text": "Где",
+          "start": 0.1,
+          "duration": 0.4
+        },
+        {
+          "text": "ци́фра",
+          "start": 0.5,
+          "duration": 0.375
+        },
+        {
+          "text": "де́сять",
+          "start": 0.875,
+          "duration": 0.625
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.66,
+        "revision": 1
+      }
+    },
+    "f_2": {
+      "source_text": "Где ц+ифра два?",
+      "request_sha256": "47711bd2a3a5c88223b50d9706d13b044e07e893202ce3398b563ba6714840d2",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Где ци́фра два?",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.44,
+      "active_seconds": 0.98,
+      "bytes": 11757,
+      "sha256": "1340a14a7cbf89271ba68ef07f654dca2fd0285a31a2b6e0121deaf6f5eae1ea",
+      "word_timings": [
+        {
+          "text": "Где",
+          "start": 0.1,
+          "duration": 0.4
+        },
+        {
+          "text": "ци́фра",
+          "start": 0.5,
+          "duration": 0.3875
+        },
+        {
+          "text": "два",
+          "start": 0.8875,
+          "duration": 0.3625
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.41,
+        "revision": 1
+      }
+    },
+    "f_3": {
+      "source_text": "Где ц+ифра три?",
+      "request_sha256": "a787e4aae1c342d1fd42e85dfe1a652e5334659ac8b44e89c731375a332c8693",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Где ци́фра три?",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.44,
+      "active_seconds": 0.98,
+      "bytes": 11757,
+      "sha256": "63aec4fd52d25876f9af8ed7b81e0f763e87bd1327f2e5f2bb333d028f13d588",
+      "word_timings": [
+        {
+          "text": "Где",
+          "start": 0.1,
+          "duration": 0.4125
+        },
+        {
+          "text": "ци́фра",
+          "start": 0.5125,
+          "duration": 0.375
+        },
+        {
+          "text": "три",
+          "start": 0.8875,
+          "duration": 0.3625
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.41,
+        "revision": 1
+      }
+    },
+    "f_4": {
+      "source_text": "Где ц+ифра чет+ыре?",
+      "request_sha256": "02365c2fecff2150d18ffe37d111ee6b4765b7e3e5d4f9c8a0c943b1b3b78c91",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Где ци́фра четы́ре?",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.704,
+      "active_seconds": 1.2,
+      "bytes": 13869,
+      "sha256": "2f2ea37986e22086cb503d243a81ce74b8ab7bd6aeaee51f4a67989f4d37ec71",
+      "word_timings": [
+        {
+          "text": "Где",
+          "start": 0.1,
+          "duration": 0.4
+        },
+        {
+          "text": "ци́фра",
+          "start": 0.5,
+          "duration": 0.4125
+        },
+        {
+          "text": "четы́ре",
+          "start": 0.9125,
+          "duration": 0.5875
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.66,
+        "revision": 1
+      }
+    },
+    "f_5": {
+      "source_text": "Где ц+ифра пять?",
+      "request_sha256": "9c4e089c2d3fc112f543ca3f8ad6026409f67e8d7d53138aae3745981ac711cc",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Где ци́фра пять?",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.632,
+      "active_seconds": 1.12,
+      "bytes": 13293,
+      "sha256": "98a008fa3209fcd7a30ad80e45ff58ade66e242799d9e185cc16bd044a4f966e",
+      "word_timings": [
+        {
+          "text": "Где",
+          "start": 0.1,
+          "duration": 0.4125
+        },
+        {
+          "text": "ци́фра",
+          "start": 0.5125,
+          "duration": 0.3875
+        },
+        {
+          "text": "пять",
+          "start": 0.9,
+          "duration": 0.525
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.585,
+        "revision": 1
+      }
+    },
+    "f_6": {
+      "source_text": "Где ц+ифра шесть?",
+      "request_sha256": "5dd0a1f0ada929963c3aef766a3b874ae64bca597823e94ef5f19322c3b1aea8",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Где ци́фра шесть?",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.776,
+      "active_seconds": 1.2,
+      "bytes": 14445,
+      "sha256": "78d79ee98f1148c84ea0d2706d9c7338c972370488900c1aa422413a5d7f5f6c",
+      "word_timings": [
+        {
+          "text": "Где",
+          "start": 0.1,
+          "duration": 0.4125
+        },
+        {
+          "text": "ци́фра",
+          "start": 0.5125,
+          "duration": 0.375
+        },
+        {
+          "text": "шесть",
+          "start": 0.8875,
+          "duration": 0.6875
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.735,
+        "revision": 1
+      }
+    },
+    "f_7": {
+      "source_text": "Где ц+ифра семь?",
+      "request_sha256": "3ed24bf18c2b16c8f6b4243b35c62f6208ef590ccb8ce02892480ed61ebd684f",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Где ци́фра семь?",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.584,
+      "active_seconds": 1.12,
+      "bytes": 12909,
+      "sha256": "5d00278e9c6936ab22bee5fdab33cc470b47cdc86dce8035fce8a41f8996abec",
+      "word_timings": [
+        {
+          "text": "Где",
+          "start": 0.1,
+          "duration": 0.4125
+        },
+        {
+          "text": "ци́фра",
+          "start": 0.5125,
+          "duration": 0.4
+        },
+        {
+          "text": "семь",
+          "start": 0.9125,
+          "duration": 0.4625
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.535,
+        "revision": 1
+      }
+    },
+    "f_8": {
+      "source_text": "Где ц+ифра в+осемь?",
+      "request_sha256": "f7e92cb31be43edadc9f47f738c3752b147eb93b380688ed6b0bf551cde87633",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Где ци́фра во́семь?",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.632,
+      "active_seconds": 1.16,
+      "bytes": 13293,
+      "sha256": "c8cac9a17e7ff16b81fbf16f6ec38716e5353a5bfcff468098be79f719bd4ccc",
+      "word_timings": [
+        {
+          "text": "Где",
+          "start": 0.1,
+          "duration": 0.4
+        },
+        {
+          "text": "ци́фра",
+          "start": 0.5,
+          "duration": 0.375
+        },
+        {
+          "text": "во́семь",
+          "start": 0.875,
+          "duration": 0.55
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.585,
+        "revision": 1
+      }
+    },
+    "f_9": {
+      "source_text": "Где ц+ифра д+евять?",
+      "request_sha256": "eb7bac849608314ee2ad5baa0c50a449302652257fe908d3615f359c8a53fed6",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Где ци́фра де́вять?",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.656,
+      "active_seconds": 1.22,
+      "bytes": 13485,
+      "sha256": "5345083997fa93754ea7e8bae63e4f6aa74ec88dd9b91013404603012dca38b5",
+      "word_timings": [
+        {
+          "text": "Где",
+          "start": 0.1,
+          "duration": 0.4125
+        },
+        {
+          "text": "ци́фра",
+          "start": 0.5125,
+          "duration": 0.375
+        },
+        {
+          "text": "де́вять",
+          "start": 0.8875,
+          "duration": 0.575
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.6225,
+        "revision": 1
+      }
+    },
+    "g_1": {
+      "source_text": "Погруз+им од+ин!",
+      "request_sha256": "433b6ba162644ce23b1d1b24b1e1efd34bbdaf1100461f56163049bdca4796a8",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Погрузи́м оди́н!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.656,
+      "active_seconds": 1.16,
+      "bytes": 13485,
+      "sha256": "bde70a1ed163e4b0af2bbb65a50bb711b39dd4ad2403f2612cfac452b76011a6",
+      "word_timings": [
+        {
+          "text": "Погрузи́м",
+          "start": 0.1,
+          "duration": 0.7625
+        },
+        {
+          "text": "оди́н",
+          "start": 0.8625,
+          "duration": 0.6
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.6225,
+        "revision": 1
+      }
+    },
+    "g_10": {
+      "source_text": "Погруз+им д+есять!",
+      "request_sha256": "68446a7dca84ace2bf095bdd614342e3871247c493c4dcb1ae6d9ceeed4c577f",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Погрузи́м де́сять!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.632,
+      "active_seconds": 1.2,
+      "bytes": 13293,
+      "sha256": "3005f69078c14b430922a6f44d52275b01a54a8e10174a16a2e0acae266a9f3d",
+      "word_timings": [
+        {
+          "text": "Погрузи́м",
+          "start": 0.1,
+          "duration": 0.7125
+        },
+        {
+          "text": "де́сять",
+          "start": 0.8125,
+          "duration": 0.625
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.5975,
+        "revision": 1
+      }
+    },
+    "g_2": {
+      "source_text": "Погруз+им два!",
+      "request_sha256": "583572f664a0feab314d606b50d2c9462e51539005d06ae011957dad30662021",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Погрузи́м два!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.392,
+      "active_seconds": 0.9,
+      "bytes": 11373,
+      "sha256": "af9fe2de2e27472ea6ba946d61d1fef93e9863461ac6cf08e4d018c474e61789",
+      "word_timings": [
+        {
+          "text": "Погрузи́м",
+          "start": 0.1,
+          "duration": 0.7375
+        },
+        {
+          "text": "два",
+          "start": 0.8375,
+          "duration": 0.35
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.3475,
+        "revision": 1
+      }
+    },
+    "g_3": {
+      "source_text": "Погруз+им три!",
+      "request_sha256": "d0b7d0c1a0ed8d8a4ba8ad28b728e6521fed894b2633081519d6a6697eb4557e",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Погрузи́м три!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.416,
+      "active_seconds": 0.9,
+      "bytes": 11565,
+      "sha256": "af27b376a98b2559113d09b043f63f17df53da97de85faac8d6b2591479d5d75",
+      "word_timings": [
+        {
+          "text": "Погрузи́м",
+          "start": 0.1,
+          "duration": 0.7375
+        },
+        {
+          "text": "три",
+          "start": 0.8375,
+          "duration": 0.375
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.3725,
+        "revision": 1
+      }
+    },
+    "g_4": {
+      "source_text": "Погруз+им чет+ыре!",
+      "request_sha256": "310f86dcec3e39401dc9f8b1ee53d1f87e4f2d3a96df8334254cbc292238d1f3",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Погрузи́м четы́ре!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.608,
+      "active_seconds": 1.12,
+      "bytes": 13101,
+      "sha256": "7fff1f555ae5b6580da7c86239cf99503766be6a617983f58f8fa26c59920b66",
+      "word_timings": [
+        {
+          "text": "Погрузи́м",
+          "start": 0.1,
+          "duration": 0.7375
+        },
+        {
+          "text": "четы́ре",
+          "start": 0.8375,
+          "duration": 0.5625
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.56,
+        "revision": 1
+      }
+    },
+    "g_5": {
+      "source_text": "Погруз+им пять!",
+      "request_sha256": "1041daeab19a31e5d76ce9c440ee9d44aab9f0d15d46810927e16dead8b78cb5",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Погрузи́м пять!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.536,
+      "active_seconds": 1.06,
+      "bytes": 12525,
+      "sha256": "edb0f964c8048bb4d83e1b520ca11752e433e62301d3a2b3af5d58064cd2a304",
+      "word_timings": [
+        {
+          "text": "Погрузи́м",
+          "start": 0.1,
+          "duration": 0.725
+        },
+        {
+          "text": "пять",
+          "start": 0.825,
+          "duration": 0.5125
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.4975,
+        "revision": 1
+      }
+    },
+    "g_6": {
+      "source_text": "Погруз+им шесть!",
+      "request_sha256": "97c97b299f786719e9ca770e8c798c14f6618d61d226262205b956ba0598805e",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Погрузи́м шесть!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.656,
+      "active_seconds": 1.16,
+      "bytes": 13485,
+      "sha256": "89f715aa8b48eca9dad4937b4d4831339cb491c051efa74597427a0662f63681",
+      "word_timings": [
+        {
+          "text": "Погрузи́м",
+          "start": 0.1,
+          "duration": 0.6875
+        },
+        {
+          "text": "шесть",
+          "start": 0.7875,
+          "duration": 0.675
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.6225,
+        "revision": 1
+      }
+    },
+    "g_7": {
+      "source_text": "Погруз+им семь!",
+      "request_sha256": "08cc5c16f1a809c170381a699ac34e68bf1ab0c6c0e23d704832b5780bf0fb3b",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Погрузи́м семь!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.464,
+      "active_seconds": 0.98,
+      "bytes": 11949,
+      "sha256": "fbab97becfed58ee955ddc65b0fd3f9a4ce55513e5d17dc73b86df060cb03b4a",
+      "word_timings": [
+        {
+          "text": "Погрузи́м",
+          "start": 0.1,
+          "duration": 0.6875
+        },
+        {
+          "text": "семь",
+          "start": 0.7875,
+          "duration": 0.475
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.4225,
+        "revision": 1
+      }
+    },
+    "g_8": {
+      "source_text": "Погруз+им в+осемь!",
+      "request_sha256": "483d1d1f9b2e405027c7e147427066e2fd614425a88c1adc615a58347f707353",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Погрузи́м во́семь!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.584,
+      "active_seconds": 1.1,
+      "bytes": 12909,
+      "sha256": "d836515c597a57c9bb6e1a3ab61b3566e8535b6dfe67c54e034311da18ae52d4",
+      "word_timings": [
+        {
+          "text": "Погрузи́м",
+          "start": 0.1,
+          "duration": 0.725
+        },
+        {
+          "text": "во́семь",
+          "start": 0.825,
+          "duration": 0.5625
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.5475,
+        "revision": 1
+      }
+    },
+    "g_9": {
+      "source_text": "Погруз+им д+евять!",
+      "request_sha256": "a51e66b4908d7beeeaf46dfd0ae94a45c9b78126976ad06f412e11b8c339b007",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Погрузи́м де́вять!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.608,
+      "active_seconds": 1.08,
+      "bytes": 13101,
+      "sha256": "b757d3d489438fc8fa4204d5fb24c31281307deb942bf29a0a7bc270cfb08864",
+      "word_timings": [
+        {
+          "text": "Погрузи́м",
+          "start": 0.1,
+          "duration": 0.7375
+        },
+        {
+          "text": "де́вять",
+          "start": 0.8375,
+          "duration": 0.575
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.5725,
+        "revision": 1
+      }
+    },
+    "ph_after": {
+      "source_text": "А как+ое ч+исло идёт п+осле?",
+      "request_sha256": "be5916694b019ac7eb8f131a4bf2a76ea47997dbf88a5a766d8b5742a847c39f",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "А како́е чи́сло идёт по́сле?",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 2.232,
+      "active_seconds": 1.72,
+      "bytes": 18093,
+      "sha256": "e58fbe828b86c49f666711343762ad2d8842073868757a472934ec88cdb3883d",
+      "word_timings": [
+        {
+          "text": "А",
+          "start": 0.1,
+          "duration": 0.2
+        },
+        {
+          "text": "како́е",
+          "start": 0.3,
+          "duration": 0.425
+        },
+        {
+          "text": "чи́сло",
+          "start": 0.725,
+          "duration": 0.4125
+        },
+        {
+          "text": "идёт",
+          "start": 1.1375,
+          "duration": 0.3125
+        },
+        {
+          "text": "по́сле",
+          "start": 1.45,
+          "duration": 0.575
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 2.185,
+        "revision": 1
+      }
+    },
+    "ph_before": {
+      "source_text": "А как+ое ч+исло идёт п+еред ним?",
+      "request_sha256": "9cdb058614a02a90bc1b7266e6fa6b95cbec41523e2fa690781ef87fea71ab59",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "А како́е чи́сло идёт пе́ред ним?",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 2.832,
+      "active_seconds": 2.3,
+      "bytes": 22893,
+      "sha256": "b8a0994250d3bea3f9616d3a86009913d05bcb36c0d125f5a2bccd195c69015b",
+      "word_timings": [
+        {
+          "text": "А",
+          "start": 0.1,
+          "duration": 0.2
+        },
+        {
+          "text": "како́е",
+          "start": 0.3,
+          "duration": 0.425
+        },
+        {
+          "text": "чи́сло",
+          "start": 0.725,
+          "duration": 0.45
+        },
+        {
+          "text": "идёт",
+          "start": 1.175,
+          "duration": 0.4125
+        },
+        {
+          "text": "пе́ред",
+          "start": 1.5875,
+          "duration": 0.675
+        },
+        {
+          "text": "ним",
+          "start": 2.2625,
+          "duration": 0.375
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 2.7975,
+        "revision": 1
+      }
+    },
+    "ph_dozen": {
+      "source_text": "Дес+яток!",
+      "request_sha256": "cb92780630c3d020c28e98c99b98126b15b4789708d4d9677cd9b00d1a8e651d",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Деся́ток!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.272,
+      "active_seconds": 0.68,
+      "bytes": 10413,
+      "sha256": "694c3910be6308fec9acc6e4f72dd2a7e17fb46e639978a8ea0458783d59f14d",
+      "word_timings": [
+        {
+          "text": "Деся́ток",
+          "start": 0.1,
+          "duration": 0.975
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.235,
+        "revision": 1
+      }
+    },
+    "ph_hello": {
+      "source_text": "Прив+ет! По+ехали в Цифрогр+ад!",
+      "request_sha256": "53355c8ba91b3124422710d8a78b71015126ac713123b1e2bf453437bf897ff5",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Приве́т! Пое́хали в Цифрогра́д!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 3.456,
+      "active_seconds": 1.84,
+      "bytes": 27885,
+      "sha256": "c38f79196ccd6e2c5fdcb64a5c7691ca57254fe8013d2c194a09bc7883480cb5",
+      "word_timings": [
+        {
+          "text": "Приве́т",
+          "start": 0.1,
+          "duration": 0.725
+        },
+        {
+          "text": "Пое́хали",
+          "start": 1.75,
+          "duration": 0.5875
+        },
+        {
+          "text": "в",
+          "start": 2.3375,
+          "duration": 0.0625
+        },
+        {
+          "text": "Цифрогра́д",
+          "start": 2.4,
+          "duration": 0.85
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 3.41,
+        "revision": 1
+      }
+    },
+    "ph_howmany": {
+      "source_text": "Ск+олько прив+ёз паров+озик?",
+      "request_sha256": "1fe6c6456c78b0f50143b2d84f340059f6e18eb31d7f9376aba3cf4d56a527fd",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Ско́лько привёз парово́зик?",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 2.064,
+      "active_seconds": 1.52,
+      "bytes": 16749,
+      "sha256": "2495a98380dffb9f85b8f0daaf991d6b1caee9ea7d6aeaaf853c22c0afe06244",
+      "word_timings": [
+        {
+          "text": "Ско́лько",
+          "start": 0.1,
+          "duration": 0.525
+        },
+        {
+          "text": "привёз",
+          "start": 0.625,
+          "duration": 0.425
+        },
+        {
+          "text": "парово́зик",
+          "start": 1.05,
+          "duration": 0.825
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 2.035,
+        "revision": 1
+      }
+    },
+    "ph_howmany10": {
+      "source_text": "Ск+олько тут?",
+      "request_sha256": "d1027fc413a611409d03517434f286d0be691897fd545c00c7f29a97b3454883",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Ско́лько тут?",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.344,
+      "active_seconds": 0.86,
+      "bytes": 10989,
+      "sha256": "2358fd08b6de43ed1856166b2478fde4dc9b831eea412ca68fed92f512cf6912",
+      "word_timings": [
+        {
+          "text": "Ско́лько",
+          "start": 0.1,
+          "duration": 0.5375
+        },
+        {
+          "text": "тут",
+          "start": 0.6375,
+          "duration": 0.5
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.2975,
+        "revision": 1
+      }
+    },
+    "ph_load": {
+      "source_text": "Ст+олько н+адо погруз+ить. Нажим+ай на +ящик!",
+      "request_sha256": "b8277e221d405f27f9e9f024c1b35516c86e2126c7deedaf61291fdd54494455",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Сто́лько на́до погрузи́ть. Нажима́й на я́щик!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 5.328,
+      "active_seconds": 3.84,
+      "bytes": 42861,
+      "sha256": "b9ebd4515b1cc4e0f68bfa9baede09b36ebf3ec61f5ea7faf28a8b456f72d3bd",
+      "word_timings": [
+        {
+          "text": "Сто́лько",
+          "start": 0.1,
+          "duration": 0.4875
+        },
+        {
+          "text": "на́до",
+          "start": 0.5875,
+          "duration": 0.275
+        },
+        {
+          "text": "погрузи́ть",
+          "start": 0.8625,
+          "duration": 1.425
+        },
+        {
+          "text": "Нажима́й",
+          "start": 3.1375,
+          "duration": 1.1375
+        },
+        {
+          "text": "на",
+          "start": 4.275,
+          "duration": 0.1125
+        },
+        {
+          "text": "я́щик",
+          "start": 4.3875,
+          "duration": 0.7375
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 5.285,
+        "revision": 1
+      }
+    },
+    "ph_loaded": {
+      "source_text": "Всё, погруз+или!",
+      "request_sha256": "68eda0d1c9aa2c6485b31cdd045fa9b04a6a1588d8ab9c6d375be3fc9431c881",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Всё, погрузи́ли!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.632,
+      "active_seconds": 1.08,
+      "bytes": 13293,
+      "sha256": "a6affbd01a0183c5cf37eda707da243ba0daf6582bd0eea4ee0d064302b81770",
+      "word_timings": [
+        {
+          "text": "Всё",
+          "start": 0.1,
+          "duration": 0.5
+        },
+        {
+          "text": "погрузи́ли",
+          "start": 0.6875,
+          "duration": 0.75
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.5975,
+        "revision": 1
+      }
+    },
+    "ph_long": {
+      "source_text": "Посчит+аем ваг+оны! Нажим+ай по пор+ядку.",
+      "request_sha256": "3e2967f991e778acb717ae2136c9b4f620c5f1df5f7e77334ef3fdd1aba3f88f",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Посчита́ем ваго́ны! Нажима́й по поря́дку.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 4.536,
+      "active_seconds": 2.9,
+      "bytes": 36525,
+      "sha256": "ab99aeacfd3aa77502bafe46b12c62711950f85b9dd87678890c34503d1a407f",
+      "word_timings": [
+        {
+          "text": "Посчита́ем",
+          "start": 0.1,
+          "duration": 0.7375
+        },
+        {
+          "text": "ваго́ны",
+          "start": 0.8375,
+          "duration": 0.6
+        },
+        {
+          "text": "Нажима́й",
+          "start": 2.3625,
+          "duration": 1.125
+        },
+        {
+          "text": "по",
+          "start": 3.4875,
+          "duration": 0.1125
+        },
+        {
+          "text": "поря́дку",
+          "start": 3.6,
+          "duration": 0.725
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 4.485,
+        "revision": 1
+      }
+    },
+    "ph_missing": {
+      "source_text": "Как+ое ч+исло проп+ало?",
+      "request_sha256": "d8c8c21e132f9745c589c3d9d5dc2598781994f3cbff8bd08ff353bebeaefc12",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Како́е чи́сло пропа́ло?",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.8,
+      "active_seconds": 1.34,
+      "bytes": 14637,
+      "sha256": "6ea0b4541855bb553a165d31a03f78c49d4c2f6d2ad94a0c54bff2b26cade577",
+      "word_timings": [
+        {
+          "text": "Како́е",
+          "start": 0.1,
+          "duration": 0.4875
+        },
+        {
+          "text": "чи́сло",
+          "start": 0.5875,
+          "duration": 0.3625
+        },
+        {
+          "text": "пропа́ло",
+          "start": 0.95,
+          "duration": 0.65
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.76,
+        "revision": 1
+      }
+    },
+    "ph_missing2": {
+      "source_text": "Проп+али два ч+исла!",
+      "request_sha256": "7a0c4d567497e1a2ed49d681d0afc80dbe422134da0898241ad6e27c5e62ef0e",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Пропа́ли два чи́сла!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 1.656,
+      "active_seconds": 1.18,
+      "bytes": 13485,
+      "sha256": "35a34ec7edfd6118381c4a7ec4c613c47206b725e9266d468734fbd67060eeeb",
+      "word_timings": [
+        {
+          "text": "Пропа́ли",
+          "start": 0.1,
+          "duration": 0.55
+        },
+        {
+          "text": "два",
+          "start": 0.65,
+          "duration": 0.2375
+        },
+        {
+          "text": "чи́сла",
+          "start": 0.8875,
+          "duration": 0.575
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 1.6225,
+        "revision": 1
+      }
+    },
+    "ph_tap": {
+      "source_text": "Нажим+ай на +ящик!",
+      "request_sha256": "27f458e7c057a94dfaab480d34478b6e3a1ee23e9f760538f3c98dbda2e6567b",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Нажима́й на я́щик!",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 2.28,
+      "active_seconds": 1.76,
+      "bytes": 18477,
+      "sha256": "1b8fe83c4f77463a5dc24d1b4b4a4431891ee03c1e8ed5cdbbaac1ac400696c2",
+      "word_timings": [
+        {
+          "text": "Нажима́й",
+          "start": 0.1,
+          "duration": 1.125
+        },
+        {
+          "text": "на",
+          "start": 1.225,
+          "duration": 0.1125
+        },
+        {
+          "text": "я́щик",
+          "start": 1.3375,
+          "duration": 0.7375
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 2.235,
+        "revision": 1
+      }
+    },
+    "ph_together": {
+      "source_text": "Дав+ай посчит+аем вм+есте.",
+      "request_sha256": "0be25f6f5252a489ec70222e85223f1d8e4abd810fe91bfacf60c71b0acecaca",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Дава́й посчита́ем вме́сте.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 2.544,
+      "active_seconds": 2.1,
+      "bytes": 20589,
+      "sha256": "3f10fb639362948ec5ea6113b5909057e25a00b5b7b4ed909e0c41d5b02480d4",
+      "word_timings": [
+        {
+          "text": "Дава́й",
+          "start": 0.1,
+          "duration": 0.9625
+        },
+        {
+          "text": "посчита́ем",
+          "start": 1.0625,
+          "duration": 0.6625
+        },
+        {
+          "text": "вме́сте",
+          "start": 1.725,
+          "duration": 0.6125
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 2.4975,
+        "revision": 1
+      }
+    },
+    "x_11": {
+      "source_text": "Од+иннадцать — это дес+яток и од+ин.",
+      "request_sha256": "49f70207277e01d3aae3033fa5dc3e805e26b9d7922d02d119e0588fc62e1a3a",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Оди́ннадцать — это деся́ток и оди́н.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 3.024,
+      "active_seconds": 2.46,
+      "bytes": 24429,
+      "sha256": "ed77ad3acd10f9b40da138a20247e9e5cf496cc84127ad8d8bb0df71044d3196",
+      "word_timings": [
+        {
+          "text": "Оди́ннадцать",
+          "start": 0.1,
+          "duration": 0.9625
+        },
+        {
+          "text": "это",
+          "start": 1.3625,
+          "duration": 0.175
+        },
+        {
+          "text": "деся́ток",
+          "start": 1.5375,
+          "duration": 0.6375
+        },
+        {
+          "text": "и",
+          "start": 2.175,
+          "duration": 0.1375
+        },
+        {
+          "text": "оди́н",
+          "start": 2.3125,
+          "duration": 0.5
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 2.9725,
+        "revision": 1
+      }
+    },
+    "x_12": {
+      "source_text": "Двен+адцать — это дес+яток и два.",
+      "request_sha256": "9f636d346676aece189588438688cb9003959c0ebe5b90c91487b6e3141abdd6",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Двена́дцать — это деся́ток и два.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 2.544,
+      "active_seconds": 2.14,
+      "bytes": 20589,
+      "sha256": "56303dff176d954ac87932f5e287cbc8561ffe36c11c69a60080bfb47698038f",
+      "word_timings": [
+        {
+          "text": "Двена́дцать",
+          "start": 0.1,
+          "duration": 0.9375
+        },
+        {
+          "text": "это",
+          "start": 1.3,
+          "duration": 0.175
+        },
+        {
+          "text": "деся́ток",
+          "start": 1.475,
+          "duration": 0.5
+        },
+        {
+          "text": "и",
+          "start": 1.975,
+          "duration": 0.0375
+        },
+        {
+          "text": "два",
+          "start": 2.0125,
+          "duration": 0.325
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 2.4975,
+        "revision": 1
+      }
+    },
+    "x_13": {
+      "source_text": "Трин+адцать — это дес+яток и три.",
+      "request_sha256": "d0247404fa8e49a13c2672077261afc6ba9672b9c6dd0391b8d5d2c403c8f3e3",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Трина́дцать — это деся́ток и три.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 2.448,
+      "active_seconds": 2.0,
+      "bytes": 19821,
+      "sha256": "0092bdbf8b5336c3ef6f8eb2bcba8eefcfccc9ef331cfa0837115f1c5bcfcb21",
+      "word_timings": [
+        {
+          "text": "Трина́дцать",
+          "start": 0.1,
+          "duration": 0.775
+        },
+        {
+          "text": "это",
+          "start": 1.2,
+          "duration": 0.175
+        },
+        {
+          "text": "деся́ток",
+          "start": 1.375,
+          "duration": 0.4875
+        },
+        {
+          "text": "и",
+          "start": 1.8625,
+          "duration": 0.05
+        },
+        {
+          "text": "три",
+          "start": 1.9125,
+          "duration": 0.3375
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 2.41,
+        "revision": 1
+      }
+    },
+    "x_14": {
+      "source_text": "Чет+ырнадцать — это дес+яток и чет+ыре.",
+      "request_sha256": "b1e643da7febc1285c0b3cab32ad01ea805c86fd28d81b67f3a8a6ab007c67f3",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Четы́рнадцать — это деся́ток и четы́ре.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 2.832,
+      "active_seconds": 2.38,
+      "bytes": 22893,
+      "sha256": "6359e5621c135ead2a28a5e0beee7b45a8471c436bf2c74a46a608fa6fe6c99d",
+      "word_timings": [
+        {
+          "text": "Четы́рнадцать",
+          "start": 0.1,
+          "duration": 0.9125
+        },
+        {
+          "text": "это",
+          "start": 1.275,
+          "duration": 0.175
+        },
+        {
+          "text": "деся́ток",
+          "start": 1.45,
+          "duration": 0.6
+        },
+        {
+          "text": "и",
+          "start": 2.05,
+          "duration": 0.05
+        },
+        {
+          "text": "четы́ре",
+          "start": 2.1,
+          "duration": 0.525
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 2.785,
+        "revision": 1
+      }
+    },
+    "x_15": {
+      "source_text": "Пятн+адцать — это дес+яток и пять.",
+      "request_sha256": "3e9024d4ae13e0657dc88b97a1526ac7373995c909c6f30387882c15b735212a",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Пятна́дцать — это деся́ток и пять.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 2.664,
+      "active_seconds": 2.12,
+      "bytes": 21549,
+      "sha256": "d52b9c9f51d853ce9ff93c1c17bf47cbb83e777f2cad09db9cb1e13529618bf6",
+      "word_timings": [
+        {
+          "text": "Пятна́дцать",
+          "start": 0.1,
+          "duration": 0.8375
+        },
+        {
+          "text": "это",
+          "start": 1.2625,
+          "duration": 0.175
+        },
+        {
+          "text": "деся́ток",
+          "start": 1.4375,
+          "duration": 0.5
+        },
+        {
+          "text": "и",
+          "start": 1.9375,
+          "duration": 0.0625
+        },
+        {
+          "text": "пять",
+          "start": 2.0,
+          "duration": 0.475
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 2.635,
+        "revision": 1
+      }
+    },
+    "x_16": {
+      "source_text": "Шестн+адцать — это дес+яток и шесть.",
+      "request_sha256": "659217587ffd6133acd1202d5d3fa83f8fa0aa3ce510589fde0075f93cbb507c",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Шестна́дцать — это деся́ток и шесть.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 2.832,
+      "active_seconds": 2.28,
+      "bytes": 22893,
+      "sha256": "f86796474b57ddfbfa261c89bd3e28d79f04e75ca548b07494dd813f68bb2582",
+      "word_timings": [
+        {
+          "text": "Шестна́дцать",
+          "start": 0.1,
+          "duration": 0.95
+        },
+        {
+          "text": "это",
+          "start": 1.35,
+          "duration": 0.175
+        },
+        {
+          "text": "деся́ток",
+          "start": 1.525,
+          "duration": 0.4875
+        },
+        {
+          "text": "и",
+          "start": 2.0125,
+          "duration": 0.0375
+        },
+        {
+          "text": "шесть",
+          "start": 2.05,
+          "duration": 0.5875
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 2.7975,
+        "revision": 1
+      }
+    },
+    "x_17": {
+      "source_text": "Семн+адцать — это дес+яток и семь.",
+      "request_sha256": "b5638ef26968a7435741519316ca9753c0d1d4ac709bd599f2de3f28ad833635",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Семна́дцать — это деся́ток и семь.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 2.688,
+      "active_seconds": 2.14,
+      "bytes": 21741,
+      "sha256": "01f05280f14640038f93a1e402ca7470353ebb63ab9b3f64eb8bbf2343dcdef3",
+      "word_timings": [
+        {
+          "text": "Семна́дцать",
+          "start": 0.1,
+          "duration": 0.95
+        },
+        {
+          "text": "это",
+          "start": 1.3375,
+          "duration": 0.1875
+        },
+        {
+          "text": "деся́ток",
+          "start": 1.525,
+          "duration": 0.4875
+        },
+        {
+          "text": "и",
+          "start": 2.0125,
+          "duration": 0.0375
+        },
+        {
+          "text": "семь",
+          "start": 2.05,
+          "duration": 0.4375
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 2.6475,
+        "revision": 1
+      }
+    },
+    "x_18": {
+      "source_text": "Восемн+адцать — это дес+яток и в+осемь.",
+      "request_sha256": "daba8c44f1325f100d40fb6769e84eaa16706586472a25a9feeb61d5115c8ad1",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Восемна́дцать — это деся́ток и во́семь.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 2.88,
+      "active_seconds": 2.42,
+      "bytes": 23277,
+      "sha256": "d866c8b9d4c314f5b2f7baf2a227814a48948674b395a986d7f2e5e3dfd1eee5",
+      "word_timings": [
+        {
+          "text": "Восемна́дцать",
+          "start": 0.1,
+          "duration": 1.025
+        },
+        {
+          "text": "это",
+          "start": 1.4125,
+          "duration": 0.1875
+        },
+        {
+          "text": "деся́ток",
+          "start": 1.6,
+          "duration": 0.525
+        },
+        {
+          "text": "и",
+          "start": 2.125,
+          "duration": 0.025
+        },
+        {
+          "text": "во́семь",
+          "start": 2.15,
+          "duration": 0.5375
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 2.8475,
+        "revision": 1
+      }
+    },
+    "x_19": {
+      "source_text": "Девятн+адцать — это дес+яток и д+евять.",
+      "request_sha256": "de729d6f13a6b80fb6ca580c7aa1b8b501709a4c3db6084ab5eb44b34756782d",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Девятна́дцать — это деся́ток и де́вять.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 2.88,
+      "active_seconds": 2.32,
+      "bytes": 23277,
+      "sha256": "b70021d379ce54dbba9820aa2641d16ffd52636c5819fe544a3492f8b928f725",
+      "word_timings": [
+        {
+          "text": "Девятна́дцать",
+          "start": 0.1,
+          "duration": 1.0
+        },
+        {
+          "text": "это",
+          "start": 1.4125,
+          "duration": 0.175
+        },
+        {
+          "text": "деся́ток",
+          "start": 1.5875,
+          "duration": 0.5
+        },
+        {
+          "text": "и",
+          "start": 2.0875,
+          "duration": 0.0375
+        },
+        {
+          "text": "де́вять",
+          "start": 2.125,
+          "duration": 0.55
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 2.835,
+        "revision": 1
+      }
+    },
+    "x_20": {
+      "source_text": "Дв+адцать — это два дес+ятка.",
+      "request_sha256": "0bd63e319a51c0cf12f8f42b64081edf96833a788e52f9016328b9ccd035914d",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Два́дцать — это два деся́тка.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 2.496,
+      "active_seconds": 2.02,
+      "bytes": 20205,
+      "sha256": "135180a547455529afa599c4bcca28ff86eaf6cd28b54648be61e22b0c0c41d5",
+      "word_timings": [
+        {
+          "text": "Два́дцать",
+          "start": 0.1,
+          "duration": 0.825
+        },
+        {
+          "text": "это",
+          "start": 1.2125,
+          "duration": 0.2
+        },
+        {
+          "text": "два",
+          "start": 1.4125,
+          "duration": 0.2125
+        },
+        {
+          "text": "деся́тка",
+          "start": 1.625,
+          "duration": 0.6625
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 2.4475,
+        "revision": 1
+      }
+    },
+    "x_21": {
+      "source_text": "Дв+адцать од+ин — это два дес+ятка и од+ин.",
+      "request_sha256": "e223dc1da72dc165dc3c035efc1eb686a09cd6751c46336968373d34516e87fa",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Два́дцать оди́н — это два деся́тка и оди́н.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 3.36,
+      "active_seconds": 2.74,
+      "bytes": 27117,
+      "sha256": "ef46f7e02511d4cae53a7ec401f211a5711c330b0ec8a672d0a3f50efb3f3daf",
+      "word_timings": [
+        {
+          "text": "Два́дцать",
+          "start": 0.1,
+          "duration": 0.6
+        },
+        {
+          "text": "оди́н",
+          "start": 0.7,
+          "duration": 0.45
+        },
+        {
+          "text": "это",
+          "start": 1.4125,
+          "duration": 0.225
+        },
+        {
+          "text": "два",
+          "start": 1.6375,
+          "duration": 0.2
+        },
+        {
+          "text": "деся́тка",
+          "start": 1.8375,
+          "duration": 0.625
+        },
+        {
+          "text": "и",
+          "start": 2.4625,
+          "duration": 0.2
+        },
+        {
+          "text": "оди́н",
+          "start": 2.6625,
+          "duration": 0.5
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 3.3225,
+        "revision": 1
+      }
+    },
+    "x_22": {
+      "source_text": "Дв+адцать два — это два дес+ятка и два.",
+      "request_sha256": "e2a367298c54d84067b57d90738951168db703aedcb0a2a2135efac408dde5f1",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Два́дцать два — это два деся́тка и два.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 2.736,
+      "active_seconds": 2.28,
+      "bytes": 22125,
+      "sha256": "3d4ab36a075b30a280abcc271c88c43f4137595cf13d2736854b982f81b8a5bf",
+      "word_timings": [
+        {
+          "text": "Два́дцать",
+          "start": 0.1,
+          "duration": 0.55
+        },
+        {
+          "text": "два",
+          "start": 0.65,
+          "duration": 0.3
+        },
+        {
+          "text": "это",
+          "start": 1.1875,
+          "duration": 0.2625
+        },
+        {
+          "text": "два",
+          "start": 1.45,
+          "duration": 0.2125
+        },
+        {
+          "text": "деся́тка",
+          "start": 1.6625,
+          "duration": 0.5125
+        },
+        {
+          "text": "и",
+          "start": 2.175,
+          "duration": 0.05
+        },
+        {
+          "text": "два",
+          "start": 2.225,
+          "duration": 0.3125
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 2.6975,
+        "revision": 1
+      }
+    },
+    "x_23": {
+      "source_text": "Дв+адцать три — это два дес+ятка и три.",
+      "request_sha256": "cbccf7c4547f7ecdabea2c3a87ef3b401913b7d964831f23cf20519bdaaa2976",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Два́дцать три — это два деся́тка и три.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 2.832,
+      "active_seconds": 2.3,
+      "bytes": 22893,
+      "sha256": "befc41db0965507891abe5cffb74901d9f99b25f477f65409b8391e52898bfc4",
+      "word_timings": [
+        {
+          "text": "Два́дцать",
+          "start": 0.1,
+          "duration": 0.6375
+        },
+        {
+          "text": "три",
+          "start": 0.7375,
+          "duration": 0.275
+        },
+        {
+          "text": "это",
+          "start": 1.2625,
+          "duration": 0.2625
+        },
+        {
+          "text": "два",
+          "start": 1.525,
+          "duration": 0.2125
+        },
+        {
+          "text": "деся́тка",
+          "start": 1.7375,
+          "duration": 0.5
+        },
+        {
+          "text": "и",
+          "start": 2.2375,
+          "duration": 0.0625
+        },
+        {
+          "text": "три",
+          "start": 2.3,
+          "duration": 0.3375
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 2.7975,
+        "revision": 1
+      }
+    },
+    "x_24": {
+      "source_text": "Дв+адцать чет+ыре — это два дес+ятка и чет+ыре.",
+      "request_sha256": "bc5710eab1eeef6c6207b339db6f6c0bd4a918ba7943086489cf4cc559b8e779",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Два́дцать четы́ре — это два деся́тка и четы́ре.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 3.192,
+      "active_seconds": 2.62,
+      "bytes": 25773,
+      "sha256": "5e49996572f8df7d379f6dadde559226fac16f2f86d24966a9204704dbbe37ad",
+      "word_timings": [
+        {
+          "text": "Два́дцать",
+          "start": 0.1,
+          "duration": 0.5625
+        },
+        {
+          "text": "четы́ре",
+          "start": 0.6625,
+          "duration": 0.45
+        },
+        {
+          "text": "это",
+          "start": 1.3625,
+          "duration": 0.25
+        },
+        {
+          "text": "два",
+          "start": 1.6125,
+          "duration": 0.2125
+        },
+        {
+          "text": "деся́тка",
+          "start": 1.825,
+          "duration": 0.5625
+        },
+        {
+          "text": "и",
+          "start": 2.3875,
+          "duration": 0.0875
+        },
+        {
+          "text": "четы́ре",
+          "start": 2.475,
+          "duration": 0.525
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 3.16,
+        "revision": 1
+      }
+    },
+    "x_25": {
+      "source_text": "Дв+адцать пять — это два дес+ятка и пять.",
+      "request_sha256": "f06ca51961dbbceb31b161b7400492f51faadcf7e533e3bfef02ff0bdebae161",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Два́дцать пять — это два деся́тка и пять.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 3.048,
+      "active_seconds": 2.54,
+      "bytes": 24621,
+      "sha256": "6946a0fdd8361867e77ee6e724058a02c647873e2b683208129116d96374a202",
+      "word_timings": [
+        {
+          "text": "Два́дцать",
+          "start": 0.1,
+          "duration": 0.6125
+        },
+        {
+          "text": "пять",
+          "start": 0.7125,
+          "duration": 0.375
+        },
+        {
+          "text": "это",
+          "start": 1.375,
+          "duration": 0.1875
+        },
+        {
+          "text": "два",
+          "start": 1.5625,
+          "duration": 0.2125
+        },
+        {
+          "text": "деся́тка",
+          "start": 1.775,
+          "duration": 0.5125
+        },
+        {
+          "text": "и",
+          "start": 2.2875,
+          "duration": 0.075
+        },
+        {
+          "text": "пять",
+          "start": 2.3625,
+          "duration": 0.475
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 2.9975,
+        "revision": 1
+      }
+    },
+    "x_26": {
+      "source_text": "Дв+адцать шесть — это два дес+ятка и шесть.",
+      "request_sha256": "18307aa52218c11cd59a12b14f8c707e774bd2aaf7e0899d7ac7738bc7222952",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Два́дцать шесть — это два деся́тка и шесть.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 3.168,
+      "active_seconds": 2.6,
+      "bytes": 25581,
+      "sha256": "f84e4478a3fc5a184e020f9f3fe9cc1e7439bb3e1c58244549ba3a1dce1ab2aa",
+      "word_timings": [
+        {
+          "text": "Два́дцать",
+          "start": 0.1,
+          "duration": 0.5625
+        },
+        {
+          "text": "шесть",
+          "start": 0.6625,
+          "duration": 0.45
+        },
+        {
+          "text": "это",
+          "start": 1.425,
+          "duration": 0.175
+        },
+        {
+          "text": "два",
+          "start": 1.6,
+          "duration": 0.2
+        },
+        {
+          "text": "деся́тка",
+          "start": 1.8,
+          "duration": 0.5
+        },
+        {
+          "text": "и",
+          "start": 2.3,
+          "duration": 0.0625
+        },
+        {
+          "text": "шесть",
+          "start": 2.3625,
+          "duration": 0.6
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 3.1225,
+        "revision": 1
+      }
+    },
+    "x_27": {
+      "source_text": "Дв+адцать семь — это два дес+ятка и семь.",
+      "request_sha256": "1bacc8478cc26cb5cca5aaadb76b36fbd142bd9a59dce70e903deedb429f4ca2",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Два́дцать семь — это два деся́тка и семь.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 2.904,
+      "active_seconds": 2.28,
+      "bytes": 23469,
+      "sha256": "7eb96e30e7256cb5019768fcc63c4817f5c51caf77ebf94190e9d1491ac487be",
+      "word_timings": [
+        {
+          "text": "Два́дцать",
+          "start": 0.1,
+          "duration": 0.575
+        },
+        {
+          "text": "семь",
+          "start": 0.675,
+          "duration": 0.2875
+        },
+        {
+          "text": "это",
+          "start": 1.2625,
+          "duration": 0.225
+        },
+        {
+          "text": "два",
+          "start": 1.4875,
+          "duration": 0.2125
+        },
+        {
+          "text": "деся́тка",
+          "start": 1.7,
+          "duration": 0.5
+        },
+        {
+          "text": "и",
+          "start": 2.2,
+          "duration": 0.05
+        },
+        {
+          "text": "семь",
+          "start": 2.25,
+          "duration": 0.45
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 2.86,
+        "revision": 1
+      }
+    },
+    "x_28": {
+      "source_text": "Дв+адцать в+осемь — это два дес+ятка и в+осемь.",
+      "request_sha256": "5e2b078891d524cdcd332f3274f3e2556a7cddbd3fd8efabd6ba4fd8b18636b8",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Два́дцать во́семь — это два деся́тка и во́семь.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 3.12,
+      "active_seconds": 2.6,
+      "bytes": 25197,
+      "sha256": "a49bed21e5d8efb5e33d61039649fa7c5d279090626f49c387d5930e00c03185",
+      "word_timings": [
+        {
+          "text": "Два́дцать",
+          "start": 0.1,
+          "duration": 0.525
+        },
+        {
+          "text": "во́семь",
+          "start": 0.625,
+          "duration": 0.425
+        },
+        {
+          "text": "это",
+          "start": 1.35,
+          "duration": 0.2125
+        },
+        {
+          "text": "два",
+          "start": 1.5625,
+          "duration": 0.2125
+        },
+        {
+          "text": "деся́тка",
+          "start": 1.775,
+          "duration": 0.525
+        },
+        {
+          "text": "и",
+          "start": 2.3,
+          "duration": 0.0875
+        },
+        {
+          "text": "во́семь",
+          "start": 2.3875,
+          "duration": 0.5375
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 3.085,
+        "revision": 1
+      }
+    },
+    "x_29": {
+      "source_text": "Дв+адцать д+евять — это два дес+ятка и д+евять.",
+      "request_sha256": "e09f67de91f2ca4e570d2e726ca4cdfdb1769525532c1afec0656562dab6f2fa",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Два́дцать де́вять — это два деся́тка и де́вять.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 3.12,
+      "active_seconds": 2.62,
+      "bytes": 25197,
+      "sha256": "e5fcfee3fd5f2d2ef45307fa56d1a62675d2493a7cbbb5c47ae90de6eaa0f3b6",
+      "word_timings": [
+        {
+          "text": "Два́дцать",
+          "start": 0.1,
+          "duration": 0.5125
+        },
+        {
+          "text": "де́вять",
+          "start": 0.6125,
+          "duration": 0.5
+        },
+        {
+          "text": "это",
+          "start": 1.3875,
+          "duration": 0.175
+        },
+        {
+          "text": "два",
+          "start": 1.5625,
+          "duration": 0.2
+        },
+        {
+          "text": "деся́тка",
+          "start": 1.7625,
+          "duration": 0.525
+        },
+        {
+          "text": "и",
+          "start": 2.2875,
+          "duration": 0.0875
+        },
+        {
+          "text": "де́вять",
+          "start": 2.375,
+          "duration": 0.55
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 3.085,
+        "revision": 1
+      }
+    },
+    "x_30": {
+      "source_text": "Тр+идцать — это три дес+ятка.",
+      "request_sha256": "fac5c6d550e369a029684bab0561fe197f77783c2fb05943cc96c4d998a29d8e",
+      "voice": "ru-RU-SvetlanaNeural",
+      "text": "Три́дцать — это три деся́тка.",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "duration_seconds": 2.376,
+      "active_seconds": 1.9,
+      "bytes": 19245,
+      "sha256": "67f6eee1084c0df3d86a4ceb0323e63adc726df2a2f71ae5f9b397f39704d5d4",
+      "word_timings": [
+        {
+          "text": "Три́дцать",
+          "start": 0.1,
+          "duration": 0.7
+        },
+        {
+          "text": "это",
+          "start": 1.1125,
+          "duration": 0.2
+        },
+        {
+          "text": "три",
+          "start": 1.3125,
+          "duration": 0.2
+        },
+        {
+          "text": "деся́тка",
+          "start": 1.5125,
+          "duration": 0.6625
+        }
+      ],
+      "trim": {
+        "start_seconds": 0.02,
+        "end_seconds": 2.335,
+        "revision": 1
+      }
+    }
+  }
+}

@@ -20,12 +20,13 @@ Each completed station earns a sticker for the album. Progress is saved in `loca
 
 ## Files
 - `index.html` is the whole game, with inline CSS, JS and SVG. It is generated from `src/` by `python3 src/build.py` (template.html + pics.js + pics2.js + pics3.js + strokes.js + game-data.json).
-- `audio/*.mp3` holds the voice clips, voiced by Yandex SpeechKit API v3, voice `julia`, role `neutral` (generator: `tts/gen_jl.py`; re-takes are pinned in `tts/jl_overrides.json`). Stress is marked with `+` before the stressed vowel; a `+` is never put after a vowel (it would be read aloud as «плюс»). The letter Ы uses phoneme markup `[[ɨ]]`.
+- `audio-svetlana/*.mp3` is the active voice bank: Edge TTS `ru-RU-SvetlanaNeural`. `tools/svetlana_audio.py` converts source stress/phoneme markup into Edge input, creates separate letter/syllable/word clips, validates and checkpoints them. The isolated О has an explicit elongated override. See `../docs/voice-svetlana.md` for generation, verification and rollback.
+- `audio/*.mp3` preserves the previous Julia/SpeechKit recordings unchanged for rollback. The original `+` stress marks and `[[ɨ]]` in source data are input notation, not sent literally to Edge.
 
 ## How to add words
 1. In `src/data.py`, add the word to `WORDS`: the word, its stress-marked TTS text and its syllables. Letters in `IN_MODE` list their words explicitly; other letters take the words that start with them (the first one is the sticker; `FIRST` pins it).
 2. Add a picture with the same id to `src/pics3.js` (same style: viewBox 0 0 100 100, outline colour `K`).
-3. Run `python3 src/data.py`, generate the new clips with `tts/gen_jl.py` (it only voices new or changed clips), copy them to `audio/`, then run `python3 src/build.py`.
+3. From the repository root, run `(cd bukvograd/src && python3 data.py)`, then `python3 tools/svetlana_audio.py --cache-dir ../cache/edge-svetlana` and `python3 bukvograd/src/build.py`. The shared generator creates only missing/changed Svetlana clips; existing Julia recordings are not required for new words and are not overwritten.
 
 ## Tests (Playwright)
-`test/smoke.cjs` (every audio clip and picture exists), `test/all.cjs` (plays any stations end to end: `STATIONS=0,12,32 VP=phone|desktop PL=n`), `test/trace.cjs`, `test/catch.cjs`, `test/test.cjs`.
+Current repository checks: `python3 tools/test_svetlana_assets.py` and `python3 tools/test_svetlana_browser.py` from the repository root. The earlier `test/*.cjs` scenarios mentioned in historical notes are not included in this snapshot. Automated audio checks do not replace listening to individual letters and ambiguous stresses.

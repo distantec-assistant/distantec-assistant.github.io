@@ -1,4 +1,4 @@
-// Static recording map. There is no speech-provider credential or API call here.
+// Static Svetlana recording map. Previous Julia banks remain untouched.
 export const NEW_CLIPS = Object.freeze([
   'ph_orders_start', 'ph_orders_help', 'ph_sharing_start', 'ph_bridge_start', 'ph_bridge_help',
   'ph_orders_less', 'ph_orders_more', 'ph_sharing_unequal', 'ph_bridge_less', 'ph_bridge_more', 'ph_capacity',
@@ -7,8 +7,8 @@ export const NEW_CLIPS = Object.freeze([
 const local = new Set(NEW_CLIPS);
 export function clipUrl(id) {
   if (typeof id !== 'string') throw new RangeError('Unknown recording');
-  if (/^c_([1-9]|[12][0-9]|30)$/.test(id) || id === 'ph_p1') return `../tsifrograd/audio/${id}.mp3`;
-  if (local.has(id)) return `./audio/${id}.mp3`;
+  if (/^c_([1-9]|[12][0-9]|30)$/.test(id) || id === 'ph_p1') return `../tsifrograd/audio-svetlana/${id}.mp3`;
+  if (local.has(id)) return `./audio-svetlana/${id}.mp3`;
   throw new RangeError('Unknown recording');
 }
 export function instruction(kind, target) {
