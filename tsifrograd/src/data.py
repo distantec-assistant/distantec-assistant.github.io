@@ -21,7 +21,14 @@ def explain(n):
 STATIONS = [11,12,13,14,15,(11,15),16,17,18,19,(11,19),20,21,22,23,24,25,(20,25),26,27,28,29,30,(11,30)]
 # cargo pictures (ids from pics*.js), rotated over stations
 CARGO = ["yabloko","shar","cyplyonok","grib","ryba","zvezda","grusha","konfeta","banan","yajco","cvetok","apelsin","shishka","yagoda","myach","utka"]
+# route «До 10» for the youngest: one wagon, small quantities
+STATIONS10 = [1,2,3,4,5,(1,5),6,7,8,9,10,(1,10)]
+CARGO10 = ["utka","yabloko","myach","kot","banan","cyplyonok","shar","ryba","grusha","pingvin","sova","limon","yagoda","zvezda"]
+PICS10 = {1:"utka",2:"yabloko",3:"myach",4:"kot",5:"banan",6:"cyplyonok",7:"shar",8:"ryba",9:"grusha",10:"pingvin"}
+def w10(n): return UNITS[n] if n < 10 else "д+есять"
 PHRASES = {
+ "tap": "Нажим+ай на +ящик!",
+ "howmany10": "Ск+олько тут?",
  "hello": "Прив+ет! По+ехали в Цифрогр+ад!",
  "load": "Ст+олько н+адо погруз+ить. Нажим+ай на +ящик!",
  "dozen": "Дес+яток!",
@@ -43,16 +50,24 @@ def build():
     for n in range(1, 31): clips[f"c_{n}"] = cap(word(n)) + "."
     for n in range(11, 31): clips[f"x_{n}"] = explain(n)
     for k, t in PHRASES.items(): clips[f"ph_{k}"] = t
+    for n in range(1, 11):
+        clips[f"f_{n}"] = f"Где ц+ифра {w10(n)}?"
+        clips[f"g_{n}"] = f"Погруз+им {w10(n)}!"
+        clips[f"e_{n}"] = cap(w10(n)) + "!"
     st = []
     for i, s in enumerate(STATIONS):
         if isinstance(s, tuple): st.append({"r": list(s), "pic": "zvezda" if s != (11,30) else "raketa"})
         else: st.append({"n": s, "pic": CARGO[i % len(CARGO)]})
-    return st, clips
+    st10 = []
+    for s in STATIONS10:
+        if isinstance(s, tuple): st10.append({"r": list(s), "pic": "solnce" if s == (1,5) else "raketa"})
+        else: st10.append({"n": s, "pic": PICS10[s]})
+    return st, st10, clips
 if __name__ == "__main__":
-    st, clips = build()
+    st, st10, clips = build()
     for t in clips.values():
         import re
         assert not re.search(r"\+(?![аеёиоуыэюяАЕЁИОУЫЭЮЯ])", t), t
-    json.dump({"stations": st, "praise": PRAISE, "cargo": CARGO}, open("game-data.json","w"), ensure_ascii=False)
+    json.dump({"stations": st, "stations10": st10, "praise": PRAISE, "cargo": CARGO, "cargo10": CARGO10}, open("game-data.json","w"), ensure_ascii=False)
     json.dump(clips, open("clips.json","w"), ensure_ascii=False, indent=0)
-    print(len(st), "stations", len(clips), "clips")
+    print(len(st), "+", len(st10), "stations", len(clips), "clips")

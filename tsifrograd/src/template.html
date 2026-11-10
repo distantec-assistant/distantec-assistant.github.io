@@ -155,6 +155,22 @@ body.playing #footer{display:block}
 #albumCount{text-align:center;color:#9a8b9e;font-size:15px;margin:0}
 .fade-in{animation:fadeIn .35s}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}}
+/* routes on the home screen */
+.routes{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin:6px 0 4px}
+.route{min-width:150px;padding:14px 22px 12px;border-radius:30px;color:#fff;font-weight:800;display:flex;flex-direction:column;align-items:center;gap:2px;box-shadow:0 7px 0 var(--sh);background:var(--bg);transition:transform .15s}
+.route:active{transform:translateY(5px);box-shadow:0 2px 0 var(--sh)}
+.route b{font-size:34px;line-height:1.1;letter-spacing:2px}.route span{font-size:20px;opacity:.95}
+.route.r10{--bg:#7cc9a8;--sh:#5aa587}.route.r30{--bg:#f7a35c;--sh:#d38440}
+.routes #play.route{display:flex;margin:0;padding:14px 22px 12px;min-width:150px;font-size:inherit;background:var(--bg);box-shadow:0 7px 0 var(--sh)}
+.route.last{animation:pulse 1.6s ease-in-out infinite}
+/* «До 10»: one wagon, big cargo */
+.sl.s10{display:flex;flex-wrap:wrap;justify-content:center;align-content:center;gap:4px;width:92%;height:88%}
+.sl.s10 i{width:var(--cell);height:var(--cell);aspect-ratio:auto;flex:none}
+.target.faint{color:#d9ccd6}.target.faint b{color:inherit}
+.opts.big .opt{--s:min(calc((100vw - 48px)/var(--n,2) - min(6vw,34px)),170px);min-width:var(--s);width:var(--s);height:var(--s);font-size:calc(var(--s)*.64);border-radius:36px;padding:0}
+.opts.big{gap:min(6vw,34px)}
+.opt.soft{animation:wobble .45s}
+@media(orientation:landscape) and (max-height:820px){.opts.big .opt{--s:min(30vh,170px)}}
 @media(prefers-reduced-motion:reduce){*,*:after{animation:none!important;transition:none!important}}
 /* Цифроград */
 #stage{gap:10px;width:min(100%,1000px)}
@@ -229,13 +245,13 @@ body.playing #footer{display:block}
 <section id="home" class="screen on">
  <svg id="homeTrain" viewBox="0 0 430 190" aria-hidden="true"></svg>
  <h2>Цифро<span>град</span></h2>
- <p>Считаем до 30 на паровозике</p>
- <button id="play">▶ Играть</button>
+ <p>Считаем на паровозике</p>
+ <div class="routes"><button id="play10" class="route r10" aria-label="До десяти"><b>1 2 3</b><span>До 10</span></button><button id="play" class="route r30" aria-label="До тридцати"><b>11 … 30</b><span>До 30</span></button></div>
  <button id="albumBtn"><svg viewBox="0 0 32 32"><rect x="4" y="4" width="24" height="24" rx="6" fill="#ffe8a3" stroke="#574d70" stroke-width="2.4"/><path d="M16 9l2.2 4.6 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5-3.6-3.5 5-.7z" fill="#e76f69"/></svg>Альбом</button>
  <a class="homeBack" href="https://games.distantec.app/">← Все игры</a>
 </section>
 <section id="map" class="screen">
- <header class="bar"><button class="ib" data-go="home" aria-label="На главный экран">HOMEICON</button><h1>Цифроград</h1><button class="ib" data-go="album" aria-label="Альбом наклеек"><svg viewBox="0 0 32 32"><rect x="4" y="4" width="24" height="24" rx="6" fill="#ffe8a3" stroke="#574d70" stroke-width="2.4"/><path d="M16 9l2.2 4.6 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5-3.6-3.5 5-.7z" fill="#e76f69"/></svg></button></header>
+ <header class="bar"><button class="ib" data-go="home" aria-label="На главный экран">HOMEICON</button><h1 id="mapTitle">Цифроград</h1><button class="ib" data-go="album" aria-label="Альбом наклеек"><svg viewBox="0 0 32 32"><rect x="4" y="4" width="24" height="24" rx="6" fill="#ffe8a3" stroke="#574d70" stroke-width="2.4"/><path d="M16 9l2.2 4.6 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5-3.6-3.5 5-.7z" fill="#e76f69"/></svg></button></header>
  <div id="mapScroll"><div id="mapInner"></div></div>
 </section>
 <section id="station" class="screen">
@@ -259,14 +275,23 @@ const pick=a=>a[rnd(a.length)];
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
 const REDUCED=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const CARGO=DATA.cargo;
-const SL=DATA.stations.map(s=>({...s,ch:s.r?'★':String(s.n)}));
-const LET=SL;const stickerOf=i=>SL[i].pic;
+/* two routes: «До 10» for the youngest and «До 30» (stations 11–30) */
+const mkRoute=a=>a.map(s=>({...s,ch:s.r?'★':String(s.n)}));
+const ROUTES={'10':mkRoute(DATA.stations10),'30':mkRoute(DATA.stations)};
+let ROUTE='30',SL=ROUTES['30'],LET=SL;const stickerOf=i=>SL[i].pic;
 /* ---------- save ---------- */
 const KEY='tsifrograd-v1';
-let save={done:{},gn:{},pl:{}};
-try{const o=JSON.parse(localStorage.getItem(KEY)||'{}');if(o&&typeof o==='object')for(const k of ['done','gn','pl'])if(o[k]&&typeof o[k]==='object')save[k]=o[k]}catch(e){}
+/* v1 saves hold the 11–30 route at the top level (done/gn/pl); v2 adds route + small:{done,gn,pl} for «До 10» */
+let save={v:2,route:'30',done:{},gn:{},pl:{},small:{done:{},gn:{},pl:{}}};
+const okObj=x=>x&&typeof x==='object'&&!Array.isArray(x);
+try{const o=JSON.parse(localStorage.getItem(KEY)||'{}');if(okObj(o)){for(const k of ['done','gn','pl'])if(okObj(o[k]))save[k]=o[k];
+ if(okObj(o.small))for(const k of ['done','gn','pl'])if(okObj(o.small[k]))save.small[k]=o.small[k];
+ if(o.route==='10'||o.route==='30')save.route=o.route}}catch(e){}
 const store=()=>{try{localStorage.setItem(KEY,JSON.stringify(save))}catch(e){}};
-const isDone=i=>!!save.done[i];
+const P=()=>ROUTE==='10'?save.small:save;
+function setRoute(r){routeKnown=true;ROUTE=r==='10'?'10':'30';SL=ROUTES[ROUTE];LET=SL;save.route=ROUTE;trainAt=null;store()}
+ROUTE=save.route;SL=ROUTES[ROUTE];LET=SL;let routeKnown=(()=>{try{return !!JSON.parse(localStorage.getItem(KEY)||'{}').route}catch(e){return false}})()||Object.keys(save.done).length>0||Object.keys(save.gn).length>0;
+const isDone=i=>!!P().done[i];
 const unlocked=i=>i===0||isDone(i-1);
 const curStation=()=>{for(let i=0;i<SL.length;i++)if(!isDone(i))return i;return SL.length-1};
 /* ---------- audio ---------- */
@@ -283,7 +308,7 @@ const preload=ids=>ids.forEach(loadClip);
 function stopVoice(){token++;if(curSrc){const s=curSrc,g=curG;curSrc=null;curG=null;curId=null;if(!s.__stopped){s.__stopped=true;window.__voice.active--}try{const t=AC.currentTime;g.gain.cancelScheduledValues(t);g.gain.setValueAtTime(g.gain.value,t);g.gain.linearRampToValueAtTime(0,t+.03);s.stop(t+.035)}catch(e){try{s.stop()}catch(_){}}}}
 const voicePlaying=id=>!!curSrc&&curId===id;
 async function say(ids){stopVoice();const t=token;for(const id of [].concat(ids)){if(t!==token)return false;if(typeof id==='number'){await wait(id);continue}const b=await loadClip(id);if(t!==token)return false;if(!b)continue;if(AC.state!=='running'){try{await Promise.race([AC.resume(),wait(600)])}catch(e){}if(t!==token)return false}await new Promise(res=>{let done=false;const fin=()=>{if(!done){done=true;res()}};try{const s=AC.createBufferSource();s.buffer=b;s.playbackRate.value=1;if(s.detune)s.detune.value=0;const g=AC.createGain();g.gain.value=1;s.connect(g);g.connect(VBUS);const V=window.__voice;V.active++;V.starts++;V.max=Math.max(V.max,V.active);V.rates.push(s.playbackRate.value);s.onended=()=>{if(!s.__stopped){s.__stopped=true;V.active--}if(curSrc===s){curSrc=null;curG=null;curId=null}if(!curSrc)duck(false);fin()};curSrc=s;curG=g;curId=id;duck(true);s.start();setTimeout(()=>{if(!done){/* the clip did not finish on the audio clock (context stalled): cut it so clips never pile up */try{s.stop()}catch(_){}if(!s.__stopped){s.__stopped=true;V.active--}if(curSrc===s){curSrc=null;curG=null;curId=null}fin()}},b.duration*1000+350)}catch(e){fin()}})}return t===token}
-let NOISE=null;function sfx(kind){const c=AC;if(!c||c.state!=='running')return;if(kind==='pop'){try{if(!NOISE){NOISE=c.createBuffer(1,Math.round(c.sampleRate*.08),c.sampleRate);const d=NOISE.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/d.length,3)}const t=c.currentTime,n=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();n.buffer=NOISE;f.type='bandpass';f.frequency.value=1800;f.Q.value=.8;g.gain.value=.35;n.connect(f);f.connect(g);g.connect(SBUS);n.start(t)}catch(e){}return}try{const t=c.currentTime,o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(SBUS);o.type=kind==='bad'?'triangle':'sine';const F={pop:[620,980,.14],good:[520,780,.18],bad:[220,170,.22],tick:[880,880,.05],win:[523,1046,.5],step:[440,520,.08]}[kind]||[500,600,.1];o.frequency.setValueAtTime(F[0],t);o.frequency.exponentialRampToValueAtTime(F[1],t+F[2]*.8);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(kind==='bad'?.05:.06,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+F[2]);o.start(t);o.stop(t+F[2]+.05);if(kind==='win'){[659,784,1046].forEach((f,k)=>{const o2=c.createOscillator(),g2=c.createGain();o2.connect(g2);g2.connect(SBUS);o2.frequency.value=f;const s=t+.12*(k+1);g2.gain.setValueAtTime(.0001,s);g2.gain.exponentialRampToValueAtTime(.05,s+.02);g2.gain.exponentialRampToValueAtTime(.0001,s+.35);o2.start(s);o2.stop(s+.4)})}}catch(e){}}
+window.__sfx={};let NOISE=null;function sfx(kind){window.__sfx[kind]=(window.__sfx[kind]||0)+1;const c=AC;if(!c||c.state!=='running')return;if(kind==='pop'){try{if(!NOISE){NOISE=c.createBuffer(1,Math.round(c.sampleRate*.08),c.sampleRate);const d=NOISE.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/d.length,3)}const t=c.currentTime,n=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();n.buffer=NOISE;f.type='bandpass';f.frequency.value=1800;f.Q.value=.8;g.gain.value=.35;n.connect(f);f.connect(g);g.connect(SBUS);n.start(t)}catch(e){}return}try{const t=c.currentTime,o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(SBUS);o.type=kind==='bad'?'triangle':'sine';const F={pop:[620,980,.14],good:[520,780,.18],bad:[220,170,.22],tick:[880,880,.05],win:[523,1046,.5],step:[440,520,.08]}[kind]||[500,600,.1];o.frequency.setValueAtTime(F[0],t);o.frequency.exponentialRampToValueAtTime(F[1],t+F[2]*.8);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(kind==='bad'?.05:.06,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+F[2]);o.start(t);o.stop(t+F[2]+.05);if(kind==='win'){[659,784,1046].forEach((f,k)=>{const o2=c.createOscillator(),g2=c.createGain();o2.connect(g2);g2.connect(SBUS);o2.frequency.value=f;const s=t+.12*(k+1);g2.gain.setValueAtTime(.0001,s);g2.gain.exponentialRampToValueAtTime(.05,s+.02);g2.gain.exponentialRampToValueAtTime(.0001,s+.35);o2.start(s);o2.stop(s+.4)})}}catch(e){}}
 const praise=()=>'ph_'+pick(DATA.praise);
 /* ---------- instructions / idle ---------- */
 let instr=[],idleT=null;
@@ -295,8 +320,11 @@ $('repeat').onclick=()=>{if(instr.length)say(instr)};
 let screen='home',prev='home',gameRun=0;
 function show(id){prev=screen;screen=id;document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on',s.id===id));document.body.classList.toggle('playing',id!=='home');if(id!=='station'){clearTimeout(idleT);gameRun++;stopBubbles()}}
 document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{stopVoice();const g=b.dataset.go;if(g==='home')goHome();else if(g==='map')openMap();else if(g==='album')openAlbum();else if(g==='back'){prev==='map'?openMap():goHome()}});
-function goHome(){show('home')}
-$('play').onclick=()=>{unlockAudio();openMap(true)};
+function goHome(){show('home');markRoute()}
+$('play').onclick=()=>{unlockAudio();setRoute('30');openMap(true)};
+$('play10').onclick=()=>{unlockAudio();setRoute('10');openMap(true)};
+function markRoute(){$('play').classList.toggle('last',routeKnown&&ROUTE==='30');$('play10').classList.toggle('last',routeKnown&&ROUTE==='10')}
+markRoute();
 $('albumBtn').onclick=()=>{unlockAudio();openAlbum()};
 /* hold-to-exit */
 let hold=null,held=false;function cancelHold(){clearTimeout(hold);$('back').classList.remove('holding')}
@@ -334,7 +362,7 @@ function scenery(W,H){const r=seeded(7);let g=`<defs><linearGradient id="sky" x1
  g+=`<ellipse cx="${W*.9}" cy="${150+12*112+50}" rx="${W*.08}" ry="16" fill="#bfe3f7"/><ellipse cx="${W*.1}" cy="${150+25*112+60}" rx="${W*.08}" ry="16" fill="#bfe3f7"/>`;
  return g}
 function railPath(pts){let d=`M${pts[0].x} ${pts[0].y-110}`;d+=` C${pts[0].x} ${pts[0].y-60} ${pts[0].x} ${pts[0].y-40} ${pts[0].x} ${pts[0].y}`;for(let i=1;i<pts.length;i++){const a=pts[i-1],b=pts[i];d+=` C${a.x} ${a.y+60} ${b.x} ${b.y-60} ${b.x} ${b.y}`}return d}
-function openMap(fromHome){show('map');const inner=$('mapInner');const W=inner.clientWidth||360;const H=150+LET.length*112;inner.style.height=H+'px';
+function openMap(fromHome){show('map');$('mapTitle').textContent=ROUTE==='10'?'До 10':'До 30';const inner=$('mapInner');const W=inner.clientWidth||360;const H=150+LET.length*112;inner.style.height=H+'px';
  const pts=LET.map((_,i)=>stationXY(i,W));const d=railPath(pts);
  let html=`<svg class="rail" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" aria-hidden="true">${scenery(W,H)}<path id="railPath" d="${d}" fill="none" stroke="#e9dcc4" stroke-width="30" stroke-linecap="round" opacity=".55"/><g id="ties"></g><g id="rails"></g></svg>`;
  const cur=curStation();

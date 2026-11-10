@@ -4,20 +4,21 @@ let ST=0,GAMES=[],GI=0,NUM={};
 const MINIS=['howmany','missing','neighbors','long'];
 const TRANS=[['after',19],['before',20],['after',29],['before',30]];
 /* teen stations (11-19) get 3 mini-games after loading, 20-30 get 2, review stations get 3 without loading; the mix rotates on every replay */
-function gamesOf(i){const s=SL[i],pl=save.pl[i]||0;
+function gamesOf(i){const s=SL[i],pl=P().pl[i]||0;
+ if(ROUTE==='10'){const o=['find','count'];const k=(i+pl)%2;if(s.r)return [o[k],o[1-k]];return ['load10',o[k]]}
  if(s.r){const o=['howmany','missing','neighbors'];const k=(i+pl)%3;return [...o.slice(k),...o.slice(0,k)]}
  const k=(i+pl)%4;let m=[...MINIS.slice(k),...MINIS.slice(0,k)].slice(0,s.n<20?3:2);
  if([19,20,21,29,30].includes(s.n)&&!m.includes('neighbors'))m[m.length-1]='neighbors';
  return ['load',...m]}
-const gDone=(i,g)=>!!(save.gn[i]&&save.gn[i][g]);
+const gDone=(i,g)=>!!(P().gn[i]&&P().gn[i][g]);
 const numOf=i=>{const s=SL[i];return s.n||(s.r[0]+rnd(s.r[1]-s.r[0]+1))};
 function openStation(i){ST=i;GAMES=gamesOf(i);GI=isDone(i)?0:GAMES.findIndex(g=>!gDone(i,g));if(GI<0)GI=0;show('station');
- const n=SL[i].n;preload(['ph_load','ph_dozen','ph_loaded','ph_howmany','ph_together','ph_missing','ph_missing2','ph_before','ph_after','ph_long','ph_try_again',...DATA.praise.map(p=>'ph_'+p),...Array.from({length:30},(_,k)=>'c_'+(k+1)),...(n?['x_'+n]:[])]);
+ const n=SL[i].n;preload(['ph_load','ph_dozen','ph_loaded','ph_howmany','ph_together','ph_missing','ph_missing2','ph_before','ph_after','ph_long','ph_try_again',...DATA.praise.map(p=>'ph_'+p),...Array.from({length:30},(_,k)=>'c_'+(k+1)),...(n&&n>10?['x_'+n]:[]),...(ROUTE==='10'?['ph_tap','ph_howmany10',...[1,2,3,4,5,6,7,8,9,10].flatMap(k=>['f_'+k,'g_'+k,'e_'+k])]:[])]);
  runGame()}
 function drawDots(){$('dots').innerHTML=`<span id="stLetter">${SL[ST].ch}</span>`+GAMES.map((g,k)=>`<i class="${k<GI||gDone(ST,g)?'ok':''} ${k===GI?'now':''}"></i>`).join('')}
-async function runGame(){const run=++gameRun;drawDots();$('stage').innerHTML='';const g=GAMES[GI];$('stage').dataset.g=g+':'+run;const fn={load:gLoad,howmany:gHowMany,missing:gMissing,neighbors:gNeighbors,long:gLong}[g];
+async function runGame(){const run=++gameRun;drawDots();$('stage').innerHTML='';const g=GAMES[GI];$('stage').dataset.g=g+':'+run;const fn={load:gLoad,howmany:gHowMany,missing:gMissing,neighbors:gNeighbors,long:gLong,load10:gLoad10,find:gFind,count:gCount}[g];
  const ok=await fn(run,numOf(ST));if(!ok||run!==gameRun)return;
- save.gn[ST]=save.gn[ST]||{};save.gn[ST][g]=1;store();sfx('win');
+ const pr=P();pr.gn[ST]=pr.gn[ST]||{};pr.gn[ST][g]=1;store();sfx('win');
  GI++;if(GI<GAMES.length){await wait(600);if(run!==gameRun)return;runGame()}else finishStation()}
 const alive=run=>run===gameRun;
 const guard=(run,resolve,isDone)=>{const w=setInterval(()=>{if(!alive(run)){clearInterval(w);resolve(false)}else if(isDone())clearInterval(w)},300)};
@@ -55,11 +56,11 @@ async function gLoad(run,N){const pic=SL[ST].pic;const nw=Math.ceil(N/10);
 /* ---------- shared: 3 big number answers ---------- */
 function options(right,cands){const o=[right];for(const c of shuffle(cands))if(c>=1&&c<=30&&!o.includes(c)&&o.length<3)o.push(c);let d=1;while(o.length<3){for(const c of [right+d,right-d])if(c>=1&&c<=30&&!o.includes(c)&&o.length<3)o.push(c);d++}return shuffle(o)}
 function optsHTML(o,right){return `<div class="opts fade-in">${o.map(v=>`<button class="opt" data-v="${v}" data-ok="${v===right?1:0}">${numHTML(v)}</button>`).join('')}</div>`}
-function answer(run,right,{onWrong,onRight}={}){return new Promise(resolve=>{let done=false,wrong=0;
+function answer(run,right,{onWrong,onRight,soft=false,hintAfter=2}={}){return new Promise(resolve=>{let done=false,wrong=0;
  $('stage').querySelectorAll('.opt').forEach(b=>b.onclick=async()=>{if(done)return;const v=+b.dataset.v;
   if(v===right){done=true;b.classList.add('ok');burstAt(b,12);sfx('good');if(onRight)await onRight(v);else await say('c_'+v);resolve(alive(run))}
-  else{wrong++;sfx('bad');b.classList.remove('wob');void b.offsetWidth;b.classList.add('wob');if(onWrong)await onWrong(v,wrong);else await say(['c_'+v,250,'ph_try_again']);
-   if(wrong>=2){const h=$('stage').querySelector(`.opt[data-v="${right}"]`);if(h)h.classList.add('hint')}}});
+  else{wrong++;const wc=soft?'soft':'wob';sfx(soft?'tick':'bad');b.classList.remove(wc);void b.offsetWidth;b.classList.add(wc);if(onWrong)await onWrong(v,wrong);else await say(['c_'+v,250,'ph_try_again']);
+   if(wrong>=hintAfter){const h=$('stage').querySelector(`.opt[data-v="${right}"]`);if(h)h.classList.add('hint')}}});
  guard(run,resolve,()=>done)})}
 /* ---------- game 2: how many did the train bring? ---------- */
 async function gHowMany(run,N){const pic=SL[ST].pic||pick(CARGO);const nw=Math.ceil(N/10);
@@ -114,9 +115,45 @@ async function gLong(run,N){
    if(my>=N){done=true;burstAt($('count'),16);sfx('win');await say(['x_'+N,250,praise()]);resolve(alive(run));return}
    ws[k].classList.add('next');busy=false};
   guard(run,resolve,()=>done)})}
+/* ================= «До 10»: for the youngest ================= */
+const C10=DATA.cargo10;
+const cargo10=()=>C10[(ST*3+(P().pl[ST]||0)*5)%C10.length];
+/* one wagon with exactly N places, big pictures; 1–5 sit in one row so they can be seen at a glance */
+function wagon10(N,pic,filled=0){const cols=N<=5?N:5,rows=N<=5?1:2;const st=$('stage');
+ const W=Math.min(st.clientWidth-20,900);let w=Math.floor(Math.min(N<=5?300:330,st.clientHeight*.55,(W-12)/1.62-7));st.style.setProperty('--w',w+'px');
+ const cell=Math.floor(Math.min((w*.92-4*(cols-1))/cols,(w*.56*.86-4*(rows-1))/rows)-2);st.style.setProperty('--cell',cell+'px');
+ return `<div class="tt"><div class="wg" data-w="0" style="--c:${WCOL[(ST+1)%4]}"><div class="sl s10">${Array.from({length:N},(_,k)=>`<i data-k="${k}"${k<filled?' class="in"':''}>${k<filled?picSVG(pic):''}</i>`).join('')}</div><span class="wh"></span><span class="wh r"></span></div>${LOCO}</div><div class="rails"></div>`}
+async function gLoad10(run,N){const pic=cargo10();
+ $('stage').innerHTML=`<div class="goal fade-in"><div class="target faint">${numHTML(N)}</div></div><button class="crate" id="crate" aria-label="Ящик">${picSVG(pic)}<span class="box"></span></button><div class="trainbox" id="tb"></div>`;
+ $('tb').innerHTML=wagon10(N,pic);setInstr(['g_'+N,250,'ph_tap']);
+ return new Promise(resolve=>{let k=0,busy=false,done=false;const crate=$('crate');
+  crate.onclick=async()=>{if(busy||done)return;busy=true;crate.classList.remove('tap');void crate.offsetWidth;crate.classList.add('tap');
+   const slot=$('stage').querySelector(`.sl i[data-k="${k}"]`);k++;const my=k;
+   const v=say('c_'+my);await fly(crate,slot,pic);if(!alive(run))return;fillSlot(my-1,pic);sfx('pop');
+   await v;if(!alive(run))return;
+   if(my>=N){done=true;crate.classList.add('gone');const wg=$('stage').querySelector('.wg');wg.classList.add('full');const t=$('stage').querySelector('.target');t.classList.remove('faint');t.classList.add('big');burstAt(t,16);sfx('win');
+    await wait(250);if(!alive(run))return;await say(['e_'+N,300,praise()]);resolve(alive(run));return}
+   busy=false};
+  guard(run,resolve,()=>done)})}
+/* options for the youngest: 2 at first, 3 later; neighbours of the right digit are avoided at first */
+function opts10(right){const s=SL[ST];const n=(!s.r&&ST<5)?2:3;const lo=1,hi=(s.r?s.r[1]:Math.max(5,right+2));
+ let pool=[];for(let v=lo;v<=Math.min(10,hi);v++)if(v!==right)pool.push(v);if(n===2&&pool.some(v=>Math.abs(v-right)>1))pool=pool.filter(v=>Math.abs(v-right)>1);
+ return shuffle([right,...shuffle(pool).slice(0,n-1)])}
+async function gFind(run,N){
+ $('stage').innerHTML=`<div class="trainbox seq arrive" id="tb">${trainHTML(1,{label:['?']})}</div>${(()=>{const o=opts10(N);return optsHTML(o,N).replace('class="opts fade-in"',`class="opts big fade-in" style="--n:${o.length}"`)})()}`;
+ $('stage').style.setProperty('--w',Math.round(Math.min(140,$('stage').clientHeight*.2))+'px');$('tb').querySelector('.wg').classList.add('ask');const tb=$('tb');await wait(60);tb.classList.add('in');sfx('step');
+ setInstr(['f_'+N]);
+ return answer(run,N,{soft:true,hintAfter:1,onWrong:async v=>{await say(['c_'+v,300,'f_'+N])},onRight:async()=>{const w=$('tb').querySelector('.wg');w.classList.remove('ask');w.querySelector('.wl').innerHTML=numHTML(N);w.classList.add('pop');burstAt(w,10);await say(['e_'+N,250,praise()])}})}
+async function gCount(run,N){const pic=cargo10();
+ $('stage').innerHTML=`<div class="q fade-in">?</div><div class="trainbox arrive" id="tb"></div><div id="optsSlot" class="opts big" style="visibility:hidden;--n:3"><button class="opt" tabindex="-1">0</button></div>`;
+ $('tb').innerHTML=wagon10(N,pic,N);const tb=$('tb');await wait(60);tb.classList.add('in');sfx('step');await wait(REDUCED?0:1500);if(!alive(run))return false;
+ {const o=opts10(N);$('optsSlot').outerHTML=optsHTML(o,N).replace('class="opts fade-in"',`class="opts big fade-in" style="--n:${o.length}"`)}setInstr(['ph_howmany10']);
+ let helped=false;
+ const help=async()=>{helped=true;await say('ph_together');for(let k=0;k<N;k++){const s=$('stage').querySelector(`.sl i[data-k="${k}"]`);if(!s)return;s.classList.add('lit');await say('c_'+(k+1));if(!alive(run))return}};
+ return answer(run,N,{soft:true,hintAfter:1,onWrong:async()=>{if(!helped)await help();else await say('ph_howmany10')},onRight:async()=>{$('stage').querySelector('.q').innerHTML=numHTML(N);$('stage').querySelectorAll('.sl i.lit').forEach(s=>s.classList.remove('lit'));$('stage').querySelector('.wg').classList.add('full');await say(['e_'+N,250,praise()])}})}
 /* ---------- reward ---------- */
 function confetti(){const c=$('confetti');c.innerHTML='';if(REDUCED)return;for(let n=0;n<40;n++){const i=document.createElement('i');i.style.cssText=`left:${Math.random()*100}%;background:${pick(['#f7bd43','#e76f69','#7cc9a8','#8fb4ff','#e6a8ff'])};animation-delay:${Math.random()*1.2}s;animation-duration:${2.4+Math.random()*1.6}s`;c.appendChild(i)}}
-async function finishStation(){const i=ST;const first=!isDone(i);save.done[i]=1;save.pl[i]=(save.pl[i]||0)+1;delete save.gn[i];store();
+async function finishStation(){const i=ST;const first=!isDone(i);const pr=P();pr.done[i]=1;pr.pl[i]=(pr.pl[i]||0)+1;delete pr.gn[i];store();
  $('rewardSticker').innerHTML=picSVG(SL[i].pic)+`<i>${SL[i].ch}</i>`;show('reward');confetti();sfx('win');say(['ph_station_done']);setTimeout(()=>{if(screen==='reward')burstAt($('rewardSticker'),18)},650);
  $('rewardNext').onclick=()=>{stopVoice();openMap();if(first&&i+1<SL.length)setTimeout(()=>say('ph_next_station'),400)}}
 /* ---------- album ---------- */
@@ -134,4 +171,4 @@ let fitRaf=0;const fitSoon=()=>{cancelAnimationFrame(fitRaf);fitRaf=requestAnima
 new MutationObserver(fitSoon).observe($('stage'),{childList:true});
 addEventListener('resize',fitSoon);
 addEventListener('resize',()=>{if(screen==='map')openMap()});
-window.BG={SL,gamesOf,get save(){return save},get state(){return {screen,ST,GI,game:GAMES[GI]}}};
+window.BG={get SL(){return SL},get route(){return ROUTE},setRoute,gamesOf,get save(){return save},get state(){return {screen,ST,GI,game:GAMES[GI]}}};
