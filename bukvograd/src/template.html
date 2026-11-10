@@ -44,20 +44,21 @@ body.playing #footer{display:block}
 .chug{animation:chug .5s ease-in-out infinite alternate}
 @keyframes chug{to{transform:translateY(-2px)}}
 /* map */
-#mapScroll{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;position:relative}
+#mapScroll{flex:1;overflow-y:auto;overflow-x:hidden;background:#dff0c6;-webkit-overflow-scrolling:touch;position:relative}
 #mapInner{position:relative;width:min(100%,560px);margin:0 auto}
 #mapInner>svg.rail{position:absolute;left:0;top:0;pointer-events:none}
-.st{position:absolute;width:78px;height:78px;margin:-39px 0 0 -39px;border-radius:50%;background:#fff;box-shadow:0 6px 0 #e3d6c8,0 10px 20px #b48a5a22;font-size:38px;font-weight:800;display:grid;place-items:center;color:#574d70;border:4px solid #fff}
+.st{position:absolute;z-index:2;width:78px;height:78px;margin:-39px 0 0 -39px;border-radius:50%;background:#fff;box-shadow:0 6px 0 #c9b59d,0 10px 18px #5a7a3a33;font-size:38px;font-weight:800;display:grid;place-items:center;color:#574d70;border:4px solid #fff}
 .st.done{background:#d9f2e9;border-color:#7cc9a8;color:#3f8a6c}
 .st.cur{background:#ffe8a3;border-color:#f7bd43;animation:pulse 1.2s ease-in-out infinite}
-.st.locked{background:#efe8e0;color:#c4b6c0;box-shadow:0 5px 0 #e3d6c8}
+.st.locked{background:#f6f1ea;color:#b6a7b3;box-shadow:0 5px 0 #c9b59d}
 .st.soon{background:#f5f0ea;color:#d5c9cf;border:3px dashed #ddd0d6;box-shadow:none}
 .st .stk{position:absolute;right:-12px;top:-12px;width:38px;height:38px;background:#fff;border-radius:50%;box-shadow:0 2px 6px #0002;padding:3px}
 .st .stk svg{width:100%;height:100%}
 .st .lk{position:absolute;bottom:-6px;right:-4px;width:26px;height:26px}
 .st small{position:absolute;bottom:-26px;font-size:12px;color:#b5a6b3;font-weight:700;white-space:nowrap}
 @keyframes pulse{50%{transform:scale(1.08)}}
-#mapTrain{position:absolute;width:86px;height:60px;margin:-30px 0 0 -43px;pointer-events:none;transition:left 1.4s ease-in-out,top 1.4s ease-in-out;z-index:3;filter:drop-shadow(0 4px 2px #0002)}
+#mapTrain{position:absolute;left:-43px;top:-30px;width:86px;height:60px;pointer-events:none;z-index:3;will-change:transform;filter:drop-shadow(0 3px 2px #0002)}
+#mapTrain svg{width:100%;height:100%}
 /* station */
 #station header.bar{padding-bottom:2px}
 #dots{display:flex;gap:8px;flex:1;justify-content:center}
@@ -111,6 +112,28 @@ body.playing #footer{display:block}
 .tile.used{visibility:hidden}
 .tile.drag{position:fixed;z-index:20;pointer-events:none;box-shadow:0 12px 20px #0003;transform:scale(1.1)}
 .tile.hint{animation:pulse .8s ease-in-out infinite;background:#fff4c9}
+/* fx layer */
+#fx{position:fixed;inset:0;pointer-events:none;z-index:30;overflow:hidden}
+#fx .spark{position:fixed;margin:-6px 0 0 -6px}
+#fx .spark.star{border-radius:2px;transform:rotate(45deg)}
+/* memory */
+.mem{display:grid;grid-template-columns:repeat(3,1fr);gap:min(3vw,16px);width:min(94vw,calc((100svh - 220px)*1.4),600px)}
+.mc{aspect-ratio:1;perspective:600px;padding:0}
+.mc-in{position:relative;display:block;width:100%;height:100%;transition:transform .45s cubic-bezier(.4,1.4,.6,1);transform-style:preserve-3d}
+.mc.up .mc-in,.mc.ok .mc-in{transform:rotateY(180deg)}
+.mc-b,.mc-f{position:absolute;inset:0;border-radius:22px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:grid;place-items:center;box-shadow:0 5px 0 #ece3d9}
+.mc-b{background:#f7bd43 radial-gradient(circle,#ffe8a3 0 18%,transparent 19%) 0 0/28px 28px}
+.mc-f{background:#fff;transform:rotateY(180deg);padding:8%}
+.mc-f svg{width:100%;height:100%}
+.mc-f b{font-size:min(15vw,72px);color:#e76f69}
+.mc.ok .mc-f{background:#d9f2e9;box-shadow:0 5px 0 #a8dcc6}
+/* puzzle */
+.puz{display:grid;grid-template-columns:1fr 1fr;gap:6px;width:min(78vw,calc(100svh - 330px),360px);min-width:200px;padding:8px;background:#fff;border-radius:28px;box-shadow:0 6px 0 #ece3d9;transition:gap .3s}
+.pz{aspect-ratio:1;padding:0;background:#fffaf2;border-radius:14px;transform:rotate(var(--r));transition:transform .3s cubic-bezier(.4,1.5,.6,1);will-change:transform}
+.pz{position:relative;overflow:hidden}.pz svg{position:absolute;width:200%;height:200%;display:block}
+.puz.whole{gap:0}.puz.whole .pz{border-radius:0;background:#fff}
+.pick{display:flex;gap:14px;margin-top:18px}
+.tile.okb{background:#d9f2e9;box-shadow:0 5px 0 #a8dcc6;animation:pop .3s}
 /* reward */
 #reward{align-items:center;justify-content:center;text-align:center;background:#fff8edf2;z-index:10;overflow:hidden}
 #reward strong{font-size:clamp(28px,8vw,40px);margin:14px 0 22px;display:block}
@@ -156,7 +179,7 @@ body.playing #footer{display:block}
  <div id="albumGrid"></div>
 </section>
 <section id="reward" class="screen"><div id="confetti"></div><div id="rewardSticker"></div><strong>Ура, получилось!</strong><button id="rewardNext" aria-label="Дальше">➜</button></section>
-<div id="footer"><footer class="foot"><a id="back" href="https://games.distantec.app/" draggable="false">← Все игры</a><span id="help" role="status"></span></footer></div>
+<div id="fx"></div><div id="footer"><footer class="foot"><a id="back" href="https://games.distantec.app/" draggable="false">← Все игры</a><span id="help" role="status"></span></footer></div>
 <script>
 /*PICS*/
 /*STROKES*/
@@ -168,18 +191,23 @@ const pick=a=>a[rnd(a.length)];
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
 const LET=DATA.letters, WORDS=DATA.words;
 const L_BY=Object.fromEntries(LET.map((l,i)=>[l.ch,{...l,i}]));
-const wordsOf=ch=>WORDS.filter(w=>w.w[0]===ch);
-// a station is playable when its letter has at least 3 picture words (adding a station = adding words)
-const ready=i=>i<LET.length&&wordsOf(LET[i].ch).length>=3;
-const stickerOf=i=>{const w=wordsOf(LET[i].ch)[0];return w?w.id:null};
+const W_BY=Object.fromEntries(WORDS.map(w=>[w.id,w]));
+// every letter has its own picture words; mode 'start' = the word starts with the letter, 'in' = the letter is somewhere inside (Ы Ю Ё Й Ь Ъ)
+const wordsOf=ch=>L_BY[ch].w.map(id=>W_BY[id]);
+const fits=(w,T)=>T.m==='in'?w.w.includes(T.ch):w.w[0]===T.ch;
+const ready=i=>i>=0&&i<LET.length;
+const stickerOf=i=>LET[i].w[0];
+const REDUCED=matchMedia('(prefers-reduced-motion: reduce)').matches;
 /* ---------- save ---------- */
 const KEY='bukvograd-v1';
 let save={g:{},done:{},seen:{}};
 try{save=Object.assign(save,JSON.parse(localStorage.getItem(KEY)||'{}'))}catch(e){}
+/* v1 saved per-game flags by position (save.g[i][k], games meet/catch/start/build); now flags are kept by game name (save.gn[i][name]); save.pl[i] counts finished plays (rotates the extra games) */
+(()=>{if(!save.g||typeof save.g!=='object')save.g={};if(!save.done||typeof save.done!=='object')save.done={};if(!save.gn){save.gn={};const OLD=['meet','catch','start','build'];for(const i in save.g){const a=save.g[i];if(!Array.isArray(a))continue;const o={};a.forEach((f,k)=>{if(f&&OLD[k])o[OLD[k]]=1});if(Object.keys(o).length)save.gn[i]=o}}if(!save.pl)save.pl={}})();
 const store=()=>{try{localStorage.setItem(KEY,JSON.stringify(save))}catch(e){}};
 const isDone=i=>!!save.done[i];
 const unlocked=i=>ready(i)&&(i===0||isDone(i-1));
-const curStation=()=>{let last=0;for(let i=0;i<LET.length;i++){if(!ready(i))break;last=i;if(!isDone(i))return i}return last};
+const curStation=()=>{for(let i=0;i<LET.length;i++)if(!isDone(i))return i;return LET.length-1};
 /* ---------- audio ---------- */
 let AC=null,curSrc=null,curG=null,curId=null,token=0,VBUS=null,SBUS=null;const BUF={};window.__missing=[];
 /* voice and sfx go to separate buses; sfx is ducked while the voice plays; the voice always plays at rate 1 */
@@ -224,39 +252,84 @@ function trainSVG(letters){const cols=['#7cc9a8','#f7bd43','#8fb4ff'];let wag=le
 return `<path d="M0 166 H430" stroke="#c9a27a" stroke-width="6"/><path d="M6 172 H430" stroke="#c9a27a" stroke-width="5" stroke-dasharray="6 16"/><circle class="puff" cx="44" cy="40" r="12" fill="#fff" stroke="#e3d6c8" stroke-width="3"/><circle class="puff" cx="44" cy="40" r="10" fill="#fff" stroke="#e3d6c8" stroke-width="3"/><circle class="puff" cx="44" cy="40" r="9" fill="#fff" stroke="#e3d6c8" stroke-width="3"/><g class="chug"><rect x="30" y="50" width="26" height="30" rx="5" fill="#574d70"/><rect x="18" y="74" width="116" height="70" rx="16" fill="#e76f69" stroke="#574d70" stroke-width="4"/><rect x="82" y="46" width="52" height="46" rx="10" fill="#e76f69" stroke="#574d70" stroke-width="4"/><rect x="92" y="54" width="32" height="26" rx="6" fill="#d9f1ff" stroke="#574d70" stroke-width="3"/><circle cx="50" cy="106" r="4" fill="#574d70"/><circle cx="68" cy="106" r="4" fill="#574d70"/><path d="M52 118 q7 6 14 0" fill="none" stroke="#574d70" stroke-width="3" stroke-linecap="round"/><circle cx="42" cy="114" r="5" fill="#ff9aa8" opacity=".7"/><circle cx="76" cy="114" r="5" fill="#ff9aa8" opacity=".7"/><path d="M10 136 L18 120 L18 144 Z" fill="#f7bd43" stroke="#574d70" stroke-width="3" stroke-linejoin="round"/><circle class="wheel" cx="44" cy="150" r="15" fill="#574d70"/><circle class="wheel" cx="106" cy="150" r="15" fill="#574d70"/><circle cx="44" cy="150" r="5" fill="#fff"/><circle cx="106" cy="150" r="5" fill="#fff"/>${wag}</g>`}
 $('homeTrain').innerHTML=trainSVG(['А','Б','В']);
 const MINI_TRAIN=`<svg viewBox="0 0 140 96"><g transform="scale(.66) translate(-6 -40)">${trainSVG([]).replace(/<path d="M0 166[^>]*>|<path d="M6 172[^>]*>/g,'')}</g></svg>`;
-/* ---------- map ---------- */
-function stationXY(i,W){const cols=[.22,.5,.78,.5];return {x:W*cols[i%4],y:90+i*112}}
-let mapSpoken=false;
-function openMap(fromHome){show('map');const inner=$('mapInner');const W=inner.clientWidth||360;const H=90+LET.length*112;inner.style.height=H+'px';
- let pts=LET.map((_,i)=>stationXY(i,W));let d=`M${pts[0].x} ${pts[0].y}`;for(let i=1;i<pts.length;i++){const a=pts[i-1],b=pts[i];d+=` C${a.x} ${a.y+60} ${b.x} ${b.y-60} ${b.x} ${b.y}`}
- let html=`<svg class="rail" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"><path d="${d}" fill="none" stroke="#e8dccf" stroke-width="22" stroke-linecap="round"/><path d="${d}" fill="none" stroke="#c9a27a" stroke-width="16" stroke-dasharray="4 12"/><path d="${d}" fill="none" stroke="#a4846a" stroke-width="3" transform="translate(-6 0)"/><path d="${d}" fill="none" stroke="#a4846a" stroke-width="3" transform="translate(6 0)"/></svg>`;
+/* ---------- map: landscape, rails with sleepers, the train rides along the rails ---------- */
+function stationXY(i,W){const cols=[.22,.5,.78,.5];return {x:W*cols[i%4],y:150+i*112}}
+let mapSpoken=false,trainAt=null,trainRAF=0,MAPGEO=null;
+function seeded(n){let s=n*9301+49297;return()=>{s=(s*9301+49297)%233280;return s/233280}}
+function scenery(W,H){const r=seeded(7);let g=`<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cdeaff"/><stop offset="1" stop-color="#eaf6ff"/></linearGradient><linearGradient id="mead" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dff0c6"/><stop offset=".5" stop-color="#e6f2cf"/><stop offset="1" stop-color="#d7ecc0"/></linearGradient></defs>`;
+ g+=`<rect width="${W}" height="${H}" fill="url(#mead)"/><rect width="${W}" height="190" fill="url(#sky)"/><circle cx="${W*.86}" cy="52" r="26" fill="#ffe08a"/><circle cx="${W*.86}" cy="52" r="38" fill="#ffe08a" opacity=".3"/>`;
+ const cloud=(x,y,s)=>`<g transform="translate(${x} ${y}) scale(${s})" fill="#fff" opacity=".95"><ellipse cx="0" cy="0" rx="26" ry="14"/><ellipse cx="22" cy="-8" rx="20" ry="16"/><ellipse cx="44" cy="2" rx="22" ry="12"/></g>`;
+ g+=cloud(W*.08,58,1)+cloud(W*.5,36,.8)+cloud(W*.62,96,.6);
+ // far hills at the horizon, then rolling hills down the whole map
+ g+=`<path d="M0 190 Q${W*.2} 120 ${W*.42} 176 Q${W*.62} 112 ${W*.82} 170 Q${W*.92} 150 ${W} 160 V230 H0Z" fill="#c4e3a6"/><path d="M0 214 Q${W*.3} 160 ${W*.6} 206 Q${W*.82} 176 ${W} 200 V240 H0Z" fill="#b5db93"/>`;
+ for(let y=420;y<H;y+=520){const L=r()<.5;g+=`<path d="M${L?0:W} ${y+120} Q${L?W*.18:W*.82} ${y-40} ${L?W*.38:W*.62} ${y+120}Z" fill="#cfe8b2"/>`}
+ // trees, bushes, flowers along the edges (left/right of the zig-zag)
+ const tree=(x,y,s,c)=>`<g transform="translate(${x} ${y}) scale(${s})"><rect x="-4" y="0" width="8" height="18" rx="3" fill="#b07a52"/><circle cx="0" cy="-8" r="16" fill="${c}"/><circle cx="-10" cy="0" r="10" fill="${c}"/><circle cx="10" cy="0" r="10" fill="${c}"/></g>`;
+ const pine=(x,y,s)=>`<g transform="translate(${x} ${y}) scale(${s})"><rect x="-3" y="4" width="6" height="12" fill="#b07a52"/><path d="M0 -28 L14 0 H-14Z M0 -16 L17 8 H-17Z" fill="#7cbf86"/></g>`;
+ const flower=(x,y,c)=>`<g transform="translate(${x} ${y})"><circle r="3.2" fill="${c}"/><circle r="1.4" fill="#fff6c8"/></g>`;
+ for(let i=0;i<LET.length;i++){const y=150+i*112;const side=[0,0,1,0][i%4]===1?'L':(i%4===0?'R':(r()<.5?'L':'R'));const x=side==='L'?W*(.06+r()*.06):W*(.88+r()*.06);
+  g+=r()<.35?pine(x,y+30*r(),.9+r()*.3):tree(x,y+30*r(),.8+r()*.4,pick(['#9ad38a','#8ccc8f','#a8d987']));
+  for(let k=0;k<3;k++)g+=flower(W*(.04+r()*.92),y+40+r()*60,pick(['#ff9aa8','#ffd36b','#c9b5ff','#fff']))}
+ g+=`<ellipse cx="${W*.9}" cy="${150+12*112+50}" rx="${W*.08}" ry="16" fill="#bfe3f7"/><ellipse cx="${W*.1}" cy="${150+25*112+60}" rx="${W*.08}" ry="16" fill="#bfe3f7"/>`;
+ return g}
+function railPath(pts){let d=`M${pts[0].x} ${pts[0].y-110}`;d+=` C${pts[0].x} ${pts[0].y-60} ${pts[0].x} ${pts[0].y-40} ${pts[0].x} ${pts[0].y}`;for(let i=1;i<pts.length;i++){const a=pts[i-1],b=pts[i];d+=` C${a.x} ${a.y+60} ${b.x} ${b.y-60} ${b.x} ${b.y}`}return d}
+function openMap(fromHome){show('map');const inner=$('mapInner');const W=inner.clientWidth||360;const H=150+LET.length*112;inner.style.height=H+'px';
+ const pts=LET.map((_,i)=>stationXY(i,W));const d=railPath(pts);
+ let html=`<svg class="rail" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" aria-hidden="true">${scenery(W,H)}<path id="railPath" d="${d}" fill="none" stroke="#e9dcc4" stroke-width="30" stroke-linecap="round" opacity=".55"/><g id="ties"></g><g id="rails"></g></svg>`;
  const cur=curStation();
- LET.forEach((l,i)=>{const p=pts[i];let cls='st',extra='';if(!ready(i)){cls+=' soon';extra='<small>скоро</small>'}else if(isDone(i)){cls+=' done';extra=`<span class="stk">${picSVG(stickerOf(i))}</span>`}else if(unlocked(i)){cls+=' cur'}else{cls+=' locked';extra=LOCK}
+ LET.forEach((l,i)=>{const p=pts[i];let cls='st',extra='';if(isDone(i)){cls+=' done';extra=`<span class="stk">${picSVG(stickerOf(i))}</span>`}else if(unlocked(i)){cls+=' cur'}else{cls+=' locked';extra=LOCK}
   html+=`<button class="${cls}" data-st="${i}" style="left:${p.x}px;top:${p.y}px" aria-label="Станция ${l.ch}">${l.ch}${extra}</button>`});
- const tp=pts[cur];html+=`<div id="mapTrain" style="left:${tp.x+(tp.x>W/2?-84:84)}px;top:${tp.y+8}px">${MINI_TRAIN}</div>`;
+ html+=`<div id="mapTrain">${MINI_TRAIN}</div>`;
  inner.innerHTML=html;
- inner.querySelectorAll('.st').forEach(b=>b.onclick=()=>{const i=+b.dataset.st;if(unlocked(i)||isDone(i))openStation(i);else{b.classList.add('wob');sfx('bad');say(ready(i)?'ph_locked':'ph_soon');setTimeout(()=>b.classList.remove('wob'),500)}});
- requestAnimationFrame(()=>{$('mapScroll').scrollTop=Math.max(0,tp.y-$('mapScroll').clientHeight*.4)});
+ // rails: sample the centre line, draw sleepers across it and two rails offset along the normal
+ const P=$('railPath'),TL=P.getTotalLength(),N=Math.ceil(TL/5),S=[];for(let k=0;k<=N;k++){const q=P.getPointAtLength(TL*k/N);S.push({x:q.x,y:q.y,l:TL*k/N})}
+ for(let k=0;k<S.length;k++){const a=S[Math.max(0,k-1)],b=S[Math.min(S.length-1,k+1)];const dx=b.x-a.x,dy=b.y-a.y,m=Math.hypot(dx,dy)||1;S[k].nx=-dy/m;S[k].ny=dx/m;S[k].a=Math.atan2(dy,dx)}
+ let ties='';for(let k=0;k<S.length;k+=3){const s=S[k];ties+=`M${(s.x-s.nx*12).toFixed(1)} ${(s.y-s.ny*12).toFixed(1)}L${(s.x+s.nx*12).toFixed(1)} ${(s.y+s.ny*12).toFixed(1)}`}
+ const off=o=>'M'+S.map(s=>`${(s.x+s.nx*o).toFixed(1)} ${(s.y+s.ny*o).toFixed(1)}`).join('L');
+ $('ties').innerHTML=`<path d="${ties}" stroke="#a97f5c" stroke-width="5" stroke-linecap="round"/>`;
+ $('rails').innerHTML=`<path d="${off(-7)}" fill="none" stroke="#8d8aa0" stroke-width="3.4"/><path d="${off(7)}" fill="none" stroke="#8d8aa0" stroke-width="3.4"/>`;
+ // arc length of every station on the rails
+ const SL=pts.map(p=>{let best=0,bd=1e9;for(const s of S){const dd=(s.x-p.x)**2+(s.y-p.y)**2;if(dd<bd){bd=dd;best=s.l}}return best});
+ MAPGEO={S,SL,TL};
+ const target=Math.max(0,SL[cur]-58);
+ const from=trainAt!=null&&trainAt.W===W?trainAt.l:target;
+ placeTrain(from);moveTrain(from,target);trainAt={W,l:target};
+ inner.querySelectorAll('.st').forEach(b=>b.onclick=()=>{const i=+b.dataset.st;if(unlocked(i)||isDone(i))openStation(i);else{b.classList.add('wob');sfx('bad');say('ph_locked');setTimeout(()=>b.classList.remove('wob'),500)}});
+ const tp=pts[cur];requestAnimationFrame(()=>{$('mapScroll').scrollTop=Math.max(0,tp.y-$('mapScroll').clientHeight*.45)});
  if(fromHome===true&&!mapSpoken){mapSpoken=true;say(['ph_hello',300,'ph_pick_station'])}
  return pts}
+function trainPose(l){const {S,TL}=MAPGEO;const k=Math.max(0,Math.min(S.length-1,Math.round(l/TL*(S.length-1))));const s=S[k];
+ // the engine faces left; mirror it when the rails run to the right, tilt gently with the slope
+ let a=s.a*180/Math.PI;const right=Math.cos(s.a)>=0;let tilt=right?a:a-180;if(tilt<-180)tilt+=360;tilt=Math.max(-28,Math.min(28,tilt));
+ return {x:s.x+s.nx*0,y:s.y,tilt,flip:right}}
+function placeTrain(l){const t=$('mapTrain');if(!t||!MAPGEO)return;const p=trainPose(l);t.style.transform=`translate(${p.x.toFixed(1)}px,${(p.y-18).toFixed(1)}px) rotate(${p.tilt.toFixed(1)}deg) scaleX(${p.flip?-1:1})`}
+function moveTrain(a,b){cancelAnimationFrame(trainRAF);if(REDUCED||Math.abs(b-a)<2){placeTrain(b);return}
+ const dur=Math.min(2600,700+Math.abs(b-a)*2.2),t0=performance.now();const ease=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+ const step=t=>{const x=Math.min(1,(t-t0)/dur);placeTrain(a+(b-a)*ease(x));if(x<1&&screen==='map')trainRAF=requestAnimationFrame(step);else placeTrain(b)};trainRAF=requestAnimationFrame(step);
+ // keep the train in view while it rides
+ const sc=$('mapScroll');const y=trainPose(b).y;setTimeout(()=>{if(screen==='map')sc.scrollTo({top:Math.max(0,y-sc.clientHeight*.45),behavior:'smooth'})},120)}
 /* ---------- station flow ---------- */
 let ST=0,GAMES=[],GI=0;
 function knownLetters(i){return LET.slice(0,i+1).map(l=>l.ch)}
 function buildPool(i){if(i<2)return [];const known=new Set(knownLetters(i));const max=i<6?4:7;const cur=LET[i].ch;const ok=WORDS.filter(w=>w.w.length<=max&&[...w.w].every(c=>known.has(c)));const mine=shuffle(ok.filter(w=>w.w.includes(cur))),sh=mine.filter(w=>w.w.length<=4),lg=mine.filter(w=>w.w.length>4);const first=[...sh.slice(0,2),...lg.slice(0,1)];return [...first,...shuffle(mine.filter(w=>!first.includes(w))),...shuffle(ok.filter(w=>!w.w.includes(cur)))]}
-function gamesOf(i){const g=['meet','catch','start'];if(buildPool(i).length)g.push('build');return g}
-function openStation(i){ST=i;GAMES=gamesOf(i);const g=save.g[i]||[];GI=isDone(i)?0:Math.max(0,GAMES.findIndex((_,k)=>!g[k]));if(GI<0)GI=0;show('station');
- const l=LET[i];preload(['l_'+l.id,'snd_'+l.id,'find_'+l.id,'start_'+l.id,'name_'+l.id,'ph_trace','ph_trace_again','ph_tap_pics','ph_not_this','ph_not_word','ph_yes',...DATA.praise.map(p=>'ph_'+p)]);
+function memLetters(i){return LET.slice(0,i+1).filter(l=>l.m==='start')}
+/* a station = meet + catch + start + one extra game that changes every time the station is finished (build / memory / puzzle) */
+function gamesOf(i){const pl=save.pl[i]||0;if(i<2)return ['meet','catch',['start','puzzle'][pl%2]];const ex=[];if(buildPool(i).length)ex.push('build');if(memLetters(i).length>=3)ex.push('memory');ex.push('puzzle');return ['meet','catch','start',ex[(i+pl)%ex.length]]}
+const gDone=(i,g)=>!!(save.gn[i]&&save.gn[i][g]);
+const askOf=l=>(l.m==='in'?'where_':'start_')+l.id;
+function openStation(i){ST=i;GAMES=gamesOf(i);GI=isDone(i)?0:GAMES.findIndex(g=>!gDone(i,g));if(GI<0)GI=0;show('station');
+ const l=LET[i];preload(['l_'+l.id,'snd_'+l.id,'find_'+l.id,askOf(l),'name_'+l.id,'w_'+stickerOf(i),'ph_trace','ph_trace_again','ph_tap_pics','ph_not_this','ph_not_word','ph_yes',...DATA.praise.map(p=>'ph_'+p)]);
  runGame()}
-function drawDots(){$('dots').innerHTML=`<span id="stLetter">${LET[ST].ch}</span>`+GAMES.map((_,k)=>`<i class="${k<GI||(save.g[ST]||[])[k]?'ok':''} ${k===GI?'now':''}"></i>`).join('')}
-async function runGame(){const run=++gameRun;drawDots();$('stage').innerHTML='';const fn={meet:gMeet,catch:gCatch,start:gStart,build:gBuild}[GAMES[GI]];
+function drawDots(){$('dots').innerHTML=`<span id="stLetter">${LET[ST].ch}</span>`+GAMES.map((g,k)=>`<i class="${k<GI||gDone(ST,g)?'ok':''} ${k===GI?'now':''}"></i>`).join('')}
+async function runGame(){const run=++gameRun;drawDots();$('stage').innerHTML='';const fn={meet:gMeet,catch:gCatch,start:gStart,build:gBuild,memory:gMemory,puzzle:gPuzzle}[GAMES[GI]];
  const ok=await fn(run);if(!ok||run!==gameRun)return;
- save.g[ST]=save.g[ST]||[];save.g[ST][GI]=1;store();sfx('win');
+ save.gn[ST]=save.gn[ST]||{};save.gn[ST][GAMES[GI]]=1;store();sfx('win');
  GI++;if(GI<GAMES.length){await wait(500);if(run!==gameRun)return;runGame()}else finishStation()}
 const alive=run=>run===gameRun;
 /* ---------- mini-game 1: meet + trace ---------- */
 function letterSVG(ch,{eyes=true,cls='alive'}={}){const s=STROKES[ch]||[];const col=['#e76f69','#f7a541','#5fb8a4','#7b8fe0'][L_BY[ch].i%4];
  return `<svg class="${cls}" viewBox="-20 -30 140 190"><g class="ltr"><g fill="none" stroke-linecap="round" stroke-linejoin="round">${s.map(d=>`<path d="${d}" stroke="#574d70" stroke-width="26"/>`).join('')}${s.map(d=>`<path d="${d}" stroke="${col}" stroke-width="18"/>`).join('')}</g><g fill="${col}" stroke="#574d70" stroke-width="3">${DECO[ch]||''}</g>${eyes?`<g transform="translate(50 ${ch==='Г'||ch==='Т'||ch==='П'?40:30})"><ellipse cx="-13" cy="0" rx="10" ry="12" fill="#fff" stroke="#574d70" stroke-width="3"/><ellipse cx="13" cy="0" rx="10" ry="12" fill="#fff" stroke="#574d70" stroke-width="3"/><circle cx="-11" cy="3" r="5" fill="#574d70"/><circle cx="15" cy="3" r="5" fill="#574d70"/><path d="M-8 20 q8 8 16 0" fill="none" stroke="#574d70" stroke-width="3.5" stroke-linecap="round"/></g>`:''}</g></svg>`}
-async function gMeet(run){const l=LET[ST],w=wordsOf(l.ch)[0];
+async function gMeet(run){const l=LET[ST],w=W_BY[stickerOf(ST)];
  $('stage').innerHTML=`<div class="meet fade-in">${letterSVG(l.ch)}<div class="meetPic">${picSVG(w.id)}</div></div><div class="hint">Слушай!</div>`;
  const intro=['l_'+l.id,250,'snd_'+l.id,350,'w_'+w.id];setInstr(intro,false);
  $('stage').querySelector('.alive').onclick=()=>say(['l_'+l.id,200,'snd_'+l.id]);$('stage').querySelector('.meetPic').onclick=()=>say('w_'+w.id);
@@ -293,7 +366,7 @@ function trace(run,ch,phrase){return new Promise(resolve=>{
 /* ---------- mini-game 2: catch bubbles ---------- */
 let bubRAF=0;function stopBubbles(){cancelAnimationFrame(bubRAF);bubRAF=0}
 const BCOL=['#ffd1dc','#ffe59e','#c9f0dd','#cfe0ff','#e6d6ff','#ffd8b8'];
-async function gCatch(run){const l=LET[ST];const learned=LET.slice(0,ST).filter((_,k)=>ready(k));
+async function gCatch(run){const l=LET[ST];const learned=LET.slice(0,ST).filter(x=>!['Ь','Ъ'].includes(x.ch));
  const rounds=[{t:l,need:5}];if(learned.length)rounds.push({t:pick(learned),need:4});
  for(const r of rounds){const ok=await catchRound(run,r.t,r.need,l);if(!ok)return false;await say(praise());if(!alive(run))return false}
  return true}
@@ -317,19 +390,20 @@ function catchRound(run,T,need,cur){return new Promise(resolve=>{
  bubRAF=requestAnimationFrame(step);
 })}
 /* ---------- mini-game 3: what starts with ---------- */
-async function gStart(run){const l=LET[ST];const learned=LET.slice(0,ST).filter((_,k)=>ready(k));
+async function gStart(run){const l=LET[ST];const learned=LET.slice(0,ST);
  const rounds=[l,l];if(learned.length)rounds.push(pick(learned));let used=new Set();
  for(const T of rounds){const ok=await startRound(run,T,used);if(!ok)return false;await say(praise());if(!alive(run))return false;await wait(300)}
  return true}
 function startRound(run,T,used){return new Promise(resolve=>{
- let mine=shuffle(wordsOf(T.ch).filter(w=>w.id!=='au'));mine=[...mine.filter(w=>!used.has(w.id)),...mine.filter(w=>used.has(w.id))].slice(0,2);mine.forEach(w=>used.add(w.id));
- const others=shuffle(WORDS.filter(w=>w.w[0]!==T.ch&&w.id!=='au')).slice(0,2);const set=shuffle([...mine,...others]);
- $('stage').innerHTML=`<div class="target"><button class="tgt" id="tgt">${T.ch}</button></div><div class="cards fade-in">${set.map(w=>`<button class="card" data-id="${w.id}" data-ok="${w.w[0]===T.ch?1:0}">${picSVG(w.id)}<span><b>${w.w[0]}</b>${w.w.slice(1)}</span></button>`).join('')}</div>`;
+ let mine=shuffle(wordsOf(T.ch));mine=[...mine.filter(w=>!used.has(w.id)),...mine.filter(w=>used.has(w.id))].slice(0,2);mine.forEach(w=>used.add(w.id));
+ const others=shuffle(WORDS.filter(w=>!w.w.includes(T.ch)&&w.id!=='au'&&(T.m==='in'||w.w[0]!==T.ch))).slice(0,2);const set=shuffle([...mine,...others]);
+ const lab=w=>T.m==='in'?[...w.w].map(c=>c===T.ch?`<b>${c}</b>`:c).join(''):`<b>${w.w[0]}</b>${w.w.slice(1)}`;
+ $('stage').innerHTML=`<div class="target"><button class="tgt" id="tgt">${T.ch}</button></div><div class="cards fade-in">${set.map(w=>`<button class="card" data-id="${w.id}" data-ok="${fits(w,T)?1:0}">${picSVG(w.id)}<span>${T.m==='in'||fits(w,T)?lab(w):w.w}</span></button>`).join('')}</div>`;
  preload(set.map(w=>'w_'+w.id));
- setInstr(['start_'+T.id,200,'ph_tap_pics']);$('tgt').onclick=()=>say(['start_'+T.id]);
+ setInstr([askOf(T),200,'ph_tap_pics']);$('tgt').onclick=()=>say([askOf(T)]);
  let found=0,done=false;
  $('stage').querySelectorAll('.card').forEach(c=>c.onclick=async()=>{if(done||c.classList.contains('ok'))return;const id=c.dataset.id;
-  if(c.dataset.ok==='1'){c.classList.add('ok');sfx('good');found++;if(found>=2){done=true;await say(['w_'+id,150,'ph_yes']);resolve(alive(run))}else say(['w_'+id,150,'ph_yes'])}
+  if(c.dataset.ok==='1'){c.classList.add('ok');sfx('good');burstAt(c);found++;if(found>=2){done=true;await say(['w_'+id,150,'ph_yes']);resolve(alive(run))}else say(['w_'+id,150,'ph_yes'])}
   else{sfx('bad');c.classList.remove('wob');void c.offsetWidth;c.classList.add('wob');say(['w_'+id,200,'ph_not_word'])}});
  const watch=setInterval(()=>{if(!alive(run)){clearInterval(watch);resolve(false)}if(done)clearInterval(watch)},300);
 })}
@@ -359,11 +433,55 @@ function buildRound(run,w){return new Promise(resolve=>{
    t.onpointercancel=()=>{t.onpointermove=null;t.style.opacity='';if(drag){drag.remove();drag=null}}}});
  const watch=setInterval(()=>{if(!alive(run)){clearInterval(watch);resolve(false)}if(done)clearInterval(watch)},300);
 })}
+/* ---------- particles ---------- */
+function burstAt(el,n=12){if(REDUCED)return;const r=el.getBoundingClientRect(),fx=$('fx');for(let k=0;k<n;k++){const s=document.createElement('i');const a=k/n*6.283+Math.random()*.4,d=50+Math.random()*40;s.style.cssText=`left:${r.left+r.width/2}px;top:${r.top+r.height/2}px;background:${pick(['#f7bd43','#e76f69','#7cc9a8','#8fb4ff','#e6a8ff'])};--dx:${Math.cos(a)*d}px;--dy:${Math.sin(a)*d}px`;s.className=k%3?'spark':'spark star';fx.appendChild(s);setTimeout(()=>s.remove(),700)}}
+/* ---------- mini-game 5: memory pairs (letter <-> picture) ---------- */
+function memSet(i){const cur=LET[i];const pool=shuffle(memLetters(i).filter(l=>l.ch!==cur.ch));
+ for(let tries=0;tries<40;tries++){const ls=[cur,...shuffle(pool).slice(0,2)];const pairs=ls.map(l=>({l,w:pick(wordsOf(l.ch))}));
+  // no picture may also fit another letter of the set (keeps every pair unambiguous)
+  if(pairs.every(p=>ls.every(o=>o===p.l||!fits(p.w,o))))return pairs}
+ return null}
+async function gMemory(run){const pairs=memSet(ST);if(!pairs)return true;
+ const cards=shuffle(pairs.flatMap((p,k)=>[{k,t:'l',p},{k,t:'w',p}]));
+ $('stage').innerHTML=`<div class="mem fade-in">${cards.map((c,n)=>`<button class="mc" data-k="${c.k}" data-t="${c.t}" data-n="${n}" aria-label="Карточка"><span class="mc-in"><span class="mc-b"></span><span class="mc-f">${c.t==='l'?`<b>${c.p.l.ch}</b>`:picSVG(c.p.w.id)}</span></span></button>`).join('')}</div>`;
+ preload(pairs.flatMap(p=>['name_'+p.l.id,'w_'+p.w.id]).concat(['ph_memory']));
+ setInstr(['ph_memory']);
+ return new Promise(resolve=>{let open=[],got=0,busy=false;const els=[...$('stage').querySelectorAll('.mc')];
+  els.forEach(el=>el.onclick=async()=>{if(busy||el.classList.contains('up')||el.classList.contains('ok'))return;const c=cards[+el.dataset.n];el.classList.add('up');sfx('step');
+   say(c.t==='l'?'name_'+c.p.l.id:'w_'+c.p.w.id);open.push(el);
+   if(open.length<2)return;const [a,b]=open;open=[];
+   if(a.dataset.k===b.dataset.k){busy=true;await wait(450);a.classList.add('ok');b.classList.add('ok');sfx('good');burstAt(a,8);burstAt(b,8);got++;busy=false;
+    if(got===pairs.length){await wait(500);if(!alive(run))return resolve(false);await say(praise());resolve(alive(run))}}
+   else{busy=true;await wait(1100);a.classList.remove('up');b.classList.remove('up');busy=false}});
+  const watch=setInterval(()=>{if(!alive(run)){clearInterval(watch);resolve(false)}if(got===pairs.length)clearInterval(watch)},300)})}
+/* ---------- mini-game 6: picture puzzle (rotate 4 pieces), then the first letter ---------- */
+async function gPuzzle(run){const l=LET[ST];const w=pick(wordsOf(l.ch).slice(1).length?wordsOf(l.ch).slice(1):wordsOf(l.ch));
+ const rot=shuffle([90,180,270,0]).map((r,k)=>k===3&&r===0?90:r);
+ const svg=q=>picSVG(w.id).replace('<svg ',`<svg style="left:${-(q%2)*100}%;top:${-(q>>1)*100}%" `);
+ $('stage').innerHTML=`<div class="puz fade-in">${[0,1,2,3].map(q=>`<button class="pz" data-q="${q}" data-r="${rot[q]}" style="--r:${rot[q]}deg" aria-label="Кусочек">${svg(q)}</button>`).join('')}</div><div class="hint">Нажимай на кусочки</div>`;
+ preload(['w_'+w.id,'ph_puzzle','ph_which_letter','name_'+l.id]);
+ setInstr(['ph_puzzle']);
+ const solved=await new Promise(resolve=>{let done=false;const els=[...$('stage').querySelectorAll('.pz')];
+  els.forEach(el=>el.onclick=()=>{if(done)return;const r=+el.dataset.r+90;el.dataset.r=r;el.style.setProperty('--r',r+'deg');sfx('tick');
+   if(els.every(e=>+e.dataset.r%360===0)){done=true;setTimeout(()=>resolve(alive(run)),350)}});
+  const watch=setInterval(()=>{if(!alive(run)){clearInterval(watch);resolve(false)}if(done)clearInterval(watch)},300)});
+ if(!solved)return false;
+ const box=$('stage').querySelector('.puz');box.classList.add('whole');burstAt(box,16);sfx('win');await say(['w_'+w.id]);if(!alive(run))return false;
+ if(l.m!=='start'||w.w[0]!==l.ch){await say(praise());return alive(run)}
+ // which letter does the word start with? (the station letter + 2 other letters)
+ const others=shuffle(LET.filter(x=>x.ch!==l.ch&&!['Ь','Ъ','Й','Ы'].includes(x.ch))).slice(0,2);const opts=shuffle([l,...others]);
+ box.insertAdjacentHTML('afterend',`<div class="pick fade-in">${opts.map(o=>`<button class="tile pl" data-l="${o.ch}" style="--t:76px">${o.ch}</button>`).join('')}</div>`);
+ $('stage').querySelector('.hint').textContent='';
+ setInstr(['ph_which_letter']);
+ return new Promise(resolve=>{let done=false;$('stage').querySelectorAll('.pl').forEach(b=>b.onclick=async()=>{if(done)return;const o=L_BY[b.dataset.l];
+  if(o.ch===l.ch){done=true;b.classList.add('okb');sfx('good');burstAt(b);await say(['name_'+l.id,200,praise()]);resolve(alive(run))}
+  else{sfx('bad');b.classList.remove('wob');void b.offsetWidth;b.classList.add('wob');say(['name_'+o.id,250,'ph_try_again'])}});
+  const watch=setInterval(()=>{if(!alive(run)){clearInterval(watch);resolve(false)}if(done)clearInterval(watch)},300)})}
 /* ---------- reward ---------- */
 function confetti(){const c=$('confetti');c.innerHTML='';for(let n=0;n<40;n++){const i=document.createElement('i');i.style.cssText=`left:${Math.random()*100}%;background:${pick(['#f7bd43','#e76f69','#7cc9a8','#8fb4ff','#e6a8ff'])};animation-delay:${Math.random()*1.2}s;animation-duration:${2.4+Math.random()*1.6}s`;c.appendChild(i)}}
-async function finishStation(){const i=ST;const first=!isDone(i);save.done[i]=1;store();
- $('rewardSticker').innerHTML=picSVG(stickerOf(i))+`<i>${LET[i].ch}</i>`;show('reward');confetti();sfx('win');say(['ph_station_done']);
- $('rewardNext').onclick=()=>{stopVoice();openMap();if(first&&i+1<LET.length)setTimeout(()=>say(ready(i+1)?'ph_next_station':'ph_soon'),400)}}
+async function finishStation(){const i=ST;const first=!isDone(i);save.done[i]=1;save.pl[i]=(save.pl[i]||0)+1;delete save.gn[i];store();
+ $('rewardSticker').innerHTML=picSVG(stickerOf(i))+`<i>${LET[i].ch}</i>`;show('reward');confetti();sfx('win');say(['ph_station_done']);setTimeout(()=>{if(screen==='reward')burstAt($('rewardSticker'),18)},650);
+ $('rewardNext').onclick=()=>{stopVoice();openMap();if(first&&i+1<LET.length)setTimeout(()=>say('ph_next_station'),400)}}
 /* ---------- album ---------- */
 function openAlbum(){show('album');const got=LET.filter((_,i)=>isDone(i)).length;$('albumCount').textContent=`Наклеек: ${got} из ${LET.length}`;
  $('albumGrid').innerHTML=LET.map((l,i)=>isDone(i)?`<button class="al got" data-i="${i}">${picSVG(stickerOf(i))}<i>${l.ch}</i></button>`:`<div class="al">${l.ch}</div>`).join('');
@@ -371,6 +489,6 @@ function openAlbum(){show('album');const got=LET.filter((_,i)=>isDone(i)).length
  say('ph_album')}
 addEventListener('resize',()=>{if(screen==='map')openMap()});
 /* test hooks */
-window.BG={traceTest:(ch)=>{show('station');const run=++gameRun;return trace(run,ch,'ph_trace')},get save(){return save},LET,WORDS,ready,gamesOf,buildPool,get state(){return {screen,ST,GI,game:GAMES[GI]}}};
+window.BG={W_BY,memLetters,fits,traceTest:(ch)=>{show('station');const run=++gameRun;return trace(run,ch,'ph_trace')},get save(){return save},LET,WORDS,ready,gamesOf,buildPool,get state(){return {screen,ST,GI,game:GAMES[GI]}}};
 </script>
 </body></html>
