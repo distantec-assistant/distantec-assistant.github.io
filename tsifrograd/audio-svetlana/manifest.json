@@ -286,41 +286,41 @@
       }
     },
     "ph_pick_station": {
-      "source_text": "В+ыбери ст+анцию, и по+ехали!",
-      "request_sha256": "8fcd2b6f73b7409cf50f445a0981249020883b23d97a74c86fc4710ed174017f",
+      "source_text": "Выбери станцию. Начинаем путешествие!",
+      "request_sha256": "58b276df7ac03a2027d26867ebc0f5d8798c30f76077ccc66171459da4ec3ee9",
       "voice": "ru-RU-SvetlanaNeural",
-      "text": "Вы́бери ста́нцию, и пое́хали!",
+      "text": "Выбери станцию. Начинаем путешествие!",
       "rate": "+0%",
       "pitch": "+0Hz",
-      "duration_seconds": 2.64,
-      "active_seconds": 2.04,
-      "bytes": 21357,
-      "sha256": "e5b195c9edcf0b9888e1ada8a72a3aad43f56856dda825bde7be00a0194c0bc1",
+      "duration_seconds": 4.392,
+      "active_seconds": 2.68,
+      "bytes": 35373,
+      "sha256": "4300f70e9e864fdc9ba307fa9f27b5b67ed468f3d7bb8d0f4106509adcb0864b",
       "word_timings": [
         {
-          "text": "Вы́бери",
+          "text": "Выбери",
           "start": 0.1,
           "duration": 0.5
         },
         {
-          "text": "ста́нцию",
+          "text": "станцию",
           "start": 0.6,
-          "duration": 0.6625
+          "duration": 0.85
         },
         {
-          "text": "и",
-          "start": 1.5,
-          "duration": 0.15
+          "text": "Начинаем",
+          "start": 2.375,
+          "duration": 0.7625
         },
         {
-          "text": "пое́хали",
-          "start": 1.65,
-          "duration": 0.7875
+          "text": "путешествие",
+          "start": 3.1375,
+          "duration": 1.0625
         }
       ],
       "trim": {
         "start_seconds": 0.02,
-        "end_seconds": 2.5975,
+        "end_seconds": 4.36,
         "revision": 1
       }
     },
