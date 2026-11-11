@@ -7,6 +7,8 @@
     python3 tools/test_svetlana_browser.py --only bukvograd-О-catch-phone
 
 Default: temporary loopback-only HTTP server, closed even after a failed case.
+Set GAME_AUDIO_BANK=audio to verify the restored Julia bank; the default remains
+audio-svetlana for the archived Svetlana migration. The other bank is forbidden.
 LAB_CHROME (or SV_CHROME) may select an installed Chromium. Every run receives a
 unique evidence directory. Failures do not prevent independent cases running.
 Native WebAudio is observed, not replaced: fetch/decode/start/stop pass through.
@@ -31,6 +33,10 @@ from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
 COUNTS = {"bukvograd": 523, "tsifrograd": 106, "tsifrograd-lab": 21}
+AUDIO_BANK = os.environ.get("GAME_AUDIO_BANK", "audio-svetlana")
+if AUDIO_BANK not in {"audio", "audio-svetlana"}:
+    raise ValueError("GAME_AUDIO_BANK must name an existing supported bank")
+INACTIVE_AUDIO_BANK = "audio-svetlana" if AUDIO_BANK == "audio" else "audio"
 KEYS = ("bukvograd-v1", "tsifrograd-v1", "tsifrograd-lab-v1")
 SIZES = {"phone": {"width": 390, "height": 844}, "tablet": {"width": 1024, "height": 768}}
 LETTERS = [("А", "a", 0), ("М", "m", 1), ("О", "o", 2), ("Ы", "y", 12)]
@@ -179,7 +185,7 @@ class Suite:
         assert observed, f"recording was requested but unavailable: {clip}"
         if bank:
             actual = unquote(urlsplit(observed["url"]).path)
-            expected_suffix = f"/{bank}/audio-svetlana/{clip}.mp3"
+            expected_suffix = f"/{bank}/{AUDIO_BANK}/{clip}.mp3"
             if not actual.endswith(expected_suffix):
                 self.case["errors"].append({"code": "wrong-playback-bank", "clip": clip,
                                              "expected_suffix": expected_suffix, "actual": actual})
@@ -263,8 +269,8 @@ class Suite:
                 clean = safe_url(request.url)
                 case["requests"].append({"method": request.method, "type": request.resource_type, "url": clean})
                 path = unquote(parsed.path)
-                if re.search(r"/(bukvograd|tsifrograd|tsifrograd-lab)/audio/[^/]+\.mp3$", path, re.I):
-                    case["errors"].append({"code": "legacy-audio-request", "url": clean})
+                if re.search(rf"/(bukvograd|tsifrograd|tsifrograd-lab)/{re.escape(INACTIVE_AUDIO_BANK)}/[^/]+\.mp3$", path, re.I):
+                    case["errors"].append({"code": "inactive-audio-request", "url": clean})
                 if (parsed.scheme, parsed.netloc) != origin:
                     case["errors"].append({"code": "external-request-blocked", "url": clean})
                 if request.method not in {"GET", "HEAD"}:
@@ -518,7 +524,7 @@ def main():
     run = Path(tempfile.mkdtemp(prefix="browser-", dir=out))
     server = None
     browser = None
-    report = {"schema": 1, "result": "RED", "full_coverage": not bool(args.only), "cases": [], "errors": [],
+    report = {"schema": 1, "result": "RED", "audio_bank": AUDIO_BANK, "full_coverage": not bool(args.only), "cases": [], "errors": [],
               "limitations": ["Chromium with touch emulation; not Safari or a physical device/child playtest.",
                               "Actual response/decode/native WebAudio starts are observed, not audible intelligibility.",
                               "Mute is tested only where implemented: tsifrograd-lab. Original pages have repeat/exit, no mute control.",
@@ -536,7 +542,7 @@ def main():
             base = f"http://127.0.0.1:{server.server_address[1]}"
             report["source_sha256_before"] = source_hashes()
             for bank, count in COUNTS.items():
-                directory = ROOT / bank / "audio-svetlana"
+                directory = ROOT / bank / AUDIO_BANK
                 found = len(list(directory.glob("*.mp3"))) if directory.is_dir() else 0
                 if found != count:
                     report["errors"].append({"code": "missing-bank" if not directory.is_dir() else "incomplete-bank",

@@ -208,7 +208,7 @@ try:
         # Real network/decode request, not a claim that a human heard the speaker.
         context, page = fixture_context(browser, viewport={'width': 390, 'height': 844})
         open_game(page, 'orders')
-        with page.expect_response(lambda response: '/tsifrograd/audio-svetlana/c_1.mp3' in response.url) as response:
+        with page.expect_response(lambda response: '/tsifrograd/audio/c_1.mp3' in response.url) as response:
             page.locator('[data-action="add"][data-value="1"]').click()
         assert response.value.status == 200
         page.locator('#sound').click()

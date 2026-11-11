@@ -1,7 +1,7 @@
 import { GAME_IDS, createRound, addPiece, removePiece, transfer, total, evaluate } from './model.mjs';
 import { scene, portrait, item, train } from './art.mjs';
 import { KEY, parseProgress, winProgress } from './progress.mjs';
-import { clipUrl, instruction, feedbackClip } from './narration.mjs?v=3';
+import { clipUrl, instruction, feedbackClip } from './narration.mjs?v=4';
 
 const $ = id => document.getElementById(id);
 const CONFIG = {
@@ -22,7 +22,7 @@ function persist() {
   catch { storageAvailable = false; $('save-note').textContent = 'Сохранение недоступно — результаты останутся до закрытия страницы'; }
 }
 
-// Svetlana is synthesized only at build time; the browser plays static files.
+// Julia recordings are already built; the browser plays static files.
 const failedAudio = new Set();
 class Voice {
   constructor() { this.generation = 0; this.context = null; this.cache = new Map(); this.source = null; this.finish = null; }
