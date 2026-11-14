@@ -1,0 +1,56 @@
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{margin:0;font-family:ui-rounded,'Arial Rounded MT Bold','Nunito',system-ui,sans-serif;background:#fff8ed;color:#574d70;overflow:hidden;overscroll-behavior:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+body:before{content:'';position:fixed;inset:0;z-index:-1;background:radial-gradient(ellipse at 10% 5%,#ffe5e7,transparent 45%),radial-gradient(ellipse at 100% 95%,#d9f4ee,transparent 50%)}
+button{border:0;font:inherit;color:inherit;cursor:pointer;background:none;touch-action:manipulation}
+button:focus-visible,a:focus-visible{outline:3px solid #e76f69;outline-offset:2px}
+.screen{position:fixed;inset:0;display:none;flex-direction:column;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+.screen.on{display:flex}
+header.bar{display:flex;align-items:center;gap:8px;padding:10px 12px 6px;width:min(100%,760px);margin:0 auto}
+header.bar h1{flex:1;margin:0;font-size:clamp(19px,5vw,25px);text-align:center;letter-spacing:-.5px}
+.ib{width:52px;height:52px;border-radius:18px;background:#fff;box-shadow:0 4px 0 #ece3d9;display:grid;place-items:center;flex:none}
+.ib:active{transform:translateY(3px);box-shadow:0 1px 0 #ece3d9}
+.ib svg{width:28px;height:28px}
+footer.foot{text-align:center;padding:6px 0 10px;font-size:13px;min-height:36px}
+#back{position:relative;color:#9a8b9e;text-decoration:none;touch-action:none;user-select:none;padding:6px 10px;display:inline-block}
+#back:after{content:'';position:absolute;height:2px;background:#9a8b9e;bottom:2px;left:10px;right:10px;transform:scaleX(0);transform-origin:left}
+#back.holding:after{transform:scaleX(1);transition:transform 1s linear}
+#help{display:block;height:15px;font-size:12px;color:#b5a6b3}
+#footer{position:fixed;left:0;right:0;bottom:0;padding-bottom:env(safe-area-inset-bottom);z-index:5;display:none;background:linear-gradient(transparent,#fff8edee 40%)}
+body.playing #footer{display:block}
+/* home */
+#home{align-items:center;justify-content:center;text-align:center;padding:20px}
+#home h2{font-size:clamp(46px,13vw,76px);margin:6px 0 0;letter-spacing:-2px;color:#574d70}
+#home h2 span{color:#e76f69}
+#home p{margin:8px 0 26px;color:#9a8b9e;font-size:16px}
+.homeBack{color:#9a8b9e;text-decoration:none;font-size:14px;padding:6px 10px}
+@keyframes pulse{50%{transform:scale(1.08)}}
+/* station */
+#station header.bar{padding-bottom:2px}
+#dots{display:flex;gap:8px;flex:1;justify-content:center}
+#dots i{width:20px;height:20px;border-radius:50%;background:#efe5da;display:block;transition:.3s}
+#dots i.ok{background:#7cc9a8}#dots i.now{background:#f7bd43;transform:scale(1.25)}
+#stLetter{font-size:30px;font-weight:800;width:52px;height:52px;border-radius:18px;background:#ffe8a3;display:grid;place-items:center;box-shadow:0 4px 0 #efd27a;flex:none}
+#stage{flex:1;position:relative;width:min(100%,760px);margin:0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 12px 56px;min-height:0}
+@keyframes wobble{20%{margin-left:-10px}40%{margin-left:9px}60%{margin-left:-6px}80%{margin-left:4px}}
+.spark{position:absolute;width:12px;height:12px;border-radius:50%;pointer-events:none;animation:spark .6s ease-out forwards}
+@keyframes spark{to{transform:translate(var(--dx),var(--dy)) scale(.2);opacity:0}}
+/* fx layer */
+#fx{position:fixed;inset:0;pointer-events:none;z-index:30;overflow:hidden}
+#fx .spark{position:fixed;margin:-6px 0 0 -6px}
+#fx .spark.star{border-radius:2px;transform:rotate(45deg)}
+/* reward */
+#reward{align-items:center;justify-content:center;text-align:center;background:#fff8edf2;z-index:10;overflow:hidden}
+#reward strong{font-size:clamp(28px,8vw,40px);margin:14px 0 22px;display:block}
+#rewardSticker{width:min(60vw,260px);height:min(60vw,260px);border-radius:50%;background:#fff;box-shadow:0 10px 0 #ece3d9,0 0 0 10px #ffe8a3;padding:22px;position:relative;margin:0 auto;animation:stickerIn .9s cubic-bezier(.3,1.6,.5,1)}
+#rewardSticker svg{width:100%;height:100%}
+#rewardSticker i{position:absolute;right:-6px;bottom:-6px;width:70px;height:70px;border-radius:50%;background:#e76f69;color:#fff;font-style:normal;font-size:42px;font-weight:800;display:grid;place-items:center;box-shadow:0 4px 0 #c4544f}
+@keyframes stickerIn{from{transform:scale(0) rotate(-200deg)}}
+#rewardNext{margin-top:28px;width:120px;height:86px;border-radius:28px;background:#7cc9a8;color:#fff;font-size:46px;box-shadow:0 7px 0 #5aa587}
+@media(max-height:560px){#rewardSticker{width:min(38vh,260px);height:min(38vh,260px);padding:14px}#rewardSticker i{width:52px;height:52px;font-size:30px}#reward strong{margin:10px 0 12px;font-size:28px}#rewardNext{margin-top:8px;height:70px}}
+#confetti{position:absolute;inset:0;pointer-events:none}
+#confetti i{position:absolute;top:-30px;width:12px;height:18px;border-radius:3px;animation:fall 3s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(540deg)}}
+.fade-in{animation:fadeIn .35s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}}
+@keyframes bigpop{40%{transform:scale(1.25) rotate(-4deg)}}

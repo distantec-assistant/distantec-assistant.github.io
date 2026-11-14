@@ -1,0 +1,12 @@
+# one-off: assemble template.html from the shared Цифроград/Буквоград engine parts + the pairs game
+T=open('/workspace/games/tsifrograd/src/template.html').read().split('\n')
+L=lambda a,b:'\n'.join(T[a-1:b])
+css_shared='\n'.join([L(8,27),L(28,32),L(38,38),L(59,59),L(62,68),L(84,86),L(115,118),L(137,148),L(156,157),L(183,183)])
+js_util=L(271,276)
+js_audio=L(297,318)
+js_hold=L(329,334)
+js_art=L(335,337)
+js_burst=L(401,401)
+open('shared_css.txt','w').write(css_shared)
+open('shared_js.txt','w').write('\n'.join([js_util,js_audio,js_hold,js_art,js_burst]))
+print(len(css_shared),len(js_util+js_audio+js_hold+js_art+js_burst))

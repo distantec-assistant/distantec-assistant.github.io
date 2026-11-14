@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>Найди пару</title>
+<meta name="theme-color" content="#fff8ed">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='6' y='14' width='46' height='62' rx='10' fill='%23f7bd43' transform='rotate(-8 29 45)'/%3E%3Crect x='46' y='22' width='46' height='62' rx='10' fill='%237cc9a8' transform='rotate(8 69 53)'/%3E%3C/svg%3E">
+<style>
+/*SHARED_CSS*/
+/* ---------- Найди пару ---------- */
+#home{padding:12px 16px 40px;gap:4px}
+#home h2{margin:0}
+#home p{margin:2px 0 14px}
+.hero{display:flex;gap:14px;justify-content:center;margin-bottom:6px;perspective:700px}
+.hero .mc{width:var(--hc);height:var(--hc);pointer-events:none}
+#home{--hc:min(22vw,12svh,104px)}
+.tiles{display:grid;grid-template-columns:repeat(3,var(--t));gap:var(--tg);justify-content:center;--t:min(29vw,calc((100svh - 330px)/2.3),200px);--tg:min(3.4vw,16px)}
+.tile{width:var(--t);border-radius:26px;background:#fff;box-shadow:0 6px 0 #ece3d9;padding:9% 8% 8%;display:flex;flex-direction:column;align-items:center;gap:6px;position:relative}
+.tile:active{transform:translateY(4px);box-shadow:0 2px 0 #ece3d9}
+.tile .ic{width:78%;aspect-ratio:1;display:grid;place-items:center}
+.tile .ic svg{width:100%;height:100%}
+.tile .ic b{font-size:calc(var(--t)*.36);font-weight:800;line-height:1;color:#e76f69}.tile .ic b i{font-style:normal;color:#5b8def;font-size:.8em}
+.tile .td{display:flex;gap:4px}.tile .td i{width:9px;height:9px;border-radius:50%;background:#efe5da}.tile .td i.ok{background:#7cc9a8}
+.tile.last{box-shadow:0 6px 0 #ece3d9,0 0 0 4px #ffd34d}
+.tile .tt{font-size:clamp(11px,calc(var(--t)*.1),15px);font-weight:700;color:#9a8b9e;text-align:center;line-height:1.1;min-height:2.2em;display:flex;align-items:center}
+@media(orientation:landscape){.tiles{grid-template-columns:repeat(6,var(--t));--t:min(14.5vw,calc((100svh - 190px)/1.45),190px)}#home{--hc:min(12vw,13svh,96px)}}
+@media(orientation:portrait) and (max-aspect-ratio:1/2){.tiles{grid-template-columns:repeat(2,var(--t));--t:min(42vw,calc((100svh - 300px)/3.7),190px)}}
+@media(max-height:500px){#home h2{font-size:38px}#home p{display:none}.hero{display:none}.tiles{--t:min(14.5vw,calc((100svh - 120px)/1.45),160px)}}
+/* board */
+#stage{padding:6px 8px 46px}
+.board{display:grid;grid-template-columns:repeat(var(--c),var(--s));gap:var(--g);justify-content:center;align-content:center;perspective:900px}
+.mc{width:var(--s);height:var(--s);padding:0;perspective:700px;position:relative}
+.mc-in{position:relative;display:block;width:100%;height:100%;transition:transform .5s cubic-bezier(.45,1.45,.55,1);transform-style:preserve-3d}
+.mc.up .mc-in,.mc.ok .mc-in{transform:rotateY(180deg)}
+.mc.back .mc-in{transition:transform .7s cubic-bezier(.5,.1,.3,1)}
+.mc-b,.mc-f{position:absolute;inset:0;border-radius:calc(var(--s)*.16);backface-visibility:hidden;-webkit-backface-visibility:hidden;display:grid;place-items:center;box-shadow:0 5px 0 #0000001a}
+.mc-b{background:var(--bk,#f7bd43);border:4px solid #fff}
+.mc-b:before{content:'';position:absolute;inset:9%;border-radius:calc(var(--s)*.11);background:radial-gradient(circle,#ffffff66 0 16%,transparent 18%) 0 0/calc(var(--s)*.22) calc(var(--s)*.22);border:2px dashed #ffffff99}
+.mc-b svg{width:38%;height:38%;position:relative}
+.mc-f{background:#fff;transform:rotateY(180deg);padding:11%}
+.mc-f svg{width:100%;height:100%}
+.mc-f b{font-size:calc(var(--s)*.62);font-weight:800;color:#e76f69;line-height:1}
+.mc.ok .mc-f{background:#e3f6ee;box-shadow:0 5px 0 #a8dcc6,0 0 0 4px #7cc9a8}
+.mc.ok{animation:hop .6s cubic-bezier(.3,1.6,.5,1) .45s both}
+@keyframes hop{0%{transform:none}35%{transform:translateY(-14%) scale(1.08)}70%{transform:translateY(2%) scale(.97)}100%{transform:none}}
+.mc.deal{animation:deal .45s cubic-bezier(.3,1.5,.5,1) both}
+@keyframes deal{from{transform:translateY(30px) scale(.4);opacity:0}}
+.board.win .mc{animation:wave .7s ease-in-out both}
+@keyframes wave{40%{transform:translateY(-12%) rotate(-4deg)}}
+/* reward: compact in landscape */
+#rewardBtns{display:flex;gap:16px;justify-content:center;align-items:center}
+#rewardHome{width:86px;height:86px;border-radius:28px;background:#fff;box-shadow:0 7px 0 #ece3d9;display:grid;place-items:center;margin-top:28px}
+#rewardHome svg{width:40px;height:40px}
+#rewardStars{display:flex;gap:6px;justify-content:center;margin-top:14px}#rewardStars i{width:14px;height:14px;border-radius:50%;background:#efe5da}#rewardStars i.ok{background:#7cc9a8}
+@media(max-height:560px){#reward{flex-direction:row;gap:48px}#reward #rewardSticker{margin:0}#reward strong{margin:0 0 6px}#rewardHome{margin-top:8px;height:70px;width:70px}#rewardStars{margin:4px 0 6px}}
+</style></head>
+<body>
+<section id="home" class="screen on">
+ <div class="hero" id="hero"></div>
+ <h2>Найди <span>пару</span></h2>
+ <p>Запоминай и открывай карточки</p>
+ <div class="tiles" id="tiles"></div>
+ <a class="homeBack" href="https://games.distantec.app/">← Все игры</a>
+</section>
+<section id="station" class="screen">
+ <header class="bar"><button class="ib" data-go="home" aria-label="На главный экран">HOMEICON</button><div id="dots"></div><button class="ib" id="repeat" aria-label="Повторить задание"><svg viewBox="0 0 24 24" fill="none" stroke="#574d70" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9z" fill="#ffe8a3"/><path d="M16 8.5a5 5 0 010 7M18.5 6a8.5 8.5 0 010 12"/></svg></button></header>
+ <div id="stage"></div>
+</section>
+<section id="reward" class="screen"><div id="confetti"></div><div id="rewardSticker"></div><div><strong>Ура!</strong><div id="rewardStars"></div><div id="rewardBtns"><button id="rewardHome" class="ib2" aria-label="На главный экран"></button><button id="rewardNext" aria-label="Дальше">➜</button></div></div></section>
+<div id="fx"></div><div id="footer"><footer class="foot"><a id="back" href="https://games.distantec.app/" draggable="false">← Все игры</a><span id="help" role="status"></span></footer></div>
+<script>
+/*PICS*/
+const DATA=/*DATA*/;
+/*SHARED_JS*/
+/*GAME*/
+</script>
+</body></html>
