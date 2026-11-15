@@ -1,59 +1,91 @@
-/* Decorative SVGs only. The game UI owns wrapper dimensions and placement. */
+/* Decorative wrappers only. The game owns size, placement and interaction. */
 .art-backdrop,
+.art-scene,
 .art-portrait,
 .art-item,
-.art-train {
+.art-train,
+.art-world-map,
+.art-map,
+.art-landmark {
   pointer-events: none;
   user-select: none;
   -webkit-user-select: none;
   line-height: 0;
 }
 
-.art-backdrop {
+.art-backdrop,
+.art-scene {
   overflow: hidden;
 }
 
-.art-item {
+.art-item,
+.art-landmark {
   display: inline-block;
   vertical-align: middle;
 }
 
 .art-backdrop > svg,
+.art-scene > svg,
 .art-portrait > svg,
 .art-item > svg,
-.art-train > svg {
+.art-train > svg,
+.art-world-map > svg,
+.art-map > svg,
+.art-landmark > svg {
   display: block;
   width: 100%;
   height: 100%;
 }
 
-.art-portrait > svg,
-.art-item > svg,
-.art-train > svg {
-  overflow: visible;
+/* Nothing is translated or rotated by CSS: SVG groups keep their layout. */
+.art-portrait .art-cheek,
+.art-train .art-cheek,
+.art-backdrop .art-cheek,
+.art-scene .art-cheek,
+.art-world-map .art-cheek,
+.art-map .art-cheek {
+  opacity: .76;
 }
 
-.art-portrait .art-cheek {
-  opacity: .72;
+.art-train .art-steam,
+.art-backdrop .art-steam,
+.art-scene .art-steam,
+.art-world-map .art-steam,
+.art-map .art-steam {
+  animation: tsifrograd-art-breathe 6s ease-in-out infinite;
 }
 
-/* Opacity only: never animate a group's positioning transform. */
-.art-train .art-steam {
-  animation: tsifrograd-art-steam 5s ease-in-out infinite;
+.art-train .art-steam-far,
+.art-backdrop .art-steam-far,
+.art-scene .art-steam-far,
+.art-world-map .art-steam-far,
+.art-map .art-steam-far {
+  animation-delay: -3s;
 }
 
-.art-train .art-steam-far {
-  animation-delay: -2.5s;
-}
-
-@keyframes tsifrograd-art-steam {
-  0%, 100% { opacity: .68; }
+@keyframes tsifrograd-art-breathe {
+  0%, 100% { opacity: .65; }
   50% { opacity: 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .art-train .art-steam {
-    animation: none;
-    opacity: 1;
+  .art-backdrop,
+  .art-backdrop *,
+  .art-scene,
+  .art-scene *,
+  .art-portrait,
+  .art-portrait *,
+  .art-item,
+  .art-item *,
+  .art-train,
+  .art-train *,
+  .art-world-map,
+  .art-world-map *,
+  .art-map,
+  .art-map *,
+  .art-landmark,
+  .art-landmark * {
+    animation: none !important;
+    transition: none !important;
   }
 }

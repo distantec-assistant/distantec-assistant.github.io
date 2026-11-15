@@ -3,61 +3,69 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#fff7e9">
+  <meta name="theme-color" content="#fff9ec">
   <meta name="robots" content="noindex,nofollow">
-  <title>Цифроград — новые приключения</title>
-  <meta name="description" content="Три новых приключения Цифрограда: собираем заказы, угощаем друзей поровну и строим мосты. Экспериментальная версия.">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23f5c04f'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='Arial' font-size='40' font-weight='bold' fill='%23514765'%3E30%3C/text%3E%3C/svg%3E">
-  <link rel="stylesheet" href="./art.css?v=1">
-  <link rel="stylesheet" href="./style.css?v=1">
+  <title>Цифроград — маленькое путешествие</title>
+  <meta name="description" content="Пять станций Цифрограда: играем с числами, помогаем друзьям и путешествуем без спешки. Отдельная тестовая версия.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23ffd763'/%3E%3Ctext x='32' y='46' text-anchor='middle' font-family='Arial' font-size='40' font-weight='bold' fill='%23244c45'%3E5%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./art.css?v=5">
+  <link rel="stylesheet" href="./style.css?v=5">
 </head>
 <body>
-  <div class="app-shell" data-build="adventures-v4-julia">
+  <div class="app-shell" data-build="journey-v2-preview-1">
     <header class="site-header">
-      <a class="wordmark" href="./" aria-label="Цифроград, выбор приключения">Цифро<span>град</span><small>Новые приключения</small></a>
+      <button class="wordmark" type="button" data-action="home" aria-label="Цифроград, на карту">Цифро<span>град</span><i aria-hidden="true">•</i></button>
       <div class="header-right">
-        <span class="preview-label">Пробуем новое</span>
-        <button class="icon-button sound-button" id="sound" type="button" aria-label="Выключить звук" aria-pressed="false"></button>
+        <span class="preview-label">тест</span>
+        <button class="icon-button sound-button" id="sound" data-action="sound" type="button" aria-label="Выключить звук" aria-pressed="true"></button>
       </div>
     </header>
+    <p id="voice-note" class="notice voice-note" role="status" hidden>Запись пока не загрузилась. Нажмите «Послушать» ещё раз — попробуем снова.</p>
     <main>
-      <section id="home" aria-labelledby="home-title">
-        <div class="home-hero">
-          <div class="hero-copy">
-            <span class="eyebrow">Маленький поезд · большие дела</span>
-            <h1 id="home-title">Каждая станция —<br><span>новое приключение</span></h1>
-            <p>Собирай заказы, угощай друзей и строй мосты.<br class="desktop-break"> С числами от 1 до 30 — и без спешки.</p>
-            <button class="primary-button journey-start" type="button" data-action="journey">Всё путешествие <span aria-hidden="true">→</span></button>
-          </div>
-          <div class="hero-world" aria-hidden="true"><div id="hero-scene"></div><div id="hero-train" class="art-train"></div><span class="hero-ticket">Билет до 30</span></div>
+      <section id="home" data-stage="1" aria-labelledby="home-title">
+        <div class="home-heading"><h1 id="home-title" tabindex="-1">Куда поедем?</h1><span>Выбирай любую станцию</span></div>
+        <div class="world-board">
+          <div id="world-map" class="world-map art-backdrop" aria-hidden="true"></div>
+          <div class="map-train art-train" id="map-train" aria-hidden="true"></div>
+          <div class="map-sign" aria-hidden="true">Маленькие шаги — большие открытия</div>
+          <div id="stations" class="stations" role="group" aria-label="Пять станций"></div>
         </div>
-        <div class="section-heading"><h2>Или выбери, во что играть</h2><span>Все занятия открыты</span></div>
-        <div id="game-cards" class="game-cards"></div>
-        <div class="parent-notes">
-          <a class="classic-link" href="../tsifrograd/">← Привычный Цифроград</a>
-          <details><summary>Для родителей · что это за версия</summary><p>Это отдельная площадка для проверки новых занятий. Прогресс привычного Цифрограда не меняется. Здесь сохраняется только число выполненных заданий и настройка звука — на этом устройстве, без регистрации и отправки данных.</p><p>Новые иллюстрации нарисованы специально для этой версии. <strong>Инструкции, числа и подсказки озвучены голосом Юлия.</strong> Готовые записи загружаются как обычные аудиофайлы; русский системный голос на устройстве не нужен. Сайт не обращается к API синтеза и не содержит ключей.</p></details>
+        <div class="departure">
+          <div class="departure-place"><span class="ticket-mark" aria-hidden="true">↗</span><div><strong id="selected-place">Лужайка</strong><span id="selected-range">Числа 1–5 · два коротких задания</span></div></div>
+          <button id="start-journey" class="primary-button journey-start" type="button" data-action="journey">Поехали <span aria-hidden="true">→</span></button>
         </div>
+        <p id="journey-note" class="journey-note" role="status" hidden></p>
+        <section class="practice" aria-labelledby="practice-title">
+          <div class="section-heading"><h2 id="practice-title">Или выбери игру</h2><span id="practice-range">На этой станции</span></div>
+          <div id="game-cards" class="game-cards"></div>
+        </section>
+        <details class="parent-notes">
+          <summary>Для взрослых</summary>
+          <p>Начните с лужайки и чисел 1–5. Кнопка «Поехали» даёт ровно два коротких задания выбранной станции. После них игра не повышает сложность сама. Все пять станций открыты; длинный счёт можно выбрать отдельно.</p>
+          <p>На лужайке и в лесу поезд мягко помогает. В мастерской и большом путешествии заказы, угощения и мосты нужно проверить самостоятельно: можно добавить лишнее, убрать или переложить и попробовать снова. Здесь нет таймера, оценок и наказаний.</p>
+          <p>Это отдельный тестовый Цифроград. Настройка звука и результаты сохраняются только в этом браузере. Сохранения привычной версии не читаются и не меняются. Юлия говорит готовыми MP3-записями: без системного голоса, регистрации и запросов к синтезатору.</p>
+          <a class="classic-link" href="../tsifrograd/">Открыть привычный Цифроград →</a>
+        </details>
       </section>
       <section id="game" hidden aria-labelledby="game-title" data-phase="playing">
         <div class="game-toolbar">
-          <button class="icon-button" type="button" data-action="home" aria-label="К выбору игр"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11 12 3l9 8M5 10v11h5v-7h4v7h5V10"/></svg></button>
+          <button class="icon-button" type="button" data-action="home" aria-label="На карту"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-8 9 8M5 10v11h5v-7h4v7h5V10"/></svg></button>
           <div class="game-heading"><span id="game-kicker" class="eyebrow"></span><h1 id="game-title"></h1></div>
-          <button class="icon-button" type="button" data-action="repeat" aria-label="Послушать задание"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 4 5 9H2v6h3l6 5ZM15 8q5 4 0 8M18 4q9 8 0 16"/></svg></button>
-          <button class="icon-button" type="button" data-action="reset" aria-label="Начать это задание заново"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9a9 9 0 1 1 0 7M4 3v6h6"/></svg></button>
+          <button class="icon-button" type="button" data-action="repeat" aria-label="Послушать задание" title="Послушать"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m11 4-6 5H2v6h3l6 5ZM15 8q5 4 0 8M18 4q9 8 0 16"/></svg></button>
+          <button class="icon-button" type="button" data-action="reset" aria-label="Начать задание заново" title="Заново"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9a9 9 0 1 1 0 7M4 3v6h6"/></svg></button>
         </div>
-        <div class="task-banner"><div id="task-icon" class="task-icon"></div><p id="task-text"></p><span id="task-number" class="task-number"></span></div>
-        <p id="voice-note" class="voice-note" hidden>Не удалось загрузить часть озвучки. Проверьте интернет и нажмите «Послушать задание» ещё раз.</p>
+        <div class="task-banner"><div id="task-icon" class="task-icon art-portrait" aria-hidden="true"></div><p id="task-text"></p><span id="task-number" class="task-number" hidden></span></div>
         <div id="board" class="board"></div>
         <div class="action-area">
-          <p id="feedback" class="feedback" role="status" aria-live="polite"></p>
-          <button id="check" class="primary-button check-button" type="button" data-action="check"></button>
-          <div id="reward" class="reward" hidden><div><span class="reward-star" aria-hidden="true">★</span><strong id="reward-title">Получилось!</strong><p id="reward-text"></p></div><button id="next" class="primary-button" type="button" data-action="next">Ещё задание →</button><button class="secondary-button" type="button" data-action="home">Выбрать другую игру</button></div>
+          <p id="feedback" class="feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+          <div class="task-actions"><button id="help" class="secondary-button help-button" type="button" data-action="help"><span aria-hidden="true">?</span> Подсказка</button><button id="check" class="primary-button check-button" type="button" data-action="check" hidden>Проверить</button></div>
+          <div id="reward" class="reward" hidden><div class="reward-copy"><span class="reward-star" aria-hidden="true">★</span><div><strong id="reward-title">Получилось!</strong><p id="reward-text"></p></div></div><button id="next" class="primary-button" type="button" data-action="next">Дальше →</button><button class="secondary-button" type="button" data-action="home">На карту</button></div>
         </div>
       </section>
     </main>
-    <footer><span>Цифроград · игровая мастерская</span><span id="save-note">Без таймера и без потери прогресса</span></footer>
-    <noscript><p>Для этих игр нужен JavaScript. Включите его в браузере и обновите страницу.</p></noscript>
+    <footer><span>Цифроград · без спешки</span><span id="save-note" role="status">Прогресс только на этом устройстве</span></footer>
+    <noscript><p class="notice">Чтобы поезд поехал, включите JavaScript и обновите страницу.</p></noscript>
   </div>
-  <script type="module" src="./app.mjs?v=4"></script>
+  <script type="module" src="./app.mjs?v=5"></script>
 </body>
 </html>

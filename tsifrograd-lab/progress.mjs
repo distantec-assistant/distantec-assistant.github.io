@@ -1,25 +1,45 @@
-export const KEY = 'tsifrograd-lab-v1';
-const IDS = ['orders', 'sharing', 'bridge'];
-const LIMIT = 1000000;
-const fresh = () => ({ version: 1, counts: { orders: 0, sharing: 0, bridge: 0 }, sound: true });
+import { GAME_IDS, STAGES } from './journey.mjs?v=5';
 
-export function parseProgress(raw) {
+export const KEY = 'tsifrograd-lab-v2';
+const LIMIT = 1000000;
+const record = value => value !== null && typeof value === 'object' && !Array.isArray(value);
+const isCounter = n => Number.isSafeInteger(n) && n >= 0 && n <= LIMIT;
+const isStage = id => Number.isSafeInteger(id) && id >= 1 && id <= STAGES.length;
+const fresh = () => ({
+  version: 2, stage: 1, sound: true,
+  counts: Object.fromEntries(STAGES.map(({ id }) => [id, Object.fromEntries(GAME_IDS.map(kind => [kind, 0]))])),
+  sessions: Object.fromEntries(STAGES.map(({ id }) => [id, 0])),
+});
+
+// Read only explicit fields; do not stringify the caller's object or migrate v1.
+function clean(value) {
   const result = fresh();
-  let value;
-  try { value = JSON.parse(raw); } catch { return result; }
-  if (!value || typeof value !== 'object' || Array.isArray(value)) return result;
+  if (!record(value) || value.version !== 2) return result;
+  if (Number.isSafeInteger(value.stage)) result.stage = Math.max(1, Math.min(STAGES.length, value.stage));
   if (typeof value.sound === 'boolean') result.sound = value.sound;
-  if (value.counts && typeof value.counts === 'object' && !Array.isArray(value.counts)) {
-    for (const id of IDS) {
-      const n = value.counts[id];
-      if (Number.isSafeInteger(n) && n >= 0 && n <= LIMIT) result.counts[id] = n;
-    }
+  for (const { id } of STAGES) {
+    const counts = record(value.counts) && record(value.counts[id]) ? value.counts[id] : null;
+    for (const kind of GAME_IDS) if (counts && isCounter(counts[kind])) result.counts[id][kind] = counts[kind];
+    if (record(value.sessions) && isCounter(value.sessions[id])) result.sessions[id] = value.sessions[id];
   }
   return result;
 }
 
-export function winProgress(progress, kind) {
-  const result = parseProgress(JSON.stringify(progress));
-  if (IDS.includes(kind)) result.counts[kind] = Math.min(LIMIT, result.counts[kind] + 1);
+export function parseProgress(raw) {
+  if (typeof raw !== 'string') return fresh();
+  try { return clean(JSON.parse(raw)); } catch { return fresh(); }
+}
+
+export function winProgress(progress, stageId, kind) {
+  const result = clean(progress);
+  if (isStage(stageId) && GAME_IDS.includes(kind)) result.counts[stageId][kind] = Math.min(LIMIT, result.counts[stageId][kind] + 1);
+  return result;
+}
+
+// Completion records the session, not an automatic jump or a world lock.
+// The UI phase prevents awarding the same round/session more than once.
+export function finishJourney(progress, stageId) {
+  const result = clean(progress);
+  if (isStage(stageId)) result.sessions[stageId] = Math.min(LIMIT, result.sessions[stageId] + 1);
   return result;
 }
