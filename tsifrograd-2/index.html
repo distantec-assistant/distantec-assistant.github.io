@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fff9ec">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Цифроград 2.0 — маленькое путешествие</title>
+  <meta name="description" content="Пять станций Цифрограда: играем с числами, помогаем друзьям и путешествуем без спешки. Отдельная игра «Цифроград 2.0».">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23ffd763'/%3E%3Ctext x='32' y='46' text-anchor='middle' font-family='Arial' font-size='40' font-weight='bold' fill='%23244c45'%3E5%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./art.css?v=5">
+  <link rel="stylesheet" href="./style.css?v=5">
+</head>
+<body>
+  <div class="app-shell" data-build="tsifrograd-2.0-v1">
+    <header class="site-header">
+      <button class="wordmark" type="button" data-action="home" aria-label="Цифроград 2.0, на карту">Цифро<span>град</span><i aria-hidden="true">•</i></button>
+      <div class="header-right">
+        <span class="preview-label">2.0</span>
+        <button class="icon-button sound-button" id="sound" data-action="sound" type="button" aria-label="Выключить звук" aria-pressed="true"></button>
+      </div>
+    </header>
+    <p id="voice-note" class="notice voice-note" role="status" hidden>Запись пока не загрузилась. Нажмите «Послушать» ещё раз — попробуем снова.</p>
+    <main>
+      <section id="home" data-stage="1" aria-labelledby="home-title">
+        <div class="home-heading"><h1 id="home-title" tabindex="-1">Куда поедем?</h1><span>Выбирай любую станцию</span></div>
+        <div class="world-board">
+          <div id="world-map" class="world-map art-backdrop" aria-hidden="true"></div>
+          <div class="map-train art-train" id="map-train" aria-hidden="true"></div>
+          <div class="map-sign" aria-hidden="true">Маленькие шаги — большие открытия</div>
+          <div id="stations" class="stations" role="group" aria-label="Пять станций"></div>
+        </div>
+        <div class="departure">
+          <div class="departure-place"><span class="ticket-mark" aria-hidden="true">↗</span><div><strong id="selected-place">Лужайка</strong><span id="selected-range">Числа 1–5 · два коротких задания</span></div></div>
+          <button id="start-journey" class="primary-button journey-start" type="button" data-action="journey">Поехали <span aria-hidden="true">→</span></button>
+        </div>
+        <p id="journey-note" class="journey-note" role="status" hidden></p>
+        <section class="practice" aria-labelledby="practice-title">
+          <div class="section-heading"><h2 id="practice-title">Или выбери игру</h2><span id="practice-range">На этой станции</span></div>
+          <div id="game-cards" class="game-cards"></div>
+        </section>
+        <details class="parent-notes">
+          <summary>Для взрослых</summary>
+          <p>Начните с лужайки и чисел 1–5. Кнопка «Поехали» даёт ровно два коротких задания выбранной станции. После них игра не повышает сложность сама. Все пять станций открыты; длинный счёт можно выбрать отдельно.</p>
+          <p>На лужайке и в лесу поезд мягко помогает. В мастерской и большом путешествии заказы, угощения и мосты нужно проверить самостоятельно: можно добавить лишнее, убрать или переложить и попробовать снова. Здесь нет таймера, оценок и наказаний.</p>
+          <p>Это Цифроград 2.0 — отдельная версия игры. Настройка звука и результаты сохраняются только в этом браузере. У этой версии свой прогресс. Сохранения привычного Цифрограда и тестовой площадки не читаются и не меняются. Юлия говорит готовыми MP3-записями: без системного голоса, регистрации и запросов к синтезатору.</p>
+          <a class="classic-link" href="../tsifrograd/">Открыть привычный Цифроград →</a>
+        </details>
+      </section>
+      <section id="game" hidden aria-labelledby="game-title" data-phase="playing">
+        <div class="game-toolbar">
+          <button class="icon-button" type="button" data-action="home" aria-label="На карту"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-8 9 8M5 10v11h5v-7h4v7h5V10"/></svg></button>
+          <div class="game-heading"><span id="game-kicker" class="eyebrow"></span><h1 id="game-title"></h1></div>
+          <button class="icon-button" type="button" data-action="repeat" aria-label="Послушать задание" title="Послушать"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m11 4-6 5H2v6h3l6 5ZM15 8q5 4 0 8M18 4q9 8 0 16"/></svg></button>
+          <button class="icon-button" type="button" data-action="reset" aria-label="Начать задание заново" title="Заново"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9a9 9 0 1 1 0 7M4 3v6h6"/></svg></button>
+        </div>
+        <div class="task-banner"><div id="task-icon" class="task-icon art-portrait" aria-hidden="true"></div><p id="task-text"></p><span id="task-number" class="task-number" hidden></span></div>
+        <div id="board" class="board"></div>
+        <div class="action-area">
+          <p id="feedback" class="feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+          <div class="task-actions"><button id="help" class="secondary-button help-button" type="button" data-action="help"><span aria-hidden="true">?</span> Подсказка</button><button id="check" class="primary-button check-button" type="button" data-action="check" hidden>Проверить</button></div>
+          <div id="reward" class="reward" hidden><div class="reward-copy"><span class="reward-star" aria-hidden="true">★</span><div><strong id="reward-title">Получилось!</strong><p id="reward-text"></p></div></div><button id="next" class="primary-button" type="button" data-action="next">Дальше →</button><button class="secondary-button" type="button" data-action="home">На карту</button></div>
+        </div>
+      </section>
+    </main>
+    <footer><span>Цифроград 2.0 · без спешки</span><span id="save-note" role="status">Прогресс только на этом устройстве</span></footer>
+    <noscript><p class="notice">Чтобы поезд поехал, включите JavaScript и обновите страницу.</p></noscript>
+  </div>
+  <script type="module" src="./app.mjs?v=5"></script>
+</body>
+</html>
