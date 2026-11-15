@@ -1,0 +1,38 @@
+const $=id=>document.getElementById(id);
+const rnd=n=>Math.floor(Math.random()*n);
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=rnd(i+1);[a[i],a[j]]=[a[j],a[i]]}return a};
+const pick=a=>a[rnd(a.length)];
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+const REDUCED=matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* ---------- audio ---------- */
+let AC=null,curSrc=null,curG=null,curId=null,token=0,VBUS=null,SBUS=null;const BUF={};window.__missing=[];
+/* voice and sfx go to separate buses; sfx is ducked while the voice plays; the voice always plays at rate 1 */
+window.__voice={active:0,max:0,rates:[],starts:0};
+function ac(){if(!AC){const C=window.AudioContext||window.webkitAudioContext;if(!C)return null;AC=new C({latencyHint:'interactive'});VBUS=AC.createGain();VBUS.connect(AC.destination);SBUS=AC.createGain();SBUS.gain.value=.7;SBUS.connect(AC.destination)}if(AC.state!=='running')AC.resume().catch(()=>{});return AC}
+function duck(on){if(!SBUS)return;const t=AC.currentTime;SBUS.gain.cancelScheduledValues(t);SBUS.gain.setTargetAtTime(on?.25:.7,t,.03)}
+function unlockAudio(){const c=ac();if(!c)return;try{const b=c.createBuffer(1,1,c.sampleRate),s=c.createBufferSource();s.buffer=b;s.connect(c.destination);s.start(0)}catch(e){}}
+document.addEventListener('pointerdown',unlockAudio,{capture:true});
+document.addEventListener('touchend',unlockAudio,{capture:true,once:true});
+function loadClip(id){if(BUF[id])return BUF[id];BUF[id]=fetch('audio/'+id+'.mp3').then(r=>{if(!r.ok)throw new Error(r.status);return r.arrayBuffer()}).then(a=>new Promise((res,rej)=>{const c=ac();if(!c)return res(null);c.decodeAudioData(a,res,rej)})).catch(e=>{window.__missing.push(id);console.warn('audio',id,e&&e.message);return null});return BUF[id]}
+const preload=ids=>ids.forEach(loadClip);
+function stopVoice(){token++;if(curSrc){const s=curSrc,g=curG;curSrc=null;curG=null;curId=null;if(!s.__stopped){s.__stopped=true;window.__voice.active--}try{const t=AC.currentTime;g.gain.cancelScheduledValues(t);g.gain.setValueAtTime(g.gain.value,t);g.gain.linearRampToValueAtTime(0,t+.03);s.stop(t+.035)}catch(e){try{s.stop()}catch(_){}}}}
+const voicePlaying=id=>!!curSrc&&curId===id;
+async function say(ids){stopVoice();const t=token;for(const id of [].concat(ids)){if(t!==token)return false;if(typeof id==='number'){await wait(id);continue}const b=await loadClip(id);if(t!==token)return false;if(!b)continue;if(AC.state!=='running'){try{await Promise.race([AC.resume(),wait(600)])}catch(e){}if(t!==token)return false}await new Promise(res=>{let done=false;const fin=()=>{if(!done){done=true;res()}};try{const s=AC.createBufferSource();s.buffer=b;s.playbackRate.value=1;if(s.detune)s.detune.value=0;const g=AC.createGain();g.gain.value=1;s.connect(g);g.connect(VBUS);const V=window.__voice;V.active++;V.starts++;V.max=Math.max(V.max,V.active);V.rates.push(s.playbackRate.value);s.onended=()=>{if(!s.__stopped){s.__stopped=true;V.active--}if(curSrc===s){curSrc=null;curG=null;curId=null}if(!curSrc)duck(false);fin()};curSrc=s;curG=g;curId=id;duck(true);s.start();setTimeout(()=>{if(!done){/* the clip did not finish on the audio clock (context stalled): cut it so clips never pile up */try{s.stop()}catch(_){}if(!s.__stopped){s.__stopped=true;V.active--}if(curSrc===s){curSrc=null;curG=null;curId=null}fin()}},b.duration*1000+350)}catch(e){fin()}})}return t===token}
+window.__sfx={};let NOISE=null;function sfx(kind){window.__sfx[kind]=(window.__sfx[kind]||0)+1;const c=AC;if(!c||c.state!=='running')return;if(kind==='pop'){try{if(!NOISE){NOISE=c.createBuffer(1,Math.round(c.sampleRate*.08),c.sampleRate);const d=NOISE.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/d.length,3)}const t=c.currentTime,n=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();n.buffer=NOISE;f.type='bandpass';f.frequency.value=1800;f.Q.value=.8;g.gain.value=.35;n.connect(f);f.connect(g);g.connect(SBUS);n.start(t)}catch(e){}return}try{const t=c.currentTime,o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(SBUS);o.type=kind==='bad'?'triangle':'sine';const F={pop:[620,980,.14],good:[520,780,.18],bad:[220,170,.22],tick:[880,880,.05],win:[523,1046,.5],step:[440,520,.08]}[kind]||[500,600,.1];o.frequency.setValueAtTime(F[0],t);o.frequency.exponentialRampToValueAtTime(F[1],t+F[2]*.8);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(kind==='bad'?.05:.06,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+F[2]);o.start(t);o.stop(t+F[2]+.05);if(kind==='win'){[659,784,1046].forEach((f,k)=>{const o2=c.createOscillator(),g2=c.createGain();o2.connect(g2);g2.connect(SBUS);o2.frequency.value=f;const s=t+.12*(k+1);g2.gain.setValueAtTime(.0001,s);g2.gain.exponentialRampToValueAtTime(.05,s+.02);g2.gain.exponentialRampToValueAtTime(.0001,s+.35);o2.start(s);o2.stop(s+.4)})}}catch(e){}}
+const praise=()=>'ph_'+pick(DATA.praise);
+/* ---------- instructions / idle ---------- */
+let instr=[],idleT=null;
+function setInstr(ids,speak=true){instr=ids;if(speak)say(ids);poke()}
+function poke(){clearTimeout(idleT);if($('station').classList.contains('on'))idleT=setTimeout(()=>{if(instr.length)say(instr);poke()},15000)}
+document.addEventListener('pointerdown',poke,{capture:true});
+$('repeat').onclick=()=>{if(instr.length)say(instr)};
+/* hold-to-exit */
+let hold=null,held=false;function cancelHold(){clearTimeout(hold);$('back').classList.remove('holding')}
+$('back').onpointerdown=e=>{e.preventDefault();held=false;try{$('back').setPointerCapture(e.pointerId)}catch(_){}$('back').classList.add('holding');hold=setTimeout(()=>{held=true;location.href=$('back').href},1000)};
+$('back').onpointerup=()=>{cancelHold();if(!held){$('help').textContent='Удерживай, чтобы выйти';setTimeout(()=>$('help').textContent='',2200)}};
+$('back').onpointercancel=cancelHold;$('back').onclick=e=>e.preventDefault();
+$('back').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();location.href=$('back').href}};
+/* ---------- art ---------- */
+const HOME='<svg viewBox="0 0 24 24" fill="none" stroke="#574d70" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5l9-7 9 7" /><path d="M5 9.5V21h5v-6h4v6h5V9.5" fill="#ffe8a3"/></svg>';
+document.querySelectorAll('.ib').forEach(b=>{if(b.innerHTML.trim()==='HOMEICON')b.innerHTML=HOME});
+function burstAt(el,n=12){if(REDUCED)return;const r=el.getBoundingClientRect(),fx=$('fx');for(let k=0;k<n;k++){const s=document.createElement('i');const a=k/n*6.283+Math.random()*.4,d=50+Math.random()*40;s.style.cssText=`left:${r.left+r.width/2}px;top:${r.top+r.height/2}px;background:${pick(['#f7bd43','#e76f69','#7cc9a8','#8fb4ff','#e6a8ff'])};--dx:${Math.cos(a)*d}px;--dy:${Math.sin(a)*d}px`;s.className=k%3?'spark':'spark star';fx.appendChild(s);setTimeout(()=>s.remove(),700)}}
