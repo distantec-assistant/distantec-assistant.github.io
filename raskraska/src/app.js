@@ -2,6 +2,8 @@
   'use strict';
   const NS = 'http://www.w3.org/2000/svg';
   const KEY = 'raskraska-v1';
+  // Allow a completely painted album, while still bounding JSON read from storage.
+  const MAX_SAVE_CHARS = 65536;
   const WHITE = '#ffffff';
   const ERASE = 'eraser';
   const COLORS = new Map([
@@ -21,6 +23,7 @@
   const history = new Map(scenes.map((scene) => [scene.id, []]));
   const buttons = new Map();
   const levelButtons = new Map();
+  const albumButtons = Array.from($('albums').querySelectorAll('button'));
   const sheets = new Map();
   const paths = new Map();
   const board = $('board');
@@ -45,7 +48,7 @@
     const clean = {version: 1, scene: scenes[0].id, pictures: freshPictures()};
     let raw;
     try { raw = localStorage.getItem(KEY); } catch { noStorage(); }
-    if (!raw || raw.length > 16000) return clean;
+    if (!raw || raw.length > MAX_SAVE_CHARS) return clean;
     let saved;
     try { saved = JSON.parse(raw); } catch { return clean; }
     if (saved?.version !== 1) return clean;
@@ -113,6 +116,8 @@
     const text = complete ? 'Готово!' : `${count} / ${total}`;
     if (progressText.textContent !== text) progressText.textContent = text;
     undo.disabled = !history.get(state.scene).length;
+    const badge = sheets.get(state.scene)?.querySelector('.sheet-check');
+    if (badge) badge.hidden = !complete;
   }
   function select(next) {
     tool = next;
@@ -131,7 +136,11 @@
     preview.style.setProperty('--preview', PREVIEWS[(number - 1) % PREVIEWS.length]);
     preview.setAttribute('aria-hidden', 'true');
     preview.append(artwork(scene, false), span('sheet-seal', String(number)));
-    button.append(preview, span('sheet-name', scene.title), span('sheet-sub', `Деталей: ${scene.areas.length}`));
+    const badge = span('sheet-check', '✓');
+    badge.setAttribute('role', 'img');
+    badge.setAttribute('aria-label', 'Готово');
+    badge.hidden = Object.keys(state.pictures[id]).length !== scene.areas.length;
+    button.append(preview, badge, span('sheet-name', scene.title), span('sheet-sub', `Деталей: ${scene.areas.length}`));
     button.addEventListener('click', () => showScene(id, true));
     sheets.set(id, button);
     return button;
@@ -139,11 +148,22 @@
   function showLevel(id) {
     if (id !== visibleLevel) {
       visibleLevel = id;
+      const group = levelsById.get(id);
       sheets.clear();
-      $('sheets').replaceChildren(...levelsById.get(id).sheets.map(makeSheet));
-      for (const [level, button] of levelButtons) button.setAttribute('aria-pressed', String(level === id));
+      $('sheets').replaceChildren(...group.sheets.map(makeSheet));
+      for (const [level, button] of levelButtons) {
+        button.hidden = levelsById.get(level).album !== group.album;
+        button.setAttribute('aria-pressed', String(level === id));
+      }
+      for (const button of albumButtons) button.setAttribute('aria-pressed', String(Number(button.dataset.album) === group.album));
     }
     for (const [sheet, button] of sheets) button.setAttribute('aria-pressed', String(sheet === state.scene));
+  }
+  function showAlbum(album) {
+    if (levelsById.get(visibleLevel)?.album === album) return;
+    const current = levelsById.get(levelOf.get(state.scene));
+    const selected = current.album === album ? current : levels.find((level) => level.album === album);
+    showLevel(selected.id);
   }
   function showScene(id, changed = false) {
     state.scene = id;
@@ -202,6 +222,7 @@
     $('levels').append(button);
     levelButtons.set(id, button);
   });
+  for (const button of albumButtons) button.addEventListener('click', () => showAlbum(Number(button.dataset.album)));
   $('album-summary').textContent = `Всего рисунков: ${scenes.length} · от простого к сложному`;
   eraser.addEventListener('click', () => select(ERASE));
   undo.addEventListener('click', () => {
@@ -221,4 +242,5 @@
   $('catalog').hidden = !/^https?:$/.test(location.protocol);
   select(null);
   showScene(state.scene);
+  if (new URLSearchParams(location.search).get('album') === '2') showAlbum(2);
 })();

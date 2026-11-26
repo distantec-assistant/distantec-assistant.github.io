@@ -8,10 +8,14 @@ ROOT = Path(__file__).resolve().parent
 SRC = ROOT / 'src'
 OUTPUT = ROOT / 'index.html'
 LEVELS = (
-    ('easy', 'Легко', 'balloon', '01-easy.json'),
-    ('middle', 'Посложнее', 'house', '02-middle.json'),
-    ('many', 'Много деталей', 'rocket', '03-many.json'),
-    ('detail', 'Самые подробные', 'sea', '04-detail.json'),
+    (1, 'easy', 'Легко', 'balloon', '01-easy.json'),
+    (1, 'middle', 'Посложнее', 'house', '02-middle.json'),
+    (1, 'many', 'Много деталей', 'rocket', '03-many.json'),
+    (1, 'detail', 'Самые подробные', 'sea', '04-detail.json'),
+    (2, 'journey', 'В дороге', None, '05-journey.json'),
+    (2, 'nature', 'Природа', None, '06-nature.json'),
+    (2, 'town', 'Большой город', None, '07-town.json'),
+    (2, 'fairy', 'Сказки', None, '08-fairy.json'),
 )
 ID = re.compile(r'[a-z][a-z0-9-]*')
 PATH = re.compile(r'[Mm][MmLlHhVvCcSsQqTtAaZzEe0-9.,+\s-]+')
@@ -57,13 +61,16 @@ def load_album(source):
     for scene in original:
         validate_scene(scene)
     old = {scene['id']: scene for scene in original}
-    if len(original) != len(LEVELS) or set(old) != {row[2] for row in LEVELS}:
+    required = {first for _, _, _, first, _ in LEVELS if first is not None}
+    if len(original) != len(required) or set(old) != required:
         raise ValueError('Initial sheets must remain in scenes.json')
     levels, scenes, ids = [], [], set()
     previous = 0
-    for lid, label, first, file in LEVELS:
-        group = [old[first], *read_list(source / 'album' / file)]
-        levels.append({'id': lid, 'title': label, 'sheets': []})
+    for album, lid, label, first, file in LEVELS:
+        group = ([old[first]] if first is not None else []) + read_list(source / 'album' / file)
+        if len(group) != 5:
+            raise ValueError(f'Expected five sheets in group {lid}, got {len(group)}')
+        levels.append({'id': lid, 'title': label, 'album': album, 'sheets': []})
         for scene in group:
             validate_scene(scene)
             sid, size = scene['id'], len(scene['areas'])

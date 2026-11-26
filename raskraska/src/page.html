@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#fbf4e8">
-<meta name="description" content="Детская раскраска с 20 рисунками от простых до подробных. Выбери краску и нажми на деталь.">
+<meta name="description" content="Детская раскраска с 40 рисунками от простых до подробных. Выбери краску и нажми на деталь.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect x='1' y='1' width='46' height='46' rx='15' fill='%23ecd8ff'/%3E%3Cpath d='M25 8C14 8 8 15 8 25s7 15 14 15c5 0 7-2 6-5-2-5 1-8 6-8 6 1 8-3 6-8C38 12 32 8 25 8Z' fill='%23fffaf0' stroke='%2348375c' stroke-width='2'/%3E%3Ccircle cx='16' cy='22' r='3' fill='%23f46668'/%3E%3Ccircle cx='23' cy='15' r='3' fill='%23ffd35e'/%3E%3Ccircle cx='32' cy='17' r='3' fill='%2366acef'/%3E%3C/svg%3E">
 <title>Цветная мастерская — раскраска</title>
 <style>
@@ -65,6 +65,10 @@
       <div class="album-head">
         <h2 id="album-title">Выбери рисунок</h2>
         <p id="album-summary">От крупных деталей к маленьким</p>
+      </div>
+      <div id="albums" class="album-switch" role="group" aria-label="Выбор альбома">
+        <button type="button" data-album="1" aria-pressed="false"><span>Первые рисунки</span><span class="album-range">1–20</span></button>
+        <button type="button" data-album="2" aria-pressed="false"><span>Новые рисунки</span><span class="album-range">21–40</span></button>
       </div>
       <div id="levels" class="levels" role="group" aria-label="Сложность рисунков"></div>
       <div id="sheets" class="sheets" role="group" aria-label="Рисунки выбранной сложности"></div>
