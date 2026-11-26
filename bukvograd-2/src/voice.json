@@ -1,0 +1,7 @@
+{
+  "ph_listen": {"text": "Посл+ушай.", "sha256": "cd9dce268f32b9a5e5dc296b5611b7325c3b0f24aac99d6b70e61675bb566e8f"},
+  "w_dom": {"text": "д+ом", "sha256": "496534b6fce4d0a0e2d21a9b5bad1b95ff623c1cce1eb348799a605e8abc4345"},
+  "w_som": {"text": "с+ом", "sha256": "1509a0bf1dd3967669db7a92a60fd1a5acfe81e6fc9f2025fddf14d6367358d9"},
+  "w_mak": {"text": "м+ак", "sha256": "cf55563b555450ec74944204ba9c76797d15eccd95749e692576ea9d78a63c00"},
+  "w_rak": {"text": "р+ак", "sha256": "fb69f85a41ad01b09db749a44e28717b5c38b3560fe644453a6e12087017ea11"}
+}

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#f8f3e6">
+  <meta name="description" content="Семейная игра: послушай слово, найди картинку, а потом оживи другое слово одной буквой.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='13' fill='%23edb958'/%3E%3Cpath d='m24 9 4 11 11 4-11 4-4 11-4-11-11-4 11-4z' fill='%23224135'/%3E%3C/svg%3E">
+  <title>Буквоград 2.0 — Ожившие слова</title>
+  <style>
+@@CSS@@
+  </style>
+</head>
+<body>
+  <div class="shell" id="shell">
+    <header class="topbar">
+      <button type="button" id="go-home" class="button home-key" aria-label="В меню" title="В меню" hidden><span data-icon="back"></span></button>
+      <div class="brand"><span class="brand-mark" data-icon="spark"></span><span>Буквоград <small>2.0</small></span></div>
+      <button type="button" id="sound" class="button sound-key" aria-label="Звук" aria-pressed="true"><span id="sound-icon" data-icon="sound"></span><span id="sound-label">Звук</span></button>
+    </header>
+
+    <main>
+      <section id="home-screen" aria-labelledby="home-title">
+        <div class="home-card">
+          <div class="home-copy">
+            <p class="overline"><span data-icon="spark"></span> Семейная игра</p>
+            <h1 id="home-title" tabindex="-1">Ожившие<br> слова<span class="title-dot">.</span></h1>
+            <p class="lede">Послушай, найди картинку и оживи новое слово одной буквой.</p>
+            <div class="home-actions">
+              <button type="button" id="start-listen" class="button primary"><span data-icon="play"></span> Играть</button>
+              <button type="button" id="start-bench" class="button secondary"><span data-icon="swap"></span> Мастерская</button>
+            </div>
+            <p class="home-progress" id="home-progress" hidden></p>
+          </div>
+          <div class="cover" aria-hidden="true">
+            <div class="cover-orbit"></div><span class="cover-star left" data-icon="spark"></span><span class="cover-star right" data-icon="spark"></span>
+            <div class="cover-sticker cover-one" id="cover-dom"></div>
+            <div class="cover-sticker cover-two" id="cover-som"></div>
+            <span class="cover-letter">А</span><span class="cover-arrow" data-icon="swap"></span>
+          </div>
+        </div>
+      </section>
+
+      <section id="listen-screen" aria-labelledby="listen-title" hidden>
+        <div class="station-bar"><p class="overline"><span data-icon="sound"></span> Игра 1</p><div id="listen-dots" class="dots" role="img"></div></div>
+        <div class="station-card listen-card">
+          <h1 id="listen-title" tabindex="-1">Поймай картинку</h1>
+          <div class="listen-cue">
+            <div class="cue-main">
+              <button type="button" id="hear" class="button hear"><span data-icon="sound"></span><span>Послушать</span><span class="playing-tick" aria-hidden="true"></span></button>
+              <div id="sample" class="sample" hidden><span class="sample-label"><span data-icon="eye"></span> Образец</span><span id="sample-art" class="art" role="img" aria-label="Картинка-образец"></span></div>
+            </div>
+            <div class="cue-aside">
+              <p id="listen-instruction">Послушай и выбери.</p>
+              <button type="button" id="listen-mode" class="button mode-key"><span id="mode-icon" data-icon="eye"></span><span id="mode-label">По картинке</span></button>
+            </div>
+          </div>
+          <div id="listen-choices" class="pictures" role="group" aria-label="Выбор картинки"></div>
+          <div class="feedback">
+            <p id="listen-feedback" role="status"></p>
+            <button type="button" id="listen-next" class="button primary" hidden>Дальше <span data-icon="right"></span></button>
+          </div>
+        </div>
+      </section>
+
+      <section id="finish-screen" aria-labelledby="finish-title" hidden>
+        <div class="station-bar"><p class="overline"><span data-icon="sound"></span> Игра 1</p></div>
+        <div class="station-card finish-card">
+          <div class="finish-seal" data-icon="check"></div>
+          <h1 id="finish-title" tabindex="-1">Все картинки на месте!</h1>
+          <p>Теперь попробуй оживить новые слова.</p>
+          <div class="finish-actions">
+            <button type="button" id="finish-bench" class="button primary"><span data-icon="swap"></span> В мастерскую</button>
+            <button type="button" id="finish-again" class="button secondary"><span data-icon="again"></span> Ещё раз</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="bench-screen" aria-labelledby="bench-title" hidden>
+        <div class="station-bar bench-bar">
+          <p class="overline"><span data-icon="swap"></span> Игра 2</p>
+          <div class="pairs" role="group" aria-label="Выбор хвоста слова">
+            <button type="button" class="button pair-key" data-pair="om" aria-pressed="true">…ОМ</button>
+            <button type="button" class="button pair-key" data-pair="ak" aria-pressed="false">…АК</button>
+          </div>
+        </div>
+        <div class="station-card bench-card">
+          <h1 id="bench-title" tabindex="-1">Замени букву</h1>
+          <div class="bench-layout">
+            <div class="bench-art art" id="bench-art" aria-hidden="true"></div>
+            <div class="machine">
+              <div class="word-line" id="word-line" aria-live="polite" aria-atomic="true">
+                <span class="letter-slot"><span id="word-first"></span></span><span class="tail-slot" id="word-tail" title="Хвост слова остаётся на месте"></span>
+              </div>
+              <p class="letter-hint"><span data-icon="up"></span> Выбери первую букву</p>
+              <div id="letters" class="letters" role="group" aria-label="Первая буква"></div>
+              <button type="button" id="bench-hear" class="button replay-key"><span data-icon="sound"></span> Послушать слово</button>
+            </div>
+          </div>
+          <div class="mission" id="mission">
+            <div class="mission-copy"><p class="mission-kicker" id="mission-kicker"></p><p class="mission-task" id="mission-task" role="status"></p></div>
+            <div id="goal-art" class="goal-art art" role="img" aria-label="Картинка для превращения"></div>
+            <button type="button" id="bench-again" class="button secondary" hidden><span data-icon="again"></span> Повторить</button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <noscript>Для игры включите JavaScript в браузере.</noscript>
+    <audio id="voice" preload="none" hidden aria-hidden="true"></audio>
+    <template id="art-dom">@@ART_DOM@@</template>
+    <template id="art-som">@@ART_SOM@@</template>
+    <template id="art-mak">@@ART_MAK@@</template>
+    <template id="art-rak">@@ART_RAK@@</template>
+    <script id="voice-bank" type="application/json">@@VOICE@@</script>
+  </div>
+  <script>
+@@JS@@
+  </script>
+</body>
+</html>
