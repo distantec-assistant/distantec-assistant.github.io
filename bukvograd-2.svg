@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800" role="img">
+  <title>Буквоград — Ожившие слова</title>
+  <desc>Дом и усатый сом, между ними меняется первая буква.</desc>
+  <defs><linearGradient id="paper" x2="1" y2="1"><stop stop-color="#ffd59c"/><stop offset="1" stop-color="#f3a78e"/></linearGradient></defs>
+  <rect width="800" height="800" fill="url(#paper)"/>
+  <circle cx="103" cy="133" r="139" fill="#ffe6bb" opacity=".64"/>
+  <circle cx="775" cy="706" r="217" fill="#f9c2ab"/>
+  <path d="m182 65 8 23 24 7-24 7-8 22-8-22-24-7 24-7Zm466 7 10 29 29 9-29 8-10 29-9-29-29-8 29-9ZM69 543l8 22 22 7-22 8-8 22-8-22-22-8 22-7Zm655 84 10 28 28 10-28 8-10 29-9-29-29-8 29-10Z" fill="#fff2c9"/>
+  <path d="M61 694q108 58 228-1m219-10q105 41 230-12" fill="none" stroke="#de977f" stroke-width="9" stroke-linecap="round" stroke-dasharray="12 22"/>
+  <g stroke="#6d4c61" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <g transform="rotate(-6 223 385)">
+      <rect x="60" y="170" width="319" height="476" rx="47" fill="#bc796e" stroke="none" opacity=".52"/>
+      <rect x="55" y="154" width="319" height="476" rx="47" fill="#fff5d9"/>
+      <rect x="79" y="181" width="271" height="280" rx="29" fill="#ddecbb" stroke="none"/>
+      <circle cx="281" cy="250" r="36" fill="#ffda83" stroke="none"/>
+      <path d="M82 398q73-49 151-17 52 27 113 6v43q0 24-27 24H108q-26 0-26-27Z" fill="#b2d6a0" stroke="none"/>
+      <path d="M264 291v-44h27v47" fill="#d59679"/>
+      <path d="M131 319h166v104H131Z" fill="#f5bf81"/>
+      <path d="m108 326 105-90 110 90Z" fill="#dd796b"/>
+      <path d="M157 339h47v43h-47Z" fill="#d3eef0"/>
+      <path d="M181 340v42m-23-21h45" stroke-width="5"/>
+      <path d="M228 422v-54q20-30 44 0v54" fill="#c58e70"/>
+      <circle cx="259" cy="392" r="3.5" fill="#6d4c61" stroke="none"/>
+      <path d="M160 426q-8 9-21 8m132-9q12 10 31 5" fill="none" stroke="#8fbd8a"/>
+      <rect x="92" y="490" width="75" height="89" rx="16" fill="#efb0b3" stroke="none"/>
+      <g fill="none" stroke-width="9">
+        <path d="M110 552h38m-33 0q11-13 11-38h20v38m-40 0v14m49-14v14"/>
+        <ellipse cx="213" cy="535" rx="21" ry="24"/>
+        <path d="M265 560v-48l19 29 19-29v48"/>
+      </g>
+    </g>
+    <g transform="rotate(6 584 416)">
+      <rect x="427" y="189" width="319" height="476" rx="47" fill="#bc796e" stroke="none" opacity=".52"/>
+      <rect x="424" y="173" width="319" height="476" rx="47" fill="#fff5d9"/>
+      <rect x="448" y="200" width="271" height="280" rx="29" fill="#bfe7e3" stroke="none"/>
+      <path d="M449 413q66-32 136-1 50 23 132 1v38q0 24-26 24H476q-28 0-27-28Z" fill="#a0d5cd" stroke="none"/>
+      <path d="M547 304q25-59 61-52l-8 48m-22 62q22 21 25 38 29-8 35-42" fill="#6d9ec3"/>
+      <path d="M505 344q-28 8-49-30 4 40-5 60 34 9 60-16" fill="#83afd4" stroke-width="6"/>
+      <path d="M496 344q32-47 93-56 84-12 96 30 18 52-62 68-91 11-127-42Z" fill="#799fc7"/>
+      <path d="M529 351q71 28 148-5-17 37-75 40-47 3-73-35Z" fill="#a8d8df" stroke="none"/>
+      <path d="M574 341q20-8 38 2-12 25-37 25" fill="#5789ad" stroke-width="5"/>
+      <circle cx="645" cy="318" r="11" fill="#fff7db"/>
+      <circle cx="648" cy="319" r="3.5" fill="#6d4c61" stroke="none"/>
+      <path d="M659 341q13 3 23-3m-11-3q20-16 40-12m-42 27q19 3 32 16" fill="none" stroke-width="4.5"/>
+      <path d="M476 423q4-21 0-34m16 35q12-13 13-27m174 40q-6-21 0-36m15 34 12-18" fill="none" stroke="#69a696" stroke-width="5"/>
+      <g fill="none" stroke="#f6ffea" stroke-width="4"><circle cx="670" cy="267" r="11"/><circle cx="655" cy="240" r="6"/><circle cx="509" cy="270" r="8"/></g>
+      <rect x="461" y="509" width="75" height="89" rx="16" fill="#efb0b3" stroke="none"/>
+      <g fill="none" stroke-width="9">
+        <path d="M516 541q-7-10-18-10-20 0-20 24 0 23 20 23 12 0 18-9"/>
+        <ellipse cx="582" cy="554" rx="21" ry="24"/>
+        <path d="M634 579v-48l19 29 19-29v48"/>
+      </g>
+    </g>
+    <circle cx="399" cy="397" r="56" fill="#ffdb8d"/>
+    <path d="M369 397h55m-22-18 22 18-22 18" fill="none" stroke-width="9"/>
+  </g>
+</svg>

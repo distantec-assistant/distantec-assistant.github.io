@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800" role="img">
+  <title>Почта тропинок</title>
+  <desc>Зайчик с конвертом выбирает дорогу к ёжику.</desc>
+  <defs>
+    <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#d5f0d7"/><stop offset="1" stop-color="#f3edbd"/></linearGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#sky)"/>
+  <circle cx="640" cy="153" r="72" fill="#ffe2a0"/>
+  <path d="M48 155q15-36 52-18 33-27 68 8 24-4 37 16H48Zm279-62q22-33 54-12 26-16 49 13 23-1 32 12H327Z" fill="#fff8d8"/>
+  <path d="M0 306q122-78 248-15t247-32q128-108 305-34v575H0Z" fill="#a9cf95"/>
+  <path d="M0 416q190-117 372-7 88 55 205 5 108-44 223-2v388H0Z" fill="#c7e0a0"/>
+  <path d="M0 510q168-63 277-15t245 55q128-61 278-11v261H0Z" fill="#dce7ad"/>
+  <g fill="#85b28a" stroke="#729d75" stroke-width="5" stroke-linejoin="round">
+    <path d="M54 294v-52m-23 13q-18-21 6-35-3-29 22-31 23 1 24 24 27 11 14 34-12 17-32 5Z"/>
+    <path d="M139 313v-55m-29 12q-20-12-6-33 2-8 14-12 0-28 23-34 28-2 34 26 26 5 27 25 0 30-37 26Z"/>
+    <path d="M737 343v-62m-56 5q-13-24 18-42-4-40 36-48 35 0 40 31 31 8 29 35-2 28-49 21Z"/>
+  </g>
+  <path d="M87 806C224 702 322 656 468 598c82-33 171-75 232-154M468 598c13-92-17-176-79-246" fill="none" stroke="#aab47d" stroke-width="104" stroke-linecap="round"/>
+  <path d="M87 806C224 702 322 656 468 598c82-33 171-75 232-154M468 598c13-92-17-176-79-246" fill="none" stroke="#ffedbe" stroke-width="88" stroke-linecap="round"/>
+  <path d="M522 568q84-34 142-88" fill="none" stroke="#ecad75" stroke-width="11" stroke-linecap="round" stroke-dasharray="12 23"/>
+  <g stroke="#436b58" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M492 568V386" stroke="#9e765c" stroke-width="17"/>
+    <path d="m491 407 116-56 32 10-10 35-113 53Z" fill="#f7c675"/>
+    <path d="m493 454-105-39-30 10 13 36 110 40Z" fill="#e5a98b"/>
+    <path d="m557 402 35-16m-15-3 15 3-6 14" fill="none"/>
+    <path d="m451 465-37-14m9 13-9-13 16-3" fill="none"/>
+  </g>
+  <g transform="translate(640 365)" stroke="#59624f" stroke-width="5" stroke-linejoin="round" fill="#a9755a">
+    <path d="m-18 78-18-13 15-11-12-18 24 1 2-20 22 9L32 4l16 22 25-12 2 26 22 3-4 20 15 13-15 15q-45 21-111-13Z"/>
+    <path d="M37 84q-7-31 24-39 23-6 35 17l22 9q-3 17-29 19H54Z" fill="#ffe2a8"/>
+    <path d="M78 58v3m-20 25-5 9m24-7 4 8" fill="none" stroke-linecap="round"/>
+    <circle cx="115" cy="72" r="5" fill="#59624f"/>
+  </g>
+  <g stroke="#38574e" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" transform="translate(90 225)">
+    <ellipse cx="193" cy="474" rx="147" ry="22" fill="#78996f" opacity=".37" stroke="none"/>
+    <path d="M106 182Q33 119 62 35q14-36 37-8 44 48 49 136M171 153q-9-98 47-136 24-17 35 15 27 75-28 158" fill="#fff1db"/>
+    <path d="M86 69q11 40 38 70m107-77q-24 36-34 82" stroke="#de9c98" stroke-width="20" fill="none"/>
+    <path d="M117 356q-81 42-53 102 18 34 87 8 60 38 107 2 82 14 80-29-4-50-80-73Z" fill="#e2b477"/>
+    <path d="M49 265q2-117 138-120 123-5 140 106 22 106-132 112Q44 361 49 265Z" fill="#fff3dc"/>
+    <path d="M54 241q27-104 137-99 88 5 126 91-48-16-94-27-83-16-169 35Z" fill="#85b7a5"/>
+    <path d="M64 240q98-28 195-9l60-2m-208 41v9m134-10v9m-82 24 12 7 12-7m-12 7q4 18 22 10" fill="none"/>
+    <path d="M85 306h22m143-1h22" stroke="#ecaa9e" stroke-width="14"/>
+    <path d="M90 345q97 25 188-5l-30 55-52 3-19-23-67 18Z" fill="#e58473"/>
+    <g transform="translate(138 361) rotate(-11 91 56)">
+      <rect width="178" height="112" rx="17" fill="#fff6d7"/>
+      <path d="M7 10 83 65q7 5 14 0l74-55M8 103l54-48m106 48-54-49" fill="none" stroke-width="7"/>
+      <circle cx="90" cy="62" r="13" fill="#ef967d" stroke="none"/>
+    </g>
+  </g>
+  <g fill="#edab83"><circle cx="72" cy="666" r="8"/><circle cx="55" cy="681" r="6"/><circle cx="717" cy="631" r="9"/><circle cx="746" cy="658" r="6"/><circle cx="630" cy="727" r="8"/></g>
+  <g fill="none" stroke="#89ae72" stroke-width="6" stroke-linecap="round"><path d="M46 733q7 14 20 15m-7 5q5-26 25-32m610 1q12 20 25 25m-8 6q2-25 23-34M312 766q8 6 10 21m2 0q7-18 21-19M336 333q-12-17-28-18m29 19q1-16 14-23"/></g>
+</svg>

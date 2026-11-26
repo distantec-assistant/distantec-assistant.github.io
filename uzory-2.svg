@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800" role="img">
+  <title>Что дальше? — Праздник узоров</title>
+  <desc>Вечерняя гирлянда из золотых и голубых фонариков с местом для следующего.</desc>
+  <defs>
+    <linearGradient id="night" x2="0" y2="1"><stop stop-color="#2f285d"/><stop offset="1" stop-color="#6d4c81"/></linearGradient>
+    <radialGradient id="aura"><stop stop-color="#ffd783" stop-opacity=".8"/><stop offset="1" stop-color="#ffcc74" stop-opacity="0"/></radialGradient>
+    <radialGradient id="cool"><stop stop-color="#a3d8ff" stop-opacity=".63"/><stop offset="1" stop-color="#82afff" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#night)"/>
+  <path d="M0 631q120-121 242-46t226 0q130-137 332-79v294H0Z" fill="#463769"/>
+  <path d="M0 713q193-86 362-31t438-60v178H0Z" fill="#3c315b"/>
+  <path d="M80 696q78-78 80-130 18 73 75 112m436-37q49-34 65-103 12 67 58 91" fill="none" stroke="#594470" stroke-width="9" stroke-linecap="round"/>
+  <path d="M613 167q-55-14-50-77-41 30-24 71 22 54 74 16Z" fill="#ffe4ad"/>
+  <g fill="#f5d0ac">
+    <path d="m135 125 9 24 24 8-24 7-9 24-8-24-24-7 24-8Zm507 115 8 19 20 6-20 6-8 21-7-21-20-6 20-6ZM325 82l6 19 19 6-19 5-6 19-7-19-19-5 19-6ZM395 580l8 24 24 7-24 8-8 23-8-23-23-8 23-7Z"/>
+    <circle cx="197" cy="89" r="6"/><circle cx="433" cy="194" r="6"/><circle cx="705" cy="115" r="6"/><circle cx="748" cy="214" r="7"/><circle cx="47" cy="235" r="6"/><circle cx="692" cy="584" r="6"/><circle cx="216" cy="582" r="5"/>
+  </g>
+  <path d="M0 229C246 420 542 416 800 229" fill="none" stroke="#d4afe1" stroke-width="9" stroke-linecap="round"/>
+  <path d="M0 237C246 428 542 424 800 237" fill="none" stroke="#9275ab" stroke-width="3"/>
+  <circle cx="109" cy="360" r="111" fill="url(#aura)"/><circle cx="257" cy="415" r="109" fill="url(#cool)"/>
+  <circle cx="400" cy="442" r="119" fill="url(#aura)"/><circle cx="544" cy="418" r="110" fill="url(#cool)"/>
+  <g transform="translate(109 326) rotate(-10)" stroke="#874c69" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M0-48v30m-25 7h50M-21 65h42M0 69v15" fill="none" stroke="#ffda97"/>
+    <path d="M-31-14q-20 14-21 39 0 35 24 46h56q24-11 24-46-1-25-21-39Z" fill="#ffd17d"/>
+    <path d="M-19-12q-15 42 0 81m38-81q15 42 0 81" fill="none" stroke="#e29b71"/>
+    <path d="m0 3 6 14 15 2-11 10 3 15-13-8-13 8 3-15-11-10 15-2Z" fill="#fff3be" stroke="none"/>
+  </g>
+  <g transform="translate(255 385) rotate(-5)" stroke="#4e5f9b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M0-42v28m-22 1h44M-20 65h40M0 66v15" fill="none" stroke="#b5d9ff"/>
+    <path d="M-28-15h56l19 20-5 43-18 22h-48l-18-22-5-43Z" fill="#89c4fa"/>
+    <path d="M-29-13l-4 40 10 40m52-80 4 40-10 40" fill="none" stroke="#648bc5"/>
+    <path d="M17 41q-24 0-24-29-19 15-6 32 14 16 30-3Z" fill="#e1edfc" stroke="none"/>
+  </g>
+  <g transform="translate(400 407)" stroke="#874c69" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M0-48v30m-25 7h50M-21 65h42M0 69v15" fill="none" stroke="#ffda97"/>
+    <path d="M-31-14q-20 14-21 39 0 35 24 46h56q24-11 24-46-1-25-21-39Z" fill="#ffd17d"/>
+    <path d="M-19-12q-15 42 0 81m38-81q15 42 0 81" fill="none" stroke="#e29b71"/>
+    <path d="m0 3 6 14 15 2-11 10 3 15-13-8-13 8 3-15-11-10 15-2Z" fill="#fff3be" stroke="none"/>
+  </g>
+  <g transform="translate(545 385) rotate(5)" stroke="#4e5f9b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M0-42v28m-22 1h44M-20 65h40M0 66v15" fill="none" stroke="#b5d9ff"/>
+    <path d="M-28-15h56l19 20-5 43-18 22h-48l-18-22-5-43Z" fill="#89c4fa"/>
+    <path d="M-29-13l-4 40 10 40m52-80 4 40-10 40" fill="none" stroke="#648bc5"/>
+    <path d="M17 41q-24 0-24-29-19 15-6 32 14 16 30-3Z" fill="#e1edfc" stroke="none"/>
+  </g>
+  <g transform="translate(691 326) rotate(10)" stroke="#ddc2ed" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M0-48v26m-31 8q-45 37-12 73l15 12h56q44-24 13-67L31-14Z" fill="#786298" stroke-dasharray="9 11"/>
+    <path d="M-15 15q2-12 16-12 16 0 16 13 0 9-9 12-9 4-9 12m0 12h1" fill="none"/>
+  </g>
+  <g fill="#ffe6a5"><circle cx="145" cy="583" r="7"/><circle cx="235" cy="652" r="5"/><circle cx="110" cy="666" r="4"/><circle cx="541" cy="560" r="7"/><circle cx="632" cy="716" r="7"/><circle cx="585" cy="626" r="5"/></g>
+</svg>

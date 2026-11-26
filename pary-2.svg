@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800" role="img">
+  <title>Найди пару — Фотоальбом</title>
+  <desc>Лисёнок и пингвин на фотографиях, третье место осталось пустым.</desc>
+  <defs><linearGradient id="table" x2="1" y2="1"><stop stop-color="#cde8d7"/><stop offset="1" stop-color="#a4caba"/></linearGradient></defs>
+  <rect width="800" height="800" fill="url(#table)"/>
+  <path d="M0 117q100-45 187-14t201-10M0 699q206 45 372-21t428-5M503 64q141-42 297 34" fill="none" stroke="#b3d5c6" stroke-width="7"/>
+  <g fill="#f8e5ae"><path d="m118 93 9 23 23 7-23 8-9 24-8-24-23-8 23-7Zm522 544 8 23 23 7-23 8-8 23-8-23-24-8 24-7Z"/><circle cx="686" cy="148" r="9"/><circle cx="128" cy="718" r="12"/><circle cx="724" cy="492" r="10"/></g>
+  <g transform="rotate(-12 344 473)">
+    <rect x="93" y="225" width="621" height="470" rx="45" fill="#65978b" opacity=".48"/>
+    <rect x="80" y="207" width="621" height="470" rx="45" fill="#eed7a9" stroke="#596a60" stroke-width="8"/>
+    <path d="M112 211h53v461h-53Q83 672 82 632V249q0-38 30-38Z" fill="#dfb58c"/>
+    <path d="M160 216v455" fill="none" stroke="#a4826f" stroke-width="5"/>
+    <path d="M96 313h36m-36 114h36m-36 110h36" fill="none" stroke="#fcf0d0" stroke-width="11" stroke-linecap="round"/>
+    <rect x="180" y="231" width="485" height="413" rx="32" fill="#fff0ce"/>
+    <rect x="439" y="424" width="192" height="179" rx="23" fill="#efdfbc" stroke="#a28b73" stroke-width="5" stroke-dasharray="13 9"/>
+    <g fill="none" stroke="#9a7d73" stroke-width="11" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M512 487q3-25 29-25 26 0 27 23 0 13-14 20-16 7-16 24"/>
+      <path d="M538 552h1"/>
+    </g>
+  </g>
+  <g transform="rotate(-12 264 309)">
+    <rect x="106" y="156" width="303" height="364" rx="24" fill="#8d9980" opacity=".37"/>
+    <rect x="106" y="140" width="303" height="364" rx="24" fill="#fff8e2" stroke="#627069" stroke-width="7"/>
+    <rect x="126" y="162" width="262" height="260" rx="14" fill="#f4c8a6"/>
+    <path d="M126 359q80-39 164-9 54 17 98 0v55q0 17-15 17H142q-16 0-16-17Z" fill="#eab493"/>
+    <g stroke="#664e52" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M173 297q-30-23-22-86 43 0 76 38m57 3q28-33 70-42 11 61-18 88" fill="#db885d"/>
+      <path d="M169 232q23 7 41 30l-26 23q-15-11-15-53Zm164 0q-23 9-39 31l24 22q15-14 15-53Z" fill="#f6b7ab" stroke="none"/>
+      <path d="M151 314q23-63 100-66 62-5 106 62-20 67-103 78-76-10-103-74Z" fill="#e79762"/>
+      <path d="M155 315q60-12 98 32 34-48 102-38-24 63-100 78-74-12-100-72Z" fill="#fff2d6" stroke="none"/>
+      <path d="M197 306q12-11 25 0m57 0q13-12 26 0m-65 33q15-11 27 0-1 13-13 15-10-1-14-15Z" fill="#664e52"/>
+      <path d="M254 353q11 16 23 5" fill="none" stroke-width="5"/>
+      <path d="M162 334h18m146-1h15" stroke="#e8a394"/>
+    </g>
+    <path d="M206 464h102" fill="none" stroke="#eadcc0" stroke-width="10" stroke-linecap="round"/>
+    <path d="m216 134 93-5-4 35-89 4Z" fill="#ffdeb0" opacity=".93"/>
+  </g>
+  <g transform="rotate(13 546 284)">
+    <rect x="414" y="131" width="273" height="323" rx="24" fill="#829a8e" opacity=".45"/>
+    <rect x="411" y="116" width="273" height="323" rx="24" fill="#fff8e2" stroke="#627069" stroke-width="7"/>
+    <rect x="429" y="138" width="236" height="229" rx="14" fill="#bce1eb"/>
+    <path d="M429 302q51-20 111 1t125-4v51q0 17-16 17H445q-16 0-16-17Z" fill="#dfede4"/>
+    <g stroke="#425963" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M489 293q-32 11-33 47 24 8 46-24m111-21q32 15 26 42-28 6-46-23" fill="#5f7c86"/>
+      <path d="M521 335q-18 4-21 19 20 11 36-3m35-16q20 3 25 20-21 10-37-4" fill="#e6a55f"/>
+      <path d="M483 270q-1-88 64-94 67 0 73 77 9 89-66 98-63 4-71-81Z" fill="#5e7e89"/>
+      <path d="M495 285q-3-57 25-62 19-3 31 17 14-26 35-17 30 9 24 63-5 56-59 56-53 0-56-57Z" fill="#fff2d8" stroke="none"/>
+      <path d="m535 257 33 2-15 18Z" fill="#efb86d" stroke-width="4"/>
+      <path d="M522 247v3m60-3v3" fill="none"/>
+      <path d="M506 264h12m69 0h12" stroke="#e6aa9e" stroke-width="5"/>
+    </g>
+    <path d="M503 405h87" fill="none" stroke="#eadcc0" stroke-width="9" stroke-linecap="round"/>
+    <path d="m511 103 84 8-9 29-80-7Z" fill="#fbcbae" opacity=".93"/>
+  </g>
+  <circle cx="123" cy="593" r="46" fill="#eabe8e" stroke="#7b7364" stroke-width="5"/>
+  <path d="m105 593 11 12 23-28" fill="none" stroke="#52796d" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
