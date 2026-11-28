@@ -5,8 +5,9 @@ const M = require('../src/model.cjs');
 const [meadow, stream, coast] = M.MAPS;
 const run = (map,...steps) => steps.reduce((state,to)=>M.step(map,state,to),M.start(map));
 
-test('three authored maps have unique places and two-way trails in the board', () => {
-  assert.deepEqual(M.MAPS.map(map=>map.id),['meadow','stream','coast']);
+test('the campaign keeps the original three first; all trails are two-way and in the board', () => {
+  assert.equal(M.MAPS.length,24);
+  assert.deepEqual(M.MAPS.slice(0,3).map(map=>map.id),['meadow','stream','coast']);
   for(const map of M.MAPS) {
     const seen=new Set();
     assert.ok(map.places[map.start] && map.places[map.goal]);
@@ -33,7 +34,7 @@ test('all places can be explored and all deliveries can be completed',()=>{
     const queue=[M.start(map)], seen=new Set(), places=new Set();
     let delivered=0;
     for(const state of queue) {
-      const key=`${state.at}/${state.stamped}`;
+      const key=`${state.at}/${state.collected}/${state.stamped}`;
       if(seen.has(key)) continue;
       seen.add(key); places.add(state.at);
       if(state.won) { delivered++; continue; }
@@ -75,7 +76,7 @@ test('a plan inspects two neighbours in order without changing initial position'
   const plan=M.preview(coast,start,['birches','arch']);
   assert.deepEqual(plan.moves.map(m=>[m.from,m.to]),[['start','birches'],['birches','arch']]);
   assert.deepEqual(plan.moves.map(m=>m.state.at),['birches','arch']);
-  assert.equal(M.ready(plan),true); assert.deepEqual(start,{at:'start',stamped:false,won:false});
+  assert.equal(M.ready(plan),true); assert.deepEqual(start,{at:'start',collected:0,stamped:false,won:false});
   assert.equal(M.preview(coast,start,['birches','finish']),null);
   assert.equal(M.preview(coast,start,['birches',,'arch']),null);
   assert.equal(M.preview(coast,start,['birches','arch','windmill']),null);

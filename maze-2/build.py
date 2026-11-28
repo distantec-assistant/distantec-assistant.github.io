@@ -13,7 +13,8 @@ def render():
     for name, filename, closing in [('CSS','style.css','</style'),('MODEL','model.cjs','</script'),
                                     ('ART','art.js','</script'),('APP','app.js','</script')]:
         marker = f'/* MAIL_{name} */'
-        part = (SRC/filename).read_text(encoding='utf-8').rstrip()
+        files = ('campaign.cjs', filename) if name == 'MODEL' else (filename,)
+        part = '\n'.join((SRC/file).read_text(encoding='utf-8').rstrip() for file in files)
         if text.count(marker)!=1 or closing in part.lower():
             raise ValueError(f'Unexpected template/source markup: {filename}')
         text = text.replace(marker,part)

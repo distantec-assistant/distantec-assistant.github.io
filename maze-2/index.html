@@ -1,150 +1,30 @@
 <!doctype html>
-<!-- Built from maze-2/src/ by build.py. -->
 <html lang="ru">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#f8efdf">
+<meta name="theme-color" content="#f7f1df">
 <meta name="robots" content="noindex,nofollow">
 <title>Лабиринты 2.0 — Почта тропинок</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect x='1' y='1' width='46' height='46' rx='14' fill='%23d6eee1'/%3E%3Cpath d='M9 18q0-4 4-4h22q4 0 4 4v13q0 4-4 4H13q-4 0-4-4Z' fill='%23fff6d8' stroke='%2333544e' stroke-width='2.2'/%3E%3Cpath d='m10 17 14 11 14-11' stroke='%2333544e' stroke-width='2.2' fill='none'/%3E%3Ccircle cx='24' cy='27' r='3' fill='%23ec866b'/%3E%3C/svg%3E">
 <style>
-:root {
-  color-scheme:light; --ink:#294b45; --secondary:#526862; --paper:#fffaf0; --line:#e4d8be; --mint:#e0f1df;
-  font-family:ui-rounded,'Arial Rounded MT Bold',system-ui,sans-serif;
-}
-* { box-sizing:border-box; }
-[hidden] { display:none !important; }
-body { margin:0; min-height:100vh; background:radial-gradient(ellipse at 0 0,#e8edcf,transparent 46%),#f9eedf; color:var(--ink); }
-h1,h2,p { margin:0; }
-button { font:inherit; color:inherit; touch-action:manipulation; -webkit-tap-highlight-color:transparent; user-select:none; }
-button:enabled { cursor:pointer; }
-button:focus-visible { outline:3px solid #874e72; outline-offset:3px; }
-button:disabled { opacity:.53; }
-.visually-hidden { position:absolute; height:1px; width:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
-.wrap { width:min(1060px,calc(100% - 42px)); margin:auto; padding-block:max(19px,env(safe-area-inset-top)) max(19px,env(safe-area-inset-bottom)); }
-.mast { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
-.brand { width:53px; height:53px; flex:0 0 53px; border-radius:17px; background:#dcf1df; border:2px solid #c2ddc7; }
-.brand svg { width:100%; height:100%; }
-.mast-text { min-width:0; }
-.mast-text p,.kicker,.panel-label { font-size:11px; font-weight:850; letter-spacing:.09em; color:#3e7768; text-transform:uppercase; }
-.mast-text h1 { font-size:clamp(23px,4vw,37px); line-height:1.03; letter-spacing:-.046em; }
-.mast-text h1 span { color:#4e816f; font-size:.58em; letter-spacing:0; }
-.icon { width:22px; height:22px; flex:0 0 22px; stroke:currentColor; stroke-width:2.1; fill:none; stroke-linecap:round; stroke-linejoin:round; }
-.control { min-height:46px; min-width:46px; display:inline-flex; align-items:center; justify-content:center; gap:6px; border:2px solid transparent; border-radius:12px; padding:5px 10px; font-size:14px; font-weight:800; line-height:1.13; text-align:center; }
-.control.home { margin-left:auto; padding:0; background:#fff8e9; border-color:var(--line); }
-.control.pale { background:#fff8e6; border-color:#e6d9b9; }
-.control.primary { background:#ffd78f; border-color:#eac27c; color:#4b4e39; box-shadow:0 2px #e7bd79; }
-#store-note { margin:0 2px 9px; font-size:13px; color:var(--secondary); }
-.cover,.journey { background:var(--paper); border:2px solid var(--line); box-shadow:0 5px #eddec6; border-radius:24px; }
-.cover { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.12fr); align-items:center; gap:18px; padding:19px; }
-.cover-text { align-self:center; padding:8px 10px; }
-.cover-text .kicker { display:inline-block; border-radius:9px; background:#e5f1d8; padding:5px 8px; }
-.cover h2 { color:#2c5147; font-size:clamp(32px,5.2vw,52px); line-height:.99; letter-spacing:-.045em; margin-top:10px; }
-.cover p:not(.kicker) { color:var(--secondary); font-size:clamp(14px,2vw,18px); line-height:1.45; margin-top:9px; max-width:37ch; }
-.cover-art { display:block; width:100%; border-radius:19px; }
-.missions { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:11px; margin-top:15px; }
-.mission { position:relative; min-height:91px; display:flex; align-items:center; justify-content:flex-start; gap:9px; padding:8px; border:2px solid var(--line); border-radius:17px; background:var(--paper); text-align:left; }
-.mission-art { position:relative; width:65px; height:62px; flex:0 0 65px; border-radius:12px; display:grid; place-items:center; background:#eaf2c8; }
-.mission-art.stream { background:#ddf0ea; }
-.mission-art.coast { background:#dbedf3; }
-.mission-art svg { width:53px; height:53px; }
-.mission-no { position:absolute; left:4px; top:4px; display:grid; place-items:center; width:18px; height:18px; border-radius:7px; background:#fffce9; color:#426353; font-size:11px; font-weight:900; }
-.mission-text { min-width:0; }
-.mission-text strong { display:block; font-size:16px; line-height:1.13; letter-spacing:-.018em; }
-.mission-text small { display:block; font-size:12px; line-height:1.12; color:var(--secondary); margin-top:4px; }
-.mission-end { margin-left:auto; display:grid; place-items:center; width:26px; height:26px; flex:0 0 26px; border-radius:50%; background:#eff2dc; }
-.mission-end .icon { width:17px; height:17px; }
-.mission.done .mission-end { color:#2b6a55; background:#d2f0d8; }
-.journey { padding:15px; }
-.mission-head { display:flex; align-items:center; justify-content:space-between; gap:8px; margin:0 1px 11px; }
-.mission-head .kicker { line-height:1.22; margin-bottom:3px; }
-.mission-head h2 { font-size:clamp(23px,3.9vw,34px); line-height:1.03; letter-spacing:-.035em; }
-h2:focus { outline:none; }
-.badge { display:flex; align-items:center; flex:0 0 auto; gap:3px; background:#fdf2d8; border:1.5px solid #ecdcb2; border-radius:12px; padding:1px 4px; }
-.badge .object { width:38px; height:37px; }
-.stamp-badge { position:relative; display:grid; place-items:center; width:32px; height:32px; opacity:.43; }
-.stamp-badge .object { width:32px; height:32px; }
-.stamp-badge.collected { opacity:1; }
-.stamp-badge .icon { position:absolute; right:-2px; bottom:-2px; width:16px; height:16px; padding:2px; border-radius:50%; background:#d7ead2; }
-.play-grid { display:grid; grid-template-columns:minmax(0,3.25fr) minmax(225px,1fr); gap:12px; align-items:stretch; }
-.board { position:relative; aspect-ratio:600 / 370; overflow:hidden; isolation:isolate; border-radius:18px; background:#e8efd0; box-shadow:0 0 0 1px #cbd4b4; }
-#map-svg { display:block; width:100%; height:auto; pointer-events:none; }
-.road-bank,.road-core,.preview-route { fill:none; stroke-linecap:round; stroke-linejoin:round; }
-.road-bank { stroke:#b6bb88; stroke-width:24; }
-.road-core { stroke:#fff0c5; stroke-width:19; }
-.bridge-road .road-bank { stroke:#b08360; }
-.bridge-road .road-core { stroke:#f1d2a2; }
-.bridge-planks { fill:none; stroke:#bc966e; stroke-width:18; stroke-dasharray:2 10; }
-.spot { fill:#fff8d8; stroke:#c5b48a; stroke-width:2.5; }
-.spot.destination { fill:#ffc698; stroke:#bc8e6d; stroke-width:3; }
-.stamp-spot { fill:#dfc1ea; stroke:#a681b5; }
-.preview-route { stroke:#88578b; stroke-width:7; stroke-dasharray:10 9; }
-.planned-dot circle { fill:#704573; stroke:#fff6e4; stroke-width:3; }
-.planned-dot text { fill:white; font-family:inherit; font-size:18px; font-weight:900; }
-#trail-buttons { position:absolute; inset:0; pointer-events:none; }
-.trail { position:absolute; transform:translate(-50%,-50%); display:grid; place-items:center; pointer-events:auto; width:46px; height:46px; padding:0; border-radius:16px; border:2px solid #538673; background:#fff9d9; color:#2d7465; box-shadow:0 3px #6a96748f; }
-.trail .icon { transform:rotate(var(--arrow)); width:25px; height:25px; }
-#view[data-planning='true'] .trail { color:#6c4179; border-color:#986ea1; background:#fff3db; box-shadow:0 3px #996c9f62; }
-.panel { min-width:0; border:1.5px solid #e6dfc9; background:#fcf4e4; border-radius:17px; padding:12px; display:flex; flex-direction:column; align-items:flex-start; gap:8px; }
-.notice { font-size:16px; line-height:1.33; color:var(--secondary); font-weight:650; }
-.actions { display:flex; flex-wrap:wrap; gap:7px; align-items:center; }
-.plan-actions { width:100%; }
-.plan-actions .primary { flex:1 0 100%; }
-.plan-steps { width:100%; display:grid; gap:5px; }
-.plan-step { display:flex; align-items:center; gap:6px; min-height:32px; padding:4px 7px; border:1px dashed #dacbaf; border-radius:9px; background:#fffaef; color:#684e62; font-size:13px; font-weight:750; line-height:1.1; }
-.plan-step b { display:grid; place-items:center; width:20px; height:20px; flex:0 0 20px; border-radius:7px; color:#745178; background:#f2dfeb; }
-.plan-step.filled { border-style:solid; border-color:#dcc4d7; }
-.plan-step.filled b { color:white; background:#875487; }
-.delivered { display:inline-flex; align-items:center; gap:6px; border-radius:11px; padding:5px 8px; color:#325e4c; background:#ddf1d8; }
-.travel-tag { color:#536b59; font-size:13px; font-weight:750; }
-footer { text-align:center; margin-top:14px; color:#6d7466; font-size:12px; }
-@media (hover:hover) {
-  .control:enabled:hover,.mission:enabled:hover,.trail:hover { border-color:#8b6e8a; }
-}
-@media (max-width:800px) {
-  .play-grid { grid-template-columns:minmax(0,1fr); gap:9px; }
-  .board { width:min(100%,680px); margin-inline:auto; }
-  .panel { gap:6px; }
-  .plan-steps { grid-template-columns:repeat(2,minmax(0,1fr)); }
-}
-@media (max-width:660px) {
-  .wrap { width:calc(100% - 18px); padding-block:max(10px,env(safe-area-inset-top)) 12px; }
-  .mast { gap:8px; margin-bottom:9px; }
-  .brand { width:44px; height:44px; flex-basis:44px; border-radius:13px; }
-  .mast-text p,.kicker,.panel-label { font-size:10px; }
-  .control { min-height:44px; min-width:44px; font-size:13px; padding:4px 7px; }
-  .cover { border-radius:19px; grid-template-columns:1fr; gap:5px; padding:7px; }
-  .cover-art { grid-row:1; border-radius:12px; max-height:164px; object-fit:cover; }
-  .cover-text { padding:4px 6px 8px; }
-  .cover h2 { font-size:clamp(26px,6.2vw,39px); margin-top:5px; }
-  .cover h2 br { display:none; }
-  .cover p:not(.kicker) { margin-top:5px; }
-  .missions { grid-template-columns:1fr; margin-top:9px; gap:5px; }
-  .mission { min-height:59px; padding:4px 7px; }
-  .mission-art { width:48px; height:46px; flex-basis:48px; }
-  .mission-art svg { width:39px; height:39px; }
-  .mission-text strong { font-size:15px; }
-  .mission-text small { margin-top:2px; }
-  .journey { padding:6px; border-radius:17px; }
-  .mission-head { margin:1px 2px 7px; }
-  .mission-head h2 { font-size:21px; }
-  .badge { border-radius:9px; padding:0 2px; }
-  .badge .object { width:31px; height:30px; }
-  .stamp-badge { width:26px; height:26px; }
-  .stamp-badge .object { width:26px; height:26px; }
-  .board { border-radius:12px; }
-  .panel { padding:6px 7px; border-radius:12px; }
-  .notice { font-size:14px; }
-  .trail { width:44px; height:44px; border-radius:14px; }
-  .plan-step { font-size:12px; }
-  .plan-actions { gap:5px; }
-  .plan-actions .icon { width:18px; height:18px; flex-basis:18px; }
-}
-@media (min-width:661px) and (max-width:800px) and (orientation:landscape) {
-  .play-grid { grid-template-columns:minmax(0,3fr) minmax(205px,1fr); }
-  .plan-steps { grid-template-columns:1fr; }
-}
+:root{color-scheme:light;--ink:#263f3b;--soft:#52655d;--edge:#d6cbb4;--paper:#fffbee;--green:#22604f;--plum:#744e78;font-family:ui-rounded,'Arial Rounded MT Bold',system-ui,sans-serif;color:var(--ink)}
+*{box-sizing:border-box} [hidden]{display:none!important} body{margin:0;min-height:100vh;background:radial-gradient(ellipse at top left,#e2ead7 0%,transparent 55%),#f5efdf} h1,h2,h3,p{margin:0} button,summary{font:inherit;color:inherit;touch-action:manipulation;-webkit-tap-highlight-color:transparent} button{appearance:none;min-width:44px;min-height:44px;line-height:1.16;cursor:pointer} button:disabled{cursor:default} :is(button,summary):focus-visible{outline:3px solid #704294;outline-offset:2px;z-index:3} h2:focus{outline:0}.visually-hidden{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.wrap{width:min(1060px,calc(100% - 32px));margin:auto;padding-block:max(18px,env(safe-area-inset-top)) max(20px,env(safe-area-inset-bottom))}.mast{display:flex;align-items:center;gap:10px;margin:0 2px 14px}.brand{height:49px;width:52px;display:grid;place-items:center;background:#e0edd9;border:1.5px solid #b6cebc;border-radius:15px}.brand .object{width:44px;height:44px}.mast-text p,.kicker{font-size:10px;line-height:1.25;letter-spacing:.13em;font-weight:850;color:#486b5d}.mast-text p{text-transform:uppercase}.mast-text h1{font-size:clamp(21px,3vw,30px);letter-spacing:-.045em;line-height:1}.mast-text h1 span{font-size:.63em;color:#597869;letter-spacing:0}#home{margin-left:auto}#store-note{font-size:13px;padding:4px 2px 9px}.icon{width:22px;height:22px;flex:none;stroke:currentColor;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round;fill:none}.rabbit{width:42px;height:42px;flex:none}.control{display:inline-flex;align-items:center;justify-content:center;gap:6px;background:#fff8e9;border:1.5px solid #cec4ab;border-radius:13px;padding:9px 13px;font-size:14px;font-weight:750}.control.primary,.control.go{background:#236452;border-color:#1b5545;color:#fffcec;box-shadow:0 2px #174637}.control:disabled{color:#796f69;background:#eee8dd;box-shadow:none;border-color:#d3c9bb}
+.ch1{--tint:#e6edc8;--color:#526d39;--bright:#a7bd79}.ch2{--tint:#dcedef;--color:#335f72;--bright:#95c1c9}.ch3{--tint:#f2e2ec;--color:#724a6f;--bright:#c9a0bf}.ch4{--tint:#f5e6c7;--color:#855c2e;--bright:#dfbc7a}
+.album,.journey{position:relative;background:var(--paper);border:1.5px solid var(--edge);border-radius:24px;box-shadow:0 4px 0 #e4d9bf,0 16px 38px -30px #405448}.album{overflow:hidden;padding:22px 24px 24px}.album:before{content:'';position:absolute;inset:0 0 auto;height:5px;background:repeating-linear-gradient(125deg,#679e8b 0 14px,#f9efd6 14px 25px,#d99477 25px 39px,#f9efd6 39px 51px)}.album-head,.chapter-head,.mission-head,.walk-top,.actions{display:flex;align-items:center;justify-content:space-between;gap:12px}.album h2{font-size:clamp(26px,5vw,47px);letter-spacing:-.05em;line-height:1.11}.count-seal{flex:none;display:flex;align-items:center;gap:4px;padding:7px 11px;border:2px double #719781;border-radius:50px;color:#326550;background:#f2f5df;font-size:16px;white-space:nowrap}.count-seal .icon{width:19px;height:19px}.atlas-bar{display:flex;align-items:center;gap:12px;margin:9px 0 14px}.atlas-bar .rabbit{width:52px;height:50px}.postmark{flex:1;display:grid;gap:4px;color:#cdd6b9}.postmark i{height:1px;background:linear-gradient(90deg,transparent,currentColor 80%)}.grand-prize{font-weight:850;color:var(--green)}
+.chapters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.chapter{display:flex;align-items:center;gap:9px;text-align:left;border-radius:13px;border:1.5px solid var(--edge);background:#fbf7e9;padding:8px;color:var(--color)}.chapter[aria-pressed='true']{background:var(--tint);border-color:var(--color);box-shadow:inset 0 -3px var(--color)}.postage{position:relative;flex:none;display:grid;place-items:center;width:48px;height:48px;border:2px dashed var(--bright,#b3bf9c);border-radius:8px;background:var(--tint,#e8efda)}.postage .object{height:88%;width:88%}.chapter:not(.earned) .postage{filter:saturate(.62)}.chapter.earned .postage{box-shadow:inset 0 0 0 2px #fff9dc}.chapter-meta{min-width:0;display:grid;gap:2px}.chapter-meta b,.chapter-meta small{font-size:11px;font-weight:750}.tab-name{font-size:14px;font-weight:800;line-height:1.07}.chapter-page{border-top:1px dashed #c4bca4;margin-top:17px;padding-top:15px}.chapter-head{margin-bottom:12px}.chapter-head h3,.win h3{font-size:clamp(22px,3vw,30px);line-height:1.1;letter-spacing:-.035em}.chapter-head .kicker{color:var(--color);margin-bottom:2px}.seal-note{color:var(--color)}.seal-note.earned{display:flex;align-items:center;gap:4px;font-size:12px;font-weight:800}.seal-note .icon{width:16px}.dot-stamps{display:flex;gap:4px}.dot-stamps i{width:10px;height:10px;background:#f8f3e3;border:1px solid #b8b39e;border-radius:50%}.dot-stamps i.inked{background:var(--color);border-color:var(--color)}
+.missions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.mission{position:relative;display:flex;align-items:center;gap:9px;padding:8px;border:1.5px solid var(--edge);border-radius:14px;background:#fffdf5;text-align:left}.mission-stamp{position:relative;display:grid;place-items:center;width:61px;height:60px;flex:none;border:1px solid #e1d9bd;border-radius:11px;background:var(--tint)}.mission-stamp .object{height:52px;width:52px}.mission-stamp b{position:absolute;top:-4px;left:-3px;font-size:11px;font-weight:850;background:#fffbee;color:var(--color);border:1px solid var(--bright);border-radius:8px;padding:1px 4px}.mission-text{flex:1;min-width:0}.mission-text strong,.mission-text small{display:block}.mission-text strong{font-size:16px;line-height:1.16;letter-spacing:-.02em}.mission-text small{font-size:12px;color:var(--soft);margin-top:4px}.mission-end{flex:none;color:#69786b}.mission-end .icon{width:17px;height:17px}.mission.done .mission-end{display:grid;place-items:center;width:22px;height:22px;background:#d9eed4;color:var(--green);border-radius:50%}
+.journey{padding:14px}.mission-head{margin:0 2px 10px}.mission-head h2{font-size:clamp(22px,3vw,35px);line-height:1.1;letter-spacing:-.04em;margin-top:3px}.itinerary{display:flex;align-items:center;gap:2px;flex:none}.cargo,.goal-chip{position:relative;display:grid;place-items:center}.goal-chip{width:46px;height:43px;background:#f4ecd8;border:2px solid transparent;border-radius:11px}.goal-chip .object,.cargo .object{width:38px;height:38px}.cargo .object{width:32px;height:32px}.goal-chip b{position:absolute;right:-3px;bottom:-3px;font-size:11px;line-height:16px;min-width:16px;text-align:center;border-radius:50%;background:#d5d5c7;color:#4b554b}.goal-chip.active{background:#fff0b6;border-color:#a36b28}.goal-chip.active b{background:#855322;color:white}.goal-chip.checked b{background:#2a6950;color:white}.goal-chip.later .object{filter:grayscale(.95);opacity:.72}.sequence-arrow{color:#6b7867;font-size:20px;line-height:1;font-weight:bold}.play-grid{display:grid;grid-template-columns:minmax(0,2.85fr) minmax(234px,1fr);gap:12px;align-items:start}.map-column,.panel{min-width:0}.board{position:relative;aspect-ratio:600/370;overflow:hidden;border-radius:16px;background:#deead0;outline:1px solid #c1d0b3}.board #map-svg{display:block;width:100%;height:auto;pointer-events:none}.road-bank,.road-core,.preview-route,.hint-route{fill:none;stroke-linecap:round;stroke-linejoin:round}.road-bank{stroke:#b7ba89;stroke-width:24}.road-core{stroke:#fff0c4;stroke-width:19}.bridge-road .road-bank{stroke:#aa8261}.bridge-road .road-core{stroke:#efd0a3}.bridge-planks{fill:none;stroke:#b28d69;stroke-width:18;stroke-dasharray:2 10}.spot{fill:#fff7d5;stroke:#bbaa83;stroke-width:2.5}.goal-ring{fill:#ffe79c;stroke:#965e28;stroke-width:3;stroke-dasharray:6 3}.preview-route{stroke:#865481;stroke-width:7;stroke-dasharray:9 9}.hint-route{stroke:#996313;stroke-width:7;stroke-dasharray:3 10}.planned-dot circle{fill:#fff5de;stroke:#784976;stroke-width:3;stroke-dasharray:5 2}.planned-dot text{fill:#67406d;font-weight:900;font-size:19px}#trail-buttons{position:absolute;inset:0;pointer-events:none}.trail,.map-pin{color:#235e50;background:#fffae4;border:2px solid #4b826a}.map-trail,.map-pin{display:grid;place-items:center;position:absolute;width:44px;height:44px;padding:0;margin:-22px 0 0 -22px;border-radius:14px;box-shadow:0 2px 0 #65876c88}.map-trail{pointer-events:auto}.dir{display:inline-grid;place-items:center;color:inherit;flex:none}.dir .icon{transform:rotate(var(--angle));width:25px;height:25px;stroke-width:2.7}.map-pin{width:24px;height:24px;min-height:0;margin:-12px 0 0 -12px;border-radius:8px}.map-pin .icon{width:15px;height:15px}.map-pin b{position:absolute;right:-6px;bottom:-4px;color:white;background:var(--green);font-size:9px;border-radius:5px;padding:1px 3px}#view[data-planning=true] :is(.trail,.map-pin){color:#734478;border-color:#986ca0;background:#fff5e5}.trail.hinted,.map-pin.hinted,#view[data-planning=true] :is(.trail,.map-pin).hinted{color:#623a0a;border-color:#955a0c;background:#ffda73;box-shadow:0 0 0 2px #fffbda}.spark{position:absolute;right:-4px;top:-5px;padding:1px 3px;background:#80511e;color:#fff7d4;border-radius:50%;font-size:13px;line-height:14px}#choice-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}.choice{position:relative;display:flex;align-items:center;justify-content:center;gap:3px;flex:1 1 82px;border-radius:11px;padding:4px}.way-id{font-size:10px;font-weight:800}.choice-name{font-size:12px;font-weight:750;overflow-wrap:anywhere}.choice .icon{width:18px;height:18px}
+.panel{border:1px solid #ded6bd;background:#f7f2e2;border-radius:15px;padding:11px;display:flex;flex-direction:column;gap:9px}.walk-top{flex-wrap:wrap;gap:8px}.notice{font-size:16px;font-weight:750;line-height:1.18}.walk-top .notice{flex:1 1 96px}.walk-top #hint{font-size:13px;background:#fff5cd;border-color:#d9c48e}.plan-offer{width:100%;display:flex;align-items:center;justify-content:space-around;gap:6px;padding:5px 7px;border-radius:12px;background:#f6edf2;border:1.5px dashed #aa86a0;color:#684569}.plan-offer strong{font-size:13px;line-height:1.12}.example,.plan-strip{display:flex;align-items:center;justify-content:center;gap:4px}.example{flex:none}.example>.icon{width:18px;height:18px}.example i{display:grid;place-items:center;width:22px;height:23px;font-style:normal;border:1px dashed #9b729d;border-radius:6px;font-size:17px;line-height:1;font-weight:750;background:#fff8e7}.example b{font-size:12px}.example .rabbit{width:30px;height:30px}.brief{font-size:13px;color:var(--soft)}.brief summary{min-height:44px;display:list-item;align-content:center;cursor:pointer;width:fit-content;padding:11px 4px;font-weight:700}.brief p{line-height:1.4;margin:0 3px 5px}.panel.planning{color:#604167;background:#f7eff1;border-color:#ddcad7}.panel.planning .kicker{color:#805881}.plan-strip{justify-content:flex-start;gap:7px}.plan-strip>.icon{width:24px;height:24px}.step-slot{position:relative;display:grid;place-items:center;width:42px;height:35px;border:1.5px dashed #af9aad;background:#fff9f0;color:#705476;border-radius:9px}.step-slot b{position:absolute;top:-5px;left:-4px;display:grid;place-items:center;min-width:16px;height:16px;border:1px solid #a88ca5;background:white;border-radius:7px;font-size:10px}.step-slot.filled{background:#87628b;border-style:solid;border-color:#715077;color:white}.step-slot.filled b{color:#654569}.step-slot.now{color:#69421a;background:#ffdda0;border-color:#9d6d32}.step-slot.now b{background:#fff3c2}.plus,.equals{font-weight:850}.blank{font-weight:900;color:#97818d}.plan-tools,.actions{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-start}.plan-tools .control{flex:1 1 94px;font-size:13px;padding:7px 5px}.plan-tools .icon{width:18px;height:18px}.control.go{font-size:18px;min-height:49px}.control.go:disabled{background:#e8e2df;color:#776b71;box-shadow:none;border-color:#cdc3c7}.travel{display:flex;align-items:center;gap:6px;font-size:15px;font-weight:750}.win{display:flex;align-items:center;gap:10px}.win-art{position:relative}.win-art>.icon{position:absolute;right:-4px;bottom:-4px;background:#2e7057;border:2px solid white;color:white;border-radius:50%;width:21px;height:21px;padding:2px}.win-note{font-size:14px;line-height:1.25;margin-top:3px;color:var(--soft)}
+@media(hover:hover){:is(.chapter,.mission,.trail,.plan-offer,.control):enabled:hover{outline:2px solid #6a776d;outline-offset:-2px}}
+@media(max-width:830px){.play-grid{grid-template-columns:minmax(0,1fr)}.chapter{gap:5px;padding:6px}.chapter .postage{width:37px;height:37px}.missions{grid-template-columns:repeat(2,minmax(0,1fr))}.panel{gap:7px}.panel.planning{display:grid;grid-template-columns:minmax(0,1fr) minmax(150px,.72fr);align-items:center}.planning .kicker,.planning .plan-strip,.planning .notice{grid-column:1}.planning #walk-plan{grid-column:2;grid-row:1/3}.planning .plan-tools{grid-column:2;grid-row:3/5}.plan-offer{justify-content:center;gap:12px}.panel:not(.planning) .brief{margin-top:-4px}}
+@media(max-width:600px){.wrap{width:calc(100% - 16px);padding-block:max(9px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-bottom))}.mast{margin-bottom:9px;gap:7px}.brand{width:44px;height:44px}.brand .object{width:36px;height:36px}.mast-text p,.kicker{font-size:9px}.control{padding:7px 9px;font-size:13px}.album,.journey{border-radius:17px}.album{padding:14px 9px 10px}.album-head{gap:5px}.album h2{font-size:clamp(24px,6.3vw,32px)}.album .count-seal{font-size:13px;padding:5px 6px;gap:1px}.count-seal .icon{width:15px;height:15px}.atlas-bar{margin:5px 0 8px;gap:8px}.atlas-bar .rabbit{width:40px;height:40px}.chapters{gap:4px}.chapter{flex-direction:column;align-items:center;gap:2px;padding:5px 2px 6px}.chapter .postage{width:32px;height:31px;border-radius:6px}.chapter-meta{gap:0;justify-items:center}.chapter-meta small{font-size:10px}.tab-name{display:none}.chapter-page{margin-top:10px;padding-top:9px}.chapter-head{margin-bottom:8px;gap:5px}.chapter-head h3{font-size:21px}.dot-stamps{gap:2px}.dot-stamps i{width:6px;height:6px}.seal-note.earned{max-width:88px;font-size:10px}.missions{gap:6px}.mission{align-items:flex-start;flex-direction:column;gap:6px;border-radius:11px;padding:7px;justify-content:flex-start}.mission-stamp{width:41px;height:35px;border-radius:8px}.mission-stamp .object{width:35px;height:35px}.mission-stamp b{font-size:9px}.mission-text strong{font-size:13px}.mission-text small{display:none}.mission-end{position:absolute;top:11px;right:7px}.mission-end .icon{width:15px;height:15px}.journey{padding:7px}.mission-head{align-items:flex-start;flex-wrap:wrap;margin:0 1px 8px;gap:5px 9px}.mission-head h2{font-size:21px}.itinerary{gap:1px;align-self:center}.goal-chip{width:34px;height:31px;border-radius:8px}.goal-chip .object{width:29px;height:29px}.cargo .object{width:26px;height:26px}.goal-chip b{font-size:9px;min-width:13px;line-height:13px}.sequence-arrow{font-size:15px}.play-grid{gap:7px}.board{border-radius:11px}.panel{padding:7px;border-radius:11px;gap:5px}.notice{font-size:14px}.panel.planning{display:flex;align-items:stretch;gap:7px}.plan-strip{gap:8px}.plan-strip .rabbit{width:36px;height:36px}.plan-tools{flex-wrap:nowrap}.plan-tools .control{min-width:0;flex:1}.walk-top{gap:5px}.walk-top #hint{padding:6px}.walk-top #hint .icon{width:18px;height:18px}}
+@media(min-width:601px) and (max-height:580px) and (orientation:landscape){.play-grid{grid-template-columns:minmax(0,2fr) minmax(220px,1fr)}.panel.planning{display:flex;align-items:stretch}.wrap{padding-block:7px}.mast{margin-bottom:7px}.journey{padding:9px}}
+/* Put each fallback arrow above its landmark so names don't split into syllables. */
+.choice{display:grid;grid-template-columns:1fr auto auto 1fr;align-content:center;justify-items:center;gap:0 3px}.choice .way-id{grid-column:2}.choice .dir{grid-column:3}.choice .choice-name{grid-column:1/-1;overflow-wrap:normal;font-size:11px;line-height:1.1}.choice .spark{display:block}.mast-text h1{white-space:nowrap}
+@media(max-width:380px){#home{padding:0;width:44px}#home span{display:none}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -152,39 +32,164 @@ footer { text-align:center; margin-top:14px; color:#6d7466; font-size:12px; }
   <header class="mast">
     <div class="brand" id="brand" aria-hidden="true"></div>
     <div class="mast-text"><p>Почта тропинок</p><h1>Лабиринты <span>2.0</span></h1></div>
-    <button type="button" id="home" class="control home" aria-label="Выбор истории" hidden></button>
+    <button type="button" id="home" class="control" aria-label="Назад в атлас" hidden></button>
   </header>
-  <p id="store-note" role="status" hidden>Хранилище недоступно. Играть можно, но отметки не сохранятся.</p>
-  <main id="view"><noscript>Открой файл в браузере с включённым JavaScript.</noscript></main>
-  <footer>Семейная проба</footer>
+  <p id="store-note" role="status" hidden>Отметки останутся только до закрытия игры.</p>
+  <main id="view"><noscript>Для игры включи JavaScript в браузере.</noscript></main>
+  <div class="visually-hidden" id="spoken" role="status" aria-live="polite" aria-atomic="true"></div>
 </div>
 <script>
-const TrailMail = (() => {
+// Each path is a walk through named places; only consecutive names are joined.
+// Shared names are real junctions. No inferred neighbours, procedural maps or random routes.
+const TrailCampaign = (() => {
   'use strict';
-  const KEY = 'maze-mail-2-v1';
-  const place = (name,x,y) => ({name,at:[x,y]});
-  function freeze(obj) {
-    for (const value of Object.values(obj)) if (value && typeof value==='object') freeze(value);
-    return Object.freeze(obj);
+  const p = (name,x,y) => ({name,at:[x,y]});
+  const item = (at,icon,label) => ({at,icon,label});
+  function route({paths,...map}) {
+    const trails=paths.flatMap(path=>{
+      const ids=path.split(' ');
+      if (ids.length<2 || ids.some(id=>!Object.hasOwn(map.places,id))) throw Error(`Unknown path in ${map.id}: ${path}`);
+      return ids.slice(1).map((to,i)=>[ids[i],to]);
+    });
+    return {...map,start:'start',goal:'finish',trails};
   }
-  const MAPS = freeze([
+  function freeze(o) {
+    for (const v of Object.values(o)) if (v && typeof v==='object') freeze(v);
+    return Object.freeze(o);
+  }
+  const stories = [
+    // 1–3: the original paths, bends, places, cargo and delivery conditions.
     {id:'meadow', title:'Письмо для ежа', land:'Солнечная поляна', cargo:'mail', start:'start', goal:'finish',
-      places:{start:place('Почта',61,247), fork:place('Развилка',194,236), grove:place('Роща',294,117),
-        nest:place('Птичье гнездо',459,90), hill:place('Холм',361,294), finish:place('Ёжик',526,243)},
+      theme:'meadow', recipient:'hedgehog', objectives:[], briefing:'Отнеси письмо ёжику. У развилки посмотри, какая тропинка ведёт к нему.',
+      places:{start:p('Почта',61,247), fork:p('Развилка',194,236), grove:p('Роща',294,117),
+        nest:p('Птичье гнездо',459,90), hill:p('Холм',361,294), finish:p('Ёжик',526,243)},
       trails:[['start','fork',[126,259]],['fork','grove',[223,164]],['grove','nest',[366,99]],
         ['fork','hill',[266,268]],['hill','finish',[449,294]]]},
     {id:'stream',title:'Посылка у ручья',land:'Кувшинки и мост',cargo:'parcel',start:'start',goal:'finish',stamp:'lilies',
-      places:{start:place('Почта',64,291),fork:place('Развилка',201,261),lilies:place('Кувшинки',169,108),
-        bridge:place('Мост',369,207), reeds:place('Камыши',445,319),finish:place('Выдра',534,132)},
+      theme:'stream', recipient:'otter', objectives:[item('lilies','stamp','Марка')], briefing:'Возьми марку у кувшинок, потом неси посылку выдре через мост.',
+      places:{start:p('Почта',64,291),fork:p('Развилка',201,261),lilies:p('Кувшинки',169,108),
+        bridge:p('Мост',369,207), reeds:p('Камыши',445,319),finish:p('Выдра',534,132)},
       trails:[['start','fork',[125,286]],['fork','lilies',[174,178]],['fork','bridge',[273,230]],
         ['bridge','finish',[463,169]],['bridge','reeds',[411,264]]]},
     {id:'coast',title:'Огонёк для маяка',land:'Тропы у моря',cargo:'light',start:'start',goal:'finish',
-      places:{start:place('Почта',58,260),birches:place('Берёзки',187,240),arch:place('Каменная арка',304,145),
-        bench:place('Скамейка',286,319),windmill:place('Ветряк',466,48),dock:place('Причал',445,249),finish:place('Маяк',530,121)},
+      theme:'coast', recipient:'lighthouse', objectives:[], briefing:'Доставь огонёк к маяку. Можно сначала наметить два шага.',
+      places:{start:p('Почта',58,260),birches:p('Берёзки',187,240),arch:p('Каменная арка',304,145),
+        bench:p('Скамейка',286,319),windmill:p('Ветряк',466,48),dock:p('Причал',445,249),finish:p('Маяк',530,121)},
       trails:[['start','birches',[122,250]],['birches','arch',[231,181]],['birches','bench',[211,302]],
         ['arch','windmill',[393,87]],['arch','dock',[370,197]],['bench','dock',[370,307]],['dock','finish',[499,203]]]},
-  ]);
-  const start = map => ({at:map.start,stamped:false,won:false});
+
+    // 4–6: one decision at a time — a side trip, a fork at the post, a dead end.
+    route({id:'apple-bough',title:'Яблоко с ветки',land:'Маленький сад',theme:'orchard',recipient:'squirrel',cargo:'parcel',
+      briefing:'Сорви яблоко у яблони. Вернись к скамейке и отнеси яблоко белке.',objectives:[item('tree','apple','Яблоко')],
+      places:{start:p('Почта',63,219),bench:p('Скамейка',247,218),tree:p('Яблоня',248,80),finish:p('Белка',525,240)},
+      paths:['start bench finish','bench tree']}),
+    route({id:'garden-gate',title:'Ключ от калитки',land:'Два переулка',theme:'village',recipient:'fox',cargo:'mail',
+      briefing:'У колодца лежит ключ. Возьми его и неси лисе у калитки.',objectives:[item('well','key','Ключ')],
+      places:{start:p('Почта',64,213),well:p('Колодец',220,88),gate:p('Калитка',383,201),pump:p('Колонка',204,311),finish:p('Лиса',534,237)},
+      paths:['start well gate finish','start pump gate']}),
+    route({id:'ice-star',title:'Звезда на льду',land:'Снежная горка',theme:'snow',recipient:'penguin',cargo:'parcel',
+      briefing:'Забери звёздочку у льдинки, а потом иди по следам к пингвину.',objectives:[item('ice','star','Звёздочка')],
+      places:{start:p('Почта',231,186),ice:p('Льдинка',65,89),hill:p('Горка',206,314),tracks:p('Следы',392,218),finish:p('Пингвин',538,280)},
+      paths:['ice start tracks finish','start hill']}),
+
+    // 7–12: one pickup, but now the player chooses a detour, loop, or return road.
+    route({id:'lamp-shop',title:'Фонарь для совы',land:'Фонарная улица',theme:'village',recipient:'owl',cargo:'light',
+      briefing:'Зайди в лавку за фонарём. Сова ждёт его за воротами.',objectives:[item('shop','light','Фонарь')],
+      places:{start:p('Почта',58,272),yard:p('Двор',198,206),shop:p('Лавка',313,78),gate:p('Ворота',406,217),stair:p('Ступеньки',321,318),finish:p('Сова',553,224)},
+      paths:['start yard shop gate finish','yard gate stair']}),
+    route({id:'raft-supplies',title:'Доски для плота',land:'Бобровая пристань',theme:'stream',recipient:'beaver',cargo:'parcel',
+      briefing:'Загляни на склад за свёртком досок. Доставь его бобру на пристань.',objectives:[item('store','parcel','Свёрток досок')],
+      places:{start:p('Почта',58,280),bank:p('Бережок',173,208),store:p('Склад',59,80),log:p('Бревно',296,269),bend:p('Излучина',435,206),stump:p('Пенёк',384,77),finish:p('Бобр',529,250)},
+      paths:['start bank log bend finish','bank store','bend stump']}),
+    route({id:'anchor-stamp',title:'Марка с якорем',land:'Песчаная коса',theme:'coast',recipient:'otter',cargo:'mail',
+      briefing:'Под мачтой спрятана марка с якорем. Отнеси письмо с маркой выдре.',objectives:[item('mast','stamp','Марка с якорем')],
+      places:{start:p('Почта',49,307),knot:p('Канат',159,207),mast:p('Мачта',221,75),flag:p('Флажок',359,89),pier:p('Настил',412,221),sand:p('Песок',291,310),finish:p('Выдра',546,234)},
+      paths:['start knot mast flag pier finish','pier sand knot']}),
+    route({id:'juice-basket',title:'Сок для ёжика',land:'Яблочная ярмарка',theme:'orchard',recipient:'hedgehog',cargo:'parcel',
+      briefing:'Со стола забери коробку с соком. Иди к ёжику через цветные ворота.',objectives:[item('table','parcel','Коробка сока')],
+      places:{start:p('Почта',71,322),hedge:p('Изгородь',176,271),square:p('Пятачок',320,210),table:p('Стол',305,75),stall:p('Палатка',500,90),gate:p('Цветные ворота',430,311),finish:p('Ёжик',523,240)},
+      paths:['start hedge square gate finish','table square stall']}),
+    route({id:'lost-mitten',title:'Ключ под варежкой',land:'Лисьи тропы',theme:'snow',recipient:'fox',cargo:'mail',
+      briefing:'Загляни под варежку за ключом. Лиса ждёт у снежного домика.',objectives:[item('mitten','key','Ключик')],
+      places:{start:p('Почта',59,196),pine:p('Сосна',196,81),mitten:p('Варежка',198,301),ridge:p('Гребень',323,143),lodge:p('Будка',412,206),drift:p('Сугроб',543,83),finish:p('Лиса',540,270)},
+      paths:['start mitten pine start','pine ridge lodge finish','lodge drift finish']}),
+    route({id:'kite-ribbon',title:'Звезда с воздушного змея',land:'Маковый луг',theme:'meadow',recipient:'squirrel',cargo:'parcel',
+      briefing:'У воздушного змея лежит бумажная звезда. Отнеси её белке.',objectives:[item('kite','star','Бумажная звезда')],
+      places:{start:p('Почта',60,237),poppy:p('Мак',194,174),hill:p('Бугорок',306,246),birch:p('Берёза',423,206),finish:p('Белка',514,236),bell:p('Колокольчик',105,75),root:p('Корень',212,322),kite:p('Воздушный змей',393,75)},
+      paths:['start poppy hill birch finish','poppy bell','hill root','birch kite']}),
+
+    // 13–18: the second item waits. It can always be reached before the first by mistake.
+    route({id:'apple-box',title:'Яблоко в коробке',land:'Сад у беседки',theme:'orchard',recipient:'owl',cargo:'parcel',
+      briefing:'Сначала сорви яблоко с ветки. Потом возьми коробку у сарая и неси подарок сове.',
+      objectives:[item('bough','apple','Яблоко'),item('shed','parcel','Коробка')],
+      places:{start:p('Почта',64,245),bench:p('Лавочка',197,223),bough:p('Ветка',219,82),arbour:p('Беседка',373,75),lane:p('Аллея',426,206),shed:p('Сарай',339,317),finish:p('Сова',534,233)},
+      paths:['start bench bough arbour lane finish','bench lane shed']}),
+    route({id:'toy-chest',title:'Как открыть сундук',land:'Двор кузнеца',theme:'village',recipient:'fox',cargo:'parcel',
+      briefing:'Возьми ключ в кузнице, а потом коробку из сундука. Доставь коробку лисе.',
+      objectives:[item('forge','key','Ключ'),item('chest','parcel','Коробка игрушек')],
+      places:{start:p('Почта',63,273),square:p('Площадь',177,210),well:p('Водокачка',313,192),forge:p('Кузница',436,78),chest:p('Сундук',142,83),lane:p('Улочка',404,301),finish:p('Лиса',543,239)},
+      paths:['start square well lane finish','well forge chest square']}),
+    route({id:'ice-window',title:'Звезда в окошке',land:'Ледяной городок',theme:'snow',recipient:'penguin',cargo:'light',
+      briefing:'Возьми звезду на крыше, потом фонарик у санок. Отнеси их пингвину.',
+      objectives:[item('roof','star','Звезда'),item('sled','light','Фонарик')],
+      places:{start:p('Почта',177,173),bank:p('Снежный вал',73,81),roof:p('Ледяная крыша',317,79),drift:p('Снежный холмик',302,277),sled:p('Санки',115,315),arch:p('Ледяная арка',431,181),spruce:p('Ёлочка',535,80),finish:p('Пингвин',546,276)},
+      paths:['start bank roof start','start drift arch finish','drift sled','arch spruce']}),
+    route({id:'keepers-locker',title:'Огонёк из шкафчика',land:'Бухта смотрителя',theme:'coast',recipient:'lighthouse',cargo:'light',
+      briefing:'Возьми ключ в сторожке, потом огонёк из шкафчика. Неси огонёк на маяк.',
+      objectives:[item('cove','key','Медный ключ'),item('locker','light','Огонёк')],
+      places:{start:p('Почта',55,217),beach:p('Пляж',141,222),cove:p('Сторожка',204,75),reef:p('Белый камень',276,214),mast:p('Флюгер',398,76),locker:p('Шкафчик',363,315),pier:p('Пирс',458,205),finish:p('Маяк',546,247)},
+      paths:['start beach cove reef beach','reef locker pier mast reef','pier finish']}),
+    route({id:'poppy-post',title:'Посылка с луга',land:'Тропинки у ивы',theme:'meadow',recipient:'hedgehog',cargo:'parcel',
+      briefing:'Сначала возьми марку у мака. Потом забери посылку с пенька и отнеси её ёжику.',
+      objectives:[item('poppy','stamp','Марка'),item('stump','parcel','Посылка')],
+      places:{start:p('Почта',537,309),willow:p('Ива',401,183),fork:p('Перекрёсток',316,191),poppy:p('Мак',205,76),stool:p('Табуретка',320,320),hut:p('Шалаш',153,235),stump:p('Пенёк',489,83),finish:p('Ёжик',68,176)},
+      paths:['start willow fork hut finish','willow stump','fork poppy','fork stool hut']}),
+    route({id:'dusk-dam',title:'Бобр строит до темноты',land:'Три мостика',theme:'stream',recipient:'beaver',cargo:'parcel',
+      briefing:'Забери коробку гвоздей на барже. Потом возьми фонарь у лодки и отнеси всё бобру.',
+      objectives:[item('shed','parcel','Коробка гвоздей'),item('boat','light','Фонарь')],
+      places:{start:p('Почта',49,262),dock:p('Сходни',142,134),shed:p('Баржа',243,75),logs:p('Брёвна',351,75),span:p('Мостки',275,249),grass:p('Осока',145,322),boat:p('Лодка',353,304),bank:p('Высокий берег',458,181),finish:p('Бобр',553,247)},
+      paths:['start dock shed logs bank finish','dock span bank','dock grass boat bank']}),
+
+    // 19–24: different circuits on the way out and back; destinations can be visited early.
+    route({id:'owls-library',title:'Библиотека совы',land:'Книжная площадь',theme:'village',recipient:'owl',cargo:'parcel',
+      briefing:'Найди ключ у фонтана. Потом забери коробку книг у звонка и отнеси сове.',
+      objectives:[item('fountain','key','Ключ от библиотеки'),item('bell','parcel','Коробка книг')],
+      places:{start:p('Почта',70,283),step:p('Крыльцо',186,194),bell:p('Звонок',89,84),arch:p('Арка',301,81),yard:p('Читальный двор',398,178),well:p('Клумба',276,310),fountain:p('Фонтан',422,318),finish:p('Сова',546,208)},
+      paths:['start step bell arch step','arch yard well step','well fountain yard finish','fountain finish']}),
+    route({id:'orchard-supper',title:'Ужин под яблоней',land:'Садовые террасы',theme:'orchard',recipient:'squirrel',cargo:'parcel',
+      briefing:'Сначала сорви яблоко на пригорке. Потом возьми коробку орехов у корзины. Белка ждёт ужин!',
+      objectives:[item('hill','apple','Яблоко'),item('basket','parcel','Коробка орехов')],
+      places:{start:p('Почта',68,124),gate:p('Калитка',173,171),shelf:p('Верхний сад',355,140),hill:p('Пригорок',501,76),swing:p('Качели',71,313),basket:p('Корзина',213,314),trellis:p('Решётка',444,216),path:p('Нижний сад',328,310),finish:p('Белка',553,284)},
+      paths:['start gate shelf hill','shelf trellis path basket gate swing','trellis finish path']}),
+    route({id:'snow-house',title:'Свет в снежном домике',land:'Санный круг',theme:'snow',recipient:'fox',cargo:'light',
+      briefing:'Сначала забери ключ из дупла. Потом возьми лампу у сугроба и отнеси её лисе.',
+      objectives:[item('hollow','key','Ключик'),item('drift','light','Лампа')],
+      places:{start:p('Почта',539,79),spruce:p('Ель',390,163),hump:p('Бугор',303,166),gate:p('Снежные ворота',149,209),hollow:p('Дупло',183,80),drift:p('Сугроб',544,295),skis:p('Лыжи',375,307),sled:p('Сани',239,315),finish:p('Лиса',58,204)},
+      paths:['start spruce hump gate finish','hump hollow','spruce drift skis sled gate','skis hump']}),
+    route({id:'shell-mail',title:'Сувенир с берега',land:'Кольцо рыбака',theme:'coast',recipient:'otter',cargo:'mail',
+      briefing:'Сначала возьми марку у флагштока. Потом забери морскую звезду у хижины. Отнеси их выдре.',
+      objectives:[item('pole','stamp','Марка с рыбкой'),item('hut','star','Морская звезда')],
+      places:{start:p('Почта',51,301),rock:p('Валун',151,242),hut:p('Хижина',62,112),net:p('Сети',197,86),pole:p('Флагшток',340,84),sail:p('Парус',527,110),braid:p('Галька',323,189),quay:p('Набережная',441,194),sand:p('Песчаный холм',231,311),buoy:p('Старый якорь',413,322),finish:p('Выдра',546,265)},
+      paths:['start rock net pole sail quay finish','rock hut','rock braid quay','braid sand buoy quay']}),
+    route({id:'dam-party',title:'Праздник на запруде',land:'Запруда с островком',theme:'stream',recipient:'beaver',cargo:'parcel',
+      briefing:'Сорви яблоко в садике. Потом забери звезду у палатки и неси подарки бобру.',
+      objectives:[item('garden','apple','Яблоко'),item('tent','star','Праздничная звезда')],
+      places:{start:p('Почта',49,208),dock:p('Пристань',215,178),tent:p('Палатка',161,316),bridge:p('Ивовый куст',128,75),mill:p('Островок',313,161),dam:p('Запруда',460,244),shed:p('Навес',413,75),garden:p('Садик',553,88),raft:p('Плот',281,314),stone:p('Большой камень',370,299),finish:p('Бобр',553,220)},
+      paths:['start dock mill dam finish','dock bridge shed mill','dock tent raft mill','raft stone dam garden']}),
+    route({id:'night-crossing',title:'Ночной рейс',land:'Звёздная гавань',theme:'coast',recipient:'lighthouse',cargo:'light',
+      briefing:'Сначала найди звезду на катере. Потом возьми фонарь в будке и зажги звезду на маяке.',
+      objectives:[item('cape','star','Золотая звезда'),item('booth','light','Фонарь')],
+      places:{start:p('Почта',57,295),yard:p('Верфь',159,210),booth:p('Будка',60,88),awning:p('Тент',250,75),well:p('Дворик',338,174),ridge:p('Утёс',427,82),cape:p('Катер',542,83),dock:p('Гавань',447,233),beach:p('Ракушки',244,316),slip:p('Спуск к воде',361,309),finish:p('Маяк',553,239)},
+      paths:['start yard booth awning well yard','well ridge cape dock well','yard beach slip dock finish']}),
+  ];
+  return freeze(stories.map((story,i)=>({...story,number:i+1,chapter:1+Math.floor(i/6)})));
+})();
+if (typeof module==='object' && module.exports) module.exports=TrailCampaign;
+const TrailMail = (() => {
+  'use strict';
+  const KEY = 'maze-mail-2-v1';
+  const MAPS = typeof TrailCampaign!=='undefined' ? TrailCampaign : require('./campaign.cjs');
+  const start = map => ({at:map.start,collected:0,stamped:false,won:false});
   const edge = (map,from,to) => map.trails.find(([a,b])=>(a===from&&b===to)||(b===from&&a===to));
   function neighbours(map,where) {
     return map.trails.flatMap(([a,b])=>a===where?[b]:b===where?[a]:[]);
@@ -197,7 +202,20 @@ const TrailMail = (() => {
   function step(map,state,to) {
     if (state.won || !edge(map,state.at,to)) return state;
     const stamped = state.stamped || map.stamp===to;
-    return {at:to,stamped,won:to===map.goal&&(!map.stamp||stamped)};
+    const collected = state.collected + Number(map.objectives[state.collected]?.at===to);
+    return {at:to,collected,stamped,won:to===map.goal && collected===map.objectives.length};
+  }
+  function nextHop(map,state) {
+    if (state.won) return null;
+    const target = map.objectives[state.collected]?.at ?? map.goal;
+    const queue=[state.at], first=new Map([[state.at,null]]);
+    for (const here of queue) for (const to of neighbours(map,here)) {
+      if (first.has(to)) continue;
+      const hop = first.get(here) ?? to;
+      if (to===target) return hop;
+      first.set(to,hop); queue.push(to);
+    }
+    return null;
   }
   function preview(map,state,stops) {
     if (!Array.isArray(stops) || stops.length>2) return null;
@@ -224,7 +242,7 @@ const TrailMail = (() => {
   function complete(save,id) {
     return !MAPS.some(m=>m.id===id)||save.done[id]===true ? save : {...save,done:{...save.done,[id]:true}};
   }
-  return Object.freeze({KEY,MAPS,start,edge,points,neighbours,step,preview,ready,readSave,complete});
+  return Object.freeze({KEY,MAPS,start,edge,points,neighbours,step,preview,ready,nextHop,readSave,complete});
 })();
 if (typeof module==='object' && module.exports) module.exports=TrailMail;
 const MailArt = (() => {
@@ -236,6 +254,8 @@ const MailArt = (() => {
     map:'m3 6 6-2 6 3 6-2v13l-6 2-6-3-6 2zm6-2v13m6-10v13', start:'m9 5 11 7-11 7Z',
     redo:'M20 10a8 8 0 1 0-.8 6M20 5v5h-5', undo:'M8 6 4 10l4 4m-4-4h9a5 5 0 0 1 0 10h-2',
     close:'m6 6 12 12m0-12L6 18', check:'m5 12 4 4L20 5',
+    hint:'M8.5 15c0-2-3-3-3-6.3a6.5 6.5 0 0 1 13 0c0 3.3-3 4.3-3 6.3Zm.5 3h6m-5 3h4',
+    album:'M5 3.5h13q1.5 0 1.5 2v15H6a2.5 2.5 0 0 1-2.5-2.5v-12q0-2.5 1.5-2.5Zm2.5.5v13m-3.6 1q.4-1 2.1-1h13m-8-8 1-2 1 2 2 .3-1.5 1.5.4 2.2-1.9-1-1.9 1 .4-2.2-1.5-1.5Z',
   };
   const icon = name => `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="${glyph[name]}"/></svg>`;
   const objects = {
@@ -247,12 +267,53 @@ const MailArt = (() => {
     hedgehog: outline('<path d="m8 55 1-9-4-3 8-5-2-6 8-1 2-10 8 6 8-11 5 10 11-5 1 10 10 1-4 10 6 3-7 12q-18 11-51-2Z" fill="#a57760"/><path d="M34 53q-1-15 14-16 10-1 14 10l7 4q-1 9-14 9H36Z" fill="#ffe5b0"/><path d="M36 57l-5 6m14-4 2 5m5-18h.1" fill="none" stroke-width="3.5"/><circle cx="67" cy="51" r="2.2" fill="#385550"/><path d="m18 44 5-5m1 11 4-5m-1-11 5-4" fill="none" stroke="#805846"/>'),
     otter: outline('<path d="M19 63q-14 1-12-7 2-7 14-11m9-14q-14 11-10 27 5 10 22 7 17-1 14-15-1-12-13-20Z" fill="#bd8b67"/><circle cx="21" cy="20" r="7" fill="#bd8b67"/><circle cx="53" cy="20" r="7" fill="#bd8b67"/><path d="M16 28q0-15 20-16 22 0 23 17 2 14-21 17-22 1-22-18Z" fill="#c89b71"/><path d="M37 31q-16-4-17 3 4 10 18 9 13-1 16-8-1-8-17-4Z" fill="#f8dbab" stroke="none"/><path d="M27 26v1m21-1v1m-12 7h4m-10 3q5 5 8 0 4 5 7 0" fill="none"/><path d="M28 54q8-7 19 0" fill="none"/>'),
     lighthouse: outline('<path d="M16 63h43v7H16zM25 30h25l5 34H20Z" fill="#ffecd6"/><path d="M24 37h27l2 10H22zm-2 16h32l1 8H21Z" fill="#ec937a" stroke="none"/><path d="M22 29h31v5H22zm5-17h22v17H27z" fill="#ffe599"/><path d="m22 13 16-11 16 11Zm11 48v9h10v-9" fill="#df795f"/><path d="m16 19-11-4m12 12L6 30m50-11 10-4m-9 12 10 3" fill="none" stroke="#eda94d"/>'),
+    squirrel: outline(`
+      <path d="M35 63C20 69 7 59 5 46 3 36 9 30 12 27 6 19 11 8 21 7c11-1 18 7 17 17-1 8-8 12-12 15-8 6-5 15 8 17Z" fill="#d78a61"/>
+      <path d="M14 20c0-9 14-12 17-2 2 6-5 12-10 8 6-1 7-5 3-7-4-3-8 1-10 1Z" fill="#efbe86" stroke="none"/><path d="M12 43q-1 9 8 14" fill="none" stroke="#edb07a" stroke-width="3.4"/>
+      <path d="M27 59q-4-11 6-23l3-11-1-14 9 8 6-1 5-12 3 18q7 4 5 12l6 3q-1 7-12 9l-2 9 6 3q4 5-3 6H28q-9-2-1-7Z" fill="#dd9168"/>
+      <path d="M50 42q9 3 14-1-2 5-10 7l-2 12h-8q0-12 6-18Z" fill="#ffe5b4" stroke="none"/>
+      <path d="M52 29v1m13 9h1m-33 9q9-6 13 5" fill="none" stroke-width="3.6"/>
+      <path d="M45 48q7-3 11 1-1 10-7 12-6-4-4-13Z" fill="#c29b63"/><path d="M43 49q0-7 7-7 6-1 8 5Z" fill="#867855"/>`),
+    owl: outline(`
+      <path d="M11 62q15 2 27 2 15 0 26-5l-1 5q-26 9-52 2Z" fill="#c59b74"/>
+      <path d="m16 26-2-15 14 7q10-3 20 0l12-9-1 20q8 22-3 30-6 5-19 5-21 0-25-12-3-12 4-26Z" fill="#a78ca9"/>
+      <path d="M16 36q9 2 9 11-1 8-8 10-7-10-1-21Zm41 0q-9 3-9 11 1 9 7 10 8-10 2-21Z" fill="#83778f"/>
+      <path d="M16 31q3-13 14-10 4 1 7 6 6-9 14-6 12 3 7 16-3 9-13 6-5-1-8-4-4 6-12 5-12-1-9-13Z" fill="#fff0c8"/>
+      <g fill="#45595b" stroke="none"><circle cx="27" cy="32" r="4"/><circle cx="48" cy="32" r="4"/></g>
+      <path d="m32 36 6 8 5-9Z" fill="#e7ab62" stroke-width="1.8"/><path d="m29 49 4 4 4-4m1 7 4 3 4-4" fill="none" stroke="#e3c9ca"/>
+      <path d="m27 62-2 5m7-5-1 5m13-5-1 5m7-5-1 4" stroke="#b38858"/>`),
+    fox: outline(`
+      <path d="M18 64q2-14 12-19l16 1q8 5 11 19Z" fill="#c97a56"/><path d="m25 52 6 8 5-2 4 5 9-13Z" stroke="none" fill="#fff1ce"/>
+      <path d="m15 35-4-26q10 3 19 15 7-2 14 0L60 8l-1 26 7 8-9 1q-5 8-20 14Q22 51 17 45L8 42Z" fill="#ed9b65"/>
+      <path d="m13 12 4 15 5-6Zm44 1-9 10 7 4Z" fill="#835f57" stroke="none"/>
+      <path d="M11 41q17-2 26 11 12-16 26-12-7 11-26 18-17-7-26-17Z" fill="#ffebc5" stroke="none"/>
+      <path d="M24 37q2-2 5 0m15 0q3-2 5 0" fill="none" stroke-width="3.2"/><path d="M32 49q4-4 10-1-1 6-5 7-4-1-5-6Z" fill="#385550" stroke="none"/>`),
+    beaver: outline(`
+      <path d="M39 61q6-17 17-24 14-5 13 4 0 14-19 22Z" fill="#a78166"/><path d="m53 47 9 6m-5-11 9 6m-16 5 8 4m-1-2 7-13" fill="none" stroke="#765f53" stroke-width="1.8"/>
+      <path d="M19 63q-8-7-3-21 4-11 17-10 18 2 18 16 8 15-4 17H21Z" fill="#af845f"/>
+      <path d="M13 29q-6-12 3-14 6-2 9 4 8-2 16-1 6-8 12-3 6 6-1 11 7 13-2 20-9 7-24 4-18-1-19-9-1-7 6-12Z" fill="#bd936c"/>
+      <path d="M13 36q8-5 16 1 9-7 18-3 5 9-8 13-14 7-25 0-7-5-1-11Z" fill="#f1cf9f" stroke="none"/>
+      <path d="m26 42 12-1-1 10-8 1Zm6 1 1 7" fill="#fffae4" stroke-width="1.8"/><path d="M24 35q6-4 12-1-1 5-6 6-6 0-6-5Z" fill="#385550" stroke="none"/>
+      <path d="M19 29v1m21-2v1m-23 10-6-1m30 0 6-2m-21 22q3 3 7 0" fill="none"/>`),
+    penguin: outline(`
+      <path d="M21 59q-7-14-2-29 4-17 18-18 15-1 20 18 3 15-2 30-13 8-34-1Z" fill="#506b79"/>
+      <path d="M17 34Q8 38 7 49q6 3 14-8m35-8q10 6 12 17-6 2-15-9" fill="#506b79"/>
+      <path d="M22 34q0-11 9-12 5-1 7 6 4-7 9-6 10 2 7 15-2 5-5 7 7 14-5 17-16 4-21-4-3-6 3-15-4-3-4-8Z" fill="#fff0cf" stroke="none"/>
+      <path d="m32 36 6 5 6-6q-7-3-12 1Z" fill="#f0ae67" stroke-width="1.8"/><path d="M29 31v1m17-1v1" fill="none" stroke-width="3.3"/>
+      <path d="M19 42q17 7 35 0l-1 6q-6 2-10 2l5 7-7 3-5-10q-11 0-17-4Z" fill="#eb987e" stroke-width="1.8"/>
+      <path d="M24 61q-9 3-10 6 8 2 18-3m13-2q12-1 15 4-7 4-16-1" fill="#edb06c" stroke-width="2"/>`),
+    key: outline(`<path d="M40 18c9-11 27-6 27 7 0 11-11 16-20 12L24 61l-7-7-5 4-7-7 8-8 6 5 4-4-4-5 19-17Z" fill="#f3c36a"/>
+      <ellipse cx="54" cy="25" rx="6.3" ry="6" fill="#fffae7"/><path d="m28 41 13-13m7-11q5-4 10-2" fill="none" stroke="#ffe7a0" stroke-width="3"/>`),
+    apple: outline(`<path d="M35 26q-1-12 8-18" fill="none" stroke="#7f6752" stroke-width="4"/><path d="M36 23Q19 24 17 10q14-1 19 13Z" fill="#90b878"/>
+      <path d="M35 27q15-11 25 0 9 12-3 29-9 12-20 6-12 7-21-7C1 34 16 14 35 27Z" fill="#e88772"/><path d="M17 39q0-6 5-9" fill="none" stroke="#ffcfac" stroke-width="4.4"/>`),
+    star: outline(`<path d="m37 8 9 18 20 3q3 1 0 4L52 47l3 19-18-9-19 9 3-20L7 32q-2-2 1-3l20-3Z" fill="#f6c663"/>
+      <path d="m36 18-5 13-13 2m22 17 8 5" fill="none" stroke="#fff0a4" stroke-width="3.5"/>`),
     nest: outline('<g fill="#c5e492"><path d="M8 44q2-14 21-13-5 15-21 13m56-5q-2-13-20-13 4 13 20 13"/></g><path d="M12 45q13 23 26 23 19 0 23-23Z" fill="#c88a60"/><path d="M23 45q-3-16 7-17t9 16m2 1q0-20 11-16 8 3 5 16" fill="#dcebfd"/><path d="M10 46q30 6 53 0M20 52l31 9m-23 3 25-12" fill="none"/>'),
     arch: outline('<path d="M9 63V44c0-20 13-32 27-32s27 12 27 32v19H53V45c0-14-7-21-17-21S19 31 19 45v18Z" fill="#d1c7e3"/><path d="m14 29 9 5m16-22v12m13-6-5 8m8 15 9-2M9 50h10m35 5h10" fill="none" stroke-width="1.8"/><path d="M29 64h13" fill="none" stroke="#e9bf89"/>'),
     wind: outline('<path d="M27 31h20l4 28H22Z" fill="#ffe7ba"/><path d="M24 29 37 17l13 12Z" fill="#ee9b7d"/><path d="M37 33 20 17m17 16 16-17M37 33l15 15M37 33 21 50" fill="none"/><path d="m20 17-5-2-3 5 12 13 5-6zm33-1 3-6 5 4-11 14-5-5zM51 47l6 1 4-4-12-12-5 6ZM21 50l-6 1-3-4 13-14 5 6Z" fill="#def2e5"/>'),
   };
   const object = (name,cls='object') => `<svg class="${cls}" width="74" height="74" viewBox="0 0 74 74" aria-hidden="true" focusable="false">${objects[name]||objects.mail}</svg>`;
-  const goal = {meadow:'hedgehog',stream:'otter',coast:'lighthouse'};
+  const goal = Object.freeze({meadow:'hedgehog',stream:'otter',coast:'lighthouse',orchard:'squirrel',village:'fox',snow:'penguin'});
   const hare = () => outline(`<ellipse cx="36" cy="64" rx="24" ry="5" fill="#385550" opacity=".16" stroke="none"/>
     <path d="M25 33C11 22 16 4 22 5s15 15 13 26M40 29C38 14 45 1 51 6q8 6 0 26" fill="#fff1d7"/>
     <path d="M24 12q7 9 7 15m17-15-4 14" fill="none" stroke="#e99b91" stroke-width="4"/>
@@ -266,7 +327,58 @@ const MailArt = (() => {
   const sprig = (x,y,color) => `<path d="M${x-4} ${y-3}q4 8 8 0m-4 5v4" fill="none" stroke="${color}" stroke-width="2.2" stroke-linecap="round"/>`;
   const lily = (x,y) => `<g transform="translate(${x} ${y})"><path d="M-21 1q2-12 19-12L0 0 11-8q14 2 17 12-4 10-26 11Q-21 13-21 1Z" fill="#89bb87" stroke="#5f977e" stroke-width="2"/><path d="M1 4q-14-4-9-14 5 1 8 6 1-8 7-9 6 7 2 13 8-3 10 2-7 7-18 2Z" fill="#efb4cd"/></g>`;
   const house = (x,y) => `<g transform="translate(${x} ${y})" aria-hidden="true">${outline('<path d="M-19 1h38v31h-38Z" fill="#fff5d4"/><path d="M-27 3L0-20 28 3Z" fill="#df987b"/><path d="M-7 31V14h13v17m1-20H16v10H7Z" fill="#b8dccb" stroke-width="2"/>')}</g>`;
+  // Vignettes share the rounded pen and flat gouache colours of the courier.
+  // Their ground is unmarked: the map graph, not its theme, supplies the roads.
+  const vignette = (x,y,s,art) => `<g transform="translate(${x} ${y}) scale(${s})" stroke-linecap="round" stroke-linejoin="round">${art}</g>`;
+  const flower = `<path d="M0-2c-5-7-11 0-5 4-5 6 2 11 6 4 6 5 11-2 5-5 2-7-4-10-6-3Z" fill="#fce6db"/><circle cx=".5" cy="2" r="1.8" fill="#da846f"/>`;
+  const cherry = (x,y,s) => vignette(x,y,s,`<ellipse cx="-1" cy="0" rx="28" ry="5" fill="#bdd098"/>
+    <path d="M-8 0q8-16 4-26l-18-18 5-4 15 11 5-18 6 2-6 22 16-11 3 4L5-20 4-3 10 0Z" fill="#a17a65" stroke="#826d5b" stroke-width="2.3"/>
+    <path d="M-23-29q-16 1-19-12-2-12 9-17-1-15 14-16 5-13 20-11 8 0 13 8 15-5 21 7 1 4 0 8 14 2 14 15-1 13-17 13-9 10-23 4-8 7-19-1-7 5-13 2Z" fill="#e8a8ab" stroke="#a27c7b" stroke-width="2.6"/>
+    <path d="M-36-52q0-8 11-9 0-12 13-10 4-10 16-8 8 1 10 8 10-4 15 4-8-2-14 4-11-6-18 1-8-2-14 4-5-1-9 5Z" fill="#f4c4bd"/>
+    ${[[-24,-46,.8],[-9,-65,.64],[0,-46,1],[17,-62,.8],[32,-48,.62]].map(([a,b,k])=>vignette(a,b,k,flower)).join('')}
+    <path d="M-14-34q-10 1-13-5 8-3 13 5m33-7q5-8 11-7 0 7-11 7Z" fill="#94ad87"/>`);
+  const stall = (x,y,s,wall,roof,shop=false) => vignette(x,y,s,`<g stroke="#7c8170" stroke-width="2">
+    <path d="M-18-32h36V0h-36Z" fill="${wall}"/><path d="m-23-31 8-17h30l9 17Z" fill="${roof}"/>
+    <path d="M6-47v-9h7v9" fill="#c09377"/><path d="m-15-43 26-1" stroke="#fff0cd" opacity=".65"/>
+    ${shop?'<path d="M-11 0v-18h22V0" fill="#acccbd"/><path d="M-17-24h34l3 8q-3 5-7 1-3 4-7 0-3 4-7 0-4 4-7 0-5 4-8 0Z" fill="#fff0ca"/><path d="m-9-24-2 9m10-9-1 9m9-9 1 9" stroke="#d58e7a" stroke-width="4"/>':'<path d="M-11-21h8v10h-8Zm13 21v-14q4-7 9 0V0" fill="#b7d4c6"/><path d="M-14-9h13" stroke="#b78269" stroke-width="3"/>'}</g>`);
+  const spruce = (x,y,s,foliage) => vignette(x,y,s,`<path d="M-1-9V1" stroke="#898a89" stroke-width="4"/>
+    <path d="m0-44 11 17-5-1 11 15-7-1 11 9q-20 8-41 1l10-11-6 1 11-15-5 1Z" fill="${foliage}" stroke="#749398" stroke-width="1.8"/>
+    <path d="m0-43 7 12-6-2-5 4-2-2Zm-7 23 8 2 6-4-5 8-6-1-6 2Z" fill="#ebf5ef"/>`);
   const terrain = {
+    orchard: () => `<rect width="600" height="370" fill="#edf0c6"/>
+      <path d="M0 0h600v63q-76-28-144-13-71 16-142-7-72-20-150 2C102 61 45 73 0 92Z" fill="#d4dfad"/>
+      <path d="M0 308q52-12 94 22 42 26 109 21l31 19H0Zm600-16q-74 7-104 44-25 20-74 34h178Z" fill="#d4e2ae"/>
+      ${[[153,49,.53],[205,43,.45],[252,39,.4],[531,51,.57],[598,88,.93],[85,75,.82],[9,111,1.13]].map(v=>cherry(...v)).join('')}
+      <g fill="#e5afae"><path d="M46 101q1-9 8-8 0 7-8 8m23-8q3-8 9-6-1 6-9 6m71-31q3-9 10-7-1 6-10 7m401 5q5 0 7 6-6 2-7-6Z"/></g>
+      ${vignette(56,349,.85,`<g stroke="#9a8066" stroke-width="2.4"><path d="M-21-10q-1-20 18-23 16-2 21 19" fill="none" stroke-width="4"/><path d="M-21-12q5-7 11-2 4-10 11-4 10-7 14 1 8-1 11 6" fill="#d88980"/><path d="m-27-12 55-2-6 18q-20 6-41 1Z" fill="#d9ae78"/><path d="m-18-6 37-2m-31 7 27-2" fill="none"/></g>`)}
+      ${vignette(594,369,.86,`<path d="M13 9Q-24-17-88-29q60 4 101 26Z" fill="#a1856c"/>
+        <path d="M-57-23q-13-15-29-10 10 12 29 10m19 7q-3-18 10-23 4 14-10 23m22 9q13-24 33-23-5 16-33 23Z" fill="#96af7e"/>
+        <path d="M-50-21q3 9-2 15m3-15q4 7 7 11" fill="none" stroke="#8e9775" stroke-width="2"/><g fill="#c88686"><circle cx="-53" cy="-6" r="4.8"/><circle cx="-41" cy="-9" r="4.6"/></g>
+        ${vignette(-69,-25,1.25,flower)}${vignette(-15,-9,1.4,flower)}`)}`,
+    village: () => `<rect width="600" height="370" fill="#f3e8ca"/>
+      <path d="M0 0h600v41q-35-9-72-1-44 12-97-1-57-11-89-7-101 14-150 6Q96 33 0 81Z" fill="#d4e6db"/>
+      <path d="M0 66q52-6 82-15 39-11 68-6 43 7 65-4-50 29-117 33-64 3-98 22Z" fill="#e6d6b6"/>
+      ${stall(5,66,.94,'#edbc95','#94b6ac')}${stall(54,73,1.21,'#f4d49d','#ce8976',true)}${stall(102,55,.86,'#a3cbbd','#9796b5')}
+      ${vignette(147,61,.87,`<g stroke="#828176" stroke-width="2.2"><path d="M-13 0v-36h27V0Z" fill="#efc8aa"/><path d="m-17-35 17-30 17 30Z" fill="#93abb0"/><circle cy="-24" r="7.6" fill="#fff0c9"/><path d="M0-29v5l4 1m-8 20v-7h8v7" fill="none"/></g>`)}
+      ${stall(180,42,.7,'#d4bdd0','#bd9588')}${stall(545,47,.96,'#efd4a4','#a5b7be')}${stall(594,53,1.28,'#b5cfc2','#c59391',true)}
+      <path d="M190 7q40 24 80 2" fill="none" stroke="#a3a58c" stroke-width="2"/><path d="m200 13 9 3-7 7Zm21 6 9 1-5 8Zm22 0 10-2-3 9Z" fill="#d79583"/><path d="m211 17 8 2-5 7Zm22 3 9-1-4 7Z" fill="#93b8aa"/>
+      <path d="M0 329q31-6 61 11 29 18 73 30H0Zm600-28q-16 18-52 32-68 28-81 37h133Z" fill="#e4d5b9"/>
+      ${vignette(566,353,.87,`<g stroke="#878772" stroke-width="2.5"><path d="M-27-8q-4-17 8-12 0-17 12-9 8-13 16-5 14-3 13 10 13-1 10 12Z" fill="#a8bf96"/><path d="m-31-9 63-2-4 18-54 1Z" fill="#dba488"/><path d="m-32-11 65-2v6l-64 2Z" fill="#eac0a0"/></g><g fill="#dc999f"><circle cx="-17" cy="-19" r="5"/><circle cx="1" cy="-24" r="6"/><circle cx="19" cy="-18" r="5"/></g>`)}
+      <g fill="#ddcfb4"><ellipse cx="26" cy="313" rx="7" ry="2"/><ellipse cx="40" cy="310" rx="4" ry="1.8"/><ellipse cx="527" cy="349" rx="6" ry="2"/></g>`,
+    snow: () => `<rect width="600" height="370" fill="#dfedf0"/>
+      <path d="M0 0h600v58q-57 14-134 6-120-20-201-9Q106 72 0 83Z" fill="#657c92"/>
+      <path d="M-10 47C61 44 89-9 170-5c39 2 53 20 100 9 44-10 60-23 105-13-51 3-66 30-124 40-38 5-62-24-97-18C78 22 56 59-8 58Z" fill="#95c9bd"/>
+      <path d="M75 30q48-36 86-31c33 2 55 20 87 13l-10 13c-36 0-51-21-85-18-29 2-53 15-78 23Z" fill="#b4d9bd"/>
+      <path d="M287 29C355 15 374-7 417-4c51 5 59 31 109 21 37-7 54-23 76-22v10c-28 7-50 27-89 30-40 3-67-27-107-27-41 0-59 18-119 21Z" fill="#ada9c9"/>
+      <path d="m218 26 5-12 6 2-7 12Zm12 1 8-12h4l-6 13Zm247-5 5-12 5 3-7 12Zm13 4 6-13h4l-5 14Z" fill="#bcd3ca" opacity=".6"/>
+      <g fill="#f9eccd"><circle cx="32" cy="13" r="2"/><circle cx="292" cy="15" r="1.7"/><circle cx="334" cy="37" r="1.5"/><circle cx="453" cy="13" r="1.8"/><circle cx="532" cy="8" r="1.6"/></g>
+      <path d="m0 60 43-26 24 12 39-25 31 24 19-10 57 23 53-14 37 7 38-21 26 11 30-20 48 27 51-8 21 6 43-23 40 23v23H0Z" fill="#a6bbc8"/>
+      <path d="m77 40 29-19 21 16-14-4-7 3-8-4Zm288 0 32-19 28 16-16-2-9-7-10 7-6-2Z" fill="#dee9e6"/>
+      <path d="M0 60q58-12 114 0 52 8 123-6 66-15 133-1t111 2q79-22 119-3v27q-57-11-113 1-77 12-142-5-56-12-112 0-74 16-131 4-70-15-102 8Z" fill="#c2d5db"/>
+      ${[[5,99,1.18,'#88aaa7'],[34,84,.81,'#96b7ad'],[63,75,.55,'#a0bcb9'],[532,64,.46,'#a0babb'],[558,70,.65,'#98b3b1'],[591,79,.93,'#88a9a4']].map(v=>spruce(...v)).join('')}
+      <path d="M0 322q37-21 87 2t100 30q-25 9-37 16H0Zm600-15q-44-8-81 13-61 37-128 39l-20 11h229Z" fill="#c5dde0"/>
+      ${spruce(576,356,.91,'#91aca7')}${spruce(598,359,1.29,'#82a4a3')}
+      <g fill="#f6fbf5"><ellipse cx="83" cy="338" rx="22" ry="3.4"/><ellipse cx="114" cy="346" rx="9" ry="2.4"/><ellipse cx="484" cy="351" rx="16" ry="3"/></g>`,
     meadow: () => `<rect width="600" height="370" fill="#e9f0bf"/><path d="M0 76Q118 26 215 65T432 63q116-39 168 0V0H0Z" fill="#d8e8a6"/>
       <path d="M0 305q139-56 252-4 115 47 245-2 52-20 103-7v78H0Z" fill="#d2e6aa"/>
       <path d="M16 128q35-28 84-23t75 1q-31 34-105 36Z" fill="#f6f3cb"/>
@@ -283,210 +395,409 @@ const MailArt = (() => {
       <path d="M553 104q-15-17 18-45m-18 217q-24 27-1 56M570 206q12-14 5-28" fill="none" stroke="#e2f1f2" stroke-width="3" stroke-linecap="round"/>
       <path d="M0 0h283q-37 54-114 72Q82 91 0 56Z" fill="#c7e0b7"/><path d="M0 347q97-66 210-9 41 22 80 32H0Z" fill="#c4deae"/>
       ${[[41,89,.81,'#b4d28e'],[106,65,1.02,'#a6cc93'],[170,111,.94,'#b7d7a2'],[158,166,.68,'#9ec894'],[363,42,.63,'#b0d6a2'],[291,239,.58,'#a5c8a7'],[420,346,.65,'#b1d6a6']].map(v=>tree(...v)).join('')}
-      <path d="M446 239h143v22H446Zm24 0v22m22-22v22m20-22v22m20-22v22m20-22v22m20-22v22" fill="#c89c73" stroke="#a87c5e" stroke-width="3"/>
       ${[[72,130],[103,306],[205,341],[230,106],[353,254],[392,141],[475,157]].map(p=>sprig(...p,'#81ad7f')).join('')}`,
   };
-  function decorate(map,stamped) {
-    const out=[];
-    const tiny=(art,p,dx=-30,dy=-59,size=60)=>`<svg x="${p[0]+dx}" y="${p[1]+dy}" width="${size}" height="${size}" viewBox="0 0 74 74" aria-hidden="true">${objects[art]}</svg>`;
-    out.push(tiny('post',map.places.start.at,-37,-48,45));
-    const [goalX,goalY]=map.places[map.goal].at;
-    out.push(`<path d="M${goalX} ${goalY-55}v36" stroke="#9e8469" stroke-width="2.5" fill="none" stroke-dasharray="2 5" stroke-linecap="round"/>
-      <g data-recipient="true">${tiny(goal[map.id],[goalX,goalY],-30,-113,59)}</g>`);
-    if(map.id==='meadow') out.push(tiny('nest',map.places.nest.at,-18,-43,46),house(372,256));
-    if(map.id==='stream'&&!stamped) out.push(tiny('stamp',map.places.lilies.at,-24,-55,51));
-    if(map.id==='coast') out.push(tiny('arch',map.places.arch.at,-22,-52,48),tiny('wind',map.places.windmill.at,-17,-42,50));
-    return out.join('');
+  const miniature = (name,x,y,size) => `<svg x="${x}" y="${y}" width="${size}" height="${size}" viewBox="0 0 74 74" aria-hidden="true" focusable="false">${objects[name]||objects.mail}</svg>`;
+  const petals = '<path d="M-11 2q4-8 10-5-1 7-10 5m12 4q2-8 9-8 0 7-9 8Z" fill="#dfa8aa"/><path d="M-6 8q0-5 3-8 4 3 3 8Z" fill="#a5b788"/>';
+  const reeds = '<path d="M-7 7q-1-9-8-14m14 15-2-22m7 21q1-10 8-15" fill="none" stroke="#92aa83" stroke-width="2.8"/><path d="m-3-13-.6-6m13 11 3-6" fill="none" stroke="#ae9673" stroke-width="4"/>';
+  const shells = '<path d="M-10 2q-5-6 1-8 2-6 7-3 7-3 9 3 5 4-1 8L1 8Z" fill="#e4bfa6" stroke="#ac9985" stroke-width="1.6"/><path d="m-5-4 6 9m1-12-1 13m6-9-5 9" fill="none" stroke="#c59f86" stroke-width="1.7"/>';
+  const pot = '<path d="M-8-1q-8-7-1-11 6 0 7 9 1-11 6-13 5 7-2 13 10-7 13-2-5 7-14 6Z" fill="#95ae8f"/><path d="m-9 0 20-1-3 10q-6 2-13 0Z" fill="#d8a489" stroke="#ac8e78" stroke-width="1.6"/>';
+  const frost = '<path d="m-12 7 6-6-3-8 10 8 6-15 7 20Z" fill="#b1d2d8" stroke="#96b6c0" stroke-width="1.8"/><path d="m6-12 1 14 5 2Z" fill="#eff7f2"/>';
+  const stone = '<path d="M-15 4q1-8 9-9 4-7 11-3 8 2 11 12-12 6-31 0Z" fill="#b8ccd2"/><path d="M-12 0q2-6 7-6 6-8 14 1L5-2 0-3-6 1Z" fill="#f5fbf6"/>';
+  const scattered = {
+    orchard:[petals, `<path d="M1 4Q-2-8-13-6q2 8 14 10m0 0Q8-6 14-5q0 10-13 9Z" fill="#acbc87"/>${vignette(-3,-6,.83,flower)}`],
+    village:[pot,'<g fill="#dccbb6" stroke="#c8b49f" stroke-width="1.3"><path d="m-14 2 9-2 6 3-8 3Zm16-8 8-1 6 4-9 1Z"/></g>'],
+    snow:[stone,frost],coast:[shells,reeds],stream:[reeds,'<path d="M-11 4q1-6 6-5 2-6 9-4 6 2 8 8-11 4-23 1Z" fill="#adc7b0"/>'],
+    meadow:[sprig(-4,3,'#90aa77'),'<path d="M-10 5q1-11 9-10-1 8-9 10m8 0q3-11 12-8Q6 5-2 5Z" fill="#a4bf88"/>'],
+  };
+  const gapToLine = ([x,y],[a,b,c,d]) => {
+    const dx=c-a,dy=d-b,t=Math.max(0,Math.min(1,((x-a)*dx+(y-b)*dy)/(dx*dx+dy*dy||1)));
+    return Math.hypot(x-a-t*dx,y-b-t*dy);
+  };
+  const layouts = new WeakMap();
+  function layout(map) {
+    if(layouts.has(map)) return layouts.get(map);
+    const stops=map.objectives ?? (map.stamp?[{at:map.stamp,icon:'stamp'}]:[]);
+    const places=Object.values(map.places).map(p=>p.at), lines=[], buttons=[], arrows=[], used=[];
+    for(const [a,b,...bends] of map.trails||[]) {
+      const ps=[map.places[a].at,...bends,map.places[b].at], lengths=[];
+      for(let i=1;i<ps.length;i++) {
+        lines.push([...ps[i-1],...ps[i]]);
+        lengths.push(Math.hypot(ps[i][0]-ps[i-1][0],ps[i][1]-ps[i-1][1]));
+      }
+      // The two directions of a trail can put its button on different sides of the midpoint.
+      for(const [f,reserve] of [[.44,buttons],[.56,buttons],[.41,arrows],[.59,arrows]]) {
+        let n=lengths.reduce((sum,v)=>sum+v,0)*f;
+        for(let i=0;i<lengths.length;i++) {
+          if(n<=lengths[i]) { const t=n/(lengths[i]||1); reserve.push(ps[i].map((v,k)=>v+(ps[i+1][k]-v)*t)); break; }
+          n-=lengths[i];
+        }
+      }
+    }
+    // All possible courier positions count, not just the current one. Station signs stay put on collection.
+    const overlap = (dx,dy) => dx>0&&dy>0 ? Math.min(dx,dy)+10 : 0;
+    function space(p,r) {
+      const [x,y]=p;
+      let score=0;
+      for(const q of places) score+=1800*overlap(r+30-Math.abs(x-q[0]),r+35-Math.abs(y-(q[1]-25)));
+      for(const [a,b,s] of used) score+=2000*overlap(r+s+4-Math.abs(x-a),r+s+4-Math.abs(y-b));
+      for(const [a,b] of arrows) score+=240*overlap(r+27-Math.abs(x-a),r+27-Math.abs(y-b));
+      for(const line of lines) score+=18*Math.max(0,r+16-gapToLine(p,line));
+      for(const [a,b] of buttons) score+=12*overlap(r+43-Math.abs(x-a),r+43-Math.abs(y-b));
+      return score;
+    }
+    function pin(at,r) {
+      const [x,y]=map.places[at].at, side=r+35,up=r+66,down=r+15;
+      const offsets=[[0,-up],[side,-17],[-side,-17],[0,down],[side,6],[-side,6],
+        [side,-46],[-side,-46],[side-10,down],[-side+10,down],[side,down],[-side,down],
+        [36,-up],[-36,-up],[side+15,-17],[-side-15,-17],[0,down+15],[0,down+31]];
+      let best,low=Infinity;
+      for(const [i,[dx,dy]] of offsets.entries()) {
+        const a=Math.min(592-r,Math.max(8+r,x+dx)), b=Math.min(362-r,Math.max(8+r,y+dy));
+        const cost=space([a,b],r)+i*1.4+Math.hypot(x-a,y-b)*.08;
+        if(cost<low) { best=[a,b]; low=cost; }
+      }
+      used.push([...best,r]);
+      return {node:[x,y],p:best,r};
+    }
+    const destination=pin(map.goal,32), stations=stops.map(s=>({...s,...pin(s.at,24)}));
+    const post=pin(map.start||'start',18);
+    let scenery='';
+    if(map.id==='meadow'&&map.places.nest) {
+      const [x,y]=map.places.nest.at; scenery=miniature('nest',x-18,y-43,46)+house(372,256);
+    } else if(map.id==='coast'&&map.places.arch&&map.places.windmill) {
+      // Planks stop against the visible bank of the classic trail; other coasts have no phantom pier.
+      scenery='<path d="M476 239h113v22H450Zm-6 6v16m22-22v22m20-22v22m20-22v22m20-22v22m20-22v22" fill="#c89c73" stroke="#a87c5e" stroke-width="3"/>';
+      for(const [id,art,dx,dy,s] of [['arch','arch',-22,-52,48],['windmill','wind',-17,-42,50]]) {
+        const [x,y]=map.places[id].at; scenery+=miniature(art,x+dx,y+dy,s);
+      }
+    } else if(!['meadow','stream','coast'].includes(map.id)) {
+      const details=scattered[map.theme]||scattered.meadow;
+      const sites=[[45,155],[140,125],[248,95],[356,154],[471,117],[563,155],[81,219],[192,190],
+        [290,252],[428,225],[549,270],[112,307],[219,333],[333,322],[455,319],[51,285]];
+      const seed=Array.from(map.id||'').reduce((n,c)=>(n*31+c.charCodeAt(0))>>>0,0);
+      for(let i=0,count=0;i<sites.length&&count<5;i++) {
+        const p=sites[(seed%sites.length+i*7)%sites.length];
+        if(space(p,16)!==0) continue;
+        scenery+=vignette(...p,.79+(count%2)*.15,details[(seed+count)%details.length]);
+        used.push([...p,23]); count++;
+      }
+    }
+    const result={destination,stations,post,scenery};
+    layouts.set(map,result); return result;
+  }
+  const leader = ({node:[x,y],p:[a,b],r},colour) => {
+    const length=Math.hypot(a-x,b-y)||1, dx=(a-x)/length,dy=(b-y)/length;
+    return `<path d="M${a-dx*(r-4)} ${b-dy*(r-4)}L${x+dx*13} ${y+dy*13}" stroke="${colour}" stroke-width="2.8" stroke-dasharray="1 5" stroke-linecap="round" fill="none"/>`;
+  };
+  function decorate(map,collected=0) {
+    const {destination,stations,post,scenery}=layout(map), index=Number(collected)||0;
+    const ready=index>=stations.length,recipient=map.recipient||goal[map.theme||map.id]||'hedgehog';
+    const [gx,gy]=destination.p;
+    let out=scenery+leader(post,'#a2947d')+miniature('post',post.p[0]-21,post.p[1]-21,42);
+    // The address is a little house; the things to collect are round counters, never houses.
+    out+=leader(destination,ready?'#a97d60':'#998e78')+`<g data-recipient="true" data-state="${ready?'active':'waiting'}" transform="translate(${gx} ${gy})"><g>
+      <path d="M-31-10q0-4 4-7l22-13q5-3 10 0l22 13q4 3 4 7v28q0 9-9 9h-44q-9 0-9-9Z" fill="${ready?'#fff1cf':'#f9f2df'}" stroke="${ready?'#aa775c':'#a89c86'}" stroke-width="3"/>
+      <path d="m-28-14 24-15q4-2 8 0l24 15" fill="none" stroke="${ready?'#cf886e':'#b9a68c'}" stroke-width="4.4" stroke-linecap="round"/>
+      ${miniature(recipient,-29,-27,58)}</g></g>`;
+    for(const [i,station] of stations.entries()) {
+      if(i<index) continue;
+      const [x,y]=station.p, active=i===index, colour=active?'#805477':'#9b968a';
+      out+=leader(station,colour)+`<g data-map-objective="${i}" data-state="${active?'active':'future'}" transform="translate(${x} ${y})">
+        ${active?'<circle r="23" fill="#f8dfad" stroke="#805477" stroke-width="3.5"/><circle r="19.6" fill="#fff7dc" stroke="#d3b68d" stroke-width="1.5"/>':'<circle r="20" fill="#f8f6e8" stroke="#8e9386" stroke-width="2.5" stroke-dasharray="5 3"/>'}
+        <g opacity="${active?1:.88}">${miniature(station.icon,active?-21:-19,active?-21:-19,active?42:38)}</g></g>`;
+    }
+    return out;
   }
   return Object.freeze({icon,object,hare,terrain,decorate,goal});
 })();
 (() => {
   'use strict';
-  const M=TrailMail, A=MailArt;
-  const $=id=>document.getElementById(id);
-  const view=$('view'), home=$('home');
-  const reduce=matchMedia('(prefers-reduced-motion: reduce)');
-  let canStore=true, saved=M.readSave(read());
-  let map, state, planning=false, busy=false, stops=[], epoch=0, note='';
-
-  function storageError() { canStore=false; $('store-note').hidden=false; }
-  function read() { try { return localStorage.getItem(M.KEY); } catch { storageError(); return null; } }
-  function save() { if(canStore) try { localStorage.setItem(M.KEY,JSON.stringify(saved)); } catch { storageError(); } }
-  function stamp(id) {
-    const next=M.complete(saved,id);
-    if(next!==saved) { saved=next; save(); }
+  const M = TrailMail, A = MailArt;
+  const $ = id => document.getElementById(id);
+  const view = $('view'), home = $('home');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const chapters = [
+    ['Первые письма','mail','Первый конверт'], ['Дальняя почта','parcel','Дорожная посылка'],
+    ['Особые поручения','stamp','Звёздная марка'], ['Большое путешествие','light','Путевой фонарь']
+  ];
+  const escape = value => String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+  const icon = name => A.icon(name);
+  const glyph = (paths, cls='icon') => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true" focusable="false">${paths}</svg>`;
+  const pencil = () => glyph('<path d="m4 16-1 5 5-1L21 7l-4-4Zm10-10 4 4M4 16l4 4"/>');
+  const clue = () => glyph('<path d="M8.7 15.4a6 6 0 1 1 6.6 0l-1 2.6H9.8Zm1.3 6h4M12 1v1M2.5 8l1 .4M21.5 8l-1 .4"/>');
+  const arrow = angle => `<span class="dir" style="--angle:${angle}rad">${icon('arrow')}</span>`;
+  const rabbit = () => `<svg class="rabbit" viewBox="0 0 74 74" aria-hidden="true" focusable="false">${A.hare()}</svg>`;
+  const stampArt = (object,cls='') => `<span class="postage ${cls}" aria-hidden="true">${A.object(object)}</span>`;
+  const control = (id,text,image,cls='',enabled=true) => `<button type="button" id="${id}" data-act="${id}" class="control ${cls}"${enabled?'':' disabled'}>${image}<span>${text}</span></button>`;
+  const idx = m => M.MAPS.indexOf(m)+1;
+  const chapterMaps = n => M.MAPS.filter(m => m.chapter === n);
+  let storeOK = true;
+  function storageError() { storeOK = false; $('store-note').hidden = false; }
+  function stored() {
+    try { return M.readSave(localStorage.getItem(M.KEY)); }
+    catch { storageError(); return M.readSave(null); }
   }
-  const control=(id,title,icon,theme='pale',enabled=true)=>`<button type="button" id="${id}" data-act="${id}" class="control ${theme}"${enabled?'':' disabled'}>${A.icon(icon)}<span>${title}</span></button>`;
-  function cover() {
-    const markers=M.MAPS.map((m,i)=>{
-      const done=saved.done[m.id]===true;
-      return `<button type="button" class="mission${done?' done':''}" data-story="${m.id}"><span class="mission-art ${m.id}">${A.object(A.goal[m.id])}<span class="mission-no">${i+1}</span></span>
-        <span class="mission-text"><strong>${m.title}</strong><small>${m.land}</small></span><span class="mission-end">${A.icon(done?'check':'arrow')}</span>${done?'<span class="visually-hidden">Доставлено</span>':''}</button>`;
+  let saved = stored();
+  const done = m => saved.done[m.id] === true;
+  const firstOpen = () => M.MAPS.find(m => !done(m));
+  const chapterCount = n => chapterMaps(n).filter(done).length;
+  const total = () => M.MAPS.filter(done).length;
+  function award(id) {
+    // Another tab may have delivered a different letter since this one opened.
+    const fresh = storeOK ? stored() : M.readSave(null);
+    saved = M.complete({v:1,done:{...fresh.done,...saved.done}},id);
+    if (storeOK && Object.keys(saved.done).some(key => !fresh.done[key])) {
+      try { localStorage.setItem(M.KEY,JSON.stringify(saved)); } catch { storageError(); }
+    }
+  }
+  let chapter = firstOpen()?.chapter || 1, map = null, state = null;
+  let planning = false, busy = false, stops = [], hinted = null, epoch = 0;
+  const chapterSeal = n => chapters[n-1][2];
+  function album() {
+    const next = firstOpen(), count = total();
+    const tabs = chapters.map(([name,obj],i) => {
+      const n=i+1, marks=chapterCount(n), max=chapterMaps(n).length, earned=marks===max;
+      return `<button type="button" class="chapter ch${n}${earned?' earned':''}" data-chapter="${n}" aria-pressed="${chapter===n}" aria-label="Глава ${n}. ${name}. ${marks} из ${max}.${earned?' Знак: '+chapterSeal(n):''}">
+        ${stampArt(obj)}<span class="chapter-meta"><b>Глава ${n}</b><span class="tab-name">${name}</span><small>${earned?'✓ ':''}${marks} / ${max}</small></span></button>`;
     }).join('');
-    return `<section class="cover" aria-labelledby="screen-title">
-      <div class="cover-text"><p class="kicker">ТРИ ИСТОРИИ</p><h2 id="screen-title" tabindex="-1">У зайчика<br> новая почта!</h2><p>Выбери историю. Нажимай на стрелки, чтобы пройти по тропинкам.</p></div>
-      <svg class="cover-art" viewBox="0 0 340 170" aria-hidden="true" focusable="false"><rect width="340" height="170" fill="#dcebc7"/>
-        <path d="M0 112Q93 59 199 102q66 30 141-15v83H0Z" fill="#c0d9a9"/>
-        <path d="M-6 155q78-35 151-27T347 82" fill="none" stroke="#fff2c9" stroke-width="23" stroke-linecap="round"/>
-        <path d="M21 37q8-15 24-6 12-10 26 5m186-3q9-14 23-9 11-10 24 4" fill="none" stroke="#fff9dc" stroke-width="6" stroke-linecap="round"/>
-        <g transform="translate(103 21) scale(1.95)">${A.hare()}</g>
-        <g transform="translate(240 70) rotate(-10 37 37)">${A.object('mail')}</g><path d="M58 107q-5-11-11-11m7 11q7-10 12-10" fill="none" stroke="#759f78" stroke-width="3" stroke-linecap="round"/>
-        <g fill="#efac88"><circle cx="47" cy="95" r="3.6"/><circle cx="66" cy="95" r="4"/><circle cx="293" cy="139" r="3"/><circle cx="308" cy="144" r="3"/></g>
-      </svg>
-    </section><section aria-label="Истории" class="missions">${markers}</section>`;
+    const cards = chapterMaps(chapter).map(m => `<button type="button" class="mission${done(m)?' done':''}" data-story="${escape(m.id)}">
+        <span class="mission-stamp">${A.object(m.recipient)}<b>${idx(m)}</b></span>
+        <span class="mission-text"><strong>${escape(m.title)}</strong><small>${escape(m.land)}</small></span>
+        <span class="mission-end" aria-hidden="true">${icon(done(m)?'check':'arrow')}</span>${done(m)?'<span class="visually-hidden">Доставлено</span>':''}</button>`).join('');
+    const max=chapterMaps(chapter).length, hasSeal=chapterCount(chapter)===max;
+    return `<section class="album ch${chapter}" aria-labelledby="screen-title">
+      <div class="album-head"><div><p class="kicker">ПОЧТОВАЯ КОЛЛЕКЦИЯ</p><h2 id="screen-title" tabindex="-1">Атлас почтальона</h2></div>
+        <div class="count-seal" aria-label="Доставлено: ${count} из ${M.MAPS.length}">${icon('check')}<strong id="album-count">${count} / ${M.MAPS.length}</strong></div></div>
+      <div class="atlas-bar">${next?control('continue',`${count?'Продолжить':'В путь'} · № ${idx(next)}`,icon('start'),'primary'):'<div class="grand-prize">✦ Вся почта доставлена!</div>'}
+        <div class="postmark" aria-hidden="true"><i></i><i></i><i></i></div>${rabbit()}</div>
+      <nav class="chapters" aria-label="Главы атласа">${tabs}</nav>
+      <div class="chapter-page"><div class="chapter-head"><div><p class="kicker">ГЛАВА ${chapter}</p><h3>${chapters[chapter-1][0]}</h3></div>
+        <div class="seal-note${hasSeal?' earned':''}">${hasSeal?`${icon('check')} ${chapterSeal(chapter)}`:`<span class="dot-stamps" aria-hidden="true">${chapterMaps(chapter).map(m=>`<i class="${done(m)?'inked':''}"></i>`).join('')}</span>`}</div></div>
+        <div class="missions" aria-label="Письма главы">${cards}</div></div></section>`;
   }
   function trailD(points) {
-    const at=p=>p.join(' ');
-    const toward=(a,b)=>[a[0]+.24*(b[0]-a[0]),a[1]+.24*(b[1]-a[1])];
-    let d='M'+at(points[0]);
-    for(let i=1;i<points.length-1;i++) d+=' L'+at(toward(points[i],points[i-1]))+' Q'+at(points[i])+' '+at(toward(points[i],points[i+1]));
-    return d+' L'+at(points.at(-1));
+    const xy=p=>p.join(' '), near=(a,b)=>[a[0]+.24*(b[0]-a[0]),a[1]+.24*(b[1]-a[1])];
+    let d='M'+xy(points[0]);
+    for(let i=1;i<points.length-1;i++) d+=' L'+xy(near(points[i],points[i-1]))+' Q'+xy(points[i])+' '+xy(near(points[i],points[i+1]));
+    return d+' L'+xy(points[points.length-1]);
   }
+  const way = (from,to) => M.edge(map,from,to);
+  const routeD = (from,to) => trailD(M.points(map,way(from,to),from));
+  const currentGoal = () => map.objectives[state.collected] || {at:map.goal,icon:map.recipient,label:map.places[map.goal].name};
+  const angle = (from,to) => {
+    const a=map.places[from].at,b=map.places[to].at;
+    return Math.atan2(b[1]-a[1],b[0]-a[0]);
+  };
   function makeWays(project) {
-    const trails=map.trails.map((edge,i)=>{
-      const route=trailD(M.points(map,edge));
-      const span=map.stamp&&edge.includes('bridge')&&edge.includes('fork');
-      return `<g class="${span?'bridge-road':'road'}"><path class="road-bank" d="${route}"/><path class="road-core" id="road-${i}" d="${route}"/>${span?`<path class="bridge-planks" d="${route}"/>`:''}</g>`;
+    const roads=map.trails.map((edge,i)=>{
+      const d=trailD(M.points(map,edge)), bridge=map.id==='stream'&&edge.slice(0,2).includes('bridge')&&edge.slice(0,2).includes('fork');
+      return `<g class="${bridge?'bridge-road':'road'}"><path class="road-bank" d="${d}"/><path class="road-core" id="road-${i}" d="${d}"/>${bridge?`<path class="bridge-planks" d="${d}"/>`:''}</g>`;
     }).join('');
-    const places=Object.entries(map.places).map(([id,p])=>{
-      const target=id===map.goal, stamped=id===map.stamp&&!state.stamped;
-      return `<circle cx="${p.at[0]}" cy="${p.at[1]}" r="${target?15:stamped?13:8}" class="spot${target?' destination':''}${stamped?' stamp-spot':''}"/>`;
-    }).join('');
-    const preview=planning?project.moves.map(({from,to},i)=>{
-      const e=M.edge(map,from,to), [x,y]=map.places[to].at;
-      return `<path class="preview-route" d="${trailD(M.points(map,e,from))}"/>
-        <g class="planned-dot" transform="translate(${x} ${y})"><circle r="15"/><text text-anchor="middle" y="6">${i+1}</text></g>`;
+    const spots=Object.entries(map.places).map(([id,p])=>`<circle cx="${p.at[0]}" cy="${p.at[1]}" r="${id===map.goal?14:8}" class="spot"/>`).join('');
+    const goal=map.places[currentGoal().at].at;
+    const ring=`<circle cx="${goal[0]}" cy="${goal[1]}" r="17" class="goal-ring"/>`;
+    const marks=planning?project.moves.map(({from,to})=>`<path class="preview-route" d="${routeD(from,to)}"/>`).join(''):'';
+    const dots=planning?project.moves.map(({to},i)=>{
+      const [x,y]=map.places[to].at;
+      return `<g class="planned-dot" transform="translate(${x} ${y})"><circle r="16"/><text text-anchor="middle" y="6">${i+1}</text>${i===stops.length-1?'<g transform="translate(8 -22) rotate(-7)"><path d="m0 14 2-7 10-10 5 5L7 12Z" fill="#ffdc89" stroke="#6e437d" stroke-width="2"/></g>':''}</g>`;
     }).join(''):'';
     const [x,y]=map.places[state.at].at;
-    return `<svg id="map-svg" viewBox="0 0 600 370" aria-hidden="true" focusable="false">${A.terrain[map.id]()}${trails}${places}
-      ${A.decorate(map,state.stamped)}${preview}<g id="courier" transform="translate(${x} ${y})"><g transform="translate(-34 -60) scale(.95)">${A.hare()}</g></g></svg>`;
+    return `<svg id="map-svg" viewBox="0 0 600 370" aria-hidden="true" focusable="false">${A.terrain[map.theme]()}${roads}${spots}${ring}${hinted?`<path class="hint-route" d="${routeD(state.at,hinted)}"/>`:''}${A.decorate(map,state.collected)}${marks}<g id="courier" transform="translate(${x} ${y})"><g transform="translate(-34 -60) scale(.95)">${A.hare()}</g></g>${dots}</svg>`;
+  }
+  function goals() {
+    const entries=[...map.objectives,{at:map.goal,icon:map.recipient,label:map.places[map.goal].name}];
+    return `<div class="itinerary" role="group" aria-label="Порядок доставки"><span class="cargo" title="Груз зайчика">${A.object(map.cargo)}</span>${entries.map((o,i)=>{
+      const checked=i<state.collected||state.won, active=i===state.collected&&!state.won;
+      return `<span class="sequence-arrow" aria-hidden="true">›</span><span class="goal-chip ${checked?'checked':active?'active':'later'}" data-goal-index="${i}" aria-label="${i+1}. ${escape(o.label)}${checked?', готово':active?', сейчас':', потом'}" role="img" title="${escape(o.label)}">${A.object(o.icon)}<b>${checked?'✓':i+1}</b></span>`;
+    }).join('')}</div>`;
+  }
+  function guide(project) {
+    if (M.ready(project)) return null;
+    return planning ? M.nextHop(map,project.state) : hinted;
+  }
+  function steps(project) {
+    const recommended=guide(project), short=stops.length===1&&project.state.won;
+    return `<div class="plan-strip" aria-label="Намеченный путь">${pencil()}${(short?[0]:[0,1]).map(i=>{
+      const move=project.moves[i],active=!move&&stops.length===i;
+      const img=move?arrow(angle(move.from,move.to)):active&&recommended?arrow(angle(project.state.at,recommended)):'<span class="blank">···</span>';
+      return `<span class="step-slot${move?' filled':active?' now':''}" aria-label="Шаг ${i+1}: ${move?escape(map.places[move.to].name):'выбери стрелку'}"><b>${i+1}</b>${img}</span>`;
+    }).join('<span class="plus" aria-hidden="true">+</span>')}<span class="equals" aria-hidden="true">=</span>${rabbit()}</div>`;
+  }
+  function notice(project) {
+    if(state.won) return 'Доставлено!';
+    if(busy) return 'Зайчик идёт…';
+    if(planning) return M.ready(project)?'Путь готов!':'Выбери '+(stops.length?'вторую':'первую')+' стрелку';
+    if(hinted) return 'Вот тропа: '+map.places[hinted].name;
+    if(state.at===map.goal && state.collected<map.objectives.length) return 'Сначала забери: '+currentGoal().label;
+    return 'Цель: '+currentGoal().label;
+  }
+  function panel(project) {
+    if(state.won) {
+      const chapterWon=chapterCount(chapter)===chapterMaps(chapter).length, all=total()===M.MAPS.length;
+      return `<div class="win"><div class="win-art">${stampArt(chapterWon?chapters[chapter-1][1]:map.recipient)}${icon('check')}</div><div><p class="kicker">${all?'АЛЬБОМ СОБРАН':chapterWon?'ЗНАК ГЛАВЫ':'МАРКА В АЛЬБОМЕ'}</p><h3 id="delivered">Доставлено!</h3><p class="win-note" id="notice">${all?`Все ${M.MAPS.length} письма нашли адресатов!`:chapterWon?`Знак «${chapterSeal(chapter)}»`:`В альбоме: ${total()} / ${M.MAPS.length}`}</p></div></div><div class="actions">${control('next-story',idx(map)<M.MAPS.length?'Дальше':'В атлас',icon('arrow'),'primary')}${control('replay','Ещё раз',icon('redo'))}</div>`;
+    }
+    if(busy) return `<p class="travel" id="notice">${rabbit()} Зайчик идёт…</p>`;
+    if(planning) return `<p class="kicker">КАРАНДАШ · ПЛАН</p>${steps(project)}<p class="notice" id="notice">${notice(project)}</p>
+      ${control('walk-plan','Пойти',icon('start'),'go',M.ready(project))}<div class="plan-tools">${control('undo-plan','Стереть шаг',icon('undo'),'',stops.length>0)}${control('cancel-plan','Идти по одной',icon('close'))}</div>`;
+    return `<div class="walk-top"><p id="notice" class="notice">${escape(notice(project))}</p>${control('hint','Подсказка',clue())}</div>
+      ${idx(map)>=3?`<button type="button" class="plan-offer" id="start-plan" data-act="start-plan"><span class="example" aria-hidden="true">${pencil()}<i>→</i><i>↗</i><b>=</b>${rabbit()}</span><strong>План на два шага</strong></button>`:''}
+      <details class="brief"><summary>Задание</summary><p>${escape(map.briefing)}</p></details>`;
   }
   function card(project) {
-    const n=M.MAPS.indexOf(map);
-    const side = state.won ? `<div id="delivered" class="delivered">${A.icon('check')}<strong>Доставлено!</strong></div>
-      <div class="actions">${n+1<M.MAPS.length?control('next-story','Следующая история','arrow','primary'):''}${control('replay','Ещё раз','redo')}</div>`:
-      busy?'<p class="travel-tag">Зайчик идёт по тропинке…</p>':planning?`
-      <div class="plan-steps" aria-label="Будущие шаги">${(stops.length===1&&project.state.won?[0]:[0,1]).map(i=>`<span class="plan-step${stops[i]?' filled':''}"><b>${i+1}</b><span>${stops[i]?map.places[stops[i]].name:'Выбери стрелку'}</span></span>`).join('')}</div>
-      <div class="actions plan-actions">${control('undo-plan','Назад','undo','pale',stops.length>0)}${control('cancel-plan','Отменить','close')}${control('walk-plan','Пойти','start','primary',M.ready(project))}</div>`:
-      `<div class="actions">${map.id==='coast'?control('start-plan','Составить план','map'):''}${control('replay','Сначала','redo')}</div>`;
-    return `<section class="journey ${map.id}" aria-labelledby="screen-title">
-      <div class="mission-head"><div><p class="kicker">ИСТОРИЯ ${n+1} · ${map.land}</p><h2 id="screen-title" tabindex="-1">${map.title}</h2></div>
-        <div class="badge" aria-label="${map.stamp?(state.stamped?'Марка найдена':'Нужна марка'):'Груз зайчика'}">${A.object(map.cargo)}${map.stamp?`<span class="stamp-badge ${state.stamped?'collected':''}">${A.object('stamp')}${state.stamped?A.icon('check'):''}</span>`:''}</div></div>
-      <div class="play-grid"><div id="board" class="board" aria-label="Карта тропинок" aria-busy="${busy}">${makeWays(project)}<div id="trail-buttons" role="group" aria-label="Доступные тропинки"></div></div>
-      <div class="panel"><p class="panel-label">${planning?'ПЛАН МАРШРУТА':state.won?'ПОЧТА ДОШЛА':'ПУТЬ ЗАЙЧИКА'}</p>
-        <p id="notice" class="notice" role="status">${note}</p>${side}</div></div></section>`;
+    return `<section class="journey ch${chapter}" aria-labelledby="screen-title"><div class="mission-head"><div><p class="kicker">ГЛАВА ${chapter} · ПИСЬМО ${idx(map)}</p><h2 id="screen-title" tabindex="-1">${escape(map.title)}</h2></div>${goals()}</div>
+      <div class="play-grid"><div class="map-column"><div id="board" class="board" aria-label="Карта тропинок" aria-busy="${busy}">${makeWays(project)}<div id="trail-buttons" role="group" aria-label="Стрелки на карте"></div></div><div id="choice-row" role="group" aria-label="Выбери стрелку с карты" hidden></div></div>
+      <div class="panel${planning?' planning':''}">${panel(project)}</div></div></section>`;
   }
-  function roadElement(from,to) { return $('road-'+map.trails.indexOf(M.edge(map,from,to))); }
+  function roadElement(from,to) { return $('road-'+map.trails.indexOf(way(from,to))); }
+  function pathPoint(from,to,t) {
+    const path=roadElement(from,to), forward=way(from,to)[0]===from;
+    return path.getPointAtLength((forward?t:1-t)*path.getTotalLength());
+  }
+  // Try positions on each actual trail, keeping the courier, pencil and other hit boxes clear.
+  // Dense junctions get numbered map pins and a real, non-overlapping strip of buttons.
+  function positions(where,options,rect,size) {
+    const sx=rect.width/600, sy=rect.height/370, half=size/2, gap=3;
+    const p=map.places[state.at].at, c=map.places[where].at;
+    const avoid=[[p[0]*sx-20*sx,(p[1]-53)*sy,p[0]*sx+20*sx,(p[1]-4)*sy]];
+    if(planning&&stops.length) avoid.push([(c[0]-15)*sx,(c[1]-15)*sy,(c[0]+18)*sx,(c[1]+15)*sy]);
+    for(const sign of $('map-svg').querySelectorAll('[data-recipient],[data-map-objective]')) {
+      const r=sign.getBoundingClientRect();
+      avoid.push([r.left-rect.left,r.top-rect.top,r.right-rect.left,r.bottom-rect.top]);
+    }
+    function fits(x,y) {
+      return x>=half+gap&&y>=half+gap&&x+half+gap<=rect.width&&y+half+gap<=rect.height&&!avoid.some(([l,t,r,b])=>x+half>l&&x-half<r&&y+half>t&&y-half<b);
+    }
+    const candidates=options.map(to=>[.52,.62,.43,.72,.36,.79].map(t=>pathPoint(where,to,t)).map(p=>[p.x*sx,p.y*sy]).filter(([x,y])=>fits(x,y)));
+    const result=[];
+    function pick(i) {
+      if(i===options.length) return true;
+      for(const q of candidates[i]) if(!result.some(r=>Math.abs(q[0]-r[0])<size+gap&&Math.abs(q[1]-r[1])<size+gap)) {
+        result.push(q); if(pick(i+1)) return true; result.pop();
+      }
+      return false;
+    }
+    return pick(0)?result:null;
+  }
   function buttons(project) {
-    const where=planning?project.state.at:state.at;
     if(busy||state.won||(planning&&M.ready(project))) return;
-    const tray=$('trail-buttons');
-    for(const to of M.neighbours(map,where)) {
-      const route=M.edge(map,where,to), path=roadElement(where,to), length=path.getTotalLength();
-      const forward=route[0]===where, progress=forward ? .56 : .44;
-      const p=path.getPointAtLength(length*progress), q=path.getPointAtLength(length*(progress+(forward ? .075 : -.075)));
-      const b=document.createElement('button');
-      b.type='button'; b.className='trail'; b.dataset.to=to;
-      b.style.left=`${p.x/6}%`; b.style.top=`${p.y/3.7}%`;
-      b.style.setProperty('--arrow',`${Math.atan2(q.y-p.y,q.x-p.x)}rad`);
-      b.setAttribute('aria-label',`По тропе: ${map.places[to].name}`); b.title=map.places[to].name;
-      b.innerHTML=A.icon('arrow'); tray.append(b);
-    }
+    const where=planning?project.state.at:state.at, options=M.neighbours(map,where), best=guide(project);
+    const board=$('board'), tray=$('trail-buttons'), row=$('choice-row'), rect=board.getBoundingClientRect();
+    const layout=positions(where,options,rect,44), prior=document.activeElement?.dataset.to;
+    tray.replaceChildren(); row.replaceChildren(); row.hidden=!!layout;
+    options.forEach((to,i)=>{
+      const name=map.places[to].name, tip=to===best, bearing=angle(where,to), dir=arrow(bearing);
+      const b=document.createElement('button'); b.type='button'; b.dataset.to=to; b.dataset.hinted=String(tip);
+      b.className='trail '+(layout?'map-trail':'choice')+(tip?' hinted':'');
+      b.setAttribute('aria-label',`${planning?'Наметить шаг':'Идти'}: ${name}${tip?' (подсказка)':''}`); b.title=name;
+      const badge=tip?'<span class="spark" aria-hidden="true">✦</span>':'';
+      if(layout) {
+        b.innerHTML=dir+badge; b.style.left=layout[i][0]+'px'; b.style.top=layout[i][1]+'px'; tray.append(b);
+      } else {
+        const pt=pathPoint(where,to,.59), pin=document.createElement('span');
+        pin.className='map-pin'+(tip?' hinted':''); pin.style.left=`${pt.x/6}%`; pin.style.top=`${pt.y/3.7}%`;
+        pin.innerHTML=dir+`<b>${i+1}</b>`; pin.setAttribute('aria-hidden','true'); tray.append(pin);
+        b.innerHTML=`<span class="way-id">${i+1}</span>${dir}<span class="choice-name">${escape(name)}</span>${badge}`; row.append(b);
+      }
+      if(prior===to) b.focus({preventScroll:true});
+    });
   }
-  function render(focus) {
+  let observedWidth=0;
+  const observer=typeof ResizeObserver==='function'?new ResizeObserver(entries=>{
+    if(!map || entries[0].target!==$('board')) return;
+    const width=entries[0].contentRect.width;
+    if(Math.abs(observedWidth-width)>.1) { observedWidth=width; buttons(M.preview(map,state,stops)); }
+  }):null;
+  if(!observer) window.addEventListener('resize',()=>{ if(map) buttons(M.preview(map,state,stops)); });
+  function render(focus='') {
+    observer?.disconnect();
     const project=map?M.preview(map,state,stops):null;
-    const set=(key,value)=>{ const s=String(value); if(view.dataset[key]!==s) view.dataset[key]=s; };
-    set('mode',map?'story':'home'); set('at',state?.at??''); set('moving',busy);
-    set('planning',planning); set('endpoint',planning?project.state.at:state?.at??'');
-    set('stamped',state?.stamped??false);
+    const values={mode:map?'story':'home',currentChapter:chapter,at:state?.at??'',moving:busy,planning,endpoint:project?.state.at??'',stamped:state?.stamped??false,collected:state?.collected??0,hint:hinted??''};
+    for(const [k,v] of Object.entries(values)) if(view.dataset[k]!==String(v)) view.dataset[k]=v;
     home.hidden=!map;
-    view.innerHTML=map?card(project):cover();
-    if(map) buttons(project);
-    if(focus==='heading') $('screen-title').focus({preventScroll:true});
-    else if(focus) {
-      const target=$(focus);
-      if(target&&!target.disabled) target.focus({preventScroll:true});
-      else view.querySelector('.trail')?.focus({preventScroll:true});
+    view.innerHTML=map?card(project):album();
+    if(map) { buttons(project); observedWidth=$('board').getBoundingClientRect().width; observer?.observe($('board')); }
+    if(focus) {
+      const target=focus==='trail'?(view.querySelector('.trail.hinted')||view.querySelector('.trail')):view.querySelector(focus);
+      target?.focus({preventScroll:true});
     }
-  }
-  function message() {
-    if(state.won) return 'Получатель рад! История отмечена галочкой.';
-    if(map.stamp&&!state.stamped) return state.at===map.goal?'Сначала загляни за маркой к кувшинкам.':'Возьми марку у кувшинок, потом неси посылку выдре.';
-    if(map.stamp) return 'Марка на месте. Теперь к выдре через мост!';
-    if(map.id==='meadow') return 'Где ёжик? Нажми на стрелку на тропинке.';
-    return 'Нажимай на стрелки и неси огонёк к маяку.';
-  }
-  function planMessage() {
-    return stops.length===0?'Выбери первую стрелку. Зайчик пока стоит.':M.ready(M.preview(map,state,stops))?
-      'Путь видно на карте. Можешь поправить его или нажать «Пойти».':'Теперь выбери стрелку от кружка с цифрой 1.';
+    $('spoken').textContent=map?(state.won?$('notice').textContent+' Доставлено!':notice(project)):chapters[chapter-1][0];
   }
   function open(id) {
     const chosen=M.MAPS.find(m=>m.id===id); if(!chosen) return;
-    epoch++; map=chosen; state=M.start(map); planning=map.id==='coast'; busy=false; stops=[];
-    note=planning?planMessage():message();
-    render('heading'); window.scrollTo(0,0);
+    epoch++; map=chosen; chapter=map.chapter; state=M.start(map); planning=busy=false; stops=[]; hinted=null;
+    render('#screen-title'); window.scrollTo(0,0);
   }
+  function backHome() {
+    const restore=map?.id;
+    epoch++; map=state=null; planning=busy=false; stops=[]; hinted=null;
+    render(restore?`[data-story="${CSS.escape(restore)}"]`:'#screen-title'); window.scrollTo(0,0);
+  }
+  function cancelPlan(keyboard) { planning=false; stops=[]; hinted=null; render(keyboard?'#start-plan':''); }
   function animate(from,to,token) {
-    if(reduce.matches) return Promise.resolve();
-    const path=roadElement(from,to), actor=$('courier'), length=path.getTotalLength();
-    const forward=M.edge(map,from,to)[0]===from;
-    const duration=Math.max(260,Math.min(460,length*2.05));
-    const began=performance.now();
+    if(reduced.matches) return Promise.resolve();
+    const path=roadElement(from,to), actor=$('courier'), len=path.getTotalLength(), forward=way(from,to)[0]===from;
+    const duration=Math.max(250,Math.min(470,len*2)), start=performance.now();
     return new Promise(resolve=>{
-      const frame = now=>{
+      function frame(now) {
         if(token!==epoch) { resolve(); return; }
-        const t=Math.max(0,Math.min(1,(now-began)/duration));
-        const p=path.getPointAtLength((forward?t:1-t)*length);
+        const t=Math.max(0,Math.min(1,(now-start)/duration));
+        const p=path.getPointAtLength((forward?t:1-t)*len);
         actor.setAttribute('transform',`translate(${p.x} ${p.y})`);
         if(t===1) resolve(); else requestAnimationFrame(frame);
-      };
+      }
       requestAnimationFrame(frame);
     });
   }
   async function walk(route,keyboard) {
-    const project=M.preview(map,state,route);
-    if(busy||!project?.moves.length) return;
-    const id=++epoch;
-    busy=true; stops=[]; planning=false; note='Зайчик отправился по тропинке.'; render();
-    for (const {from,to,state:next} of project.moves) {
-      await animate(from,to,id);
-      if(id!==epoch) return;
-      state=next;
-      if(state.won) stamp(map.id);
-      render();
-      // Even with reduced motion render the intermediate arrival as a separate turn.
-      if(to!==project.moves.at(-1).to) await new Promise(resolve=>setTimeout(resolve,reduce.matches?0:120));
-      if(id!==epoch) return;
+    const project=M.preview(map,state,route); if(busy||!project?.moves.length) return;
+    const token=++epoch; busy=true; stops=[]; planning=false; hinted=null; render();
+    for(const [i,{from,to,state:next}] of project.moves.entries()) {
+      await animate(from,to,token); if(token!==epoch) return;
+      state=next; if(state.won) award(map.id);
+      if(i<project.moves.length-1) {
+        render(); await new Promise(resolve=>setTimeout(resolve,reduced.matches?0:100)); if(token!==epoch) return;
+      }
     }
-    busy=false; note=message();
-    render(keyboard?(state.won?'heading':'trail'):'');
+    busy=false; render(keyboard?(state.won?'#next-story':'trail'):'');
   }
   view.addEventListener('click',e=>{
     const b=e.target.closest('button'); if(!b||b.disabled) return;
-    if(b.dataset.story) { open(b.dataset.story); return; }
-    if(busy||!map) return;
     const keyboard=e.detail===0;
+    if(b.dataset.chapter&&!map) { chapter=Number(b.dataset.chapter); render(keyboard?`[data-chapter="${chapter}"]`:''); return; }
+    if(b.dataset.story) { open(b.dataset.story); return; }
+    if(!map) { if(b.id==='continue'&&firstOpen()) open(firstOpen().id); return; }
+    if(busy) return;
     if(b.dataset.to) {
-      const to=b.dataset.to;
       if(planning) {
-        const next=[...stops,to];
-        if(M.preview(map,state,next)) { stops=next; note=planMessage(); render(keyboard?(M.ready(M.preview(map,state,stops))?'walk-plan':'trail'):''); }
-      } else void walk([to],keyboard);
+        const next=[...stops,b.dataset.to], project=M.preview(map,state,next);
+        if(project) { stops=next; render(keyboard?(M.ready(project)?'#walk-plan':'trail'):''); }
+      } else void walk([b.dataset.to],keyboard);
       return;
     }
     switch(b.dataset.act) {
-      case 'start-plan': planning=true; stops=[]; note=planMessage(); render(keyboard?'trail':''); break;
-      case 'cancel-plan': planning=false; stops=[]; note=message(); render(keyboard?'start-plan':''); break;
-      case 'undo-plan': stops=stops.slice(0,-1); note=planMessage(); render(keyboard?'trail':''); break;
+      case 'hint': hinted=M.nextHop(map,state); render(keyboard?'trail':''); break;
+      case 'start-plan': planning=true; stops=[]; hinted=null; render(keyboard?'trail':''); break;
+      case 'cancel-plan': cancelPlan(keyboard); break;
+      case 'undo-plan': stops=stops.slice(0,-1); render(keyboard?'trail':''); break;
       case 'walk-plan': if(M.ready(M.preview(map,state,stops))) void walk(stops,keyboard); break;
       case 'replay': open(map.id); break;
-      case 'next-story': { const next=M.MAPS[M.MAPS.indexOf(map)+1]; if(next) open(next.id); break; }
+      case 'next-story': { const next=M.MAPS[idx(map)]; if(next) open(next.id); else backHome(); break; }
     }
   });
-  $('brand').innerHTML=A.object('mail');
-  home.innerHTML=A.icon('home'); home.title='Выбор истории';
-  home.addEventListener('click',()=>{ epoch++; map=state=undefined; busy=planning=false; stops=[]; render('heading'); window.scrollTo(0,0); });
-  render();
+  window.addEventListener('keydown',e=>{
+    if(e.key==='Escape'&&map) { e.preventDefault(); if(planning&&!busy) cancelPlan(true); else backHome(); }
+  });
+  window.addEventListener('storage',e=>{
+    if(e.key!==M.KEY) return;
+    const fresh=M.readSave(e.newValue); saved={v:1,done:{...saved.done,...fresh.done}};
+    if(!map) {
+      const el=document.activeElement, focus=el.dataset.story?`[data-story="${CSS.escape(el.dataset.story)}"]`:el.dataset.chapter?`[data-chapter="${el.dataset.chapter}"]`:el.id==='continue'?'#continue':'';
+      render(focus);
+    }
+  });
+  $('brand').innerHTML=A.object('mail'); home.innerHTML=icon('home')+'<span>В атлас</span>';
+  home.addEventListener('click',backHome); render();
 })();
 </script>
 </body>

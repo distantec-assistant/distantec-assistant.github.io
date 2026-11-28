@@ -1,263 +1,282 @@
-"""Play the three deliveries in Chromium, including actual taps, animation and file offline."""
+"""Exercise the actual standalone campaign in Chromium. No product functions drive the UI."""
 import argparse
+from collections import deque
 from contextlib import contextmanager
 from functools import partial
 from hashlib import sha256
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 import json
 from pathlib import Path
+import subprocess
 from threading import Thread
 
 from playwright.sync_api import expect, sync_playwright
 
 APP = Path(__file__).resolve().parents[1]
 KEY = 'maze-mail-2-v1'
-OLD = {k: 'opaque ' + k for k in ('maze-v2','raskraska-v1','uzory-v1','uzory-2-v1','pary-v1','bukvograd-v1','tsifrograd-2-v1')}
+PROTECTED = {k: 'independent:' + k for k in ('maze-v2', 'raskraska-v1', 'uzory-v1', 'uzory-2-v1', 'pary-v1', 'pary-2-v1', 'bukvograd-v1', 'bukvograd-2-v1', 'tsifrograd-v1', 'tsifrograd-2-v1', 'tsifrograd-lab-v1', 'tsifrograd-lab-v2')}
 
 
-class Handler(SimpleHTTPRequestHandler):
+class Quiet(SimpleHTTPRequestHandler):
     def log_message(self, format, *args):
         pass
 
 
 @contextmanager
-def serve():
-    with ThreadingHTTPServer(('127.0.0.1',0),partial(Handler,directory=APP.parent)) as server:
-        thread = Thread(target=server.serve_forever,daemon=True)
+def site(external):
+    if external:
+        yield external.rstrip('/') + '/'
+        return
+    with ThreadingHTTPServer(('127.0.0.1', 0), partial(Quiet, directory=APP.parent)) as server:
+        thread = Thread(target=server.serve_forever, daemon=True)
         thread.start()
         try:
-            yield f'http://127.0.0.1:{server.server_port}/maze-2/'
+            yield f'http://127.0.0.1:{server.server_port}/'
         finally:
             server.shutdown()
             thread.join()
 
 
-def chromium(pw):
-    expected = Path(pw.chromium.executable_path)
-    if expected.is_file():
-        return str(expected)
-    root = Path.home()/'.cache/ms-playwright'
-    choices = [*root.glob('chromium-*/chrome-linux64/chrome'), *root.glob('chromium-*/chrome-linux/chrome')]
-    assert choices, 'Installed Playwright Chromium not found'
-    return str(max(choices,key=lambda p:int(p.parents[1].name.removeprefix('chromium-'))))
+def chrome(pw):
+    default = Path(pw.chromium.executable_path)
+    if default.is_file():
+        return str(default)
+    root = Path.home() / '.cache/ms-playwright'
+    options = [*root.glob('chromium-*/chrome-linux64/chrome'), *root.glob('chromium-*/chrome-linux/chrome')]
+    return str(max(options, key=lambda p: int(p.parents[1].name.split('-')[-1])))
 
 
-def observe(page, allowed):
-    issues=[]
-    page.on('pageerror',lambda e:issues.append(str(e)))
-    page.on('console',lambda m:issues.append(m.text) if m.type=='error' else None)
-    page.on('response',lambda r:issues.append(f'{r.status} {r.url}') if r.status>=400 else None)
-    page.on('requestfailed',lambda r:issues.append(f'{r.failure} {r.url}'))
-    page.on('request',lambda r:issues.append(f'Unexpected {r.url}') if not r.url.startswith((allowed,'data:')) else None)
-    return issues
+def watch(p, origin):
+    faults = []
+    p.on('pageerror', lambda e: faults.append(str(e)))
+    p.on('requestfailed', lambda r: faults.append(f'{r.failure} {r.url}'))
+    p.on('console', lambda m: faults.append(m.text) if m.type == 'error' else None)
+    p.on('request', lambda r: faults.append('external: ' + r.url) if not r.url.startswith((origin, 'data:')) else None)
+    p.on('response', lambda r: faults.append(f'{r.status} {r.url}') if r.status >= 400 else None)
+    return faults
 
 
-def act(page, selector, touch=False):
-    button=page.locator(selector)
-    button.tap() if touch else button.click()
+def act(p, selector, kind='mouse'):
+    el = p.locator(selector).first
+    expect(el).to_be_visible()
+    if kind == 'key':
+        el.focus()
+        p.keyboard.press('Enter')
+    elif kind == 'tap':
+        el.tap(timeout=4500)
+    else:
+        el.click(timeout=4500)
 
 
-def at(page, where):
-    expect(page.locator('#view')).to_have_attribute('data-at',where)
-    expect(page.locator('#view')).to_have_attribute('data-moving','false')
+def at(p, where):
+    expect(p.locator('#view')).to_have_attribute('data-at', where)
+    expect(p.locator('#view')).to_have_attribute('data-moving', 'false')
 
 
-def geometry(page, with_map=False):
-    dims=page.evaluate('''() => ({w:document.documentElement.clientWidth, sw:document.documentElement.scrollWidth,
-      targets:[...document.querySelectorAll('button')].filter(n=>n.checkVisibility()).map(n=>{
-        const r=n.getBoundingClientRect();return {id:n.id||n.dataset.to||n.dataset.story,w:r.width,h:r.height};
-      })})''')
-    assert dims['w']==dims['sw'] and all(x['w']>=44 and x['h']>=44 for x in dims['targets']), dims
-    if with_map and page.locator('.trail').count():
-        expect(page.locator('#board')).to_be_in_viewport()
-        overlaps=page.locator('.trail').evaluate_all('''nodes => nodes.flatMap((el,i) => {
-           const a=el.getBoundingClientRect();
-           if(document.elementFromPoint((a.left+a.right)/2,(a.top+a.bottom)/2)?.closest('.trail')!==el) return [el.dataset.to];
-           return nodes.slice(i+1).map(n=>n.getBoundingClientRect()).filter(b=>a.left<b.right&&b.left<a.right&&a.top<b.bottom&&b.top<a.bottom).map(()=>el.dataset.to);
-         })''')
-        assert not overlaps, overlaps
+def get_save(p):
+    return p.evaluate('(k)=>localStorage.getItem(k)', KEY)
 
 
-def travel(page,to,touch):
-    geometry(page,True)
-    act(page,f'.trail[data-to="{to}"]',touch)
+def destinations(p):
+    return p.locator('button[data-to]:visible').evaluate_all('els=>[...new Set(els.map(e=>e.dataset.to))]')
 
 
-def choose(page,story,touch=False):
-    act(page,f'[data-story="{story}"]',touch)
-    at(page,'start')
+def choice(p, to, kind='mouse', check=False):
+    # The same route may also have a labelled control under a crowded map. Prefer the map.
+    selectors = [f'.trail[data-to="{to}"]:visible', f'button[data-to="{to}"]:visible']
+    for sel in selectors:
+        el = p.locator(sel).first
+        if not el.count():
+            continue
+        el.scroll_into_view_if_needed()
+        geom = el.evaluate('''e=>{const a=e.getBoundingClientRect(), x=(a.left+a.right)/2, y=(a.top+a.bottom)/2;
+          return {width:a.width,height:a.height,hit:e.contains(document.elementFromPoint(x,y))};}''')
+        if check:
+            assert geom['width'] >= 43.99 and geom['height'] >= 43.99, (to, geom)
+            assert geom['hit'], ('obscured enabled control', to, geom)
+        act(p, sel, kind)
+        return
+    raise AssertionError(('missing choice', to, destinations(p)))
 
 
-def win(page):
-    expect(page.locator('#delivered')).to_be_visible()
-    expect(page.locator('.trail')).to_have_count(0)
+def walk(p, to, kind='mouse', check=False):
+    choice(p, to, kind, check)
+    at(p, to)
 
 
-def note(page,name):
-    expect(page.locator('#notice')).to_contain_text(name)
+def graph(map_):
+    adj = {k: [] for k in map_['places']}
+    for a, b, *_ in map_['trails']:
+        adj[a].append(b)
+        adj[b].append(a)
+    return adj
 
 
-def play(browser,url,out,*,touch):
-    size={'width':320,'height':640} if touch else {'width':1280,'height':870}
-    kind='phone' if touch else 'desktop'
-    with browser.new_context(viewport=size,has_touch=touch,is_mobile=touch,
-                             reduced_motion='reduce' if touch else 'no-preference') as cx:
-        page=cx.new_page()
-        issues=observe(page,url)
-        response=page.goto(url,wait_until='load')
-        assert response and response.ok
-        expect(page.locator('#view')).to_have_attribute('data-mode','home')
-        geometry(page)
-        assert page.locator('[data-story]').count()==3
-        expect(page.locator('#screen-title')).to_have_text('У зайчика новая почта!')
-        assert page.locator('.cover-art').evaluate('''svg=>{
-            const a=svg.getBoundingClientRect(),b=svg.querySelector('.object g').getBoundingClientRect();
-            return b.width>12&&b.left>=a.left&&b.right<=a.right&&b.bottom<=a.bottom;
-          }'''), 'Letter is clipped on the cover'
-        page.screenshot(path=str(out/f'{kind}-home.png'))
-        page.evaluate('''({old,key})=>{for(const [k,v] of Object.entries(old)) localStorage.setItem(k,v);localStorage.setItem(key,'{bad json');}''',{'old':OLD,'key':KEY})
-        page.add_init_script('''(() => {window.reads=[];window.writes=[];
-            for(const [method,log] of [['getItem',reads],['setItem',writes]]){const native=Storage.prototype[method];
-              Storage.prototype[method]=function(key,...args){log.push(String(key));return native.call(this,key,...args);};}
-          })()''')
-        page.reload()
-        expect(page.locator('[data-story].done')).to_have_count(0)
-        if not touch:
-            page.locator('[data-story="meadow"]').focus()
-            page.keyboard.press('Enter')
-            at(page,'start')
-        else:
-            choose(page,'meadow',touch)
-        expect(page.locator('.trail')).to_have_count(1)
-        assert page.locator('.trail[data-to="finish"]').count()==0
-        for dest in ('fork','grove','nest'):
-            travel(page,dest,touch)
-            at(page,dest)
-        expect(page.locator('#delivered')).to_have_count(0)
-        expect(page.locator('.trail')).to_have_count(1)
-        for dest in ('grove','fork','hill','finish'):
-            travel(page,dest,touch)
-            at(page,dest)
-        win(page)
-        assert page.locator('#map-svg').evaluate('''svg=>{
-          const h=svg.querySelector('#courier').getBoundingClientRect();
-          const p=svg.querySelector('[data-recipient] g')?.getBoundingClientRect();
-          return !!p&&(p.bottom<=h.top||p.right<=h.left||p.left>=h.right);
-        }'''), 'Recipient and courier must be visible separately'
-        page.screenshot(path=str(out/f'{kind}-delivered.png'))
-        act(page,'#home',touch)
-        expect(page.locator('[data-story="meadow"]')).to_have_class('mission done')
-        choose(page,'stream',touch)
-        for dest in ('fork','bridge','finish'):
-            travel(page,dest,touch)
-            at(page,dest)
-        expect(page.locator('#delivered')).to_have_count(0)
-        note(page,'за маркой')
-        expect(page.locator('#view')).to_have_attribute('data-stamped','false')
-        for dest in ('bridge','fork','lilies'):
-            travel(page,dest,touch)
-            at(page,dest)
-        expect(page.locator('#view')).to_have_attribute('data-stamped','true')
-        page.screenshot(path=str(out/f'{kind}-stamp.png'))
-        for dest in ('fork','bridge','finish'):
-            travel(page,dest,touch)
-            at(page,dest)
-        win(page)
-
-        act(page,'#home',touch)
-        choose(page,'coast',touch)
-        expect(page.locator('#view')).to_have_attribute('data-planning','true')
-        expect(page.locator('#walk-plan')).to_be_disabled()
-        travel(page,'birches',touch)
-        at(page,'start')
-        expect(page.locator('#view')).to_have_attribute('data-endpoint','birches')
-        expect(page.locator('#walk-plan')).to_be_disabled()
-        travel(page,'bench',touch)
-        at(page,'start')
-        expect(page.locator('#view')).to_have_attribute('data-endpoint','bench')
-        expect(page.locator('.preview-route')).to_have_count(2)
-        act(page,'#undo-plan',touch)
-        expect(page.locator('#view')).to_have_attribute('data-endpoint','birches')
-        travel(page,'arch',touch)
-        expect(page.locator('#view')).to_have_attribute('data-endpoint','arch')
-        expect(page.locator('#walk-plan')).to_be_enabled()
-        page.screenshot(path=str(out/f'{kind}-plan.png'))
-        act(page,'#cancel-plan',touch)
-        at(page,'start')
-        expect(page.locator('#view')).to_have_attribute('data-planning','false')
-        expect(page.locator('.preview-route')).to_have_count(0)
-        act(page,'#start-plan',touch)
-        travel(page,'birches',touch)
-        travel(page,'arch',touch)
-        page.evaluate('''() => {const host=document.querySelector('#view');window.arrivals=[];
-          new MutationObserver(()=>window.arrivals.push(host.dataset.at)).observe(host,{attributes:true,attributeFilter:['data-at']});}''')
-        act(page,'#walk-plan',touch)
-        at(page,'arch')
-        assert 'birches' in page.evaluate('window.arrivals')
-        expect(page.locator('#view')).to_have_attribute('data-planning','false')
-        travel(page,'dock',touch)
-        at(page,'dock')
-        act(page,'#start-plan',touch)
-        travel(page,'finish',touch)
-        at(page,'dock')
-        expect(page.locator('#walk-plan')).to_be_enabled()
-        act(page,'#walk-plan',touch)
-        at(page,'finish')
-        win(page)
-        snapshot=page.evaluate('() => [window.reads,window.writes]')
-        assert [set(x) for x in snapshot]==[{KEY},{KEY}], snapshot
-        assert page.evaluate('(keys)=>Object.fromEntries(keys.map(k=>[k,localStorage.getItem(k)]))',list(OLD))==OLD
-        save=json.loads(page.evaluate('(k)=>localStorage.getItem(k)',KEY))
-        assert save=={'v':1,'done':dict(meadow=True,stream=True,coast=True)}
-        page.reload()
-        expect(page.locator('[data-story].done')).to_have_count(3)
-        assert not issues, issues
-    return kind
+def path(adj, start, end):
+    q = deque([(start, [])]); seen = {start}
+    while q:
+        node, route = q.popleft()
+        if node == end:
+            return route
+        for n in adj[node]:
+            if n not in seen:
+                seen.add(n); q.append((n, route + [n]))
+    raise AssertionError(('unreachable', start, end))
 
 
-def offline(browser,file,out):
+def win(p, m, kind, captured=None):
+    adj = graph(m); pos = m['start']; n = 0
+    at(p, pos)
+    goals = [o['at'] for o in m.get('objectives', [])] + [m['goal']]
+    for goal_index, goal in enumerate(goals):
+        for dest in path(adj, pos, goal):
+            assert sorted(destinations(p)) == sorted(adj[pos]), (m['id'], pos, destinations(p), adj[pos])
+            expect(p.locator('#delivered')).to_have_count(0)
+            walk(p, dest, kind, True); pos = dest; n += 1
+        if goal_index < len(goals)-1:
+            expect(p.locator('#delivered')).to_have_count(0)
+            if captured:
+                captured()
+    expect(p.locator('#delivered')).to_be_visible()
+    assert not destinations(p)
+    return n
+
+
+def open_story(p, m, kind='mouse'):
+    act(p, f'[data-chapter="{m["chapter"]}"]', kind)
+    act(p, f'[data-story="{m["id"]}"]', kind)
+    at(p, m['start'])
+
+
+def safe_width(p):
+    assert p.evaluate('()=>document.documentElement.clientWidth===document.documentElement.scrollWidth')
+
+
+def atlas(p, maps, kind):
+    assert p.locator('button[data-chapter]').count() == 4, 'four accessible chapters required'
+    for i in range(1, 5):
+        act(p, f'button[data-chapter="{i}"]', kind)
+        actual = p.locator('button[data-story]').evaluate_all('els=>els.map(e=>e.dataset.story)')
+        assert actual == [m['id'] for m in maps if m['chapter'] == i], (i, actual)
+        safe_width(p)
+
+
+def campaign(browser, origin, maps, out, touch):
+    kind = 'tap' if touch else 'key'; name = 'phone' if touch else 'desktop'
+    with browser.new_context(viewport={'width':320 if touch else 1280,'height':640 if touch else 870}, has_touch=touch, is_mobile=touch, reduced_motion='reduce') as cx:
+        p = cx.new_page(); errors = watch(p, origin)
+        res = p.goto(origin); assert res and res.ok
+        link = p.locator('a[href="/maze-2/"]'); expect(link).to_contain_text('24 доставки')
+        with p.expect_response(lambda r: r.url == origin+'maze-2/' and r.request.resource_type == 'document') as navigation:
+            act(p, 'a[href="/maze-2/"]', kind)
+        assert navigation.value.ok and navigation.value.body() == (APP/'index.html').read_bytes()
+        assert get_save(p) is None
+        p.evaluate('items=>Object.entries(items).forEach(([k,v])=>localStorage.setItem(k,v))',PROTECTED)
+        atlas(p, maps, kind)
+        act(p, '[data-chapter="1"]', kind)
+        p.screenshot(path=str(out/f'{name}-atlas.png'), full_page=True)
+        act(p, '[data-story="meadow"]', kind)
+        record = []
+        for i, m in enumerate(maps):
+            if i:
+                act(p, '#next-story', kind)
+            at(p, m['start']); safe_width(p)
+            expect(p.locator('#view')).to_have_attribute('data-planning', 'false')
+            if i in (2, 13, 23):
+                act(p, '#hint', kind)
+                at(p, m['start'])
+                p.screenshot(path=str(out/f'{name}-route-{i+1}.png'), full_page=True)
+            count = win(p, m, kind)
+            done=json.loads(get_save(p))['done']
+            assert done == {x['id']:True for x in maps[:i+1]}, (i+1,done)
+            record.append({'route':m['id'],'actual_moves':count})
+        p.screenshot(path=str(out/f'{name}-finish.png'), full_page=True)
+        act(p, '#home', kind)
+        p.reload(); saved = get_save(p)
+        expect(p.locator('#album-count')).to_contain_text('24')
+        for i in range(1,5):
+            act(p,f'[data-chapter="{i}"]',kind)
+            expect(p.locator('[data-story].done')).to_have_count(6)
+        open_story(p,maps[0],kind); win(p,maps[0],kind)
+        assert json.loads(get_save(p)) == json.loads(saved)
+        assert p.evaluate('keys=>Object.fromEntries(keys.map(k=>[k,localStorage.getItem(k)]))',list(PROTECTED)) == PROTECTED
+        assert not errors, errors
+        return {'input':kind,'routes':record,'reload_count':24,'external_errors':errors}
+
+
+def tutorial(p, out, kind):
+    act(p, '[data-story="coast"]', kind); at(p,'start')
+    expect(p.locator('#view')).to_have_attribute('data-planning','false')
+    walk(p,'birches',kind); walk(p,'start',kind)
+    act(p,'#start-plan',kind)
+    expect(p.locator('#walk-plan')).to_be_disabled()
+    choice(p,'birches',kind); at(p,'start'); choice(p,'bench',kind); at(p,'start')
+    expect(p.locator('#walk-plan')).to_be_enabled()
+    act(p,'#undo-plan',kind); choice(p,'arch',kind); at(p,'start')
+    p.screenshot(path=str(out/'optional-plan.png'),full_page=True)
+    act(p,'#cancel-plan',kind); at(p,'start')
+    assert get_save(p) is None
+    act(p,'#start-plan',kind); choice(p,'birches',kind); choice(p,'arch',kind)
+    p.evaluate('''()=>{window.arrivals=[]; new MutationObserver(()=>arrivals.push(document.querySelector('#view').dataset.at)).observe(document.querySelector('#view'),{attributes:true,attributeFilter:['data-at']});}''')
+    act(p,'#walk-plan',kind); at(p,'arch')
+    assert 'birches' in p.evaluate('window.arrivals')
+    walk(p,'dock',kind); act(p,'#start-plan',kind); choice(p,'finish',kind)
+    act(p,'#walk-plan',kind); at(p,'finish'); expect(p.locator('#delivered')).to_be_visible()
+
+
+def special(browser, origin, maps, out, prior):
+    url=origin+'maze-2/'
+    with browser.new_context(viewport={'width':320,'height':640},has_touch=True,is_mobile=True) as cx:
+        p=cx.new_page(); faults=watch(p,origin); p.goto(url)
+        tutorial(p,out,'tap')
+        act(p,'#home'); open_story(p,maps[1]);
+        for v in ('fork','bridge','finish'): walk(p,v)
+        expect(p.locator('#delivered')).to_have_count(0)
+        for v in ('bridge','fork','lilies','fork','bridge','finish'): walk(p,v)
+        expect(p.locator('#delivered')).to_be_visible()
+        assert not faults, faults
+    if prior:
+        with browser.new_context(reduced_motion='reduce') as cx:
+            p=cx.new_page(); faults=watch(p,origin)
+            p.route(url,lambda r:r.fulfill(path=str(prior),content_type='text/html')); response=p.goto(url)
+            assert response and response.body()==prior.read_bytes()
+            for i,m in enumerate(maps[:3]):
+                act(p,f'[data-story="{m["id"]}"]'); at(p,m['start'])
+                if i==2: act(p,'#cancel-plan')
+                win(p,m,'mouse'); act(p,'#home')
+            old=get_save(p); p.unroute(url); res=p.reload(); assert res and res.body()==(APP/'index.html').read_bytes()
+            expect(p.locator('[data-story].done')).to_have_count(3); assert get_save(p)==old
+            b=cx.new_page(); b.goto(url)
+            open_story(p,maps[3]); win(p,maps[3],'mouse')
+            b.wait_for_function('([k,id])=>JSON.parse(localStorage.getItem(k)).done[id]===true',arg=[KEY,maps[3]['id']]); open_story(b,maps[4]); win(b,maps[4],'mouse')
+            p.reload(); assert json.loads(get_save(p))=={'v':1,'done':{m['id']:True for m in maps[:5]}}
+            assert not faults, faults
     with browser.new_context(offline=True,viewport={'width':1024,'height':630}) as cx:
-        page=cx.new_page()
-        issues=observe(page,'file://')
-        page.add_init_script("""(() => {for(const k of ['getItem','setItem']) Storage.prototype[k]=()=>{throw Error('blocked');};})()""")
-        page.goto(file.as_uri(),wait_until='load')
-        expect(page.locator('#store-note')).to_be_visible()
-        choose(page,'coast')
-        travel(page,'birches',False)
-        travel(page,'bench',False)
-        act(page,'#walk-plan')
-        expect(page.locator('#view')).to_have_attribute('data-moving','true')
-        act(page,'#home')
-        choose(page,'meadow')
-        # The canceled second half must not arrive in another story.
-        page.locator('#view').evaluate('() => new Promise(resolve=>setTimeout(resolve,950))')
-        at(page,'start')
-        for dest in ('fork','hill','finish'):
-            travel(page,dest,False)
-            at(page,dest)
-        win(page)
-        page.screenshot(path=str(out/'tablet-offline.png'))
-        assert not issues, issues
+        p=cx.new_page(); faults=watch(p,'file://')
+        p.add_init_script("for (const k of ['getItem','setItem']) Storage.prototype[k]=()=>{throw Error('disabled for test');};")
+        p.goto((APP/'index.html').as_uri()); expect(p.locator('#store-note')).to_be_visible()
+        open_story(p,maps[2]); act(p,'#start-plan'); choice(p,'birches'); choice(p,'bench'); act(p,'#walk-plan')
+        act(p,'#home'); open_story(p,maps[0]); p.wait_for_timeout(1050); at(p,'start'); win(p,maps[0],'mouse')
+        assert not faults, faults
+    return {'plan_cancel_edit_execution':True,'early_delivery_blocked':True,'prior_writer_upgrade_and_serialized_two_tabs': bool(prior),'offline_blocked_storage':True}
 
 
 def main():
-    cli=argparse.ArgumentParser(description=__doc__)
-    cli.add_argument('--out',type=Path,required=True)
-    cli.add_argument('--file',type=Path,default=APP/'index.html')
-    args=cli.parse_args(); args.out.mkdir(parents=True,exist_ok=False)
-    file=args.file.resolve()
-    before=sha256(file.read_bytes()).hexdigest() if file.is_file() else None
-    with serve() as url,sync_playwright() as pw:
-        browser=pw.chromium.launch(executable_path=chromium(pw),args=['--no-sandbox'])
+    ap=argparse.ArgumentParser(description=__doc__); ap.add_argument('--out',type=Path,required=True)
+    ap.add_argument('--origin',help='Live catalog origin (default serves this checkout on loopback)'); ap.add_argument('--prior',type=Path)
+    args=ap.parse_args(); args.out.mkdir(parents=True,exist_ok=False)
+    maps=json.loads(subprocess.check_output(['node','-p',"JSON.stringify(require('./src/model.cjs').MAPS)"],cwd=APP))
+    assert len(maps)==24 and len({m['id'] for m in maps})==24, '24 distinct deliveries required'
+    before=sha256((APP/'index.html').read_bytes()).hexdigest()
+    with sync_playwright() as pw, site(args.origin) as origin:
+        browser=pw.chromium.launch(executable_path=chrome(pw),args=['--no-sandbox'])
         try:
-            variants=[play(browser,url,args.out,touch=False),play(browser,url,args.out,touch=True)]
-            offline(browser,file,args.out)
-            assert sha256(file.read_bytes()).hexdigest()==sha256((APP/'index.html').read_bytes()).hexdigest()==before
-            result=dict(result='PASS',artifact_sha256=before,chromium=browser.version,
-                        complete_routes=variants,all_stories=3,plan_edit_cancel_and_run=True,
-                        save_keys_preserved=list(OLD),offline_1024x630=True)
-            (args.out/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-            print(json.dumps(result,ensure_ascii=False))
+            checks=[campaign(browser,origin,maps,args.out,touch) for touch in (True,False)]
+            extra=special(browser,origin,maps,args.out,args.prior)
+            assert before==sha256((APP/'index.html').read_bytes()).hexdigest()
+            result={'result':'PASS','artifact_sha256':before,'origin':origin,'chromium':browser.version,'devices':checks,'other_saves':list(PROTECTED),**extra}
+            (args.out/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+            print('PASS',origin,before,[(s['input'],len(s['routes'])) for s in checks],extra)
         finally:
             browser.close()
 
